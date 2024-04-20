@@ -14,4 +14,4 @@ func _process(delta):
 	position.z = goblin_center.z
 	var d = max(pos1.distance_to(goblin_center), max(pos2.distance_to(goblin_center), pos3.distance_to(goblin_center)))
 	
-	position.y = 6 + d*3 - 9 if d > 3 else 6
+	position.y = 12 + d*3 - 9 if d > 3 else 12

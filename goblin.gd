@@ -13,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	if Input.is_action_just_pressed("ui_accept"):
+		$AnimationPlayer.play("idle")
 
 func get_input_dir():
 	if player_num == 0:
