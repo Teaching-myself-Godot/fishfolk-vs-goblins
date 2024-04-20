@@ -10,11 +10,14 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var player_num : int = 0
 
+func _ready():
+	$AnimationPlayer.play("idle")
+
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("ui_accept"):
-		$AnimationPlayer.play("idle")
+		$AnimationPlayer.play("cheer")
 
 func get_input_dir():
 	if player_num == 0:
@@ -37,7 +40,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		armature.rotation.y = atan2(-velocity.x, -velocity.z)
+		armature.rotation.y = atan2(velocity.x, velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)

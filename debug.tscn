@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://CameraPivot.gd" id="2_m05t1"]
+[ext_resource type="PackedScene" uid="uid://cv07nulgapynp" path="res://goblin.scn" id="3_1fb03"]
 [ext_resource type="Script" path="res://debugtext.gd" id="3_tm82y"]
-[ext_resource type="PackedScene" uid="uid://dl3mhfr16dwgo" path="res://goblin.scn" id="4_g1ega"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -89,13 +89,12 @@ offset_bottom = 74.0
 text = "test	"
 script = ExtResource("3_tm82y")
 
-[node name="goblin" parent="." instance=ExtResource("4_g1ega")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.65991, 0, 0)
+[node name="goblin" parent="." instance=ExtResource("3_1fb03")]
 
-[node name="goblin2" parent="." instance=ExtResource("4_g1ega")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2.60335, 0, 0)
+[node name="goblin2" parent="." instance=ExtResource("3_1fb03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 player_num = 1
 
-[node name="goblin3" parent="." instance=ExtResource("4_g1ega")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.298927, -8.94068e-07, 1.84755)
+[node name="goblin3" parent="." instance=ExtResource("3_1fb03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
 player_num = 2
