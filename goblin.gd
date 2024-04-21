@@ -10,6 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var player_num : int = 0
 
+var target_position : Vector3 = Vector3.ZERO
+
 func _ready():
 	$AnimationPlayer.play("idle")
 
@@ -21,7 +23,12 @@ func _unhandled_input(event):
 
 func get_input_dir():
 	if player_num == 0:
-		return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var pos_2d = Vector2(position.x, position.z)
+		var tpos_2d = Vector2(target_position.x, target_position.z)
+		if pos_2d.distance_to(tpos_2d) > 0.1:
+			return tpos_2d - pos_2d
+		else:
+			return Vector2.ZERO
 	if player_num == 1:
 		return Input.get_vector("a", "d", "w", "s")
 	if player_num == 2:
@@ -48,3 +55,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	move_and_slide()
+
+func _on_static_body_3d_input_event(camera, event, pos, normal, shape_idx):
+	var mouse_click = event as InputEventMouseButton
+	if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
+		target_position = pos

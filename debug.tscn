@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://CameraPivot.gd" id="2_m05t1"]
 [ext_resource type="PackedScene" uid="uid://djeob8jsg3hpy" path="res://goblin.scn" id="3_go331"]
@@ -17,11 +17,17 @@ sky = SubResource("Sky_ylqb4")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_ldaxn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.190476, 0.380952, 0.587302, 0.746032, 0.857143, 0.873016, 0.97619)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.380952, 0.380952, 0.380952, 1, 0.579365, 0.579365, 0.579365, 1, 0.579365, 0.579365, 0.579365, 1, 0.854396, 0.854396, 0.854396, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d108s"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6hpsk"]
-width = 1024
-height = 1024
+width = 2048
+height = 2048
+color_ramp = SubResource("Gradient_ldaxn")
 noise = SubResource("FastNoiseLite_d108s")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxg5u"]
@@ -98,3 +104,5 @@ player_num = 1
 [node name="goblin3" parent="." instance=ExtResource("3_go331")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41061, 0, 0)
 player_num = 2
+
+[connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="goblin" method="_on_static_body_3d_input_event"]
