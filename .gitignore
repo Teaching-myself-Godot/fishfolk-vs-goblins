@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 models
+versions
 *.import
 *.tmp
 *.blend1
