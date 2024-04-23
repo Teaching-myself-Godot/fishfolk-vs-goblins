@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-
-const SPEED = 2.0
+var speed = 0
+const MAX_SPEED = 6
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -45,14 +45,18 @@ func _physics_process(delta):
 	var input_dir = get_input_dir()
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		speed = MAX_SPEED / 2 if Input.is_action_pressed("shift") else MAX_SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 		armature.rotation.y = atan2(velocity.x, velocity.z)
-		$AnimationPlayer.play("walk")
+		if speed == MAX_SPEED:
+			$AnimationPlayer.play("run")
+		else:
+			$AnimationPlayer.play("walk")
 	else:
 		$AnimationPlayer.play("idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 		
 	move_and_slide()
 
