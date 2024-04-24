@@ -6,7 +6,6 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var armature = $metarig
 
 @export var player_num : int = 0
 
@@ -23,17 +22,18 @@ func _unhandled_input(event):
 
 func get_input_dir():
 	if player_num == 0:
-		var pos_2d = Vector2(position.x, position.z)
-		var tpos_2d = Vector2(target_position.x, target_position.z)
-		if pos_2d.distance_to(tpos_2d) > 0.1:
-			return tpos_2d - pos_2d
-		else:
-			return Vector2.ZERO
+		return Input.get_vector("a", "d", "w", "s").normalized()
 	if player_num == 1:
-		return Input.get_vector("a", "d", "w", "s")
+		return Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+		)
 	if player_num == 2:
-		return Input.get_vector("d", "a", "s", "w")
-		
+		return Vector2(
+			Input.get_joy_axis(1, JOY_AXIS_LEFT_X), 
+			Input.get_joy_axis(1, JOY_AXIS_LEFT_Y)
+		)
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -43,12 +43,13 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = get_input_dir()
+	var force = Vector2.ZERO.distance_to(input_dir)
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 	if direction:
-		speed = MAX_SPEED / 2 if Input.is_action_pressed("shift") else MAX_SPEED
+		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		armature.rotation.y = atan2(velocity.x, velocity.z)
+		$Armature.rotation.y = atan2(velocity.x, velocity.z)
 		if speed == MAX_SPEED:
 			$AnimationPlayer.play("run")
 		else:

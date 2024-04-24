@@ -1,17 +1,16 @@
 extends Node3D
 
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var goblins = get_tree().get_nodes_in_group("goblins")
-	var pos1 = goblins[0].position
-	var pos2 = goblins[1].position
-	var pos3 = goblins[2].position
-	var goblin_center = (pos1 + pos2 + pos3) / 3
-	position.x = goblin_center.x
-	position.z = goblin_center.z
-	var d = max(pos1.distance_to(goblin_center), max(pos2.distance_to(goblin_center), pos3.distance_to(goblin_center)))
+	var position_sum = Vector3.ZERO
+	for g in goblins:
+		position_sum += g.position
+
+	var goblin_center = Vector3.ZERO if goblins.is_empty() else position_sum / goblins.size()
+	var d = 0.0
+	for g in goblins:
+		d = max(d, g.position.distance_to(goblin_center))
 	
-	position.y = 16 + d*3 - 9 if d > 3 else 16
+	position.x = goblin_center.x
+	position.z = goblin_center.z + 18  + d * 1.5
+	position.y = 16 + d 
