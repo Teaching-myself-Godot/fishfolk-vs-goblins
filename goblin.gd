@@ -45,20 +45,17 @@ func _physics_process(delta):
 	var input_dir = get_input_dir()
 	var force = Vector2.ZERO.distance_to(input_dir)
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
+
 	if direction:
 		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		$Armature.rotation.y = atan2(velocity.x, velocity.z)
-		if speed == MAX_SPEED:
-			$AnimationPlayer.play("run")
-		else:
-			$AnimationPlayer.play("walk")
+		$Armature.rotation.y = 0.5 * PI + atan2(velocity.x, velocity.z)
 	else:
-		$AnimationPlayer.play("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-		
+
+	$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
 	move_and_slide()
 
 func _on_static_body_3d_input_event(camera, event, pos, normal, shape_idx):

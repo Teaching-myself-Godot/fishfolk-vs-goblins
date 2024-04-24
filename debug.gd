@@ -12,6 +12,9 @@ func add_goblin_to_scene(num : int):
 	var new_goblin = GoblinScene.instantiate()
 	new_goblin.player_num = num
 	var goblins = get_tree().get_nodes_in_group("goblins")
+	for g in goblins:
+		if g.position.distance_to(new_goblin.position) < 1:
+			new_goblin.position.x += 1
 	add_child.call_deferred(new_goblin)
 
 func no_goblin(num : int) -> bool:
