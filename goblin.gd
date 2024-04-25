@@ -33,8 +33,10 @@ func _ready():
 	$Label.label_settings.outline_size = 4
 	$Label.label_settings.font_color = LABEL_COLORS[player_num]
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit") and player_num == 0:
+		queue_free()
+	if Input.is_action_just_pressed("quit-" + str(player_num -1)):
 		queue_free()
 
 
