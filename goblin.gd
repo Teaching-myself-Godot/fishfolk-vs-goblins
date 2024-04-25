@@ -36,7 +36,7 @@ func _ready():
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit") and player_num == 0:
 		queue_free()
-	if Input.is_action_just_pressed("quit-" + str(player_num -1)):
+	if player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1)):
 		queue_free()
 
 
@@ -84,7 +84,7 @@ func _physics_process(delta):
 		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		$Armature.rotation.y = 0.5 * PI + atan2(velocity.x, velocity.z)
+		$Armature.rotation.y = atan2(velocity.x, velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -97,9 +97,14 @@ func _physics_process(delta):
 		else:
 			position = Vector3(0,0,0)
 
-	if airborne_time < 10:
-		$AnimationTree.set("active", true)
-		$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
+	if airborne_time < 5:
+		if velocity:
+			$AnimationTree.set("active", true)
+			$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
+			$AnimationTree.set("parameters/TimeScale/scale", .1 + force * .9)
+		else:
+			$AnimationTree.set("active", false)
+			$AnimationPlayer.play("idle")
 	else:
 		$AnimationTree.set("active", false)
 		$AnimationPlayer.play("airborne")
