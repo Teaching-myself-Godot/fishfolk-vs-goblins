@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
+var airborne_time = 0
 var speed = 0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
+const MAX_AIRBORNE_TIME = 150
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,34 +14,39 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var target_position : Vector3 = Vector3.ZERO
 
 func _ready():
-	$AnimationPlayer.play("idle")
+	airborne_time = 0
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-	if Input.is_action_just_pressed("ui_accept"):
-		$AnimationPlayer.play("cheer")
+
 
 func get_input_dir():
 	if player_num == 0:
 		return Input.get_vector("a", "d", "w", "s").normalized()
-	if player_num == 1:
-		return Vector2(
-			Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 
-			Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
-		)
-	if player_num == 2:
-		return Vector2(
-			Input.get_joy_axis(1, JOY_AXIS_LEFT_X), 
-			Input.get_joy_axis(1, JOY_AXIS_LEFT_Y)
-		)
+	return Vector2(
+		Input.get_joy_axis(player_num - 1, JOY_AXIS_LEFT_X),
+		Input.get_joy_axis(player_num - 1, JOY_AXIS_LEFT_Y)
+	)
+
+func should_jump() -> bool:
+	if not is_on_floor():
+		return false
+	if not Input.is_action_just_pressed("jump"):
+		return false
+	if player_num == 0 and Input.is_key_pressed(KEY_SPACE):
+		return true
+	if Input.is_joy_button_pressed(player_num - 1, JOY_BUTTON_A):
+		return true
+
+	return false
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * 3 * delta
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if should_jump():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -59,15 +66,19 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
-	var jump_force = 0 if is_on_floor() else velocity.y
-	if velocity.y < 1 and not is_on_floor():
-		jump_force = 1
+	if is_on_floor():
+		airborne_time = 0
+	else:
+		if airborne_time < MAX_AIRBORNE_TIME:
+			airborne_time += 1
+		else:
+			position = Vector3(0,0,0)
 
-	$AnimationTree.set("parameters/BlendSpace2D/blend_position", Vector2(force, jump_force))
+	if airborne_time < 10:
+		$AnimationTree.set("active", true)
+		$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
+	else:
+		$AnimationTree.set("active", false)
+		$AnimationPlayer.play("airborne")
 
 	move_and_slide()
-
-func _on_static_body_3d_input_event(camera, event, pos, normal, shape_idx):
-	var mouse_click = event as InputEventMouseButton
-	if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
-		target_position = pos
