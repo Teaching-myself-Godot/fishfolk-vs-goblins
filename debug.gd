@@ -3,6 +3,9 @@ extends Node
 var GoblinScene = preload("res://goblin.scn")
 
 func _unhandled_input(_event):
+	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group("goblins").is_empty():
+		get_tree().quit()
+
 	if Input.is_action_just_pressed("start-k") and no_goblin(0):
 		add_goblin_to_scene(0)
 	if Input.is_action_just_pressed("start-0") and no_goblin(1):

@@ -13,13 +13,34 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var target_position : Vector3 = Vector3.ZERO
 
+const LABEL_COLORS = [
+	Color(0, 0.65, 0.184),
+	Color(1, 0.184, 0),
+	Color(0, 0.184, 1),
+	Color(0.184, 0.5, 0.5),
+	Color(0.5, 0.5, 0.184)
+]
+
 func _ready():
 	airborne_time = 0
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+	$Label.text = "P" + str(player_num)
+	$Label.modulate = Color(1, 1, 1, 0.5)
+	var font_resource = $Label.label_settings.font
+	$Label.label_settings = LabelSettings.new()
+	$Label.label_settings.font = font_resource
+	$Label.label_settings.font_size = 24
+	$Label.label_settings.outline_size = 4
+	$Label.label_settings.font_color = LABEL_COLORS[player_num]
 
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit") and player_num == 0:
+		queue_free()
+
+
+func positionLabel():
+	var cam : Camera3D = get_tree().get_first_node_in_group("cam").get_child(0)
+	$Label.position = cam.unproject_position(Vector3(position.x + 0.5, position.y, position.z + 0.1))
 
 func get_input_dir():
 	if player_num == 0:
@@ -32,8 +53,7 @@ func get_input_dir():
 func should_jump() -> bool:
 	if not is_on_floor():
 		return false
-	if not Input.is_action_just_pressed("jump"):
-		return false
+
 	if player_num == 0 and Input.is_key_pressed(KEY_SPACE):
 		return true
 	if Input.is_joy_button_pressed(player_num - 1, JOY_BUTTON_A):
@@ -42,6 +62,7 @@ func should_jump() -> bool:
 	return false
 
 func _physics_process(delta):
+	positionLabel()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * 3 * delta
