@@ -13,4 +13,4 @@
 
 ## Milestone 3 (TODO) - fire a cannon ball at a target
 
-- (Predicting the path of a projectile)[https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554]
+- [Predicting the path of a projectile](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554)
