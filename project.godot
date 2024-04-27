@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/image="res://icon.png"
 config/icon="res://icon.svg"
 
+[autoload]
+
+CameraUtil="*res://camera_util.gd"
+
 [input]
 
 quit={

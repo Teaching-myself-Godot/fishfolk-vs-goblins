@@ -25,7 +25,6 @@ func _ready():
 	airborne_time = 0
 
 	$Label.text = str(player_num) + "p"
-	#$Label.modulate = Color(1, 1, 1, 0.5)
 	var font_resource = $Label.label_settings.font
 	$Label.label_settings = LabelSettings.new()
 	$Label.label_settings.font = font_resource
@@ -39,14 +38,8 @@ func _unhandled_input(_event):
 	if player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1)):
 		queue_free()
 
-func get_cam_pivot() -> Node3D:
-	return get_tree().get_first_node_in_group("cam")
-
-func get_cam() -> Camera3D:
-	return get_cam_pivot().get_child(0)
-
 func positionLabel():
-	$Label.position = get_cam().unproject_position(Vector3(position.x + 0.5, position.y, position.z + 0.1))
+	$Label.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
 
 func get_input_dir():
 	if player_num == 0:
@@ -97,7 +90,7 @@ func _physics_process(delta):
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 
 	if direction:
-		direction = direction.rotated(Vector3.UP, get_cam_pivot().rotation.y)
+		direction = direction.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y)
 		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
