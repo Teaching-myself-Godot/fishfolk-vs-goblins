@@ -24,8 +24,8 @@ const LABEL_COLORS = [
 func _ready():
 	airborne_time = 0
 
-	$Label.text = "P" + str(player_num)
-	$Label.modulate = Color(1, 1, 1, 0.5)
+	$Label.text = str(player_num) + "p"
+	#$Label.modulate = Color(1, 1, 1, 0.5)
 	var font_resource = $Label.label_settings.font
 	$Label.label_settings = LabelSettings.new()
 	$Label.label_settings.font = font_resource
