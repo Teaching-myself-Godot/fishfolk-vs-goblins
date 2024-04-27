@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://MyCamera.gd" id="3_jidu1"]
 [ext_resource type="Script" path="res://debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
-[ext_resource type="PackedScene" uid="uid://b41k08q88eqts" path="res://palm_tree.tscn" id="6_ibfao"]
+[ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,8 +76,5 @@ script = ExtResource("3_tm82y")
 [node name="terrain" parent="." instance=ExtResource("4_75lcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="palm-tree" parent="." instance=ExtResource("6_ibfao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -1)
-
-[node name="palm-tree2" parent="." instance=ExtResource("6_ibfao")]
-transform = Transform3D(0.510513, 0.0194782, -0.347089, 0, 0.616666, 0.0346066, 0.347635, -0.0286044, 0.509712, -6, -1, 5)
+[node name="palm-tree" parent="." instance=ExtResource("7_ssyn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, -0.477003, 5.34113)

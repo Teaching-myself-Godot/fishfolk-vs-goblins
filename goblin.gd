@@ -67,17 +67,29 @@ func should_jump() -> bool:
 
 	return false
 
+func _process(_delta):
+	var trees = get_tree().get_nodes_in_group("trees")
+	var closest_tree = null
+	for tree in trees:
+		var d_tree = position.distance_to(tree.position)
+		if d_tree < 2.0:
+			if not closest_tree:
+				closest_tree = tree
+			else:
+				closest_tree = tree if d_tree < position.distance_to(closest_tree) else closest_tree
+
+	if closest_tree:
+		closest_tree.hug_goblin(self)
+
 func _physics_process(delta):
 	positionLabel()
-	# Add the gravity.
+
 	if not is_on_floor():
 		velocity.y -= gravity * 3 * delta
 
 	if should_jump():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = get_input_dir()
 	if Input.is_action_pressed("shift"):
 		input_dir *= .25

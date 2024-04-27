@@ -1,6 +1,7 @@
 extends Node
 
 var GoblinScene = preload("res://goblin.scn")
+var adding_state = []
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group("goblins").is_empty():
@@ -18,15 +19,20 @@ func _unhandled_input(_event):
 		add_goblin_to_scene(4)
 
 func add_goblin_to_scene(num : int):
+	adding_state.append(num)
 	var new_goblin = GoblinScene.instantiate()
 	new_goblin.player_num = num
+	new_goblin.position = Vector3(num, 4, num)
 	var goblins = get_tree().get_nodes_in_group("goblins")
 	for g in goblins:
 		if g.position.distance_to(new_goblin.position) < 1:
 			new_goblin.position.x += 1
 	add_child.call_deferred(new_goblin)
+	adding_state.erase(num)
 
 func no_goblin(num : int) -> bool:
+	if num in adding_state:
+		return false
 	var goblins = get_tree().get_nodes_in_group("goblins")
 	for g in goblins:
 		if g.player_num == num:
