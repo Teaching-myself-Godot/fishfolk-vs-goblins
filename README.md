@@ -8,9 +8,21 @@
 - goblin model and scene, can run and jump
 - 1-5 players, 1 keyboard, up to 4 controllers
 
-## Milestone 2 (TODO) - interactive tree(s)
+## Milestone 2 (DOING) - interactive tree(s)
+
+- [Highlight closest tree with outline mesh](https://www.reddit.com/r/godot/comments/16ulxqs/does_anybody_knows_how_this_3d_model_outline_is/)
+- [Coloration of terrain close to tree](https://www.reddit.com/r/godot/comments/gok070/need_help_getting_world_coordinates_in_shader/)
+- Open menu on B
+- Use menu with L
 
 
-## Milestone 3 (TODO) - fire a cannon ball at a target
+## Milestone 3 (TODO) - Convert a tree into a tower
 
+
+## Milestone 4 (TODO) - Monsters
+
+
+## Milestone 5 (TODO) - Aim and shoot projectiles at monsters
+
+- [Range rings on terrain](https://godotshaders.com/shader/sdf-range-rings-3d/)
 - [Predicting the path of a projectile](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554)
