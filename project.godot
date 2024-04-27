@@ -13,6 +13,7 @@ config_version=5
 config/name="Goblins-vs-fishfolk"
 run/main_scene="res://debug.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/image="res://icon.png"
 config/icon="res://icon.svg"
 
 [input]
