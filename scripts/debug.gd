@@ -7,15 +7,21 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group("goblins").is_empty():
 		get_tree().quit()
 
-	if Input.is_action_just_pressed("start-k") and no_goblin(0):
+	if Input.is_action_just_released("f11"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
+	if Input.is_action_just_released("start-k") and no_goblin(0):
 		add_goblin_to_scene(0)
-	if Input.is_action_just_pressed("start-0") and no_goblin(1):
+	if Input.is_action_just_released("start-0") and no_goblin(1):
 		add_goblin_to_scene(1)
-	if Input.is_action_just_pressed("start-1") and no_goblin(2):
+	if Input.is_action_just_released("start-1") and no_goblin(2):
 		add_goblin_to_scene(2)
-	if Input.is_action_just_pressed("start-2") and no_goblin(3):
+	if Input.is_action_just_released("start-2") and no_goblin(3):
 		add_goblin_to_scene(3)
-	if Input.is_action_just_pressed("start-3") and no_goblin(4):
+	if Input.is_action_just_released("start-3") and no_goblin(4):
 		add_goblin_to_scene(4)
 
 func add_goblin_to_scene(num : int):
