@@ -58,25 +58,26 @@ func should_jump() -> bool:
 	if not is_on_floor() or $TreeContextMenu.is_open:
 		return false
 
-	if player_num == 0 and Input.is_action_just_pressed("jump-k"):
-		return true
+	return my_button_just_pressed("jump")
 
-	if player_num > 0 and Input.is_action_just_pressed("jump-" + str(player_num - 1)):
+func my_button_just_pressed(button_key : String) -> bool:
+	if player_num == 0 and Input.is_action_just_pressed(button_key + "-k"):
+		return true
+	elif player_num > 0 and Input.is_action_just_pressed(button_key + "-" + str(player_num - 1)):
 		return true
 
 	return false
 
-func should_show_tree_context_menu() -> bool:
+func should_open_tree_context_menu() -> bool:
 	if not my_tree:
 		return false
 
-	if player_num == 0 and Input.is_action_pressed("confirm-k"):
+	if my_button_just_pressed("confirm"):
 		return true
+	elif my_button_just_pressed("cancel"):
+		return false
 
-	if player_num > 0 and Input.is_action_pressed("confirm-" + str(player_num - 1)):
-		return true
-
-	return false
+	return $TreeContextMenu.is_open
 
 func hug_closest_tree():
 	if my_tree and is_instance_valid(my_tree):
@@ -98,8 +99,10 @@ func hug_closest_tree():
 		$TreeContextMenu.close_and_hide()
 
 func _process(_delta):
+	if position.y > 100:
+		leave_game()
 	hug_closest_tree()
-	if should_show_tree_context_menu():
+	if should_open_tree_context_menu():
 		$TreeContextMenu.open()
 	else:
 		$TreeContextMenu.close()

@@ -28,11 +28,11 @@ func add_goblin_to_scene(num : int):
 	adding_state.append(num)
 	var new_goblin = GoblinScene.instantiate()
 	new_goblin.player_num = num
-	new_goblin.position = Vector3(num, 4, num)
+	new_goblin.position = Vector3(0, 4, 0)
 	var goblins = get_tree().get_nodes_in_group("goblins")
 	for g in goblins:
-		if g.position.distance_to(new_goblin.position) < 1:
-			new_goblin.position.x += 1
+		if g.position.distance_to(new_goblin.position) < 3:
+			new_goblin.position.x += 5
 	add_child.call_deferred(new_goblin)
 	adding_state.erase(num)
 

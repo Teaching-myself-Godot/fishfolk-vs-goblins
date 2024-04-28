@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=10 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
 [ext_resource type="Shader" path="res://shaders/menu_highlight_circle.gdshader" id="2_nanaq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_4fm7l"]
 [ext_resource type="Script" path="res://scripts/HighlightCircle.gd" id="5_flmyu"]
+[ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
+[ext_resource type="Script" path="res://scripts/WhiteCircle.gd" id="6_wqsek"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrh6v"]
 shader = ExtResource("2_nanaq")
@@ -14,27 +16,47 @@ font = ExtResource("3_4fm7l")
 font_size = 24
 font_color = Color(1, 1, 1, 0.870588)
 outline_size = 7
-outline_color = Color(1, 0.768627, 0, 0.737255)
+outline_color = Color(1, 1, 0.862745, 0.392157)
 
 [node name="TreeContextMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_e2law")
 
-[node name="HighlightCircle" type="Sprite2D" parent="."]
+[node name="BButton" type="Node2D" parent="."]
+
+[node name="HighlightCircle" type="Sprite2D" parent="BButton"]
 material = SubResource("ShaderMaterial_mrh6v")
 script = ExtResource("5_flmyu")
 
-[node name="Red-button" type="Sprite2D" parent="."]
+[node name="RedButton" type="Sprite2D" parent="BButton"]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_37u6b")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
+[node name="B-Label" type="Label" parent="BButton"]
 offset_left = -9.0
 offset_top = -13.0
 offset_right = 7.0
 offset_bottom = 14.0
 scale = Vector2(1.4, 1)
 text = "B"
+label_settings = SubResource("LabelSettings_uo8ie")
+
+[node name="AButton" type="Node2D" parent="."]
+visible = false
+
+[node name="WhiteCircle" type="Sprite2D" parent="AButton"]
+script = ExtResource("6_wqsek")
+
+[node name="GreenButton" type="Sprite2D" parent="AButton"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_klesp")
+
+[node name="A-Label" type="Label" parent="AButton"]
+offset_left = -9.0
+offset_top = -15.0
+offset_right = 7.0
+offset_bottom = 12.0
+scale = Vector2(1.4, 1)
+text = "A"
 label_settings = SubResource("LabelSettings_uo8ie")

@@ -12,8 +12,10 @@ func close_and_hide():
 
 func open():
 	is_open = true
-	$HighlightCircle.visible = false
+	$BButton.hide()
+	$AButton.show()
 
 func close():
 	is_open = false
-	$HighlightCircle.visible = true
+	$BButton.show()
+	$AButton.hide()
