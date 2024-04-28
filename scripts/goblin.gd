@@ -53,9 +53,9 @@ func should_jump() -> bool:
 	if not is_on_floor():
 		return false
 
-	if player_num == 0 and Input.is_key_pressed(KEY_SPACE):
+	if player_num == 0 and Input.is_action_just_pressed("jump-k"):
 		return true
-	if Input.is_joy_button_pressed(player_num - 1, JOY_BUTTON_A):
+	if Input.is_action_just_pressed("jump-" + str(player_num - 1)):
 		return true
 
 	return false
