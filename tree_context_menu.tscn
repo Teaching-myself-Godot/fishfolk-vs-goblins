@@ -1,30 +1,54 @@
-[gd_scene load_steps=11 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=19 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
 [ext_resource type="Shader" path="res://shaders/menu_highlight_circle.gdshader" id="2_nanaq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_4fm7l"]
+[ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="3_dyfal"]
 [ext_resource type="Script" path="res://scripts/HighlightCircle.gd" id="5_flmyu"]
+[ext_resource type="Texture2D" uid="uid://ce4hru2lfh7vc" path="res://icons/air-option.svg" id="5_n7lqp"]
 [ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
 [ext_resource type="Script" path="res://scripts/DrawCircle.gd" id="7_lanst"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
+[ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="9_j38yi"]
+[ext_resource type="Texture2D" uid="uid://cc5udt7ex2nao" path="res://icons/all-range-option.svg" id="10_6jepf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu51s"]
+resource_local_to_scene = true
+shader = ExtResource("3_dyfal")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vdx"]
+resource_local_to_scene = true
+shader = ExtResource("3_dyfal")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2gb0"]
+resource_local_to_scene = true
+shader = ExtResource("3_dyfal")
+shader_parameter/blink = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrh6v"]
 shader = ExtResource("2_nanaq")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uo8ie"]
 font = ExtResource("3_4fm7l")
+font_size = 26
+outline_color = Color(0.278431, 0.266667, 0.27451, 0.529412)
+shadow_color = Color(0, 0, 0, 0.52549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
+font = ExtResource("3_4fm7l")
 font_size = 24
-font_color = Color(1, 1, 1, 0.870588)
-outline_size = 7
-outline_color = Color(1, 1, 0.862745, 0.392157)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="TreeContextMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 6.0
-offset_right = 6.0
 script = ExtResource("1_e2law")
+metadata/_edit_vertical_guides_ = [200.0, -200.0]
+metadata/_edit_horizontal_guides_ = [200.0, -200.0]
 
 [node name="BackdropCircle" type="Sprite2D" parent="."]
 visible = false
@@ -32,10 +56,26 @@ script = ExtResource("7_lanst")
 radius = 200
 color = Color(0, 0, 0, 0.0980392)
 
+[node name="TypeMenu" type="Node2D" parent="."]
+
+[node name="All-Range-option" type="Sprite2D" parent="TypeMenu"]
+material = SubResource("ShaderMaterial_bu51s")
+position = Vector2(0, -135)
+texture = ExtResource("10_6jepf")
+
+[node name="Ground-option" type="Sprite2D" parent="TypeMenu"]
+material = SubResource("ShaderMaterial_p3vdx")
+position = Vector2(-135, 0)
+texture = ExtResource("9_j38yi")
+
+[node name="Air-option" type="Sprite2D" parent="TypeMenu"]
+material = SubResource("ShaderMaterial_a2gb0")
+position = Vector2(120, 0)
+texture = ExtResource("5_n7lqp")
+
 [node name="MenuArrow" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("8_ivrg5")
-offset = Vector2(60, 0)
+offset = Vector2(50, 0)
 
 [node name="BButton" type="Node2D" parent="."]
 
@@ -48,30 +88,40 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_37u6b")
 
 [node name="B-Label" type="Label" parent="BButton"]
-offset_left = -9.0
-offset_top = -13.0
-offset_right = 7.0
-offset_bottom = 14.0
-scale = Vector2(1.4, 1)
+offset_left = -7.0
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = 16.0
 text = "B"
 label_settings = SubResource("LabelSettings_uo8ie")
 
 [node name="AButton" type="Node2D" parent="."]
-visible = false
 position = Vector2(170, 170)
 
-[node name="WhiteCircle" type="Sprite2D" parent="AButton"]
-script = ExtResource("7_lanst")
+[node name="HighlightCircle" type="Sprite2D" parent="AButton"]
+material = SubResource("ShaderMaterial_mrh6v")
+script = ExtResource("5_flmyu")
 
 [node name="GreenButton" type="Sprite2D" parent="AButton"]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_klesp")
 
 [node name="A-Label" type="Label" parent="AButton"]
-offset_left = -9.0
-offset_top = -15.0
-offset_right = 7.0
-offset_bottom = 12.0
+offset_left = -10.0
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = 14.0
 scale = Vector2(1.4, 1)
 text = "A"
 label_settings = SubResource("LabelSettings_uo8ie")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 25.0
+offset_right = 60.0
+offset_bottom = 52.0
+text = "All-Range
+"
+label_settings = SubResource("LabelSettings_xw20b")
+horizontal_alignment = 1
