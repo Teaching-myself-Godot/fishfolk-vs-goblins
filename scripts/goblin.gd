@@ -10,8 +10,9 @@ const MAX_AIRBORNE_TIME = 150
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var player_num : int = 0
-
 var target_position : Vector3 = Vector3.ZERO
+
+var my_tree = null
 
 const LABEL_COLORS = [
 	Color(0, 0.65, 0.184),
@@ -55,24 +56,30 @@ func should_jump() -> bool:
 
 	if player_num == 0 and Input.is_action_just_pressed("jump-k"):
 		return true
-	if Input.is_action_just_pressed("jump-" + str(player_num - 1)):
+
+	if player_num > 0 and Input.is_action_just_pressed("jump-" + str(player_num - 1)):
 		return true
 
 	return false
 
-func _process(_delta):
-	var trees = get_tree().get_nodes_in_group("trees")
-	var closest_tree = null
-	for tree in trees:
+func hug_closest_tree():
+	if my_tree and is_instance_valid(my_tree):
+		my_tree.toggle_highlight(false)
+		my_tree = null
+
+	for tree in get_tree().get_nodes_in_group("trees"):
 		var d_tree = position.distance_to(tree.position)
 		if d_tree < 2.0:
-			if not closest_tree:
-				closest_tree = tree
+			if not my_tree:
+				my_tree = tree
 			else:
-				closest_tree = tree if d_tree < position.distance_to(closest_tree) else closest_tree
+				my_tree = tree if d_tree < position.distance_to(my_tree) else my_tree
 
-	if closest_tree:
-		closest_tree.hug_goblin(self)
+	if my_tree and is_instance_valid(my_tree):
+		my_tree.toggle_highlight(true)
+
+func _process(_delta):
+	hug_closest_tree()
 
 func _physics_process(delta):
 	positionLabel()

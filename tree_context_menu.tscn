@@ -1,32 +1,31 @@
 [gd_scene load_steps=6 format=3 uid="uid://bubns2tywueht"]
 
-[ext_resource type="Shader" path="res://shaders/menu.gdshader" id="1_fhygk"]
-[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_jf8dt"]
-[ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_thhdg"]
+[ext_resource type="Shader" path="res://shaders/menu.gdshader" id="1_bk6fi"]
+[ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_4fm7l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dx11"]
-shader = ExtResource("1_fhygk")
+shader = ExtResource("1_bk6fi")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uo8ie"]
-font = ExtResource("1_jf8dt")
+font = ExtResource("3_4fm7l")
 font_size = 22
 outline_size = 4
 outline_color = Color(1, 0.768627, 0, 0.737255)
 
-[node name="Menu" type="Control"]
-z_index = 1
+[node name="TreeContextMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 
 [node name="Red-button" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_0dx11")
 position = Vector2(0, 1)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_thhdg")
+texture = ExtResource("2_37u6b")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.941176)
-layout_mode = 0
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
