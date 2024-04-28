@@ -29,10 +29,13 @@ func add_goblin_to_scene(num : int):
 	var new_goblin = GoblinScene.instantiate()
 	new_goblin.player_num = num
 	new_goblin.position = Vector3(0, 4, 0)
-	var goblins = get_tree().get_nodes_in_group("goblins")
-	for g in goblins:
-		if g.position.distance_to(new_goblin.position) < 3:
-			new_goblin.position.x += 5
+
+	var goblin = get_tree().get_first_node_in_group("goblins")
+	if goblin and is_instance_valid(goblin):
+		new_goblin.position.x = goblin.position.x + (1 + randf()) * 2
+		new_goblin.position.z = goblin.position.z + (1 + randf()) * 2
+		new_goblin.position.y = goblin.position.y + 4
+
 	add_child.call_deferred(new_goblin)
 	adding_state.erase(num)
 

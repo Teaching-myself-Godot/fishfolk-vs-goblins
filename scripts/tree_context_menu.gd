@@ -2,8 +2,14 @@ extends Control
 
 var is_open = false
 
+const MENU_RADIUS = 200.0
+
+func _ready():
+	$BackdropCircle.radius = MENU_RADIUS
+
 func show_at(pos : Vector2):
 	position = pos
+	align()
 	visible = true
 
 func close_and_hide():
@@ -26,3 +32,12 @@ func close():
 	$AButton.hide()
 	$MenuArrow.hide()
 	$BackdropCircle.hide()
+
+func align():
+	position.x = MENU_RADIUS if position.x < MENU_RADIUS else position.x
+	position.y = MENU_RADIUS if position.y < MENU_RADIUS else position.y
+	position.x = get_viewport().size.x - MENU_RADIUS if position.x + MENU_RADIUS > get_viewport().size.x else position.x
+	position.y = get_viewport().size.y - MENU_RADIUS if position.y + MENU_RADIUS > get_viewport().size.y else position.y
+
+func _process(delta):
+	align()
