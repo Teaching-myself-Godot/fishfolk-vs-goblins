@@ -18,7 +18,7 @@ func close_and_hide():
 
 func open():
 	is_open = true
-	$BButton.hide()
+	$"BButton/HighlightCircle".hide()
 	$AButton.show()
 	$MenuArrow.show()
 	$BackdropCircle.show()
@@ -28,7 +28,7 @@ func rotate_arrow(angle : float):
 
 func close():
 	is_open = false
-	$BButton.show()
+	$"BButton/HighlightCircle".show()
 	$AButton.hide()
 	$MenuArrow.hide()
 	$BackdropCircle.hide()
