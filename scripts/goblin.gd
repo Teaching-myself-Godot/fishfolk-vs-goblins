@@ -34,10 +34,14 @@ func _ready():
 	$Label.label_settings.font_color = LABEL_COLORS[player_num]
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit") and player_num == 0:
-		queue_free()
-	if player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1)):
-		queue_free()
+	if (Input.is_action_just_pressed("quit") and player_num == 0) or (player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1))):
+		leave_game()
+
+func leave_game():
+	$TreeContextMenu.close_and_hide()
+	if my_tree and is_instance_valid(my_tree):
+		my_tree.toggle_highlight(false)
+	queue_free()
 
 func positionLabel():
 	$Label.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
