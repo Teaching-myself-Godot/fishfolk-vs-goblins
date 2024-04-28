@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=11 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
@@ -6,7 +6,8 @@
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_4fm7l"]
 [ext_resource type="Script" path="res://scripts/HighlightCircle.gd" id="5_flmyu"]
 [ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
-[ext_resource type="Script" path="res://scripts/WhiteCircle.gd" id="6_wqsek"]
+[ext_resource type="Script" path="res://scripts/DrawCircle.gd" id="7_lanst"]
+[ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrh6v"]
 shader = ExtResource("2_nanaq")
@@ -22,6 +23,16 @@ outline_color = Color(1, 1, 0.862745, 0.392157)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_e2law")
+
+[node name="BackdropCircle" type="Sprite2D" parent="."]
+visible = false
+script = ExtResource("7_lanst")
+radius = 200
+color = Color(0, 0, 0, 0.0980392)
+
+[node name="MenuArrow" type="Sprite2D" parent="."]
+texture = ExtResource("8_ivrg5")
+offset = Vector2(60, 0)
 
 [node name="BButton" type="Node2D" parent="."]
 
@@ -46,7 +57,7 @@ label_settings = SubResource("LabelSettings_uo8ie")
 visible = false
 
 [node name="WhiteCircle" type="Sprite2D" parent="AButton"]
-script = ExtResource("6_wqsek")
+script = ExtResource("7_lanst")
 
 [node name="GreenButton" type="Sprite2D" parent="AButton"]
 scale = Vector2(0.75, 0.75)

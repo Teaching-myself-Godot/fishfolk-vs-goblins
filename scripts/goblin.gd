@@ -54,6 +54,9 @@ func get_input_dir():
 		Input.get_joy_axis(player_num - 1, JOY_AXIS_LEFT_Y)
 	)
 
+func get_mouse_vector_to(pos : Vector2):
+	return (get_viewport().get_mouse_position() - pos).normalized()
+
 func should_jump() -> bool:
 	if not is_on_floor() or $TreeContextMenu.is_open:
 		return false
@@ -102,10 +105,23 @@ func _process(_delta):
 	if position.y > 100:
 		leave_game()
 	hug_closest_tree()
+
 	if should_open_tree_context_menu():
 		$TreeContextMenu.open()
 	else:
 		$TreeContextMenu.close()
+
+	if $TreeContextMenu.is_open:
+		var input_dir = get_input_dir()
+		var force = Vector2.ZERO.distance_to(input_dir)
+		if player_num == 0 and force == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			input_dir = get_mouse_vector_to($TreeContextMenu.position)
+			force = 1
+
+		if force > 0.5:
+			$TreeContextMenu.rotate_arrow(input_dir.normalized().angle())
+		else:
+			$TreeContextMenu.rotate_arrow(-PI * .5)
 
 func _physics_process(delta):
 	positionLabel()
