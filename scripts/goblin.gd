@@ -85,7 +85,7 @@ func hug_closest_tree():
 			if not my_tree:
 				my_tree = tree
 			else:
-				my_tree = tree if d_tree < position.distance_to(my_tree) else my_tree
+				my_tree = tree if d_tree < position.distance_to(my_tree.position) else my_tree
 
 	if my_tree and is_instance_valid(my_tree):
 		my_tree.toggle_highlight(true)

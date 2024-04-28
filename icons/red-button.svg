@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="62.716537"
-   height="62.716537"
-   viewBox="0 0 16.593751 16.593751"
+   width="59.716537"
+   height="59.716537"
+   viewBox="0 0 15.800001 15.800001"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -25,28 +25,16 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      inkscape:zoom="7.4684285"
-     inkscape:cx="29.925974"
-     inkscape:cy="23.365023"
-     inkscape:window-width="1680"
-     inkscape:window-height="979"
-     inkscape:window-x="-8"
-     inkscape:window-y="-4"
+     inkscape:cx="28.453108"
+     inkscape:cy="21.892156"
+     inkscape:window-width="1280"
+     inkscape:window-height="729"
+     inkscape:window-x="1672"
+     inkscape:window-y="2"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
-    <linearGradient
-       id="linearGradient18"
-       inkscape:collect="always">
-      <stop
-         style="stop-color:#ffffff;stop-opacity:0.03030303;"
-         offset="0.91000003"
-         id="stop19" />
-      <stop
-         style="stop-color:#ffffff;stop-opacity:1;"
-         offset="1"
-         id="stop18" />
-    </linearGradient>
     <linearGradient
        id="linearGradient9"
        inkscape:collect="always">
@@ -70,24 +58,14 @@
        r="25.050606"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(0.31536162,0,0,0.31536162,33.664867,47.879792)" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient18"
-       id="radialGradient19"
-       cx="56.227272"
-       cy="77.899796"
-       fx="56.227272"
-       fy="77.899796"
-       r="8.296875"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.930397,-69.60292)">
+     transform="translate(-48.327272,-69.999795)">
     <circle
-       style="fill:url(#radialGradient10);stroke:url(#radialGradient19);stroke-width:0.79375;stroke-dasharray:none"
+       style="fill:url(#radialGradient10);stroke:none;stroke-width:0;stroke-dasharray:none"
        id="path1"
        cx="56.227272"
        cy="77.899796"

@@ -86,3 +86,6 @@ transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555
 
 [node name="palm-tree4" parent="." instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1.01315, -0.00331156, -0.40843, 0.00304287, 1.09238, -0.00130889, 0.408432, 7.62568e-05, 1.01315, 11.987, 2.97541, -10.2917)
+
+[node name="palm-tree5" parent="." instance=ExtResource("7_ssyn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0308, 3.18759, -3.82407)
