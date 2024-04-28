@@ -51,13 +51,25 @@ func get_input_dir():
 	)
 
 func should_jump() -> bool:
-	if not is_on_floor():
+	if not is_on_floor() or $TreeContextMenu.is_open:
 		return false
 
 	if player_num == 0 and Input.is_action_just_pressed("jump-k"):
 		return true
 
 	if player_num > 0 and Input.is_action_just_pressed("jump-" + str(player_num - 1)):
+		return true
+
+	return false
+
+func should_show_tree_context_menu() -> bool:
+	if not my_tree:
+		return false
+
+	if player_num == 0 and Input.is_action_pressed("confirm-k"):
+		return true
+
+	if player_num > 0 and Input.is_action_pressed("confirm-" + str(player_num - 1)):
 		return true
 
 	return false
@@ -77,9 +89,16 @@ func hug_closest_tree():
 
 	if my_tree and is_instance_valid(my_tree):
 		my_tree.toggle_highlight(true)
+		$TreeContextMenu.show_at(CameraUtil.get_label_position(my_tree.position, Vector3(2, 0, 0)))
+	else:
+		$TreeContextMenu.close_and_hide()
 
 func _process(_delta):
 	hug_closest_tree()
+	if should_show_tree_context_menu():
+		$TreeContextMenu.open()
+	else:
+		$TreeContextMenu.close()
 
 func _physics_process(delta):
 	positionLabel()
@@ -96,7 +115,7 @@ func _physics_process(delta):
 	var force = Vector2.ZERO.distance_to(input_dir)
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 
-	if direction:
+	if direction and not $TreeContextMenu.is_open:
 		direction = direction.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y)
 		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
