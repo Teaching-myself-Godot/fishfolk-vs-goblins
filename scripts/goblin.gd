@@ -154,7 +154,8 @@ func _physics_process(delta):
 		if airborne_time < MAX_AIRBORNE_TIME:
 			airborne_time += 1
 		else:
-			position = Vector3(0,0,0)
+			velocity.y = -gravity * 100
+			position = Vector3(0,4,0)
 
 	if airborne_time < 5:
 		if velocity:
