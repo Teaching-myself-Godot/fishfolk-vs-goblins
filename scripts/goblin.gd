@@ -6,7 +6,6 @@ const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var player_num : int = 0
@@ -24,7 +23,6 @@ const LABEL_COLORS = [
 
 func _ready():
 	airborne_time = 0
-
 	$Label.text = str(player_num) + "p"
 	var font_resource = $Label.label_settings.font
 	$Label.label_settings = LabelSettings.new()
@@ -71,16 +69,13 @@ func my_button_just_pressed(button_key : String) -> bool:
 
 	return false
 
-func should_open_tree_context_menu() -> bool:
-	if not my_tree:
-		return false
-
-	if my_button_just_pressed("confirm"):
+func my_button_just_released(button_key : String) -> bool:
+	if player_num == 0 and Input.is_action_just_released(button_key + "-k"):
 		return true
-	elif my_button_just_pressed("cancel"):
-		return false
+	elif player_num > 0 and Input.is_action_just_released(button_key + "-" + str(player_num - 1)):
+		return true
 
-	return $TreeContextMenu.is_open
+	return false
 
 func hug_closest_tree():
 	if my_tree and is_instance_valid(my_tree):
@@ -101,27 +96,42 @@ func hug_closest_tree():
 	else:
 		$TreeContextMenu.close_and_hide()
 
+
 func _process(_delta):
 	if position.y > 100:
 		leave_game()
 	hug_closest_tree()
 
-	if should_open_tree_context_menu():
-		$TreeContextMenu.open()
-	else:
-		$TreeContextMenu.close()
+	if my_button_just_pressed("confirm") and my_tree:
+		if not $TreeContextMenu.is_open:
+			$TreeContextMenu.open()
+		else:
+			var choice = $TreeContextMenu.select_targeted_option()
+			if choice != "":
+				if my_tree and is_instance_valid(my_tree):
+					my_tree.replace_with_tower(choice)
+					my_tree = null
+
+	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
+		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
+			$TreeContextMenu.close()
+		else:
+			$TreeContextMenu.close_submenu()
 
 	if $TreeContextMenu.is_open:
-		var input_dir = get_input_dir()
-		var force = Vector2.ZERO.distance_to(input_dir)
-		if player_num == 0 and force == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			input_dir = get_mouse_vector_to($TreeContextMenu.position)
-			force = 1
+		handle_menu_arrow_input()
 
-		if force > 0.5:
-			$TreeContextMenu.rotate_arrow(input_dir.normalized().angle())
-		else:
-			$TreeContextMenu.rotate_arrow(-PI * .5)
+func handle_menu_arrow_input():
+	var input_dir = get_input_dir()
+	var force = Vector2.ZERO.distance_to(input_dir)
+	if player_num == 0 and force == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		input_dir = get_mouse_vector_to($TreeContextMenu.position)
+		force = 1
+
+	if force > 0.5:
+		$TreeContextMenu.rotate_arrow(input_dir.normalized().angle())
+	else:
+		$TreeContextMenu.rotate_arrow(-PI * .5)
 
 func _physics_process(delta):
 	positionLabel()

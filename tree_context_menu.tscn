@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=21 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/HighlightCircle.gd" id="5_flmyu"]
 [ext_resource type="Texture2D" uid="uid://ce4hru2lfh7vc" path="res://icons/air-option.svg" id="5_n7lqp"]
 [ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
+[ext_resource type="Texture2D" uid="uid://chrs311luoo36" path="res://icons/arrow-option.svg" id="7_2pmu0"]
 [ext_resource type="Script" path="res://scripts/DrawCircle.gd" id="7_lanst"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
 [ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="9_j38yi"]
@@ -24,6 +25,11 @@ shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a2gb0"]
+resource_local_to_scene = true
+shader = ExtResource("3_dyfal")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtesy"]
 resource_local_to_scene = true
 shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
@@ -51,27 +57,40 @@ metadata/_edit_vertical_guides_ = [200.0, -200.0]
 metadata/_edit_horizontal_guides_ = [200.0, -200.0]
 
 [node name="BackdropCircle" type="Sprite2D" parent="."]
-visible = false
 script = ExtResource("7_lanst")
 radius = 200
 color = Color(0, 0, 0, 0.0980392)
 
-[node name="TypeMenu" type="Node2D" parent="."]
+[node name="MainMenu" type="Node2D" parent="."]
 
-[node name="All-Range-option" type="Sprite2D" parent="TypeMenu"]
+[node name="All-Range-option" type="Sprite2D" parent="MainMenu"]
 material = SubResource("ShaderMaterial_bu51s")
-position = Vector2(0, -135)
+position = Vector2(0, -120)
 texture = ExtResource("10_6jepf")
 
-[node name="Ground-option" type="Sprite2D" parent="TypeMenu"]
+[node name="Ground-option" type="Sprite2D" parent="MainMenu"]
 material = SubResource("ShaderMaterial_p3vdx")
-position = Vector2(-135, 0)
+position = Vector2(-120, 0)
 texture = ExtResource("9_j38yi")
 
-[node name="Air-option" type="Sprite2D" parent="TypeMenu"]
+[node name="Air-option" type="Sprite2D" parent="MainMenu"]
 material = SubResource("ShaderMaterial_a2gb0")
 position = Vector2(120, 0)
 texture = ExtResource("5_n7lqp")
+
+[node name="All-RangeMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="Arrow-option" type="Sprite2D" parent="All-RangeMenu"]
+material = SubResource("ShaderMaterial_wtesy")
+position = Vector2(0, -120)
+texture = ExtResource("7_2pmu0")
+
+[node name="GroundMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="AirMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 texture = ExtResource("8_ivrg5")
