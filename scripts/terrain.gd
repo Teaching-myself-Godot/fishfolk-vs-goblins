@@ -1,13 +1,15 @@
 extends MeshInstance3D
 
-var tree_locations:PackedVector3Array = []
+const RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME = "ranged_ringed_things_range_5"
 
-func _ready():
-	var trees = get_tree().get_nodes_in_group("trees")
-	for t in trees:
-		if tree_locations.size() < 60:
-			tree_locations.append(t.position)
-			
 func _process(_delta):
-	$Plane.get_surface_override_material(0).next_pass.set("shader_parameter/range_positions", tree_locations)
-	$Plane.get_surface_override_material(0).next_pass.set("shader_parameter/num_active_circles", tree_locations.size())
+	var range_rings         : Array[Vector3] = []
+	var range_ring_radiuses : Array[float]   = []
+	for ranged_ringed_thing in get_tree().get_nodes_in_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME):
+		if is_instance_valid(ranged_ringed_thing):
+			range_rings.append(ranged_ringed_thing.position)
+			range_ring_radiuses.append(5.0)
+
+	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("num_active_circles", range_rings.size())
+	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_positions", range_rings)
+	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)

@@ -67,8 +67,9 @@ func select_targeted_option() -> String:
 			$MainMenu.hide()
 		return ""
 	else:
+		var choice = targeted_option
 		close_and_hide()
-		return targeted_option
+		return choice
 
 func close_submenu():
 	var menu = find_child(current_menu + "Menu")

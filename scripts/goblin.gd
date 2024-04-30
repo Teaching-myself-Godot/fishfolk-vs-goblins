@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+const RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME = "ranged_ringed_things_range_5"
+
 var airborne_time = 0
 var speed = 0
 const MAX_SPEED = 8
@@ -39,6 +41,7 @@ func leave_game():
 	$TreeContextMenu.close_and_hide()
 	if my_tree and is_instance_valid(my_tree):
 		my_tree.toggle_highlight(false)
+		my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
 	queue_free()
 
 func positionLabel():
@@ -102,15 +105,8 @@ func _process(_delta):
 		leave_game()
 	hug_closest_tree()
 
-	if my_button_just_pressed("confirm") and my_tree:
-		if not $TreeContextMenu.is_open:
-			$TreeContextMenu.open()
-		else:
-			var choice = $TreeContextMenu.select_targeted_option()
-			if choice != "":
-				if my_tree and is_instance_valid(my_tree):
-					my_tree.replace_with_tower(choice)
-					my_tree = null
+	if my_button_just_pressed("confirm") and my_tree and not $TreeContextMenu.is_open:
+		$TreeContextMenu.open()
 
 	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
 		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
@@ -120,6 +116,13 @@ func _process(_delta):
 
 	if $TreeContextMenu.is_open:
 		handle_menu_arrow_input()
+		if (player_num > 0 and my_button_just_pressed("confirm") or (player_num == 0 and my_button_just_released("confirm"))) and my_tree and $TreeContextMenu.is_open:
+			var choice = $TreeContextMenu.select_targeted_option()
+			if choice != "":
+				if my_tree and is_instance_valid(my_tree):
+					my_tree.replace_with_tower(choice)
+					my_tree = null
+
 
 func handle_menu_arrow_input():
 	var input_dir = get_input_dir()
@@ -132,6 +135,10 @@ func handle_menu_arrow_input():
 		$TreeContextMenu.rotate_arrow(input_dir.normalized().angle())
 	else:
 		$TreeContextMenu.rotate_arrow(-PI * .5)
+		if $TreeContextMenu.targeted_option == "Arrow" and is_instance_valid(my_tree):
+			my_tree.add_to_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+		else:
+			my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
 
 func _physics_process(delta):
 	positionLabel()
