@@ -17,7 +17,8 @@
 
 ## Milestone 3 (TODO) - Convert a tree into an arrow-tower
 - [Show the range of the tower while selecting](https://godotshaders.com/shader/sdf-range-rings-3d/)
-- make the tower rise out of the ground
+- make the tower rise out of the ground as a hint ghost
+- make the tower rise out of the ground when built
 - fell all the trees within the radius of the tower
 - show the range of the tower and highlight the tower when hugging the tower
 - make both towers and trees huggable
