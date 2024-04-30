@@ -107,14 +107,7 @@ func _process(_delta):
 
 	if my_button_just_pressed("confirm") and my_tree and not $TreeContextMenu.is_open:
 		$TreeContextMenu.open()
-
-	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
-		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
-			$TreeContextMenu.close()
-		else:
-			$TreeContextMenu.close_submenu()
-
-	if $TreeContextMenu.is_open:
+	elif $TreeContextMenu.is_open:
 		handle_menu_arrow_input()
 		if (player_num > 0 and my_button_just_pressed("confirm") or (player_num == 0 and my_button_just_released("confirm"))) and my_tree and $TreeContextMenu.is_open:
 			var choice = $TreeContextMenu.select_targeted_option()
@@ -122,6 +115,14 @@ func _process(_delta):
 				if my_tree and is_instance_valid(my_tree):
 					my_tree.replace_with_tower(choice)
 					my_tree = null
+
+	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
+		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
+			$TreeContextMenu.close()
+		else:
+			$TreeContextMenu.close_submenu()
+
+
 
 
 func handle_menu_arrow_input():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/CameraPivot.gd" id="2_m05t1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
+[ext_resource type="PackedScene" uid="uid://bir2k43jwgr4i" path="res://arrow_tower.scn" id="8_4opd8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -89,3 +90,6 @@ transform = Transform3D(1.01315, -0.00331156, -0.40843, 0.00304287, 1.09238, -0.
 
 [node name="palm-tree5" parent="." instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0308, 3.18759, -3.82407)
+
+[node name="arrow-tower" parent="." instance=ExtResource("8_4opd8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.00904, -6)
