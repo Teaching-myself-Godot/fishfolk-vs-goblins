@@ -137,10 +137,11 @@ func handle_menu_arrow_input():
 	else:
 		$TreeContextMenu.rotate_arrow(-PI * .5)
 
-	if $TreeContextMenu.targeted_option == "Arrow" and is_instance_valid(my_tree):
-		my_tree.add_to_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
-	else:
-		my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+	if is_instance_valid(my_tree):
+		if $TreeContextMenu.targeted_option == "Arrow":
+			my_tree.add_to_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+		else:
+			my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
 
 func _physics_process(delta):
 	positionLabel()
