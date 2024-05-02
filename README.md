@@ -25,15 +25,18 @@
 - [ ] show the range of the tower and highlight the tower when hugging the tower
 - [ ] make both towers and trees huggable
 - [ ] goblin can only hug 1 thing at at time
-- [ ] show a TowerContextMenu on B
-- [ ] dismantle the tower with TowerContextMenu
+
 
 ## Milestone 4 (TODO) - Monsters
-- [ ] make a monster
+- [ ] make a monster model
+- [ ] make an arrow model
+- [ ] align the arrow model to the shaft of the arrow tower model
 - [ ] let the monster walk along a path
 - [ ] make arrow towers point at the closest monster within range
-- [ ] make the arrow towers shoot arrows at the closest monster within range
+- [ ] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
+- [ ] spawn in a new arrow aligned with the shaft and the tightening bowstring
 
 
-## Milestone 5 (TODO) - Cannon tower
+
+## Milestone X (TODO) - Cannon tower
 - [Predicting the path of a projectile](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554)
