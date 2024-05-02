@@ -102,6 +102,17 @@ func hug_closest_tree():
 	else:
 		$TreeContextMenu.close_and_hide()
 
+func handle_menu_confirm():
+	if (player_num > 0 and my_button_just_pressed("confirm") or (player_num == 0 and my_button_just_released("confirm"))) and my_tree and $TreeContextMenu.is_open:
+		var choice = $TreeContextMenu.select_targeted_option()
+		if choice != "":
+			if my_tree and is_instance_valid(my_tree):
+				build_arrow_tower.emit(player_num, my_tree.position)
+				my_tree.toggle_highlight(false)
+				my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+				if player_num > 0:
+					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
+				my_tree = null
 
 func _process(_delta):
 	if position.y > 100:
@@ -112,14 +123,7 @@ func _process(_delta):
 		$TreeContextMenu.open()
 	elif $TreeContextMenu.is_open:
 		handle_menu_arrow_input()
-		if (player_num > 0 and my_button_just_pressed("confirm") or (player_num == 0 and my_button_just_released("confirm"))) and my_tree and $TreeContextMenu.is_open:
-			var choice = $TreeContextMenu.select_targeted_option()
-			if choice != "":
-				if my_tree and is_instance_valid(my_tree):
-					build_arrow_tower.emit(player_num, my_tree.position)
-					my_tree.toggle_highlight(false)
-					my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
-					my_tree = null
+		handle_menu_confirm()
 
 	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
 		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
