@@ -1,7 +1,11 @@
 extends Node3D
 
+var target_y : float = 0
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Wheel.rotation.y += delta
+	if position.y < target_y - .1:
+		position.y += delta * 3
+	elif position.y > target_y + .1:
+		position.y -= delta * 3
+	else:
+		position.y = target_y

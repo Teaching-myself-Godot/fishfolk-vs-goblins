@@ -2,18 +2,19 @@ extends CharacterBody3D
 
 const RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME = "ranged_ringed_things_range_5"
 
-var airborne_time = 0
-var speed = 0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
 
+var airborne_time = 0
+var speed = 0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-@export var player_num : int = 0
+var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
-
 var my_tree = null
+
+signal build_arrow_tower(player_num : int, position : Vector3)
+
 
 const LABEL_COLORS = [
 	Color(0, 0.65, 0.184),
@@ -32,6 +33,8 @@ func _ready():
 	$Label.label_settings.font_size = 24
 	$Label.label_settings.outline_size = 4
 	$Label.label_settings.font_color = LABEL_COLORS[player_num]
+
+
 
 func _unhandled_input(_event):
 	if (Input.is_action_just_pressed("quit") and player_num == 0) or (player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1))):
@@ -113,7 +116,9 @@ func _process(_delta):
 			var choice = $TreeContextMenu.select_targeted_option()
 			if choice != "":
 				if my_tree and is_instance_valid(my_tree):
-					my_tree.replace_with_tower(choice)
+					build_arrow_tower.emit(player_num, my_tree.position)
+					my_tree.toggle_highlight(false)
+					my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
 					my_tree = null
 
 	if my_button_just_pressed("cancel") and $TreeContextMenu.is_open:

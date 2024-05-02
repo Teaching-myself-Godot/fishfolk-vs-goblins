@@ -14,10 +14,6 @@ func toggle_highlight(flag : bool):
 	for outline in outlines:
 		outline.visible = flag
 
-func replace_with_tower(type : String):
-	print ("TODO: build " + type + " Tower at " + str(position))
-	felled = true
-
 func _physics_process(delta):
 	if felled:
 		fall_velocity += gravity * delta

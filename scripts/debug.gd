@@ -1,6 +1,8 @@
 extends Node
 
 var GoblinScene = preload("res://goblin.scn")
+var ArrowTowerScene = preload("res://arrow_tower.scn")
+
 var goblin_map = {}
 
 func _unhandled_input(_event):
@@ -41,6 +43,12 @@ func add_goblin_to_scene(num : int):
 		new_goblin.position.x = goblin.position.x + (-2 + randf() * 4)
 		new_goblin.position.z = goblin.position.z + (-2 + randf() * 4)
 		new_goblin.position.y = goblin.position.y + 4
-
+	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
 	add_child.call_deferred(new_goblin)
 
+
+func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
+	var new_tower = ArrowTowerScene.instantiate()
+	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
+	new_tower.target_y = pos.y - .5
+	add_child.call_deferred(new_tower)
