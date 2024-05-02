@@ -15,21 +15,24 @@
 - Open menu on B
 - Use menu with L
 
-## Milestone 3 (TODO) - Convert a tree into an arrow-tower
-- [Show the range of the tower while selecting](https://godotshaders.com/shader/sdf-range-rings-3d/)
-- make the tower rise out of the ground as a hint ghost
-- make the tower rise out of the ground when built
-- fell all the trees within the radius of the tower
-- show the range of the tower and highlight the tower when hugging the tower
-- make both towers and trees huggable
-- goblin can only hug 1 thing at at time
-- show a TowerContextMenu on B
-- dismantle the tower with TowerContextMenu
+## Milestone 3 (DOING) - Convert a tree into an arrow-tower
+- [x] [Show the range of the tower while selecting](https://godotshaders.com/shader/sdf-range-rings-3d/)
+- [x] make the tower rise out of the ground when built
+- [x] fell all the trees within the radius of the tower
+- [x] point the tower at something (a goblin)
+- [x] animate the tower shooting (bow string)
+- [ ] point the tower at the closest something within range (a goblin)
+- [ ] show the range of the tower and highlight the tower when hugging the tower
+- [ ] make both towers and trees huggable
+- [ ] goblin can only hug 1 thing at at time
+- [ ] show a TowerContextMenu on B
+- [ ] dismantle the tower with TowerContextMenu
 
 ## Milestone 4 (TODO) - Monsters
-- make a monster
-- let the monster walk along a path
-- make arrow towers shoot at the monster
+- [ ] make a monster
+- [ ] let the monster walk along a path
+- [ ] make arrow towers point at the closest monster within range
+- [ ] make the arrow towers shoot arrows at the closest monster within range
 
 
 ## Milestone 5 (TODO) - Cannon tower
