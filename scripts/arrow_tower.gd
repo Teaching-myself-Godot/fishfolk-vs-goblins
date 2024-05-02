@@ -14,3 +14,9 @@ func _process(delta):
 		position.z = target_position.z + (cos(randf()) * .1)
 	else:
 		position = target_position
+
+	if Input.is_action_just_pressed("x-debug-butt"):
+		$AnimationPlayer.play("shoot")
+	if Input.is_action_pressed("z-debug-butt"):
+		$Wheel.rotation.y += delta
+		$"Wheel/Axle".rotation.z = sin($Wheel.rotation.y) +.01
