@@ -36,10 +36,8 @@ func _initialize_label():
 
 
 func _leave_game():
+	_unhighlight_my_huggables()
 	$TreeContextMenu.close_and_hide()
-	if my_tree and is_instance_valid(my_tree):
-		my_tree.toggle_highlight(false)
-		my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 	queue_free()
 
 
@@ -106,7 +104,6 @@ func _handle_context_menu_confirm():
 			if my_tree and is_instance_valid(my_tree):
 				build_arrow_tower.emit(player_num, my_tree.position)
 				my_tree.toggle_highlight(false)
-				my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 				if player_num > 0:
 					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 				my_tree = null
@@ -259,12 +256,11 @@ func _ready():
 
 
 func _process(_delta):
-	if _my_button_just_released("quit"):
-		_leave_game()
-
 	_hug_closest_tree_or_tower()
 	_handle_context_menus()
 
+	if _my_button_just_released("quit"):
+		_leave_game()
 
 func _physics_process(delta):
 	var input_dir = _get_input_vector()

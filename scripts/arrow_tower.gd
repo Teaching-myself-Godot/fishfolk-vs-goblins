@@ -26,3 +26,11 @@ func _point_at(pos : Vector3, target_height : float):
 	$"Wheel/Wheel_001/Axle".rotation.z = (
 		lerp_angle($"Wheel/Wheel_001/Axle".rotation.z, axle_angle, rotation_speed)
 	)
+
+
+func toggle_highlight(flag : bool):
+	super.toggle_highlight(flag)
+	if flag:
+		add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+	else:
+		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)

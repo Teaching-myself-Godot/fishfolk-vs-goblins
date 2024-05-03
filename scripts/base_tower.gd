@@ -6,12 +6,13 @@ var my_general_area = 2.5
 var rise_target_position : Vector3 = Vector3.ZERO
 var built_by_player : int = -1
 var current_range : float = 5.0
-
+var outlines = []
 
 func _fell_trees_in_my_general_area():
 	for tree : MyTree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 		if is_instance_valid(tree) and tree.is_within_radius(position, my_general_area):
 			tree.fell()
+
 
 func _rise_out_of_the_ground(delta):
 	if position.y < rise_target_position.y - .1:
@@ -20,6 +21,7 @@ func _rise_out_of_the_ground(delta):
 		position.z = rise_target_position.z + (cos(randf()) * .1)
 	else:
 		position = rise_target_position
+
 
 func __handle_debug_inputs():
 	pass
@@ -45,6 +47,8 @@ func _point_at_first_monster_within_range():
 
 func _ready():
 	_fell_trees_in_my_general_area()
+	outlines = find_children("*Outline")
+	toggle_highlight(false)
 
 
 func _process(delta):
@@ -54,6 +58,5 @@ func _process(delta):
 
 
 func toggle_highlight(flag : bool):
-	print("TODO: toggle highlight for tower: " + str(flag))
-	#for outline in outlines:
-		#outline.visible = flag
+	for outline in outlines:
+		outline.visible = flag

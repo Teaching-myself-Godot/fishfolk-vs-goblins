@@ -22,6 +22,9 @@ func _physics_process(delta):
 
 
 func toggle_highlight(flag : bool):
+	if not flag:
+		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+
 	for outline in outlines:
 		outline.visible = flag
 

@@ -22,9 +22,9 @@
 - [x] point the tower at something (a goblin)
 - [x] animate the tower shooting (bow string)
 - [x] point the tower at the first something within range (a goblin)
-- [ ] show the range of the tower and highlight the tower when hugging the tower
-- [ ] make both towers and trees huggable
-- [ ] goblin can only hug 1 thing at at time
+- [x] show the range of the tower and highlight the tower when hugging the tower
+- [x] make both towers and trees huggable
+- [x] goblin can only hug 1 thing at at time
 
 
 ## Milestone 4 (TODO) - Monsters
