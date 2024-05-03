@@ -1,5 +1,5 @@
 class_name MyTree
-extends StaticBody3D
+extends Node3D
 
 var outlines = []
 var felled = false

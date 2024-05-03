@@ -22,6 +22,7 @@ var speed = 0
 var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
 var my_tree : MyTree = null
+var my_tower : BaseTower = null
 
 
 func _initialize_label():
@@ -150,21 +151,44 @@ func _handle_context_menus():
 		else:
 			$TreeContextMenu.close_submenu()
 
+func _get_closest_huggable(group_name : String) -> Node3D:
+	var closest_huggable = null
 
-func _hug_closest_tree_or_tower():
+	for candidate in get_tree().get_nodes_in_group(group_name):
+		var d_candidate = position.distance_to(candidate.position)
+		if d_candidate < HUG_RANGE:
+			if not closest_huggable or d_candidate < position.distance_to(closest_huggable.position):
+				closest_huggable = candidate
+
+	return closest_huggable
+
+func _unhighlight_my_huggables():
 	# unhighlight my tree
 	if my_tree and is_instance_valid(my_tree):
 		my_tree.toggle_highlight(false)
 		my_tree = null
 
+	# unhighlight my tower
+	if my_tower and is_instance_valid(my_tower):
+		my_tower.toggle_highlight(false)
+		my_tower = null
+
+
+func _hug_closest_tree_or_tower():
+	# unhighlight things I can '_hug_' (get an interactive context menu with)
+	_unhighlight_my_huggables()
+
 	# set my tree to the closest tree on the map, if within hugging range
-	for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
-		var d_tree = position.distance_to(tree.position)
-		if d_tree < HUG_RANGE:
-			if not my_tree:
-				my_tree = tree
-			else:
-				my_tree = tree if d_tree < position.distance_to(my_tree.position) else my_tree
+	my_tree = _get_closest_huggable(Constants.GROUP_NAME_TREES)
+	# set my tower to the closest tower on the map, if within hugging range
+	my_tower = _get_closest_huggable(Constants.GROUP_NAME_TOWERS)
+
+	# get the closest one of those 2
+	if my_tower and my_tree:
+		if position.distance_to(my_tower.position) < position.distance_to(my_tree.position):
+			my_tree = null
+		else:
+			my_tower = null
 
 	# highlight the closest tree for me if I have one
 	if my_tree and is_instance_valid(my_tree):
@@ -172,6 +196,11 @@ func _hug_closest_tree_or_tower():
 		$TreeContextMenu.show_at(CameraUtil.get_label_position(my_tree.position, Vector3(2, 0, 0)))
 	else:
 		$TreeContextMenu.close_and_hide()
+
+	if my_tower and is_instance_valid(my_tower):
+		my_tower.toggle_highlight(true)
+	else:
+		pass
 
 
 func _handle_jumping():

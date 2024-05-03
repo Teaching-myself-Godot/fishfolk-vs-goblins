@@ -53,8 +53,8 @@ func add_goblin_to_scene(num : int):
 
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
-	var new_tower = ArrowTowerScene.instantiate()
+	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
-	new_tower.target_position = Vector3(pos.x, pos.y - .5, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
 	add_child.call_deferred(new_tower)
