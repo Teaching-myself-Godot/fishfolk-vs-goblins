@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-const RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME = "ranged_ringed_things_range_5"
-
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
@@ -44,7 +42,7 @@ func leave_game():
 	$TreeContextMenu.close_and_hide()
 	if my_tree and is_instance_valid(my_tree):
 		my_tree.toggle_highlight(false)
-		my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+		my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 	queue_free()
 
 func positionLabel():
@@ -88,7 +86,7 @@ func hug_closest_tree():
 		my_tree.toggle_highlight(false)
 		my_tree = null
 
-	for tree in get_tree().get_nodes_in_group("trees"):
+	for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 		var d_tree = position.distance_to(tree.position)
 		if d_tree < 2.0:
 			if not my_tree:
@@ -109,7 +107,7 @@ func handle_menu_confirm():
 			if my_tree and is_instance_valid(my_tree):
 				build_arrow_tower.emit(player_num, my_tree.position)
 				my_tree.toggle_highlight(false)
-				my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+				my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 				if player_num > 0:
 					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 				my_tree = null
@@ -148,9 +146,9 @@ func handle_menu_arrow_input():
 
 	if is_instance_valid(my_tree):
 		if $TreeContextMenu.targeted_option == "Arrow":
-			my_tree.add_to_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 		else:
-			my_tree.remove_from_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME)
+			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 
 func _physics_process(delta):
 	positionLabel()

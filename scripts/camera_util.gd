@@ -1,7 +1,7 @@
 extends Node
 
 func get_cam_pivot() -> Node3D:
-	return get_tree().get_first_node_in_group("cam")
+	return get_tree().get_first_node_in_group(Constants.GROUP_NAME_CAMERA)
 
 func get_cam() -> Camera3D:
 	return get_cam_pivot().get_child(0)

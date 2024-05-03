@@ -6,7 +6,7 @@ var ArrowTowerScene = preload("res://arrow_tower.scn")
 var goblin_map = {}
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group("goblins").is_empty():
+	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty():
 		get_tree().quit()
 
 	if Input.is_action_just_released("f11"):
@@ -38,7 +38,7 @@ func add_goblin_to_scene(num : int):
 	new_goblin.player_num = num
 	new_goblin.position = Vector3(0, 4, 0)
 
-	var goblin = get_tree().get_first_node_in_group("goblins")
+	var goblin = get_tree().get_first_node_in_group(Constants.GROUP_NAME_GOBLINS)
 	if goblin and is_instance_valid(goblin):
 		new_goblin.position.x = goblin.position.x + (-2 + randf() * 4)
 		new_goblin.position.z = goblin.position.z + (-2 + randf() * 4)
@@ -49,6 +49,7 @@ func add_goblin_to_scene(num : int):
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower = ArrowTowerScene.instantiate()
+	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.target_position = Vector3(pos.x, pos.y - .5, pos.z)
 	add_child.call_deferred(new_tower)

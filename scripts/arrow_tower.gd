@@ -3,8 +3,10 @@ extends Node3D
 @export var rotation_speed = .075
 var target_position : Vector3 = Vector3.ZERO
 var axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
+var built_by_player : int = -1
+
 func _ready():
-	for tree in get_tree().get_nodes_in_group("trees"):
+	for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 		if is_instance_valid(tree) and Vector2(position.x, position.z).distance_to(Vector2(tree.position.x, tree.position.z)) < 2.5:
 			tree.felled = true
 
@@ -19,7 +21,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("x-debug-butt"):
 		$AnimationPlayer.play("shoot")
 	if Input.is_action_pressed("z-debug-butt"):
-		var monster = get_tree().get_first_node_in_group("goblins")
+		var monster = get_tree().get_first_node_in_group(Constants.GROUP_NAME_GOBLINS)
 		if is_instance_valid(monster):
 			point_at(monster.position, 1.2)
 

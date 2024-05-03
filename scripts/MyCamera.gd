@@ -11,7 +11,7 @@ func change_zoom(amt : float, max_d : float):
 	zoom = MAX_ZOOM if zoom > MAX_ZOOM else zoom
 
 func _process(_delta):
-	var goblins = get_tree().get_nodes_in_group("goblins")
+	var goblins = get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS)
 	var position_sum = Vector3.ZERO
 	for g in goblins:
 		position_sum += g.position

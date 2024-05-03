@@ -1,11 +1,9 @@
 extends MeshInstance3D
 
-const RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME = "ranged_ringed_things_range_5"
-
 func _process(_delta):
 	var range_rings         : Array[Vector3] = []
 	var range_ring_radiuses : Array[float]   = []
-	for ranged_ringed_thing in get_tree().get_nodes_in_group(RANGE_RINGED_THINGS_RANGE_5_GROUP_NAME):
+	for ranged_ringed_thing in get_tree().get_nodes_in_group(Constants.GROUP_NAME_RANGE_RINGED_5M):
 		if is_instance_valid(ranged_ringed_thing):
 			range_rings.append(ranged_ringed_thing.position)
 			range_ring_radiuses.append(5.0)
