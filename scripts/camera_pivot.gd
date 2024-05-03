@@ -1,6 +1,9 @@
+class_name CameraPivot
+
 extends Node3D
 
 var drag_start_x : float = 0.0
+
 
 func _process(_delta):
 	var goblins = get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS)

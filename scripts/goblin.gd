@@ -4,10 +4,16 @@ extends CharacterBody3D
 
 signal build_arrow_tower(player_num : int, position : Vector3)
 
-
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
+const LABEL_COLORS = [
+	Color(0, 0.65, 0.184),
+	Color(1, 0.184, 0),
+	Color(0, 0.184, 1),
+	Color(0.184, 0.5, 0.5),
+	Color(0.5, 0.5, 0.184)
+]
 
 var chest_height = 1.2
 var airborne_time = 0
@@ -16,16 +22,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
 var my_tree = null
-
-
-
-const LABEL_COLORS = [
-	Color(0, 0.65, 0.184),
-	Color(1, 0.184, 0),
-	Color(0, 0.184, 1),
-	Color(0.184, 0.5, 0.5),
-	Color(0.5, 0.5, 0.184)
-]
 
 func _initialize_label():
 	$Label.text = str(player_num) + "p"
@@ -42,10 +38,10 @@ func _ready():
 	_initialize_label()
 
 
-
 func _unhandled_input(_event):
 	if (Input.is_action_just_pressed("quit") and player_num == 0) or (player_num > 0 and Input.is_action_just_pressed("quit-" + str(player_num - 1))):
 		leave_game()
+
 
 func leave_game():
 	$TreeContextMenu.close_and_hide()
@@ -53,6 +49,7 @@ func leave_game():
 		my_tree.toggle_highlight(false)
 		my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 	queue_free()
+
 
 func positionLabel():
 	$Label.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
@@ -65,14 +62,17 @@ func get_input_dir():
 		Input.get_joy_axis(player_num - 1, JOY_AXIS_LEFT_Y)
 	)
 
+
 func get_mouse_vector_to(pos : Vector2):
 	return (get_viewport().get_mouse_position() - pos).normalized()
+
 
 func should_jump() -> bool:
 	if not is_on_floor() or $TreeContextMenu.is_open:
 		return false
 
 	return my_button_just_pressed("jump")
+
 
 func my_button_just_pressed(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_pressed(button_key + "-k"):
@@ -82,6 +82,7 @@ func my_button_just_pressed(button_key : String) -> bool:
 
 	return false
 
+
 func my_button_just_released(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_released(button_key + "-k"):
 		return true
@@ -89,6 +90,7 @@ func my_button_just_released(button_key : String) -> bool:
 		return true
 
 	return false
+
 
 func hug_closest_tree():
 	if my_tree and is_instance_valid(my_tree):
@@ -109,6 +111,7 @@ func hug_closest_tree():
 	else:
 		$TreeContextMenu.close_and_hide()
 
+
 func handle_menu_confirm():
 	if (player_num > 0 and my_button_just_pressed("confirm") or (player_num == 0 and my_button_just_released("confirm"))) and my_tree and $TreeContextMenu.is_open:
 		var choice = $TreeContextMenu.select_targeted_option()
@@ -120,6 +123,7 @@ func handle_menu_confirm():
 				if player_num > 0:
 					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 				my_tree = null
+
 
 func _process(_delta):
 	if position.y > 100:
@@ -139,8 +143,6 @@ func _process(_delta):
 			$TreeContextMenu.close_submenu()
 
 
-
-
 func handle_menu_arrow_input():
 	var input_dir = get_input_dir()
 	var force = Vector2.ZERO.distance_to(input_dir)
@@ -158,6 +160,7 @@ func handle_menu_arrow_input():
 			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 		else:
 			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+
 
 func _physics_process(delta):
 	positionLabel()

@@ -1,7 +1,8 @@
 extends Node2D
 
 @export var radius = 25
-@export var color  = Color(1, 1, 1, 0.5)
+@export var color  = Color(0, 0, 0, 0.125)
+
 
 func _draw():
 	draw_circle(Vector2(0,0), radius - 1, color)

@@ -2,11 +2,15 @@ extends Node
 
 var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
-
 var goblin_map = {}
 
+
+func _no_goblins() -> bool:
+	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty()
+
+
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit") and get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty():
+	if Input.is_action_just_pressed("quit") and _no_goblins():
 		get_tree().quit()
 
 	if Input.is_action_just_released("f11"):
@@ -25,6 +29,7 @@ func _unhandled_input(_event):
 		add_goblin_to_scene(3)
 	if Input.is_action_just_released("start-3"):
 		add_goblin_to_scene(4)
+
 
 func add_goblin_to_scene(num : int):
 	if num in goblin_map:

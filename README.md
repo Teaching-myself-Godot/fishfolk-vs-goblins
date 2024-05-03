@@ -21,7 +21,7 @@
 - [x] fell all the trees within the radius of the tower
 - [x] point the tower at something (a goblin)
 - [x] animate the tower shooting (bow string)
-- [ ] point the tower at the closest something within range (a goblin)
+- [x] point the tower at the first something within range (a goblin)
 - [ ] show the range of the tower and highlight the tower when hugging the tower
 - [ ] make both towers and trees huggable
 - [ ] goblin can only hug 1 thing at at time

@@ -1,6 +1,7 @@
 class_name Terrain
 extends MeshInstance3D
 
+
 func _process(_delta):
 	var range_rings         : Array[Vector3] = []
 	var range_ring_radiuses : Array[float]   = []
