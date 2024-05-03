@@ -1,9 +1,15 @@
+
+class_name Goblin
 extends CharacterBody3D
+
+signal build_arrow_tower(player_num : int, position : Vector3)
+
 
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
 
+var chest_height = 1.2
 var airborne_time = 0
 var speed = 0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -11,7 +17,6 @@ var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
 var my_tree = null
 
-signal build_arrow_tower(player_num : int, position : Vector3)
 
 
 const LABEL_COLORS = [
@@ -22,8 +27,7 @@ const LABEL_COLORS = [
 	Color(0.5, 0.5, 0.184)
 ]
 
-func _ready():
-	airborne_time = 0
+func _initialize_label():
 	$Label.text = str(player_num) + "p"
 	var font_resource = $Label.label_settings.font
 	$Label.label_settings = LabelSettings.new()
@@ -31,6 +35,11 @@ func _ready():
 	$Label.label_settings.font_size = 24
 	$Label.label_settings.outline_size = 4
 	$Label.label_settings.font_color = LABEL_COLORS[player_num]
+
+
+func _ready():
+	airborne_time = 0
+	_initialize_label()
 
 
 

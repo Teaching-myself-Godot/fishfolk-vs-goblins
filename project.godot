@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Constants="*res://scripts/Constants.gd"
+Constants="*res://scripts/constants.gd"
 CameraUtil="*res://scripts/camera_util.gd"
 
 [display]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
-[ext_resource type="Script" path="res://scripts/CameraPivot.gd" id="2_m05t1"]
+[ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
 [ext_resource type="Texture2D" uid="uid://be4tb5bqov2w7" path="res://textures/brick-face.png" id="3_j5x26"]
-[ext_resource type="Script" path="res://scripts/MyCamera.gd" id="3_jidu1"]
+[ext_resource type="Script" path="res://scripts/my_camera.gd" id="3_jidu1"]
 [ext_resource type="Script" path="res://scripts/debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]

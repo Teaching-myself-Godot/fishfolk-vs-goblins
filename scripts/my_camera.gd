@@ -1,3 +1,4 @@
+class_name MyCamera
 extends Camera3D
 
 const MIN_ZOOM = 0.0
@@ -13,7 +14,7 @@ func change_zoom(amt : float, max_d : float):
 func _process(_delta):
 	var goblins = get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS)
 	var position_sum = Vector3.ZERO
-	for g in goblins:
+	for g : Goblin in goblins:
 		position_sum += g.position
 
 	var goblin_center = Vector3.ZERO if goblins.is_empty() else position_sum / goblins.size()
