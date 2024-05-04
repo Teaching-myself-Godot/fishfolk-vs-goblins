@@ -251,6 +251,7 @@ func _handle_animation(force : float):
 
 
 func _ready():
+	add_to_group(Constants.GROUP_NAME_GOBLINS)
 	airborne_time = 0
 	_initialize_label()
 

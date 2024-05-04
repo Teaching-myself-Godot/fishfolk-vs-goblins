@@ -8,6 +8,7 @@ var fall_velocity = 0
 
 
 func _ready():
+	add_to_group(Constants.GROUP_NAME_TREES)
 	$AnimationPlayer.play("idle")
 	outlines = find_children("*Outline")
 	toggle_highlight(false)

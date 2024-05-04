@@ -56,6 +56,7 @@ func _have_valid_target() -> bool:
 
 
 func _ready():
+	add_to_group(Constants.GROUP_NAME_TOWERS)
 	_fell_trees_in_my_general_area()
 	outlines = find_children("*Outline")
 	toggle_highlight(false)
