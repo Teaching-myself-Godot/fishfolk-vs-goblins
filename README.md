@@ -28,11 +28,12 @@
 
 
 ## Milestone 4 (DOING) - Monsters
-- [ ] make a monster model
+- [X] make a monster model
+- [X] make arrow towers point at the closest monster within range
 - [ ] make an arrow model
 - [ ] align the arrow model to the shaft of the arrow tower model
+- [ ] animate the monster
 - [ ] let the monster walk along a path
-- [ ] make arrow towers point at the closest monster within range
 - [ ] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
 - [ ] spawn in a new arrow aligned with the shaft and the tightening bowstring
 

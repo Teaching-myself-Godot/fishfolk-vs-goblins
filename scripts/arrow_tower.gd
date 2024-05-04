@@ -6,6 +6,7 @@ var rotation_speed = .075
 var axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
 
 
+
 func __handle_debug_inputs():
 	if Input.is_action_just_pressed("x-debug-butt"):
 		$AnimationPlayer.play("shoot")
@@ -28,9 +29,14 @@ func _point_at(pos : Vector3, target_height : float):
 	)
 
 
+func _ready():
+	super._ready()
+	current_range = 7.0
+
+
 func toggle_highlight(flag : bool):
 	super.toggle_highlight(flag)
 	if flag:
-		add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+		add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
 	else:
-		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
+[ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://fish_chibi.scn" id="8_afpb7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,7 +41,8 @@ script = ExtResource("1_81aij")
 environment = SubResource("Environment_ikt58")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -27.5745, 4.51649, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, -27.5745, 4.51649, 0)
+light_energy = 0.8
 shadow_enabled = true
 
 [node name="CameraPivot" type="Node3D" parent="." groups=["cam"]]
@@ -49,6 +51,7 @@ script = ExtResource("2_m05t1")
 
 [node name="MyCamera" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0, 0)
+current = true
 fov = 38.1
 script = ExtResource("3_jidu1")
 
@@ -82,7 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, -0.477003, 5.34113)
 transform = Transform3D(0.792263, 0.043514, 0.10211, -0.043157, 0.798816, -0.00556223, -0.102261, 0, 0.793437, 20.2634, 2.67468, -4.17577)
 
 [node name="palm-tree3" parent="." instance=ExtResource("7_ssyn6")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 27.6678, -0.219601, -13.6927)
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 3.6678, -0.219601, -1.6927)
 
 [node name="palm-tree4" parent="." instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1.01315, -0.00331156, -0.40843, 0.00304287, 1.09238, -0.00130889, 0.408432, 7.62568e-05, 1.01315, 11.987, 2.97541, -10.2917)
@@ -91,7 +94,16 @@ transform = Transform3D(1.01315, -0.00331156, -0.40843, 0.00304287, 1.09238, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0308, 3.18759, -3.82407)
 
 [node name="palm-tree6" parent="." instance=ExtResource("7_ssyn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.08007, -1, 0.508051)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08007, -1, -3.49195)
 
 [node name="palm-tree7" parent="." instance=ExtResource("7_ssyn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53405, -0.722333, 4.25635)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 6.53405, -0.722333, 2.25635)
+
+[node name="fish-chibi" parent="." instance=ExtResource("8_afpb7")]
+transform = Transform3D(0.284517, 0, 0.958671, 0, 1, 0, -0.958671, 0, 0.284517, 11.484, -0.818588, -1.7449)
+
+[node name="fish-chibi2" parent="." instance=ExtResource("8_afpb7")]
+transform = Transform3D(0.311705, 0, 0.950179, 0, 1, 0, -0.950179, 0, 0.311705, 13.0881, 0.348414, -4.12341)
+
+[node name="fish-chibi3" parent="." instance=ExtResource("8_afpb7")]
+transform = Transform3D(0.496323, 0, 0.868138, 0, 1, 0, -0.868138, 0, 0.496323, 14.8333, -0.618744, 1.71046)

@@ -8,6 +8,8 @@ var built_by_player : int = -1
 var current_range : float = 5.0
 var outlines = []
 
+var current_target : BaseMonster = null
+
 func _fell_trees_in_my_general_area():
 	for tree : MyTree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 		if is_instance_valid(tree) and tree.is_within_radius(position, my_general_area):
@@ -39,10 +41,18 @@ func _is_within_range(target_pos : Vector3) -> bool:
 
 
 func _point_at_first_monster_within_range():
-	# FIXME - the monster will be of a different class than Goblin once we have fishfolk
-	for monster : Goblin in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
+	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
 		if is_instance_valid(monster) and _is_within_range(monster.position):
+			current_target = monster
 			_point_at(monster.position, monster.chest_height)
+
+
+func _have_valid_target() -> bool:
+	return (
+			current_target and 
+			is_instance_valid(current_target) and 
+			_is_within_range(current_target.position)
+	)
 
 
 func _ready():
@@ -53,7 +63,10 @@ func _ready():
 
 func _process(delta):
 	_rise_out_of_the_ground(delta)
-	_point_at_first_monster_within_range()
+	if _have_valid_target():
+		_point_at(current_target.position, current_target.chest_height)
+	else:
+		_point_at_first_monster_within_range()
 	__handle_debug_inputs()
 
 

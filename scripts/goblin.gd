@@ -127,9 +127,9 @@ func _handle_context_menu_arrow_input():
 	# highlight the range of any currently targeted tower in the context menu
 	if is_instance_valid(my_tree):
 		if $TreeContextMenu.targeted_option == "Arrow":
-			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
 		else:
-			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
 
 
 func _handle_context_menus():
