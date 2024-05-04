@@ -15,7 +15,7 @@
 - Open menu on B
 - Use menu with L
 
-## Milestone 3 (DOING) - Convert a tree into an arrow-tower
+## Milestone 3 - Convert a tree into an arrow-tower
 - [x] [Show the range of the tower while selecting](https://godotshaders.com/shader/sdf-range-rings-3d/)
 - [x] make the tower rise out of the ground when built
 - [x] fell all the trees within the radius of the tower
@@ -27,7 +27,7 @@
 - [x] goblin can only hug 1 thing at at time
 
 
-## Milestone 4 (TODO) - Monsters
+## Milestone 4 (DOING) - Monsters
 - [ ] make a monster model
 - [ ] make an arrow model
 - [ ] align the arrow model to the shaft of the arrow tower model
