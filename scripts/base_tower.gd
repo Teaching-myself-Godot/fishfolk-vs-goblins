@@ -42,7 +42,7 @@ func _is_within_range(target_pos : Vector3) -> bool:
 
 func _point_at_first_monster_within_range():
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
-		if is_instance_valid(monster) and _is_within_range(monster.position):
+		if is_instance_valid(monster) and _is_within_range(monster.global_position):
 			current_target = monster
 			_point_at(monster.position, monster.chest_height)
 

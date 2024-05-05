@@ -84,5 +84,4 @@ func _on_reload_timer_timeout():
 
 
 func _on_shoot_timer_timeout():
-	print("ready to fire")
 	ready_to_fire = true

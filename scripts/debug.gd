@@ -2,6 +2,7 @@ extends Node
 
 var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
+var FishChibiScene = preload("res://fish_chibi.scn")
 var goblin_map = {}
 
 
@@ -64,5 +65,27 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
 	add_child.call_deferred(new_tower)
 
+
 func _on_arrow_tower_load_arrow(arrow : Arrow):
 	add_child.call_deferred(arrow)
+
+
+func _spawn_monster(path : Path3D):
+	var monster_target : PathFollow3D = PathFollow3D.new()
+	var fish_chibi : FishChibi = FishChibiScene.instantiate()
+	path.add_child(monster_target)
+	fish_chibi.target = monster_target
+	add_child.call_deferred(fish_chibi)
+
+
+func _on_spawn_timer_timeout():
+	if goblin_map.size() > 0:
+		_spawn_monster($MonsterPath1)
+		_spawn_monster($MonsterPath1B)
+
+func _process(delta):
+	for monster_target : PathFollow3D in $MonsterPath1.get_children():
+		monster_target.progress += delta
+
+	for monster_target : PathFollow3D in $MonsterPath1B.get_children():
+		monster_target.progress += delta

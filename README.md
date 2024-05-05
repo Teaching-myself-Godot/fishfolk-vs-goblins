@@ -27,17 +27,15 @@
 - [x] goblin can only hug 1 thing at at time
 
 
-## Milestone 4 (DOING) - Monsters
+## Milestone 4 - Monsters
 - [x] make a monster model
 - [x] make arrow towers point at the closest monster within range
 - [x] animate the monster
 - [x] make an arrow model
 - [x] align the arrow model to the shaft of the arrow tower model
-- [ ] let the monster walk along a path
+- [x] let the monster walk along a path
 - [x] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
 - [x] spawn in a new arrow aligned with the shaft and the tightening bowstring
 
-
-
-## Milestone X (TODO) - Cannon tower
+## Milestone 5 (TODO) - Cannon tower
 - [Predicting the path of a projectile](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554)
