@@ -31,7 +31,7 @@
 - [x] make a monster model
 - [x] make arrow towers point at the closest monster within range
 - [x] animate the monster
-- [ ] make an arrow model
+- [x] make an arrow model
 - [ ] align the arrow model to the shaft of the arrow tower model
 - [ ] let the monster walk along a path
 - [ ] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
