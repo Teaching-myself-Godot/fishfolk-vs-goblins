@@ -8,10 +8,11 @@ var rotation_speed = .075
 var axle_y = 0.0
 var arrow_y = 0.0
 var my_arrow : Arrow = null
-var ready_to_fire = false
+
 
 func _shoot():
 	if  my_arrow and is_instance_valid(my_arrow) and _have_valid_target():
+		_point_at(current_target.position, current_target.chest_height, false)
 		$AnimationPlayer.play("shoot")
 		my_arrow.target = current_target
 		my_arrow.fired = true
@@ -19,7 +20,8 @@ func _shoot():
 		ready_to_fire = false
 		$ReloadTimer.start()
 
-func _point_at(pos : Vector3, target_height : float):
+
+func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 	var wheel_angle = (
 		-Vector2(position.x, position.z)
 				.angle_to_point(Vector2(pos.x, pos.z))
@@ -30,17 +32,20 @@ func _point_at(pos : Vector3, target_height : float):
 				.distance_to(Vector2(pos.x, pos.z)), pos.y + target_height))
 	)
 
-	$Wheel.rotation.y = lerp_angle($Wheel.rotation.y, wheel_angle, rotation_speed)
+	$Wheel.rotation.y = (
+			lerp_angle($Wheel.rotation.y, wheel_angle, rotation_speed) if interpolate
+			else wheel_angle
+	)
 	$"Wheel/Wheel_001/Axle".rotation.z = (
-		lerp_angle($"Wheel/Wheel_001/Axle".rotation.z, axle_angle, rotation_speed)
+		lerp_angle($"Wheel/Wheel_001/Axle".rotation.z, axle_angle, rotation_speed) if interpolate
+		else axle_angle
 	)
 
 	if my_arrow and is_instance_valid(my_arrow):
 		my_arrow.rotation.y = $Wheel.rotation.y
 		my_arrow.rotation.z = $"Wheel/Wheel_001/Axle".rotation.z
 
-	if ready_to_fire:
-		_shoot()
+
 
 func _rise_out_of_the_ground(delta):
 	super._rise_out_of_the_ground(delta)
@@ -56,8 +61,6 @@ func _load_new_arrow():
 	my_arrow.owned_by_player = built_by_player
 	load_arrow.emit(my_arrow)
 	$ShootTimer.start()
-
-
 
 
 func _ready():
