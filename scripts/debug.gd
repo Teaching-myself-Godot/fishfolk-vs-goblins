@@ -13,6 +13,10 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit") and _no_goblins():
 		get_tree().quit()
 
+	for k in range(0, 3):
+		if Input.is_action_pressed("quit-" + str(k)) and Input.is_action_pressed("start-" + str(k)):
+			get_tree().quit()
+
 	if Input.is_action_just_released("f11"):
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
