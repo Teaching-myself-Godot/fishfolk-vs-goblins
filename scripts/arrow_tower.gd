@@ -8,11 +8,16 @@ var rotation_speed = .075
 var axle_y = 0.0
 var arrow_y = 0.0
 var my_arrow : Arrow = null
+var ready_to_fire = false
 
-func __handle_debug_inputs():
-	if Input.is_action_just_pressed("x-debug-butt"):
+func _shoot():
+	if  my_arrow and is_instance_valid(my_arrow) and _have_valid_target():
 		$AnimationPlayer.play("shoot")
-
+		my_arrow.target = current_target
+		my_arrow.fired = true
+		my_arrow = null
+		ready_to_fire = false
+		$ReloadTimer.start()
 
 func _point_at(pos : Vector3, target_height : float):
 	var wheel_angle = (
@@ -30,19 +35,29 @@ func _point_at(pos : Vector3, target_height : float):
 		lerp_angle($"Wheel/Wheel_001/Axle".rotation.z, axle_angle, rotation_speed)
 	)
 
+	if my_arrow and is_instance_valid(my_arrow):
+		my_arrow.rotation.y = $Wheel.rotation.y
+		my_arrow.rotation.z = $"Wheel/Wheel_001/Axle".rotation.z
+
+	if ready_to_fire:
+		_shoot()
 
 func _rise_out_of_the_ground(delta):
 	super._rise_out_of_the_ground(delta)
-	if my_general_area and is_instance_valid(my_arrow):
+	if my_arrow and is_instance_valid(my_arrow):
 		my_arrow.position.y = position.y + arrow_y
 
 
 func _load_new_arrow():
 	my_arrow = ArrowScene.instantiate()
-	my_arrow.position = Vector3(position.x + 0.02, arrow_y, position.z)
+	my_arrow.position = Vector3(position.x, position.y + arrow_y, position.z)
+	my_arrow.rotation.y = $Wheel.rotation.y
+	my_arrow.rotation.z = $"Wheel/Wheel_001/Axle".rotation.z
 	my_arrow.owned_by_player = built_by_player
 	load_arrow.emit(my_arrow)
-	pass
+	$ShootTimer.start()
+
+
 
 
 func _ready():
@@ -59,3 +74,12 @@ func toggle_highlight(flag : bool):
 		add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
 	else:
 		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
+
+
+func _on_reload_timer_timeout():
+	_load_new_arrow()
+
+
+func _on_shoot_timer_timeout():
+	print("ready to fire")
+	ready_to_fire = true

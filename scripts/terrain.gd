@@ -13,3 +13,7 @@ func _process(_delta):
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("num_active_circles", range_rings.size())
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_positions", range_rings)
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
+
+
+func _ready():
+	$Plane/StaticBody3D.add_to_group(Constants.GROUP_NAME_TERRAIN)

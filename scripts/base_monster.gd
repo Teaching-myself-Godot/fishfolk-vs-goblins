@@ -20,5 +20,10 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+
 func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS)
+
+
+func take_damage(damage : int):
+	print(name + " says ouch, cus takes " + str(damage) + " damage")
