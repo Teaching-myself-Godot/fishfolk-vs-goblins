@@ -37,5 +37,23 @@
 - [x] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
 - [x] spawn in a new arrow aligned with the shaft and the tightening bowstring
 
-## Milestone 5 (TODO) - Cannon tower
-- [Predicting the path of a projectile](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554)
+## Milestone 5 (DOING) - Cannon tower
+- [ ] add cannon tower to the Tree context menu options for Ground
+- [ ] make a cannon tower model
+- [ ] reuse _point_at code from `arrow_tower.gd` in  `cannon_tower.gd`
+- [ ] use a different range when highlighting (5 metres)
+- [ ] make a cannonball sphere
+- [ ] [Predict the path of the cannonball?](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554) - if necessary
+- [ ] use a radius to deal impact damage scaled by distance from epicenter of impact
+- [ ] use a shader to create an impact crater on the terrain
+- [ ] use (a) sphere(s) with (a) shader(s) to animate the explosion
+
+## Milestone 6 (TODO) - Monster-life, monster-goals
+- [ ] create true level terrain, with water for the fish-folk to crawl out of
+- [ ] create a cute goblin village with little baby goblins in cribs for the monsters to attack
+- [ ] give the monsters HP bars
+- [ ] allow the monsters to die when HP runs out
+- [ ] make monster model react to being hit (very short animation ?)
+- [ ] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
+- [ ] make an attack animation when reaching the goal
+- [ ] make the baby goblin and the attacking monster disappear
