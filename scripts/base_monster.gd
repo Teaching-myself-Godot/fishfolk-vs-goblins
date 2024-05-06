@@ -10,8 +10,10 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * 3 * delta
 
-	if target and is_instance_valid(target):
+	if not is_on_wall() and target and is_instance_valid(target):
 		var direction = position.direction_to(target.position)
+		if position.distance_to(target.position) < speed * 2:
+			target.progress += delta * speed
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		$Armature.rotation.y = atan2(velocity.x, velocity.z)

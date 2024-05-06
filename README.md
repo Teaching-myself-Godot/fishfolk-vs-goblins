@@ -38,7 +38,7 @@
 - [x] spawn in a new arrow aligned with the shaft and the tightening bowstring
 
 ## Milestone 5 (DOING) - Cannon tower
-- [ ] add cannon tower to the Tree context menu options for Ground
+- [x] add cannon tower to the Tree context menu options for Ground
 - [ ] make a cannon tower model
 - [ ] reuse _point_at code from `arrow_tower.gd` in  `cannon_tower.gd`
 - [ ] use a different range when highlighting (5 metres)

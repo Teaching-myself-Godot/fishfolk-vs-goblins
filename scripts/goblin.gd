@@ -2,6 +2,7 @@ class_name Goblin
 extends CharacterBody3D
 
 signal build_arrow_tower(player_num : int, position : Vector3)
+signal build_cannon_tower(player_num : int, position : Vector3)
 
 const HUG_RANGE = 2.0
 const MAX_SPEED = 8
@@ -100,13 +101,15 @@ func _handle_context_menu_confirm():
 	# then apply the choice (like: build a tower from the TreeContextMenu)
 	if _pressed_confirm_in_tree_context_menu():
 		var choice = $TreeContextMenu.select_targeted_option()
-		if choice != "":
-			if my_tree and is_instance_valid(my_tree):
+		if choice != "" and my_tree and is_instance_valid(my_tree):
+			if choice == "Arrow":
 				build_arrow_tower.emit(player_num, my_tree.position)
-				my_tree.toggle_highlight(false)
-				if player_num > 0:
-					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
-				my_tree = null
+			elif choice == "Cannon":
+				build_cannon_tower.emit(player_num, my_tree.position)
+			my_tree.toggle_highlight(false)
+			my_tree = null
+			if player_num > 0:
+				Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 
 
 func _handle_context_menu_arrow_input():

@@ -43,7 +43,7 @@ func add_goblin_to_scene(num : int):
 		else: 
 			goblin_map.erase(num)
 		
-	var new_goblin = GoblinScene.instantiate()
+	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
 	new_goblin.player_num = num
 	new_goblin.position = Vector3(0, 4, 0)
@@ -54,8 +54,11 @@ func add_goblin_to_scene(num : int):
 		new_goblin.position.z = goblin.position.z + (-2 + randf() * 4)
 		new_goblin.position.y = goblin.position.y + 4
 	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
+	new_goblin.build_cannon_tower.connect(_on_goblin_build_cannon_tower)
 	add_child.call_deferred(new_goblin)
 
+func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
+	printerr("FIXME: build cannon tower at " + str(pos) + " for player " + str(player_num))
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
@@ -83,9 +86,3 @@ func _on_spawn_timer_timeout():
 		_spawn_monster($MonsterPath1)
 		_spawn_monster($MonsterPath1B)
 
-func _process(delta):
-	for monster_target : PathFollow3D in $MonsterPath1.get_children():
-		monster_target.progress += delta
-
-	for monster_target : PathFollow3D in $MonsterPath1B.get_children():
-		monster_target.progress += delta
