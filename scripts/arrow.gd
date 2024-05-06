@@ -27,7 +27,7 @@ func _on_body_entered(body : Node3D):
 		return
 
 	if body.is_in_group(Constants.GROUP_NAME_MONSTERS):
-		(body as BaseMonster).take_damage(damage)
+		(body as BaseMonster).take_damage(damage, global_transform.basis.x.normalized())
 		hit_mark = true
 		$DespawnTimer.start()
 
