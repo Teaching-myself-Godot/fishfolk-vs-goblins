@@ -2,6 +2,7 @@ extends Node
 
 var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
+var CannonTowerScene = preload("res://cannon_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
 var goblin_map = {}
 
@@ -58,7 +59,11 @@ func add_goblin_to_scene(num : int):
 	add_child.call_deferred(new_goblin)
 
 func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
-	printerr("FIXME: build cannon tower at " + str(pos) + " for player " + str(player_num))
+	var new_tower : BaseTower = CannonTowerScene.instantiate()
+	new_tower.built_by_player = player_num
+	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
+	add_child.call_deferred(new_tower)
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()

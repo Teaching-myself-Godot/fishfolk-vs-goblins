@@ -10,14 +10,13 @@ var is_on_floor = false
 
 
 func _physics_process(delta):
-	if target and is_instance_valid(target):
-		var direction = position.direction_to(target.position)
-		if position.distance_to(target.position) < speed * 2:
-			target.progress += delta * speed
-		velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
-		velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
-		velocity.y = lerp(velocity.y, direction.y * gravity * 3, 0.25)
-		$Armature.rotation.y = atan2(direction.x, direction.z)
+	var direction = position.direction_to(target.position)
+	if position.distance_to(target.position) < speed * 2:
+		target.progress += delta * speed
+	velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
+	velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
+	velocity.y = lerp(velocity.y, direction.y * gravity * 3, 0.25)
+	$Armature.rotation.y = atan2(direction.x, direction.z)
 
 	position += velocity * delta
 
