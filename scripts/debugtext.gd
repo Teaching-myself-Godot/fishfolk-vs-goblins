@@ -2,4 +2,5 @@ extends Label
 
 
 func _process(_delta):
-	text = str(Engine.get_frames_per_second()) + " fps"
+	var monsters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS)
+	text = str(Engine.get_frames_per_second()) + " fps  - "  + str(monsters.size()) + " monsters"

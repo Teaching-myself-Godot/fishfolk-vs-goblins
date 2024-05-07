@@ -122,4 +122,13 @@ curve = SubResource("Curve3D_ec71d")
 wait_time = 5.0
 autostart = true
 
+[node name="palm-tree8" parent="." instance=ExtResource("7_ssyn6")]
+transform = Transform3D(0.973181, 0, 0, 0, 0.973181, 0, 0, 0, 0.973181, 16.3203, -1, 7.92831)
+
+[node name="palm-tree9" parent="." instance=ExtResource("7_ssyn6")]
+transform = Transform3D(0.833317, 0, -0.552795, 0, 1, 0, 0.552795, 0, 0.833317, 20.5064, -1, 8.50766)
+
+[node name="palm-tree10" parent="." instance=ExtResource("7_ssyn6")]
+transform = Transform3D(0.998824, 0.0484837, 0, -0.0484837, 0.998824, 0, 0, 0, 1, 25.8268, -0.110613, -0.482526)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

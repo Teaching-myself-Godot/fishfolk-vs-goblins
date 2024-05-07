@@ -9,5 +9,3 @@ func _ready():
 	max_hp = 10
 	hp = 10
 	$AnimationPlayer.play("bounce")
-
-
