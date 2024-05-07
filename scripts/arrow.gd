@@ -5,7 +5,7 @@ const SPEED = 100.0
 
 var owned_by_player : int = -1
 var fired   : bool = false
-var damage  : int = 1
+var damage  : int = 5
 var target  : BaseMonster = null
 
 func _physics_process(delta):

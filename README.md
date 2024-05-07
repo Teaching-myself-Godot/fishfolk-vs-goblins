@@ -52,8 +52,8 @@
 - [ ] create true level terrain, with water for the fish-folk to crawl out of
 - [ ] create a cute goblin village with little baby goblins in cribs for the monsters to attack
 - [ ] give the monsters HP bars
-- [ ] allow the monsters to die when HP runs out
+- [x] allow the monsters to die when HP runs out
 - [x] make monster model react to being hit
-- [ ] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
+- [x] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
 - [ ] make an attack animation when reaching the goal
 - [ ] make the baby goblin and the attacking monster disappear
