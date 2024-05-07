@@ -39,11 +39,11 @@
 
 ## Milestone 5 (DOING) - Cannon tower
 - [x] add cannon tower to the Tree context menu options for Ground
-- [ ] make a cannon tower model
-- [ ] reuse _point_at code from `arrow_tower.gd` in  `cannon_tower.gd`
+- [x] make a cannon tower model
+- [ ] write `_point_at` code `cannon_tower.gd`
+- [ ] write `_shoot` code ([Predict the path of the cannonball?](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554) - if necessary)
 - [ ] use a different range when highlighting (5 metres)
 - [ ] make a cannonball sphere
-- [ ] [Predict the path of the cannonball?](https://forum.godotengine.org/t/predict-the-path-of-a-projectile/23554) - if necessary
 - [ ] use a radius to deal impact damage scaled by distance from epicenter of impact
 - [ ] use a shader to create an impact crater on the terrain
 - [ ] use (a) sphere(s) with (a) shader(s) to animate the explosion
