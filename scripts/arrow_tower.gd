@@ -76,16 +76,8 @@ func _ready():
 	axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
 	arrow_y = axle_y + 0.2
 	current_range = 7.0
+	range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_7M
 	_load_new_arrow()
-
-
-func toggle_highlight(flag : bool):
-	super.toggle_highlight(flag)
-	if flag:
-		add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-	else:
-		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-
 
 func _on_reload_timer_timeout():
 	_load_new_arrow()

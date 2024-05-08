@@ -10,6 +10,7 @@ var flying = false
 var hp = 10
 var max_hp = 10
 
+var is_on_floor = false
 
 func _physics_process(delta):
 	var direction = position.direction_to(target.position)
@@ -25,7 +26,10 @@ func _physics_process(delta):
 			target.progress += delta * speed
 		velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
 		velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
-		velocity.y = lerp(velocity.y, direction.y * gravity * 3, 0.25)
+		if is_on_floor:
+			velocity.y = lerp(velocity.y, direction.y * speed, 0.1)
+		else:
+			velocity.y -= delta * gravity * 3
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, 0, 0.25)
 		$Armature.rotation.y = lerp_angle($Armature.rotation.y, atan2(direction.x, direction.z), 0.05)
 
@@ -49,8 +53,14 @@ func take_damage(damage : int, from_direction : Vector3):
 	flying = true
 
 
+func _on_body_exited(body):
+	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
+		is_on_floor = false
+
+
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
+		is_on_floor = true
 		if hp <= 0:
 			queue_free()
 		else:

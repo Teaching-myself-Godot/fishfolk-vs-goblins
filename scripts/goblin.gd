@@ -4,7 +4,7 @@ extends CharacterBody3D
 signal build_arrow_tower(player_num : int, position : Vector3)
 signal build_cannon_tower(player_num : int, position : Vector3)
 
-const HUG_RANGE = 2.0
+const HUG_RANGE = 3.0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150

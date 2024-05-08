@@ -6,6 +6,8 @@ var my_general_area = 2.5
 var rise_target_position : Vector3 = Vector3.ZERO
 var built_by_player : int = -1
 var current_range : float = 5.0
+var range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_5M
+
 var outlines = []
 var ready_to_fire = false
 var current_target : BaseMonster = null
@@ -84,3 +86,7 @@ func _process(delta):
 func toggle_highlight(flag : bool):
 	for outline in outlines:
 		outline.visible = flag
+	if flag:
+		add_to_group(range_ringed_group_name)
+	else:
+		remove_from_group(range_ringed_group_name)
