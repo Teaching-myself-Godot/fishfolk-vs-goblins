@@ -28,10 +28,15 @@ func _rise_out_of_the_ground(delta):
 func _shoot():
 	printerr("Warning: BaseTower._shoot() should be overridden!")
 
+func _is_charged() -> bool:
+	printerr("Warning: BaseTower._is_charged() should be overridden!")
+	return false
 
 func _point_at(_pos : Vector3, _target_height : float, _interpolate : bool = false):
 	printerr("Warning: BaseTower._point_at(...) should be overridden!")
 
+func _idle_rotate():
+	printerr("Warning: BaseTower._idle_rotate(...) should be overridden!")
 
 func _is_within_range(target_pos : Vector3) -> bool:
 	return (
@@ -65,10 +70,13 @@ func _ready():
 
 func _process(delta):
 	_rise_out_of_the_ground(delta)
-	if _have_valid_target():
-		_point_at(current_target.position, current_target.chest_height)
+	if _is_charged():
+		if _have_valid_target():
+			_point_at(current_target.position, current_target.chest_height)
+		else:
+			_point_at_first_monster_within_range()
 	else:
-		_point_at_first_monster_within_range()
+		_idle_rotate()
 
 	if ready_to_fire:
 		_shoot()

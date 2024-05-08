@@ -4,31 +4,31 @@ extends Area3D
 var chest_height = 0.75
 var target : PathFollow3D = null
 var speed = 1.0
-var bounce_velocity_on_damage = 30
+var bounce_velocity_on_damage = 45
 var velocity = Vector3.ZERO
-var is_on_floor = false
+var flying = false
 var hp = 10
 var max_hp = 10
 
 
 func _physics_process(delta):
 	var direction = position.direction_to(target.position)
-	
 
-	if hp > 0 and position.distance_to(target.position) < speed * 2:
-		target.progress += delta * speed
-		velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
-		velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
-		velocity.y = lerp(velocity.y, direction.y * gravity * 3, 0.25)
-		$Armature.rotation.y = lerp_angle($Armature.rotation.y, atan2(direction.x, direction.z), 0.05)
-
-	if hp <= 0:
+	if flying or hp <= 0:
 		velocity.y = lerp(velocity.y, -gravity, 0.1)
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
 		velocity.z = lerp(velocity.z, 0.0, 0.05)
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, $Armature.rotation.x + randf(), 0.25)
 		$Armature.rotation.y = lerp_angle($Armature.rotation.y, $Armature.rotation.y + .5, 0.25)
-		
+	elif hp > 0:
+		if position.distance_to(target.position) < speed * 2:
+			target.progress += delta * speed
+		velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
+		velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
+		velocity.y = lerp(velocity.y, direction.y * gravity * 3, 0.25)
+		$Armature.rotation.x = lerp_angle($Armature.rotation.x, 0, 0.25)
+		$Armature.rotation.y = lerp_angle($Armature.rotation.y, atan2(direction.x, direction.z), 0.05)
+
 	$Control/Label.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
 	position += velocity * delta
 
@@ -39,17 +39,21 @@ func _ready():
 
 
 func take_damage(damage : int, from_direction : Vector3):
+	hp -= damage if hp >= damage else 0
+
 	velocity.y = bounce_velocity_on_damage
-	velocity.x = 0
-	velocity.z = 0
+	velocity.x = from_direction.x * 10
+	velocity.z = from_direction.z * 10
 	$Armature.rotation.y = -$Armature.rotation.y
-	hp -= damage
-	if hp <= 0:
-		velocity.y = bounce_velocity_on_damage * 2
-		hp = 0
 	$Control/Label.text = str(hp) + "/" + str(max_hp)
+	flying = true
 
 
 func _on_body_entered(body):
-	if hp <= 0 and body.is_in_group(Constants.GROUP_NAME_TERRAIN):
-		queue_free()
+	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
+		if hp <= 0:
+			queue_free()
+		else:
+			flying = false
+			velocity.y = 0
+			target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + speed * 2

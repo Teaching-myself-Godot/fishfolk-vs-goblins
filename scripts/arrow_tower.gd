@@ -9,6 +9,8 @@ var axle_y = 0.0
 var arrow_y = 0.0
 var my_arrow : Arrow = null
 
+func _is_charged() -> bool:
+	return my_arrow and is_instance_valid(my_arrow) and not my_arrow.fired
 
 func _shoot():
 	if  my_arrow and is_instance_valid(my_arrow) and _have_valid_target():
@@ -20,6 +22,12 @@ func _shoot():
 		ready_to_fire = false
 		$ReloadTimer.start()
 
+func _idle_rotate():
+	$"Wheel/Wheel_001/Axle".rotation.z = lerp_angle(
+			$"Wheel/Wheel_001/Axle".rotation.z,
+			-0.1,
+			rotation_speed
+	)
 
 func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 	var wheel_angle = (
