@@ -10,6 +10,7 @@ var charged = false
 
 func _shoot():
 	if _have_valid_target():
+		$Wheel/Axle/Barrel/Fuse/Fire.hide()
 		_point_at(current_target.position, current_target.chest_height, false)
 		my_cannon_ball = CannonBallScene.instantiate()
 		my_cannon_ball.position = (
@@ -30,11 +31,10 @@ func _shoot():
 
 
 func _is_charged() -> bool:
-	# TODO: CannonTower._is_charged()
 	return true
 
 
-func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
+func _point_at(pos : Vector3, _target_height : float, interpolate : bool = true):
 	var wheel_angle = (
 		-Vector2(position.x, position.z)
 				.angle_to_point(Vector2(pos.x, pos.z))
@@ -76,7 +76,7 @@ func _ready():
 	$ReloadTimer.start()
 
 func _on_reload_timer_timeout():
-	# TODO: light the fuse
+	$Wheel/Axle/Barrel/Fuse/Fire.show()
 	$ShootTimer.start()
 
 

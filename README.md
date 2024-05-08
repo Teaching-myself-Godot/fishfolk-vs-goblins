@@ -45,10 +45,11 @@
 - [x] use a different range when highlighting (5 metres)
 - [x] make a cannonball sphere
 - [x] use a radius to deal impact damage scaled by distance from epicenter of impact
-- [ ] use shaders to animate muzzle [flash](https://godotshaders.com/shader/mech-gunfire-effect-muzzleflash-shader/) and [smoke](https://godotshaders.com/shader/mech-gunfire-effect-smoke-shader/)? 
+- [x] animate the lighted fuse with particles
+- [x] cannonball  [smoke](https://www.youtube.com/watch?v=jVdgmbn67G8) particles
 - [ ] use a shader to create an impact crater on the terrain
-- [ ] use (a) sphere(s) with (a) shader(s) to animate the explosion
-- [ ] animate the lighted fuse
+- [ ] use particles to animate muzzle [flash](https://www.youtube.com/watch?v=jVdgmbn67G8)
+- [ ] use particles to animate the explosion
 
 ## Milestone 6 (TODO) - Monster-life, monster-goals
 - [ ] create true level terrain, with water for the fish-folk to crawl out of

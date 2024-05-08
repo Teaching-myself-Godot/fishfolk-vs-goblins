@@ -7,7 +7,7 @@ var damage = 5
 var explosion_range = 4
 
 func _ready():
-	apply_impulse(impulse_dir * 3)
+	apply_impulse(impulse_dir * 5)
 	contact_monitor = true
 	max_contacts_reported = 5
 
@@ -26,4 +26,8 @@ func _deal_damage():
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		_deal_damage()
-		queue_free()
+		$DespawnTimer.start()
+
+
+func _on_despawn_timer_timeout():
+	queue_free()
