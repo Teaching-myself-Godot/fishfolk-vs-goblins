@@ -43,7 +43,7 @@ func _ready():
 
 
 func take_damage(damage : int, from_direction : Vector3):
-	hp -= damage if hp >= damage else 0
+	hp -= damage if hp >= damage else hp
 
 	velocity.y = bounce_velocity_on_damage
 	velocity.x = from_direction.x * 10

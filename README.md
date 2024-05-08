@@ -41,10 +41,10 @@
 - [x] add cannon tower to the Tree context menu options for Ground
 - [x] make a cannon tower model
 - [x] write `_point_at` code in `cannon_tower.gd`
-- [ ] write `_shoot` code 
+- [x] write `_shoot` code 
 - [x] use a different range when highlighting (5 metres)
-- [ ] make a cannonball sphere
-- [ ] use a radius to deal impact damage scaled by distance from epicenter of impact
+- [x] make a cannonball sphere
+- [x] use a radius to deal impact damage scaled by distance from epicenter of impact
 - [ ] use a shader to create an impact crater on the terrain
 - [ ] use (a) sphere(s) with (a) shader(s) to animate the explosion
 

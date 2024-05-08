@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo7b1i4cjlwju"]
+
+[ext_resource type="Script" path="res://scripts/cannon_ball.gd" id="1_bxwho"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3gg76"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6g3b"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+metallic = 1.0
+roughness = 0.23
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tjmdc"]
+radius = 0.176603
+
+[node name="CannonBall" type="RigidBody3D"]
+mass = 100.0
+gravity_scale = 1.2
+script = ExtResource("1_bxwho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.357625, 0, 0, 0, 0.357625, 0, 0, 0, 0.357625, 0, 0, 0)
+mesh = SubResource("SphereMesh_3gg76")
+surface_material_override/0 = SubResource("StandardMaterial3D_o6g3b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tjmdc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -63,6 +63,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
+	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
 	add_child.call_deferred(new_tower)
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
@@ -76,6 +77,10 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 
 func _on_arrow_tower_load_arrow(arrow : Arrow):
 	add_child.call_deferred(arrow)
+
+
+func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
+	add_child.call_deferred(cannon_ball)
 
 
 func _spawn_monster(path : Path3D):
