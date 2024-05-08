@@ -21,8 +21,8 @@ func _shoot():
 		my_cannon_ball.rotation.y = $Wheel.rotation.y
 		my_cannon_ball.rotation.z = $Wheel/Axle.rotation.z
 		my_cannon_ball.impulse_dir = (Vector3.RIGHT
-				.rotated(Vector3.UP, $Wheel.rotation.y * 1.25)
-				.rotated(Vector3.FORWARD, $Wheel.rotation.z)
+				.rotated(Vector3.UP, $Wheel.rotation.y)
+				.rotated(Vector3.FORWARD, $Wheel.rotation.z * 1.5)
 		)
 		fire_cannon_ball.emit(my_cannon_ball)
 		ready_to_fire = false
@@ -41,7 +41,7 @@ func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 	)
 	var axle_angle = (
 			((Vector2(position.x, position.z).distance_to(Vector2(pos.x, pos.z)) / current_range) *
-			(0.4 * PI)) - (0.25 * PI)
+			(0.25 * PI)) - (0.125 * PI)
 	)
 
 	$Wheel.rotation.y = (
@@ -63,7 +63,11 @@ func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 
 
 func _idle_rotate():
-	print("TODO: CannonTower._idle_rotate()")
+	$"Wheel/Wheel_001/Axle".rotation.z = lerp_angle(
+			$"Wheel/Wheel_001/Axle".rotation.z,
+			-0.1,
+			rotation_speed
+	)
 
 func _ready():
 	super._ready()
@@ -72,7 +76,7 @@ func _ready():
 	$ReloadTimer.start()
 
 func _on_reload_timer_timeout():
-	print("TODO: light the fuse")
+	# TODO: light the fuse
 	$ShootTimer.start()
 
 
