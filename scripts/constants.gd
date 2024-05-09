@@ -7,5 +7,6 @@ const GROUP_NAME_TOWERS = "towers"
 const GROUP_NAME_CAMERA = "cam"
 const GROUP_NAME_TERRAIN = "terrain"
 
+const GROUP_NAME_EXPLOSION_RINGS = "explosion_rings"
 const GROUP_NAME_RANGE_RINGED_5M = "range_ringed_5_meters"
 const GROUP_NAME_RANGE_RINGED_7M = "range_ringed_7_meters"

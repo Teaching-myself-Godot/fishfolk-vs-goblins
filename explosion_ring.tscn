@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://1twgv4qxj851"]
+
+[ext_resource type="Script" path="res://scripts/explosion_ring.gd" id="1_sq7rg"]
+
+[node name="ExplosionRing" type="Node3D"]
+script = ExtResource("1_sq7rg")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

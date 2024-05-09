@@ -48,8 +48,7 @@
 - [x] animate the lighted fuse with particles
 - [x] cannonball  [smoke](https://www.youtube.com/watch?v=jVdgmbn67G8) particles
 - [x] use particles to animate the explosion
-- [ ] use a shader to create an impact crater on the terrain
-- [ ] use particles to animate muzzle [flash](https://www.youtube.com/watch?v=jVdgmbn67G8)
+- [x] use a shader to show impact tattooed on the terrain
 
 ## Milestone 6 (TODO) - Monster-life, monster-goals
 - [ ] create true level terrain, with water for the fish-folk to crawl out of

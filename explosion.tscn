@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5tlg1rtm0hy" path="res://textures/explosion-sparks.png" id="2_3fd1s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jl2y"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 diffuse_mode = 3
@@ -17,14 +18,11 @@ particles_anim_v_frames = 2
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jovx6"]
-angle_min = -232.0
-angle_max = 336.0
+angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 2.0
 initial_velocity_max = 5.0
-angular_velocity_min = 90.0
-angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 color = Color(1, 0.870588, 0.737255, 1)
 hue_variation_min = 0.06
@@ -32,9 +30,10 @@ hue_variation_max = 0.2
 anim_offset_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_eoy2u"]
-size = Vector2(5, 5)
+resource_local_to_scene = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uku5h"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 diffuse_mode = 3
@@ -47,10 +46,12 @@ billboard_mode = 3
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
+point_size = 0.1
+proximity_fade_distance = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ty3r7"]
 resource_local_to_scene = true
-size = Vector2(5, 5)
+size = Vector2(10, 10)
 subdivide_width = 10
 subdivide_depth = 10
 

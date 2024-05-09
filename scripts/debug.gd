@@ -5,8 +5,9 @@ var ArrowTowerScene = preload("res://arrow_tower.scn")
 var CannonTowerScene = preload("res://cannon_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
 var ExplosionScene = preload("res://explosion.tscn")
-var goblin_map = {}
+var ExplosionRingScene = preload("res://explosion_ring.tscn")
 
+var goblin_map = {}
 
 func _no_goblins() -> bool:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty()
@@ -84,11 +85,14 @@ func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 	cannon_ball.spawn_explosion.connect(_on_cannon_ball_spawn_explosion)
 	add_child.call_deferred(cannon_ball)
 
+
 func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
+	var explosion_ring = ExplosionRingScene.instantiate()
 	explosion.position = pos
+	explosion_ring.position = pos
 	add_child.call_deferred(explosion)
-
+	add_child.call_deferred(explosion_ring)
 
 func _spawn_monster(path : Path3D):
 	var monster_target : PathFollow3D = PathFollow3D.new()
