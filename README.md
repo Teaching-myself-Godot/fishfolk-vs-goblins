@@ -37,7 +37,7 @@
 - [x] make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
 - [x] spawn in a new arrow aligned with the shaft and the tightening bowstring
 
-## Milestone 5 (DOING) - Cannon tower
+## Milestone 5 - Cannon tower
 - [x] add cannon tower to the Tree context menu options for Ground
 - [x] make a cannon tower model
 - [x] write `_point_at` code in `cannon_tower.gd`
@@ -51,11 +51,18 @@
 - [x] use a shader to show impact tattooed on the terrain
 
 ## Milestone 6 (TODO) - Monster-life, monster-goals
-- [ ] create true level terrain, with water for the fish-folk to crawl out of
-- [ ] create a cute goblin village with little baby goblins in cribs for the monsters to attack
-- [ ] give the monsters HP bars
 - [x] allow the monsters to die when HP runs out
 - [x] make monster model react to being hit
 - [x] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
+- [ ] give the monsters HP bars
+- [ ] model out coins
+- [ ] keep track of coins (start with 300)
+- [ ] make towers cost coins in context menu
+- [ ] make monsters drop coins
+- [ ] create a cute goblin village (model a small house, 3 of which makes a village)
+- [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
 - [ ] make the baby goblin and the attacking monster disappear
+- [ ] make a baby goblin counter
+- [ ] create true level terrain, with water for the fish-folk to crawl out of
+
