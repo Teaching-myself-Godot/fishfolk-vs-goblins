@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnadf28scr1by"]
+[gd_scene load_steps=7 format=3 uid="uid://cnadf28scr1by"]
 
 [ext_resource type="Texture2D" uid="uid://cmn186gns3j32" path="res://textures/smoke.png" id="1_iqjpt"]
 
@@ -10,18 +10,25 @@ specular_mode = 2
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
+albedo_color = Color(0.580392, 0.580392, 0.580392, 1)
 albedo_texture = ExtResource("1_iqjpt")
 billboard_mode = 3
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
 
+[sub_resource type="Gradient" id="Gradient_pld50"]
+colors = PackedColorArray(0.862745, 0.862745, 0, 1, 0.862745, 0, 0.223529, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5g4uo"]
+gradient = SubResource("Gradient_pld50")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jovx6"]
 spread = 12.0
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
 gravity = Vector3(0, 0, 0)
-color = Color(1, 0.870588, 0.737255, 1)
+color_ramp = SubResource("GradientTexture1D_5g4uo")
 anim_offset_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ty3r7"]

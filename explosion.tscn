@@ -28,6 +28,8 @@ color = Color(1, 0.870588, 0.737255, 1)
 hue_variation_min = 0.06
 hue_variation_max = 0.2
 anim_offset_max = 1.0
+turbulence_influence_max = 0.46
+turbulence_initial_displacement_max = 24.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_eoy2u"]
 resource_local_to_scene = true

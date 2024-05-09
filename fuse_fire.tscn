@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjj58q4jp44qq"]
 
-[ext_resource type="Texture2D" uid="uid://cx30y822bamoo" path="res://textures/brown-displace.png" id="1_fgaki"]
+[ext_resource type="Texture2D" uid="uid://cx30y822bamoo" path="res://textures/brown-displace.png" id="1_snn1u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uku5h"]
 transparency = 1
@@ -11,7 +11,7 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.847059, 0.564706, 0, 1)
-albedo_texture = ExtResource("1_fgaki")
+albedo_texture = ExtResource("1_snn1u")
 billboard_mode = 3
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
@@ -42,7 +42,7 @@ anim_offset_max = 1.0
 [sub_resource type="QuadMesh" id="QuadMesh_ty3r7"]
 size = Vector2(0.25, 0.25)
 
-[node name="AerialDisplaceParticles" type="Node3D"]
+[node name="FuseFire" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_uku5h")

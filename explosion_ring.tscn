@@ -6,7 +6,8 @@
 script = ExtResource("1_sq7rg")
 
 [node name="DespawnTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 4.0
 one_shot = true
+autostart = true
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

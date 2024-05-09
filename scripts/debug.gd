@@ -88,11 +88,20 @@ func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 
 func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
-	var explosion_ring = ExplosionRingScene.instantiate()
 	explosion.position = pos
-	explosion_ring.position = pos
 	add_child.call_deferred(explosion)
-	add_child.call_deferred(explosion_ring)
+
+	for i in range(3):
+		var explosion_ring = ExplosionRingScene.instantiate()
+		explosion_ring.position = pos + Vector3(-2.0 + randf() * 4, 0.0,  -2.0 + randf() * 4.0)
+		explosion_ring.radius = randf() * 2.0
+		add_child.call_deferred(explosion_ring)
+
+	var main_explosion_ring = ExplosionRingScene.instantiate()
+	main_explosion_ring.position = pos
+	main_explosion_ring.radius = 2.0
+	add_child.call_deferred(main_explosion_ring)
+
 
 func _spawn_monster(path : Path3D):
 	var monster_target : PathFollow3D = PathFollow3D.new()

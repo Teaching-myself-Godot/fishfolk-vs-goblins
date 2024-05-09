@@ -4,27 +4,23 @@ uniform int num_active_circles = 0;
 uniform vec3 range_color : source_color;
 uniform vec3 range_positions[60];
 uniform float range_radiuses[60];
-uniform float max_range_radius = 2.0;
-uniform sampler2D noise;
-
-float circleSDF(vec2 point, int index) {
-	return distance(point, range_positions[index].xz) - range_radiuses[index];
-}
-
+uniform float fades[60];
 
 void fragment() {
 	vec3 worldPosition = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	if (num_active_circles > 0) {
 		vec2 position2D = worldPosition.xz;
-		float totalSDF = 1e5;
-		float alpha_mul = 0.5;
+		float alpha_hint = 0.0;
 		for (int i = 0; i < num_active_circles; i++) {
-			float currentSDF = circleSDF(position2D, i);
-			totalSDF = min(totalSDF, currentSDF) / range_radiuses[i];
+			float delta = distance(position2D, range_positions[i].xz);
+			if (delta < range_radiuses[i]) {
+				alpha_hint = max(alpha_hint, ((range_radiuses[i] - delta) / range_radiuses[i]) * (1.0 - fades[i]));
+			}
 		}
-		if (abs(totalSDF) < max_range_radius) {
+
+		if (alpha_hint > 0.0) {
 			ALBEDO = range_color.rgb;
-			ALPHA = (1. - totalSDF) * 0.15 * texture(noise, worldPosition.xz / 2.0 + 0.85).x;
+			ALPHA = alpha_hint;
 		} else {
 			ALPHA = 0.;
 		}
