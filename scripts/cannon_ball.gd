@@ -6,6 +6,8 @@ var impulse_dir : Vector3 = Vector3.ZERO
 var damage = 5
 var explosion_range = 4
 
+signal spawn_explosion(pos : Vector3)
+
 func _ready():
 	apply_impulse(impulse_dir * 5)
 	contact_monitor = true
@@ -26,6 +28,7 @@ func _deal_damage():
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		_deal_damage()
+		spawn_explosion.emit(position)
 		$DespawnTimer.start()
 
 

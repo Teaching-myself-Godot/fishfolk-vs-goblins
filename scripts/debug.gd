@@ -4,6 +4,7 @@ var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
 var CannonTowerScene = preload("res://cannon_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
+var ExplosionScene = preload("res://explosion.tscn")
 var goblin_map = {}
 
 
@@ -80,7 +81,13 @@ func _on_arrow_tower_load_arrow(arrow : Arrow):
 
 
 func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
+	cannon_ball.spawn_explosion.connect(_on_cannon_ball_spawn_explosion)
 	add_child.call_deferred(cannon_ball)
+
+func _on_cannon_ball_spawn_explosion(pos : Vector3):
+	var explosion = ExplosionScene.instantiate()
+	explosion.position = pos
+	add_child.call_deferred(explosion)
 
 
 func _spawn_monster(path : Path3D):
@@ -94,5 +101,6 @@ func _spawn_monster(path : Path3D):
 func _on_spawn_timer_timeout():
 	if goblin_map.size() > 0:
 		_spawn_monster($MonsterPath1)
+		_spawn_monster($MonsterPath1A)
 		_spawn_monster($MonsterPath1B)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=17 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
@@ -39,6 +39,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 14
+
+[sub_resource type="Curve3D" id="Curve3D_ouoor"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 32.0499, 0, 2.08576, 0, 0, 0, 0, 0, 0, 26.3982, 0, 4.608, 0, 0, 0, 0, 0, 0, 23.7826, 0, 5.12179, 0, 0, 0, 0, 0, 0, 18.4111, 0, 3.25347, 0, 0, 0, 0, 0, 0, 13.32, 0, 1.24502, 0, 0, 0, 0, 0, 0, 1.70318, 0, -8.90015, 0, 0, 0, 0, 0, 0, -2.76126, 0, -8.32116, 0, 0, 0, 0, 0, 0, -4.06909, 0, -6.17258, 0, 0, 0, 0, 0, 0, -6.12425, 0, 4.75712, 0, 0, 0, 0, 0, 0, -6.02032, 0, 10.9748, 0, 0, 0, 0, 0, 0, -4.19871, 0, 14.2911, 0, 0, 0, 0, 0, 0, 4.72255, 0, 24.5669, 0, 0, 0, 0, 0, 0, 6.36148, 0, 26.3635, 0, 0, 0, 0, 0, 0, 11.0266, 0, 30.1305, 0, 0, 0, 0, 0, 0, 29.3119, 0, 8.63793, 0, 0, 0, 0, 0, 0, 33.8396, 0, 1.81324, 0, 0, 0, 0, 0, 0, 32.0499, 0, 2.08576),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 17
 
 [sub_resource type="Curve3D" id="Curve3D_ec71d"]
 _data = {
@@ -115,11 +122,14 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 6.53405, -
 [node name="MonsterPath1" type="Path3D" parent="."]
 curve = SubResource("Curve3D_rq7h8")
 
+[node name="MonsterPath1A" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ouoor")
+
 [node name="MonsterPath1B" type="Path3D" parent="."]
 curve = SubResource("Curve3D_ec71d")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="palm-tree8" parent="." instance=ExtResource("7_ssyn6")]

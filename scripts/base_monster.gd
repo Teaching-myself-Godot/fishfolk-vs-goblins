@@ -46,8 +46,8 @@ func take_damage(damage : int, from_direction : Vector3):
 	hp -= damage if hp >= damage else hp
 
 	velocity.y = bounce_velocity_on_damage
-	velocity.x = from_direction.x * 10
-	velocity.z = from_direction.z * 10
+	velocity.x = from_direction.x * 2
+	velocity.z = from_direction.z * 2
 	$Armature.rotation.y = -$Armature.rotation.y
 	$Control/Label.text = str(hp) + "/" + str(max_hp)
 	flying = true
