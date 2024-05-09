@@ -54,7 +54,7 @@
 - [x] allow the monsters to die when HP runs out
 - [x] make monster model react to being hit
 - [x] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
-- [ ] give the monsters HP bars
+- [x] give the monsters HP bars
 - [ ] model out coins
 - [ ] keep track of coins (start with 300)
 - [ ] make towers cost coins in context menu

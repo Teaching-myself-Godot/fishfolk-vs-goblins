@@ -27,6 +27,9 @@ func _on_body_entered(body : Node3D):
 
 
 func _on_area_entered(area):
+	if not fired:
+		return
+
 	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
 		(area as BaseMonster).take_damage(damage, global_transform.basis.x.normalized())
 		queue_free()

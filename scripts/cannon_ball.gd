@@ -11,7 +11,12 @@ signal spawn_explosion(pos : Vector3)
 func _ready():
 	apply_impulse(impulse_dir * 5)
 	contact_monitor = true
-	max_contacts_reported = 5
+	max_contacts_reported = 20
+
+func _process(_delta):
+	if Vector3.ZERO.distance_to(position) > 250:
+		print("Cannonball dissapears, cus totally out of map")
+		queue_free()
 
 func _deal_damage():
 	var monsters = (

@@ -1,3 +1,4 @@
+class_name DrawCircle
 extends Node2D
 
 @export var radius = 25

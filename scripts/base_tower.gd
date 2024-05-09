@@ -49,7 +49,7 @@ func _is_within_range(target_pos : Vector3) -> bool:
 
 func _point_at_first_monster_within_range():
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
-		if is_instance_valid(monster) and monster.hp > 0 and _is_within_range(monster.global_position):
+		if is_instance_valid(monster) and monster.get_hp() > 0 and _is_within_range(monster.global_position):
 			current_target = monster
 			_point_at(monster.position, monster.chest_height)
 
@@ -58,7 +58,7 @@ func _have_valid_target() -> bool:
 	return (
 			current_target and 
 			is_instance_valid(current_target) and 
-			current_target.hp > 0 and
+			current_target.get_hp() > 0 and
 			_is_within_range(current_target.position)
 	)
 
