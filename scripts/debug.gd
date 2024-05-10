@@ -6,6 +6,7 @@ var CannonTowerScene = preload("res://cannon_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
 var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
+var MagicalCrystalScene = preload("res://magical_crystal.tscn")
 
 var goblin_map = {}
 
@@ -108,12 +109,26 @@ func _spawn_monster(path : Path3D):
 	var fish_chibi : FishChibi = FishChibiScene.instantiate()
 	path.add_child(monster_target)
 	fish_chibi.target = monster_target
+	fish_chibi.drop_magical_crystal.connect(_on_drop_magical_crystal)
 	add_child.call_deferred(fish_chibi)
 
 
+func _get_monster_count() -> int:
+	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
+
 func _on_spawn_timer_timeout():
-	if goblin_map.size() > 0:
-		_spawn_monster($MonsterPath1)
+	if goblin_map.size() > 0 and _get_monster_count() < 30:
 		_spawn_monster($MonsterPath1A)
 		_spawn_monster($MonsterPath1B)
 
+
+func _on_spawn_timer_2_timeout():
+	if goblin_map.size() > 0 and _get_monster_count() < 30:
+		_spawn_monster($MonsterPath1)
+		_spawn_monster($MonsterPath1B)
+
+
+func _on_drop_magical_crystal(pos : Vector3):
+	var new_crystal = MagicalCrystalScene.instantiate()
+	new_crystal.position = Vector3(pos.x, pos.y + 0.5, pos.z)
+	add_child.call_deferred(new_crystal)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://duiqk60yfx5de"]
+
+[ext_resource type="AudioStream" uid="uid://mbo7tltwjur6" path="res://sounds/hit_01.ogg" id="1_vseyf"]
+
+[node name="SpatialSoundEffects" type="Node3D"]
+
+[node name="ArrowImpactStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_vseyf")

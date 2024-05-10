@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://camd4kbif7ddh"]
+[gd_scene load_steps=4 format=3 uid="uid://camd4kbif7ddh"]
 
 [ext_resource type="Script" path="res://scripts/hp_bar.gd" id="1_nbxq6"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_lalmv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rccsi"]
+font = ExtResource("2_lalmv")
+font_size = 60
+font_color = Color(1, 1, 0, 1)
+outline_size = 4
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="HPBar" type="Node2D"]
 script = ExtResource("1_nbxq6")
+
+[node name="Control" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageLabel" type="Label" parent="Control"]
+offset_left = -16.0
+offset_top = -34.0
+offset_right = 17.0
+offset_bottom = 33.0
+text = "5"
+label_settings = SubResource("LabelSettings_rccsi")

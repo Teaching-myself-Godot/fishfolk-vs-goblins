@@ -10,6 +10,8 @@ var flying = false
 
 var is_on_floor = false
 
+signal drop_magical_crystal(pos : Vector3)
+
 func _physics_process(delta):
 	var direction = position.direction_to(target.position)
 
@@ -31,7 +33,7 @@ func _physics_process(delta):
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, 0, 0.25)
 		$Armature.rotation.y = lerp_angle($Armature.rotation.y, atan2(direction.x, direction.z), 0.05)
 
-	$HPBar.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
+	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
 	position += velocity * delta
 
 func _ready():
@@ -44,7 +46,9 @@ func get_hp():
 
 
 func take_damage(damage : int, from_direction : Vector3):
-	$HPBar.hp -= damage if $HPBar.hp >= damage else $HPBar.hp
+	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
+	$HPBar.hp -= actual_damage 
+	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	velocity.y = bounce_velocity_on_damage
 	velocity.x = from_direction.x * 2
@@ -62,6 +66,8 @@ func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = true
 		if $HPBar.hp <= 0:
+			if randf() < 0.333:
+				drop_magical_crystal.emit(position)
 			queue_free()
 		else:
 			flying = false

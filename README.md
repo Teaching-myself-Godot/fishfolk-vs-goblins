@@ -50,15 +50,22 @@
 - [x] use particles to animate the explosion
 - [x] use a shader to show impact tattooed on the terrain
 
-## Milestone 6 (TODO) - Monster-life, monster-goals
+## Milestone 6 (DONE) - Monster-life, Monster-afterlife
+
 - [x] allow the monsters to die when HP runs out
 - [x] make monster model react to being hit
 - [x] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
 - [x] give the monsters HP bars
-- [ ] model out coins
-- [ ] keep track of coins (start with 300)
-- [ ] make towers cost coins in context menu
-- [ ] make monsters drop coins
+- [x] flying damage numbers 
+
+Milestone 7 (DOING) - Flying fish, Anti-Air
+- [ ] model flying fish
+- [ ] model aerial defense tower
+- [ ] shoot some sort of projectile(s) 
+- [ ] cannot shoot grounded monsters
+- [ ] cannon will not target flying monsters
+
+## Milestone 8 (TOOD) - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
@@ -66,3 +73,9 @@
 - [ ] make a baby goblin counter
 - [ ] create true level terrain, with water for the fish-folk to crawl out of
 
+## Milestone 7 - Capitalism
+
+- [ ] model out coins
+- [ ] keep track of coins (start with 300)
+- [ ] make towers cost coins in context menu
+- [ ] make monsters drop coins

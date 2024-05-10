@@ -3,7 +3,7 @@ extends RigidBody3D
 
 var owned_by_player : int = -1
 var impulse_dir : Vector3 = Vector3.ZERO
-var damage = 5
+var damage = 3
 var explosion_range = 4
 
 signal spawn_explosion(pos : Vector3)

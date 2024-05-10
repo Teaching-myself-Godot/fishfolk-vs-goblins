@@ -11,7 +11,8 @@ func _process(_delta):
 
 func _ready():
 	add_to_group(Constants.GROUP_NAME_EXPLOSION_RINGS)
-
+	$ExplosionSound.pitch_scale = 1.0 + randf() * 0.2
+	$ExplosionSound.play()
 
 func _on_despawn_timer_timeout():
 	queue_free()

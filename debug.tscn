@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=14 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
 [ext_resource type="Script" path="res://scripts/my_camera.gd" id="3_jidu1"]
 [ext_resource type="Script" path="res://scripts/debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
+[ext_resource type="PackedScene" uid="uid://beun5pmc4ebq7" path="res://magical_crystal.tscn" id="7_bq7gv"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
@@ -106,6 +107,10 @@ curve = SubResource("Curve3D_ouoor")
 curve = SubResource("Curve3D_ec71d")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="SpawnTimer2" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
@@ -142,4 +147,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45245, 0.819286, -13.1708)
 [node name="palm-tree18" parent="." instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 1.87114, -7.31752)
 
+[node name="MagicalCrystal" parent="." instance=ExtResource("7_bq7gv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78402, -0.734756, -2.56795)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]
