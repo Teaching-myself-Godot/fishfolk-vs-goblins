@@ -11,6 +11,7 @@ var flying = false
 var is_on_floor = false
 
 signal drop_magical_crystal(pos : Vector3)
+signal drop_builder_gem(pos : Vector3)
 
 func _physics_process(delta):
 	var direction = position.direction_to(target.position)
@@ -63,12 +64,18 @@ func _on_body_exited(body):
 		is_on_floor = false
 
 
+func _drop_gem():
+	if randf() < 0.5:
+		drop_magical_crystal.emit(position)
+	elif randf() < 0.25:
+		drop_builder_gem.emit(position)
+
+
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = true
 		if $HPBar.hp <= 0:
-			if randf() < 0.333:
-				drop_magical_crystal.emit(position)
+			_drop_gem()
 			queue_free()
 		else:
 			flying = false

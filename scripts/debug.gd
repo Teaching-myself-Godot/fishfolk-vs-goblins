@@ -8,6 +8,7 @@ var FishChibiScene = preload("res://fish_chibi.scn")
 var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
+var BuilderGemScene = preload("res://builder_gem.tscn")
 
 var goblin_map = {}
 
@@ -93,12 +94,19 @@ func _on_arrow_tower_load_arrow(arrow : Arrow):
 
 
 func _on_missile_tower_fire_missile(missile : AntiAirMissile):
+	missile.spawn_explosion.connect(_on_missile_spawn_explosion)
 	add_child.call_deferred(missile)
 
 func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 	cannon_ball.spawn_explosion.connect(_on_cannon_ball_spawn_explosion)
 	add_child.call_deferred(cannon_ball)
 
+func _on_missile_spawn_explosion(pos : Vector3):
+	var explosion = ExplosionScene.instantiate()
+	explosion.duration = 0.25
+	explosion.size = 3.0
+	explosion.position = pos
+	add_child.call_deferred(explosion)
 
 func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
@@ -123,6 +131,7 @@ func _spawn_monster(path : Path3D):
 	path.add_child(monster_target)
 	fish_chibi.target = monster_target
 	fish_chibi.drop_magical_crystal.connect(_on_drop_magical_crystal)
+	fish_chibi.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(fish_chibi)
 
 
@@ -141,7 +150,15 @@ func _on_spawn_timer_2_timeout():
 		_spawn_monster($MonsterPath1B)
 
 
+func _on_drop_builder_gem(pos : Vector3):
+	var new_gem = BuilderGemScene.instantiate()
+	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)
+	new_gem.velocity.y = 20
+	add_child.call_deferred(new_gem)
+
+
 func _on_drop_magical_crystal(pos : Vector3):
 	var new_crystal = MagicalCrystalScene.instantiate()
-	new_crystal.position = Vector3(pos.x, pos.y + 0.5, pos.z)
+	new_crystal.position = Vector3(pos.x, pos.y + 1.0, pos.z)
+	new_crystal.velocity.y = 20
 	add_child.call_deferred(new_crystal)

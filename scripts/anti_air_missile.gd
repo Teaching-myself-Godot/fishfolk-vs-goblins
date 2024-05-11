@@ -1,10 +1,12 @@
 class_name AntiAirMissile
 extends Area3D
 
+signal spawn_explosion(pos : Vector3)
+
 const MAX_SPEED = 20.0
 var cur_speed = 7.0
 var owned_by_player : int = -1
-var damage  : int = 1
+var damage  : int = 2
 var target : BaseMonster = null
 
 func _physics_process(delta):
@@ -14,6 +16,7 @@ func _physics_process(delta):
 		position += position.direction_to(target_heart) * delta * cur_speed
 		if position.distance_to(target_heart) < 0.5:
 			target.take_damage(damage, global_transform.basis.x.normalized(), 0.5)
+			spawn_explosion.emit(position)
 			queue_free()
 	else:
 		position += global_transform.basis.x.normalized() * delta * cur_speed
@@ -24,6 +27,13 @@ func _physics_process(delta):
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("missile dissapears, cus totally out of map")
 		queue_free()
+
+
+func _ready():
+	if target and is_instance_valid(target):
+		var target_heart = Vector3(target.position.x, target.position.y + target.chest_height, target.position.z)
+		look_at(target_heart)
+
 
 
 func _on_body_entered(body : Node3D):

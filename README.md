@@ -59,11 +59,19 @@
 - [x] flying damage numbers 
 
 Milestone 7 (DOING) - Flying fish, Anti-Air
+- [x] model aerial defense tower
+- [x] shoot some sort of projectile(s) 
+- [x] cannot shoot grounded monsters
+- [x] cannon will not target flying monsters
 - [ ] model flying fish
-- [ ] model aerial defense tower
-- [ ] shoot some sort of projectile(s) 
-- [ ] cannot shoot grounded monsters
-- [ ] cannon will not target flying monsters
+- [ ] create flying route for flying fish
+
+## Milestone 7.1 (DOING) - Capitalism
+- [x] model out builder gems
+- [x] make monsters drop currency
+- [x] model out magic crystals
+- [ ] keep track of currency (start with 3.- magic crystals)
+- [ ] make towers cost currency in context menu
 
 ## Milestone 8 (TOOD) - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
@@ -73,9 +81,4 @@ Milestone 7 (DOING) - Flying fish, Anti-Air
 - [ ] make a baby goblin counter
 - [ ] create true level terrain, with water for the fish-folk to crawl out of
 
-## Milestone 7 - Capitalism
 
-- [ ] model out coins
-- [ ] keep track of coins (start with 300)
-- [ ] make towers cost coins in context menu
-- [ ] make monsters drop coins

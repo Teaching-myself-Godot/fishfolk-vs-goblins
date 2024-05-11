@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://beun5pmc4ebq7"]
 
-[ext_resource type="Script" path="res://scripts/magical_crystal.gd" id="1_enmcb"]
+[ext_resource type="Script" path="res://scripts/basic_drop.gd" id="1_4k8re"]
 [ext_resource type="AudioStream" uid="uid://c6eqprquy818q" path="res://sounds/bell_02.ogg" id="2_a7ihc"]
 [ext_resource type="Material" uid="uid://cisno0pmc23qp" path="res://materials/highlight-white.material" id="2_ety16"]
 
@@ -64,20 +64,21 @@ radius = 1.0
 
 [node name="MagicalCrystal" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-script = ExtResource("1_enmcb")
+script = ExtResource("1_4k8re")
 
-[node name="Icosphere" type="MeshInstance3D" parent="."]
+[node name="GemMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_bh2sh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_xqk1f")
 
-[node name="Outline" type="MeshInstance3D" parent="Icosphere"]
+[node name="Outline" type="MeshInstance3D" parent="GemMesh"]
 transform = Transform3D(1.05178, 0, 0, 0, 1.05178, 0, 0, 0, 1.05178, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4ho8s")
 surface_material_override/0 = ExtResource("2_ety16")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 0.33405, 0)
 shape = SubResource("SphereShape3D_52gis")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
