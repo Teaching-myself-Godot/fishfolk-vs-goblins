@@ -1,6 +1,9 @@
 shader_type spatial;
 
+uniform vec3 base_color : source_color = vec3(1.0, 1.0, 0.0);
+
 void fragment() {
-	ALBEDO = vec3(1. - cos(TIME * 4.) * .4, 1. - cos(TIME * 4.) * .4, 0.);
-	ALPHA = 9. - cos(TIME * 4.) * .4;
+	float effect = (1.0 - cos(TIME * 4.0) * 0.4);
+	ALBEDO = vec3(base_color.r * effect, base_color.g * effect,  base_color.b * effect);
+	ALPHA = effect;
 }

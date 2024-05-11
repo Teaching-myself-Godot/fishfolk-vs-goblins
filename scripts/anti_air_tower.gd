@@ -1,0 +1,83 @@
+class_name AntiAirTower
+extends BaseTower
+
+signal fire_anti_air_missile(anti_air_missile : AntiAirMissile)
+var AntiAirMissileScene = preload("res://anti_air_missile.scn")
+
+
+var launcher_y = 0.0
+var rotation_speed = 0.85
+var current_missile_index : int = 0
+
+func _shoot():
+	if _have_valid_target():
+		var new_missile : AntiAirMissile = AntiAirMissileScene.instantiate()
+		new_missile.target = current_target
+		new_missile.owned_by_player = built_by_player
+		new_missile.position = position + Vector3(0.0, 3.6, 0.0)
+		new_missile.look_at(current_target.position)
+		current_missile_index = current_missile_index + 1 if current_missile_index < 3 else 0
+		ready_to_fire = false
+		fire_anti_air_missile.emit(new_missile)
+		if current_missile_index == 0:
+			$ShootTimer.wait_time = 2.0
+		else:
+			$ShootTimer.wait_time = 0.1
+		$ShootTimer.start()
+
+func  _is_valid_target(potential_target) -> bool:
+	return ( 
+		super._is_valid_target(potential_target) and 
+		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
+	)
+
+
+func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
+	var y_angle = (
+		-Vector2(position.x, position.z)
+				.angle_to_point(Vector2(pos.x, pos.z))
+	)
+	var z_angle = (
+		Vector2(0, position.y + launcher_y)
+				.angle_to_point(Vector2(Vector2(position.x, position.z)
+				.distance_to(Vector2(pos.x, pos.z)), pos.y + target_height))
+	)
+
+	$Launcher.rotation.y = (
+			lerp_angle($Launcher.rotation.y, y_angle, rotation_speed) if interpolate
+			else y_angle
+	)
+	$Launcher.rotation.z = (
+		lerp_angle($Launcher.rotation.z, z_angle, rotation_speed) if interpolate
+		else z_angle
+	)
+
+
+func _idle_rotate():
+	$Launcher.rotation.z = lerp_angle(
+			$Launcher.rotation.z,
+			0.2,
+			rotation_speed
+	)
+
+	$Launcher.rotation.y = lerp_angle(
+			$Launcher.rotation.y,
+			$Launcher.rotation.y + 0.01,
+			rotation_speed
+	)
+
+func _is_charged() -> bool:
+	return true
+
+
+func _ready():
+	super._ready()
+	current_range = 7.0
+	range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_7M
+	launcher_y = $Launcher.position.y
+	$ShootTimer.start()
+
+
+func _on_shoot_timer_timeout():
+	ready_to_fire = true
+

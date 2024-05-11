@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 signal build_arrow_tower(player_num : int, position : Vector3)
 signal build_cannon_tower(player_num : int, position : Vector3)
+signal build_anti_air_tower(player_num : int, position : Vector3)
+
 
 const HUG_RANGE = 3.0
 const MAX_SPEED = 8
@@ -106,6 +108,8 @@ func _handle_context_menu_confirm():
 				build_arrow_tower.emit(player_num, my_tree.position)
 			elif choice == "Cannon":
 				build_cannon_tower.emit(player_num, my_tree.position)
+			elif choice == "Anti-Air":
+				build_anti_air_tower.emit(player_num, my_tree.position)
 			my_tree.toggle_highlight(false)
 			my_tree = null
 			if player_num > 0:
@@ -129,9 +133,10 @@ func _handle_context_menu_arrow_input():
 
 	# highlight the range of any currently targeted tower in the context menu
 	if is_instance_valid(my_tree):
-		if $TreeContextMenu.targeted_option == "Arrow":
+		var opt = $TreeContextMenu.targeted_option
+		if  opt == "Arrow" or opt == "Anti-Air":
 			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-		elif $TreeContextMenu.targeted_option == "Cannon":
+		elif opt == "Cannon":
 			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 		else:
 			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)

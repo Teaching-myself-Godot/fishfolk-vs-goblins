@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=25 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
 [ext_resource type="Texture2D" uid="uid://cnpqrl04b5305" path="res://icons/cannon-option.svg" id="8_tu5i1"]
 [ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="9_j38yi"]
+[ext_resource type="Texture2D" uid="uid://b8o7pa77qgai8" path="res://icons/anti-air-option.svg" id="9_os4ea"]
 [ext_resource type="Texture2D" uid="uid://cc5udt7ex2nao" path="res://icons/all-range-option.svg" id="10_6jepf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bu51s"]
@@ -36,6 +37,10 @@ shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_74v5n"]
+shader = ExtResource("3_dyfal")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vng7"]
 shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
 
@@ -101,7 +106,11 @@ position = Vector2(-120, 0)
 texture = ExtResource("8_tu5i1")
 
 [node name="AirMenu" type="Node2D" parent="."]
-visible = false
+
+[node name="Anti-Air-option" type="Sprite2D" parent="AirMenu"]
+material = SubResource("ShaderMaterial_1vng7")
+position = Vector2(120, 0)
+texture = ExtResource("9_os4ea")
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 texture = ExtResource("8_ivrg5")

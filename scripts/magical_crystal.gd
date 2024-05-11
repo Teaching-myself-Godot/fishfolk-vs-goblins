@@ -2,7 +2,7 @@ extends Area3D
 
 var touched_by_goblin : Goblin = null
 
-func _process(delta):
+func _process(_delta):
 	if touched_by_goblin and $Icosphere.scale.y < 3.0:
 		$Icosphere.scale.x -= 0.02
 		$Icosphere.scale.y += 0.15

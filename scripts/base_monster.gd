@@ -45,16 +45,17 @@ func get_hp():
 	return $HPBar.hp
 
 
-func take_damage(damage : int, from_direction : Vector3):
+func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
 	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
 	$HPBar.hp -= actual_damage 
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
-	velocity.y = bounce_velocity_on_damage
-	velocity.x = from_direction.x * 2
-	velocity.z = from_direction.z * 2
+	velocity.y = bounce_velocity_on_damage * force
+	velocity.x = from_direction.x * 2 * force
+	velocity.z = from_direction.z * 2 * force
 	$Armature.rotation.y = -$Armature.rotation.y
 	flying = true
+	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 
 
 func _on_body_exited(body):
@@ -71,5 +72,6 @@ func _on_body_entered(body):
 			queue_free()
 		else:
 			flying = false
+			remove_from_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 			velocity.y = 0
 			target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + speed * 2

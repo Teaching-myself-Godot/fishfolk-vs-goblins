@@ -49,18 +49,22 @@ func _is_within_range(target_pos : Vector3) -> bool:
 
 func _point_at_first_monster_within_range():
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
-		if is_instance_valid(monster) and monster.get_hp() > 0 and _is_within_range(monster.global_position):
+		if _is_valid_target(monster):
 			current_target = monster
 			_point_at(monster.position, monster.chest_height)
 
 
-func _have_valid_target() -> bool:
-	return (
-			current_target and 
-			is_instance_valid(current_target) and 
-			current_target.get_hp() > 0 and
-			_is_within_range(current_target.position)
+func _is_valid_target(potential_target) -> bool:
+	return  (
+			potential_target and 
+			is_instance_valid(potential_target) and 
+			potential_target.get_hp() > 0 and
+			_is_within_range(potential_target.position)
 	)
+
+
+func _have_valid_target() -> bool:
+	return _is_valid_target(current_target)
 
 
 func _ready():
@@ -77,10 +81,10 @@ func _process(delta):
 			_point_at(current_target.position, current_target.chest_height)
 		else:
 			_point_at_first_monster_within_range()
-	else:
+	
+	if not _is_charged() or not _have_valid_target():
 		_idle_rotate()
-
-	if ready_to_fire:
+	elif ready_to_fire:
 		_shoot()
 
 func toggle_highlight(flag : bool):

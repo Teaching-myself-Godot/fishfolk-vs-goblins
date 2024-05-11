@@ -63,17 +63,22 @@ func _point_at(pos : Vector3, _target_height : float, interpolate : bool = true)
 
 
 func _idle_rotate():
-	$"Wheel/Wheel_001/Axle".rotation.z = lerp_angle(
-			$"Wheel/Wheel_001/Axle".rotation.z,
-			-0.1,
-			rotation_speed
+	pass
+
+func  _is_valid_target(potential_target) -> bool:
+	return ( 
+		super._is_valid_target(potential_target) and 
+		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)
 	)
+
+
 
 func _ready():
 	super._ready()
 	current_range = 5.0
 	range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_5M
 	$ReloadTimer.start()
+
 
 func _on_reload_timer_timeout():
 	$Wheel/Axle/Barrel/Fuse/Fire.show()

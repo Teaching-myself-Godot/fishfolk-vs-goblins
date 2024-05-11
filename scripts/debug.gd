@@ -3,6 +3,7 @@ extends Node
 var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
 var CannonTowerScene = preload("res://cannon_tower.scn")
+var AntiAirTowerScene = preload("res://anti_air_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
 var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
@@ -59,10 +60,19 @@ func add_goblin_to_scene(num : int):
 		new_goblin.position.y = goblin.position.y + 4
 	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
 	new_goblin.build_cannon_tower.connect(_on_goblin_build_cannon_tower)
+	new_goblin.build_anti_air_tower.connect(_on_goblin_build_anti_air_tower)
 	add_child.call_deferred(new_goblin)
 
+func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
+	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
+	new_tower.built_by_player = player_num
+	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
+	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
+	add_child.call_deferred(new_tower)
+
 func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
-	var new_tower : BaseTower = CannonTowerScene.instantiate()
+	var new_tower : CannonTower = CannonTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
@@ -81,6 +91,9 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 func _on_arrow_tower_load_arrow(arrow : Arrow):
 	add_child.call_deferred(arrow)
 
+
+func _on_missile_tower_fire_missile(missile : AntiAirMissile):
+	add_child.call_deferred(missile)
 
 func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 	cannon_ball.spawn_explosion.connect(_on_cannon_ball_spawn_explosion)

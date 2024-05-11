@@ -9,3 +9,4 @@ func _ready():
 	$HPBar.max_hp = 10
 	$HPBar.hp = 10
 	$AnimationPlayer.play("bounce")
+	add_to_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)

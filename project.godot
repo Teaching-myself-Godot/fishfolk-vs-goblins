@@ -13,10 +13,10 @@ config_version=5
 config/name="Goblins-vs-fishfolk"
 run/main_scene="res://debug.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/bg_color=Color(0.407843, 0.411765, 0.0313726, 1)
+boot_splash/bg_color=Color(0.0470588, 0, 0.227451, 1)
 boot_splash/image="res://icon.png"
-boot_splash/fullsize=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
