@@ -103,7 +103,7 @@ curve = SubResource("Curve3D_rq7h8")
 curve = SubResource("Curve3D_ouoor")
 
 [node name="MonsterPath1B" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.99195, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.31378, 0)
 curve = SubResource("Curve3D_ec71d")
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -112,6 +112,10 @@ autostart = true
 
 [node name="SpawnTimer2" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
+
+[node name="SpawnTimer3" type="Timer" parent="."]
+wait_time = 20.0
 autostart = true
 
 [node name="palm-tree8" parent="." instance=ExtResource("7_ssyn6")]
@@ -149,3 +153,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 1.87114, -7.31752)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]
+[connection signal="timeout" from="SpawnTimer3" to="." method="_on_spawn_timer_3_timeout"]

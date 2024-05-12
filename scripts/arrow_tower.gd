@@ -16,6 +16,7 @@ func _shoot():
 	if  my_arrow and is_instance_valid(my_arrow) and _have_valid_target():
 		_point_at(current_target.position, current_target.chest_height, false)
 		$AnimationPlayer.play("shoot")
+		my_arrow.target = current_target
 		my_arrow.fired = true
 		my_arrow = null
 		ready_to_fire = false

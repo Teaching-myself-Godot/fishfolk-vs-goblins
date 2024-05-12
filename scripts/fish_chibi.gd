@@ -8,7 +8,7 @@ var is_on_floor = false
 
 
 func _apply_motion(delta):
-	var direction = position.direction_to(target.position)
+	var direction = position.direction_to(target.global_position)
 	if flying or $HPBar.hp <= 0:
 		velocity.y = lerp(velocity.y, -gravity, 0.1)
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
@@ -16,7 +16,7 @@ func _apply_motion(delta):
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, $Armature.rotation.x + randf(), 0.25)
 		$Armature.rotation.y = lerp_angle($Armature.rotation.y, $Armature.rotation.y + .5, 0.25)
 	elif $HPBar.hp > 0:
-		if position.distance_to(target.position) < SPEED * 2:
+		if position.distance_to(target.global_position) < SPEED * 2:
 			target.progress += delta * SPEED
 		velocity.x = lerp(velocity.x, direction.x * SPEED, 0.25)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, 0.25)

@@ -10,11 +10,11 @@ signal drop_magical_crystal(pos : Vector3)
 signal drop_builder_gem(pos : Vector3)
 
 
-func _apply_motion(delta):
+func _apply_motion(_delta):
 	printerr("_apply_motion(...) should be overridden!")
 
 
-func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
+func _apply_damage_motion(_from_direction : Vector3, _force : float = 1.0):
 	printerr("_apply_damage_motion(...) should be overridden!")
 
 
@@ -26,7 +26,7 @@ func _physics_process(delta):
 
 func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS)
-	position = target.position
+	position = target.global_position
 
 
 func get_hp():

@@ -1,16 +1,20 @@
 class_name Arrow
 extends Area3D
 
-const SPEED = 100.0
+const SPEED = 80.0
 
 var owned_by_player : int = -1
 var fired   : bool = false
 var damage  : int = 5
-
+var target : BaseMonster = null
 
 func _physics_process(delta):
 	if fired:
 		position += global_transform.basis.x.normalized() * delta * SPEED
+		if target and is_instance_valid(target):
+			var target_heart = Vector3(target.position.x, target.position.y + target.chest_height, target.position.z)
+			if position.distance_to(target_heart) < 1.0:
+				_do_damage()
 
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("Arrow dissapears, cus totally out of map")
@@ -26,12 +30,11 @@ func _on_body_entered(body : Node3D):
 		queue_free()
 
 
-func _on_area_entered(area):
-	if not fired:
-		return
-
-	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
-		(area as BaseMonster).take_damage(damage, global_transform.basis.x.normalized())
+func _do_damage():
+	if target and is_instance_valid(target):
+		target.take_damage(damage, global_transform.basis.x.normalized())
+		$Cylinder.hide()
+		fired = false
 		$ImpactStreamPlayer.pitch_scale = 1.0 + -(0.25 + randf() * 0.5)
 		$ImpactStreamPlayer.play()
 		$DespawnTimer.start()

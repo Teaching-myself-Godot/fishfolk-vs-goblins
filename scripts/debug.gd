@@ -5,6 +5,7 @@ var ArrowTowerScene = preload("res://arrow_tower.scn")
 var CannonTowerScene = preload("res://cannon_tower.scn")
 var AntiAirTowerScene = preload("res://anti_air_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
+var FlyingFishScene = preload("res://flying_fish.scn")
 var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
@@ -43,6 +44,9 @@ func _unhandled_input(_event):
 
 
 func add_goblin_to_scene(num : int):
+	if goblin_map.size() == 0:
+		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate())
+
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
 			return
@@ -125,29 +129,17 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	add_child.call_deferred(main_explosion_ring)
 
 
-func _spawn_monster(path : Path3D):
+func _spawn_monster(path : Path3D, monster : BaseMonster):
 	var monster_target : PathFollow3D = PathFollow3D.new()
-	var fish_chibi : FishChibi = FishChibiScene.instantiate()
 	path.add_child(monster_target)
-	fish_chibi.target = monster_target
-	fish_chibi.drop_magical_crystal.connect(_on_drop_magical_crystal)
-	fish_chibi.drop_builder_gem.connect(_on_drop_builder_gem)
-	add_child.call_deferred(fish_chibi)
+	monster.target = monster_target
+	monster.drop_magical_crystal.connect(_on_drop_magical_crystal)
+	monster.drop_builder_gem.connect(_on_drop_builder_gem)
+	add_child.call_deferred(monster)
 
 
 func _get_monster_count() -> int:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
-
-func _on_spawn_timer_timeout():
-	if goblin_map.size() > 0 and _get_monster_count() < 30:
-		_spawn_monster($MonsterPath1A)
-		_spawn_monster($MonsterPath1B)
-
-
-func _on_spawn_timer_2_timeout():
-	if goblin_map.size() > 0 and _get_monster_count() < 30:
-		_spawn_monster($MonsterPath1)
-		_spawn_monster($MonsterPath1B)
 
 
 func _on_drop_builder_gem(pos : Vector3):
@@ -162,3 +154,20 @@ func _on_drop_magical_crystal(pos : Vector3):
 	new_crystal.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_crystal.velocity.y = 20
 	add_child.call_deferred(new_crystal)
+
+
+func _on_spawn_timer_timeout():
+	if goblin_map.size() > 0 and _get_monster_count() < 30:
+		_spawn_monster($MonsterPath1A,  FishChibiScene.instantiate())
+		_spawn_monster($MonsterPath1B,  FishChibiScene.instantiate())
+
+
+func _on_spawn_timer_2_timeout():
+	if goblin_map.size() > 0 and _get_monster_count() < 30:
+		_spawn_monster($MonsterPath1, FishChibiScene.instantiate())
+		_spawn_monster($MonsterPath1B, FishChibiScene.instantiate())
+
+
+func _on_spawn_timer_3_timeout():
+	if goblin_map.size() > 0 and _get_monster_count() < 35:
+		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate())
