@@ -11,10 +11,6 @@ var target : BaseMonster = null
 func _physics_process(delta):
 	if fired:
 		position += global_transform.basis.x.normalized() * delta * SPEED
-		if target and is_instance_valid(target):
-			var target_heart = Vector3(target.position.x, target.position.y + target.chest_height, target.position.z)
-			if position.distance_to(target_heart) < 1.0:
-				_do_damage()
 
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("Arrow dissapears, cus totally out of map")
@@ -42,3 +38,8 @@ func _do_damage():
 
 func _on_despawn_timer_timeout():
 	queue_free()
+
+
+func _on_area_entered(area):
+	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
+		_do_damage()
