@@ -66,9 +66,9 @@ func _on_body_exited(body):
 
 func _drop_gem():
 	if randf() < 0.5:
-		drop_magical_crystal.emit(position)
-	elif randf() < 0.25:
 		drop_builder_gem.emit(position)
+	elif randf() < 0.25:
+		drop_magical_crystal.emit(position)
 
 
 func _on_body_entered(body):
