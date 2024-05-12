@@ -4,7 +4,8 @@ extends BaseMonster
 const SPEED = 2.0
 
 var skel : Skeleton3D = null
-var bone_ids = []
+var bone_ids : Array[int] = []
+
 
 func _apply_motion(delta):
 	var direction = position.direction_to(target.global_position)
@@ -22,11 +23,14 @@ func _apply_motion(delta):
 	$Armature.rotation.z = lerp_angle($Armature.rotation.z, 0, 0.1)
 	var target_y_angle = atan2(direction.x, direction.z)
 	var lerped_y_angle = lerp_angle($Armature.rotation.y, target_y_angle, 0.025)
-	var y_ang_delta = $Armature.rotation.y - lerped_y_angle
+	var bend = lerped_y_angle - $Armature.rotation.y
 	$Armature.rotation.y = lerped_y_angle
-	
-	for i in range(5):
-		skel.set_bone_pose_rotation(bone_ids[i], Quaternion(Vector3.FORWARD, -y_ang_delta * (i * i)))
+
+	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.FORWARD, -bend * 6))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.FORWARD, bend * 24.0))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.FORWARD, bend * 12.0))
+	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.FORWARD, bend * 7.0))
+	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.FORWARD, bend * 5.0))
 
 
 
@@ -50,8 +54,7 @@ func _ready():
 		skel.find_bone("Bone.4"),
 		skel.find_bone("Bone.5")
 	]
-	print(skel)
-	print(bone_ids)
+
 
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
