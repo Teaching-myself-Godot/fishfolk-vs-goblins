@@ -58,22 +58,31 @@
 - [x] give the monsters HP bars
 - [x] flying damage numbers 
 
-Milestone 7 (DOING) - Flying fish, Anti-Air
+## Milestone 7 (DONE) - Flying fish, Anti-Air
+
 - [x] model aerial defense tower
 - [x] shoot some sort of projectile(s) 
 - [x] cannot shoot grounded monsters
 - [x] cannon will not target flying monsters
-- [ ] model flying fish
-- [ ] create flying route for flying fish
+- [x] model flying fish
+- [x] create flying route for flying fish
 
 ## Milestone 7.1 (DOING) - Capitalism
+
 - [x] model out builder gems
 - [x] make monsters drop currency
 - [x] model out magic crystals
 - [ ] keep track of currency (start with 3.- magic crystals)
 - [ ] make towers cost currency in context menu
 
-## Milestone 8 (TOOD) - Expansion
+## Milestone 8 (TODO) - Giant turtle
+- [ ] add blunt (=area) and piercing damage types
+- [ ] create a turtle model
+- [ ] make turtle very insensitive to pierce
+- [ ] let flying fish and fish chibi remain equally sensitive to both damage types
+
+
+## Milestone 9 (TOOD) - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
