@@ -159,13 +159,13 @@ func _on_drop_magical_crystal(pos : Vector3):
 func _on_spawn_timer_timeout():
 	if goblin_map.size() > 0 and _get_monster_count() < 30:
 		_spawn_monster($MonsterPath1A,  FishChibiScene.instantiate())
-		_spawn_monster($MonsterPath1B,  FishChibiScene.instantiate())
+		_spawn_monster($MonsterPath1,  FishChibiScene.instantiate())
 
 
 func _on_spawn_timer_2_timeout():
 	if goblin_map.size() > 0 and _get_monster_count() < 30:
 		_spawn_monster($MonsterPath1, FishChibiScene.instantiate())
-		_spawn_monster($MonsterPath1B, FishChibiScene.instantiate())
+		_spawn_monster($MonsterPath1A, FishChibiScene.instantiate())
 
 
 func _on_spawn_timer_3_timeout():

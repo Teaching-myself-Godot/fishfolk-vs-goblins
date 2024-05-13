@@ -51,8 +51,8 @@ func _apply_motion(delta):
 	$Armature.rotation.y = lerped_y_angle
 
 	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[4] * 10.0) * Quaternion(Vector3.FORWARD, bend_window_1[4] * 10.0))
-	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9] * 8.0) * Quaternion(Vector3.FORWARD, bend_window_1[9] * 8.0))
-	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[14] * 5.0))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9] * 10.0) * Quaternion(Vector3.FORWARD, bend_window_1[9] * 10.0))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14] * 8.0) * Quaternion(Vector3.FORWARD, bend_window_1[14] * 8.0))
 	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[19] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[19] * 5.0))
 	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[21] * 5.0))
 
