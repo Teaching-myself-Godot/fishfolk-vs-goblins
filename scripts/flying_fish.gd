@@ -43,18 +43,18 @@ func _apply_motion(delta):
 	var lerped_x_angle = lerp_angle($Armature.rotation.x, -target_x_angle, 0.025)
 
 	bend_window_1.pop_back()
-	bend_window_1.push_front(lerped_y_angle - $Armature.rotation.y)
+	bend_window_1.push_front((lerped_y_angle - $Armature.rotation.y) * 4.0)
 	bend_window_2.pop_back()
-	bend_window_2.push_front(lerped_x_angle - $Armature.rotation.x)
+	bend_window_2.push_front((lerped_x_angle - $Armature.rotation.x) * 2.5)
 
 	$Armature.rotation.x = lerped_x_angle
 	$Armature.rotation.y = lerped_y_angle
 
-	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[4] * 10.0) * Quaternion(Vector3.FORWARD, bend_window_1[4] * 10.0))
-	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9] * 10.0) * Quaternion(Vector3.FORWARD, bend_window_1[9] * 10.0))
-	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14] * 8.0) * Quaternion(Vector3.FORWARD, bend_window_1[14] * 8.0))
-	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[19] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[19] * 5.0))
-	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[21] * 5.0))
+	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[4]) * Quaternion(Vector3.FORWARD, bend_window_1[4]))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9]) * Quaternion(Vector3.FORWARD, bend_window_1[9]))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14]) * Quaternion(Vector3.FORWARD, bend_window_1[14]))
+	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[19]) * Quaternion(Vector3.FORWARD, bend_window_1[19]))
+	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21]) * Quaternion(Vector3.FORWARD, bend_window_1[21]))
 
 
 
@@ -72,6 +72,7 @@ func _ready():
 	$HPBar.max_hp = 30
 	$HPBar.hp = 30
 	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
+	$AnimationPlayer.play("fly")
 	skel = $Armature/Skeleton3D
 	bone_ids = [
 		skel.find_bone("Bone.1"),

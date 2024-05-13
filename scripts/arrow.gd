@@ -27,7 +27,7 @@ func _on_body_entered(body : Node3D):
 
 
 func _do_damage():
-	if target and is_instance_valid(target):
+	if fired and target and is_instance_valid(target):
 		target.take_damage(damage, global_transform.basis.x.normalized())
 		$Cylinder.hide()
 		fired = false
