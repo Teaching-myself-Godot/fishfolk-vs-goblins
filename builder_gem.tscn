@@ -49,7 +49,9 @@ metallic = 0.9
 metallic_specular = 0.45
 roughness = 0.54
 emission_enabled = true
-emission = Color(0, 0.52549, 0, 1)
+emission = Color(0.854902, 1, 0.839216, 1)
+emission_energy_multiplier = 0.0
+emission_on_uv2 = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jl5in"]
 _surfaces = [{
@@ -65,7 +67,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e82ie"]
-radius = 1.0
+radius = 4.89681
 
 [node name="builder-gem" type="Area3D"]
 script = ExtResource("1_jdfl1")
@@ -81,7 +83,7 @@ mesh = SubResource("ArrayMesh_jl5in")
 surface_material_override/0 = ExtResource("2_6c4dx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 0.656467, 0)
+transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 2.98072, 0)
 shape = SubResource("SphereShape3D_e82ie")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]

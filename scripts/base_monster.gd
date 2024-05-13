@@ -8,7 +8,7 @@ var velocity = Vector3.ZERO
 
 signal drop_magical_crystal(pos : Vector3)
 signal drop_builder_gem(pos : Vector3)
-
+signal spawn_dust_particles(pos : Vector3)
 
 func _apply_motion(_delta):
 	printerr("_apply_motion(...) should be overridden!")
@@ -40,6 +40,10 @@ func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	_apply_damage_motion(from_direction, force)
+
+
+func _spawn_dust():
+	spawn_dust_particles.emit(position)
 
 
 func _drop_gem():

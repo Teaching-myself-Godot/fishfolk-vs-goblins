@@ -55,6 +55,7 @@ func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = true
 		if $HPBar.hp <= 0:
+			_spawn_dust()
 			_drop_gem()
 			queue_free()
 		else:

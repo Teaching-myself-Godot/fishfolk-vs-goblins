@@ -10,6 +10,7 @@ var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
 var BuilderGemScene = preload("res://builder_gem.tscn")
+var DustParticlesScene = preload("res://dust_particles.tscn")
 
 var goblin_map = {}
 
@@ -135,12 +136,22 @@ func _spawn_monster(path : Path3D, monster : BaseMonster):
 	monster.target = monster_target
 	monster.drop_magical_crystal.connect(_on_drop_magical_crystal)
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)
+	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
 	add_child.call_deferred(monster)
 
 
 func _get_monster_count() -> int:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
 
+
+func _on_spawn_dust_particle(pos : Vector3):
+	var particles = DustParticlesScene.instantiate()
+	var explosion_ring = ExplosionRingScene.instantiate()
+	particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
+	add_child.call_deferred(particles)
+	explosion_ring.position = pos 
+	explosion_ring.radius = .5
+	add_child.call_deferred(explosion_ring)
 
 func _on_drop_builder_gem(pos : Vector3):
 	var new_gem = BuilderGemScene.instantiate()

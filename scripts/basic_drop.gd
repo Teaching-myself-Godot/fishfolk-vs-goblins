@@ -6,11 +6,11 @@ var velocity = Vector3.ZERO
 var is_on_floor = false;
 
 func _process(_delta):
-	if touched_by_goblin and $GemMesh.scale.y < 3.0:
-		$GemMesh.scale.x -= 0.02
-		$GemMesh.scale.y += 0.15
-		$GemMesh.scale.z -= 0.02
-		$GemMesh.get_surface_override_material(0).emission_energy_multiplier += 0.1
+	if touched_by_goblin and $GemMesh.scale.y < 1.1 and is_on_floor:
+		$GemMesh.scale.x += 0.01
+		$GemMesh.scale.y += 0.01
+		$GemMesh.scale.z += 0.01
+		$GemMesh.get_surface_override_material(0).emission_energy_multiplier += 0.025
 		$GemMesh.get_surface_override_material(0).albedo_color.a -= 0.025
 		if is_instance_valid(touched_by_goblin):
 			var target_pos = Vector3(
@@ -18,7 +18,7 @@ func _process(_delta):
 				touched_by_goblin.position.y + $GemMesh.scale.y + touched_by_goblin.chest_height,
 				touched_by_goblin.position.z,
 			)
-			position = lerp(position, target_pos, 0.25)
+			position = lerp(position, target_pos, 0.05)
 	else:
 		if touched_by_goblin:
 			queue_free()
