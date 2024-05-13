@@ -20,16 +20,34 @@ func _apply_motion(delta):
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, 0.5 * PI, 0.05)
 
 	$Armature.rotation.z = lerp_angle($Armature.rotation.z, 0, 0.1)
-	var target_y_angle = atan2(direction.x, direction.z)
+
+	#var target_x_angle = atan2(direction.x, direction.z)
+	var pos = target.global_position
+	var target_y_angle = -(
+		Vector2(position.x, position.z)
+				.angle_to_point(Vector2(pos.x, pos.z))
+	) + 0.5 * PI
+	#var target_y_angle = atan2(direction.x, direction.z)
 	var lerped_y_angle = lerp_angle($Armature.rotation.y, target_y_angle, 0.025)
 	var bend = lerped_y_angle - $Armature.rotation.y
-	$Armature.rotation.y = lerped_y_angle
+	var target_x_angle = (
+		Vector2(0, position.y)
+				.angle_to_point(Vector2(Vector2(position.x, position.z)
+				.distance_to(Vector2(pos.x, pos.z)), pos.y))
+	) 
+	var lerped_x_angle = lerp_angle($Armature.rotation.x, -target_x_angle, 0.025)
+	var bend2 = lerped_x_angle - $Armature.rotation.x
 
-	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.FORWARD, -bend * 6))
-	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.FORWARD, bend * 24.0))
-	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.FORWARD, bend * 12.0))
-	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.FORWARD, bend * 7.0))
-	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.FORWARD, bend * 5.0))
+	$Armature.rotation.x = lerped_x_angle
+	$Armature.rotation.y = lerped_y_angle
+	#for bone_id in bone_ids:
+		#print(str(bone_id) + ": " + str(skel.get_bone_pose_rotation(bone_id)))
+	#print("===")
+	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, -bend2 * 6.0) * Quaternion(Vector3.FORWARD, -bend * 6.0))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend2 * 12.0) * Quaternion(Vector3.FORWARD, bend * 24.0))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend2 * 12.0) * Quaternion(Vector3.FORWARD, bend * 12.0))
+	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend2 * 2.0) * Quaternion(Vector3.FORWARD, bend * 7.0))
+	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend2 * 2.0) * Quaternion(Vector3.FORWARD, bend * 5.0))
 
 
 
@@ -58,6 +76,5 @@ func _ready():
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		if $HPBar.hp <= 0:
-			_drop_gem()
 			_drop_gem()
 			queue_free()
