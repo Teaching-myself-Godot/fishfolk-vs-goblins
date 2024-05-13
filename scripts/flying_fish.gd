@@ -2,9 +2,19 @@ class_name FlyingFish
 extends BaseMonster
 
 const SPEED = 2.0
-
 var skel : Skeleton3D = null
 var bone_ids : Array[int] = []
+var bend_window_1 : Array[float] = [
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+]
+var bend_window_2 : Array[float] = [
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+	0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+]
+
 
 func _apply_motion(delta):
 	var direction = position.direction_to(target.global_position)
@@ -29,25 +39,28 @@ func _apply_motion(delta):
 	) + 0.5 * PI
 	#var target_y_angle = atan2(direction.x, direction.z)
 	var lerped_y_angle = lerp_angle($Armature.rotation.y, target_y_angle, 0.025)
-	var bend = lerped_y_angle - $Armature.rotation.y
 	var target_x_angle = (
 		Vector2(0, position.y)
 				.angle_to_point(Vector2(Vector2(position.x, position.z)
 				.distance_to(Vector2(pos.x, pos.z)), pos.y))
 	) 
 	var lerped_x_angle = lerp_angle($Armature.rotation.x, -target_x_angle, 0.025)
-	var bend2 = lerped_x_angle - $Armature.rotation.x
+
+	bend_window_1.pop_back()
+	bend_window_1.push_front(lerped_y_angle - $Armature.rotation.y)
+	bend_window_2.pop_back()
+	bend_window_2.push_front(lerped_x_angle - $Armature.rotation.x)
 
 	$Armature.rotation.x = lerped_x_angle
 	$Armature.rotation.y = lerped_y_angle
-	#for bone_id in bone_ids:
-		#print(str(bone_id) + ": " + str(skel.get_bone_pose_rotation(bone_id)))
-	#print("===")
-	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, -bend2 * 6.0) * Quaternion(Vector3.FORWARD, -bend * 6.0))
-	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend2 * 12.0) * Quaternion(Vector3.FORWARD, bend * 24.0))
-	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend2 * 12.0) * Quaternion(Vector3.FORWARD, bend * 12.0))
-	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend2 * 2.0) * Quaternion(Vector3.FORWARD, bend * 7.0))
-	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend2 * 2.0) * Quaternion(Vector3.FORWARD, bend * 5.0))
+
+	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[4] * 10.0) * Quaternion(Vector3.FORWARD, bend_window_1[4] * 10.0))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9] * 8.0) * Quaternion(Vector3.FORWARD, bend_window_1[9] * 8.0))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[14] * 5.0))
+	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[19] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[19] * 5.0))
+	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21] * 5.0) * Quaternion(Vector3.FORWARD, bend_window_1[21] * 5.0))
+
+
 
 
 
