@@ -78,7 +78,7 @@ mesh = SubResource("ArrayMesh_4ho8s")
 surface_material_override/0 = ExtResource("2_ety16")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 1.9311, 0)
+transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 1.67165, 0)
 shape = SubResource("SphereShape3D_52gis")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]

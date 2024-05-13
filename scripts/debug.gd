@@ -157,6 +157,8 @@ func _on_drop_builder_gem(pos : Vector3):
 	var new_gem = BuilderGemScene.instantiate()
 	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_gem.velocity.y = 20
+	new_gem.velocity.x = -3 + randf() * 3
+	new_gem.velocity.z = -3 + randf() * 3
 	add_child.call_deferred(new_gem)
 
 
@@ -164,6 +166,8 @@ func _on_drop_magical_crystal(pos : Vector3):
 	var new_crystal = MagicalCrystalScene.instantiate()
 	new_crystal.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_crystal.velocity.y = 20
+	new_crystal.velocity.x = -3 + randf() * 3
+	new_crystal.velocity.z = -3 + randf() * 3
 	add_child.call_deferred(new_crystal)
 
 

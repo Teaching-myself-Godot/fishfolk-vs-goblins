@@ -47,8 +47,9 @@ func _spawn_dust():
 
 
 func _drop_gem():
-	if randf() < 0.5:
+	for _i in randi_range(0, 2):
 		drop_builder_gem.emit(position)
-	elif randf() < 0.25:
+
+	if randf() < 0.1:
 		drop_magical_crystal.emit(position)
 

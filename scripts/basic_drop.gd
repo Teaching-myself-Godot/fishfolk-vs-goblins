@@ -6,7 +6,7 @@ var velocity = Vector3.ZERO
 var is_on_floor = false;
 
 func _process(_delta):
-	if touched_by_goblin and $GemMesh.scale.y < 1.1 and is_on_floor:
+	if touched_by_goblin and $GemMesh.scale.y < 0.75:
 		$GemMesh.scale.x += 0.01
 		$GemMesh.scale.y += 0.01
 		$GemMesh.scale.z += 0.01
@@ -15,14 +15,14 @@ func _process(_delta):
 		if is_instance_valid(touched_by_goblin):
 			var target_pos = Vector3(
 				touched_by_goblin.position.x,
-				touched_by_goblin.position.y + $GemMesh.scale.y + touched_by_goblin.chest_height,
+				touched_by_goblin.position.y + touched_by_goblin.chest_height,
 				touched_by_goblin.position.z,
 			)
-			position = lerp(position, target_pos, 0.05)
+			position = lerp(position, touched_by_goblin.position, 0.25)
 	else:
 		if touched_by_goblin:
 			queue_free()
-		else:
+		elif not is_on_floor:
 			rotation.y = lerp_angle(rotation.y, rotation.y + 0.1, 0.5)
 
 func _physics_process(delta):
