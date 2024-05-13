@@ -13,6 +13,7 @@ func _ready():
 	contact_monitor = true
 	max_contacts_reported = 20
 
+
 func _process(_delta):
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("Cannonball dissapears, cus totally out of map")

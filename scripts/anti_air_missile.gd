@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 
 func _ready():
+	collision_mask = Constants.MONSTER_COLLISION_LAYER
 	if target and is_instance_valid(target):
 		var target_heart = Vector3(target.position.x, target.position.y + target.chest_height, target.position.z)
 		look_at(target_heart)

@@ -43,3 +43,7 @@ func _on_despawn_timer_timeout():
 func _on_area_entered(area):
 	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
 		_do_damage()
+
+
+func _ready():
+	collision_mask = Constants.MONSTER_COLLISION_LAYER

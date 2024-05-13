@@ -27,6 +27,7 @@ func _physics_process(delta):
 func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS)
 	position = target.global_position
+	collision_layer = Constants.MONSTER_COLLISION_LAYER
 
 
 func get_hp():
