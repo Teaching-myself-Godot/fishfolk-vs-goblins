@@ -6,7 +6,6 @@ const SPEED = 2.0
 var skel : Skeleton3D = null
 var bone_ids : Array[int] = []
 
-
 func _apply_motion(delta):
 	var direction = position.direction_to(target.global_position)
 	velocity.x = lerp(velocity.x, direction.x * SPEED, 0.25)
