@@ -10,6 +10,8 @@ signal drop_magical_crystal(pos : Vector3)
 signal drop_builder_gem(pos : Vector3)
 signal spawn_dust_particles(pos : Vector3)
 
+var my_frame_cycle : int = 0
+var limit_frames : bool = false
 func _apply_motion(_delta):
 	printerr("_apply_motion(...) should be overridden!")
 
@@ -18,8 +20,9 @@ func _apply_damage_motion(_from_direction : Vector3, _force : float = 1.0):
 	printerr("_apply_damage_motion(...) should be overridden!")
 
 
-func _physics_process(delta):
-	_apply_motion(delta)
+func handle_update(delta, frame):
+	if frame == my_frame_cycle or not limit_frames:
+		_apply_motion(delta)
 	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
 	position += velocity * delta
 

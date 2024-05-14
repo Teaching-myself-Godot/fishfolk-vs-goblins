@@ -34,6 +34,7 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 	velocity.z = from_direction.z * 2 * force
 	$Armature.rotation.y = -$Armature.rotation.y
 	flying = true
+	limit_frames = false
 	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 
 
@@ -60,6 +61,7 @@ func _on_body_entered(body):
 			queue_free()
 		else:
 			flying = false
+			limit_frames = true
 			remove_from_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 			velocity.y = 0
 			target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + SPEED * 2

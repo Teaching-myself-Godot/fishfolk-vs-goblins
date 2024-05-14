@@ -34,10 +34,10 @@ func _process(_delta):
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_positions", range_rings)
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
 
-	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_positions", explosion_rings)
-	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_radiuses", explosion_ring_radiuses)
-	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("fades", explosion_ring_fades)
-	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("num_active_circles", explosion_rings.size())
+	#$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_positions", explosion_rings)
+	#$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_radiuses", explosion_ring_radiuses)
+	#$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("fades", explosion_ring_fades)
+	#$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("num_active_circles", explosion_rings.size())
 
 func _ready():
 	$Plane/StaticBody3D.add_to_group(Constants.GROUP_NAME_TERRAIN)

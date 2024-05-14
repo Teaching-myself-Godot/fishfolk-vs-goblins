@@ -221,4 +221,7 @@ quit-k={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+driver/threads/thread_model=0
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+driver/depth_prepass/enable=false

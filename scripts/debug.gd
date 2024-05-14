@@ -1,5 +1,10 @@
 extends Node
 
+
+const FRAME_CNT_MAX = 3
+var frame_cnt = 0
+var assigned_frame = 0
+
 var GoblinScene = preload("res://goblin.scn")
 var ArrowTowerScene = preload("res://arrow_tower.scn")
 var CannonTowerScene = preload("res://cannon_tower.scn")
@@ -46,7 +51,7 @@ func _unhandled_input(_event):
 
 func add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
-		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate())
+		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate(), false)
 
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
@@ -130,13 +135,16 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	add_child.call_deferred(main_explosion_ring)
 
 
-func _spawn_monster(path : Path3D, monster : BaseMonster):
+func _spawn_monster(path : Path3D, monster : BaseMonster, limit_frames = true):
 	var monster_target : PathFollow3D = PathFollow3D.new()
 	path.add_child(monster_target)
 	monster.target = monster_target
 	monster.drop_magical_crystal.connect(_on_drop_magical_crystal)
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)
 	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
+	monster.my_frame_cycle = assigned_frame
+	monster.limit_frames = limit_frames
+	assigned_frame = assigned_frame + 1 if assigned_frame < FRAME_CNT_MAX else 0
 	add_child.call_deferred(monster)
 
 
@@ -172,17 +180,23 @@ func _on_drop_magical_crystal(pos : Vector3):
 
 
 func _on_spawn_timer_timeout():
-	if goblin_map.size() > 0 and _get_monster_count() < 30:
+	if goblin_map.size() > 0 and _get_monster_count() < 120:
 		_spawn_monster($MonsterPath1A,  FishChibiScene.instantiate())
 		_spawn_monster($MonsterPath1,  FishChibiScene.instantiate())
 
 
 func _on_spawn_timer_2_timeout():
-	if goblin_map.size() > 0 and _get_monster_count() < 30:
+	if goblin_map.size() > 0 and _get_monster_count() < 120:
 		_spawn_monster($MonsterPath1, FishChibiScene.instantiate())
 		_spawn_monster($MonsterPath1A, FishChibiScene.instantiate())
 
 
 func _on_spawn_timer_3_timeout():
-	if goblin_map.size() > 0 and _get_monster_count() < 35:
-		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate())
+	if goblin_map.size() > 0 and _get_monster_count() < 125:
+		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate(), false)
+
+
+func _physics_process(delta):
+	frame_cnt = frame_cnt + 1 if frame_cnt < FRAME_CNT_MAX else 0
+	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
+		monster.handle_update(delta, frame_cnt)

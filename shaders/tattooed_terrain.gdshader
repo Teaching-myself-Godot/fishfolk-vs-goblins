@@ -1,7 +1,7 @@
 shader_type spatial;
 
 uniform int num_active_circles = 0;
-uniform vec3 range_color : source_color;
+uniform vec4 range_color : source_color;
 uniform vec3 range_positions[60];
 uniform float range_radiuses[60];
 uniform float fades[60];
