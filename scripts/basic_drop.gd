@@ -13,11 +13,6 @@ func _process(_delta):
 		$GemMesh.get_surface_override_material(0).emission_energy_multiplier += 0.025
 		$GemMesh.get_surface_override_material(0).albedo_color.a -= 0.025
 		if is_instance_valid(touched_by_goblin):
-			var target_pos = Vector3(
-				touched_by_goblin.position.x,
-				touched_by_goblin.position.y + touched_by_goblin.chest_height,
-				touched_by_goblin.position.z,
-			)
 			position = lerp(position, touched_by_goblin.position, 0.25)
 	else:
 		if touched_by_goblin:
