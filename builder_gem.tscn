@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://capy7b4w2gvpo"]
+[gd_scene load_steps=11 format=3 uid="uid://capy7b4w2gvpo"]
 
 [ext_resource type="Script" path="res://scripts/builder_gem.gd" id="1_nbjsj"]
 [ext_resource type="Material" uid="uid://cisno0pmc23qp" path="res://materials/highlight-white.material" id="2_6c4dx"]
@@ -56,14 +56,17 @@ _surfaces = [{
 "vertex_data": PackedByteArray(167, 16, 74, 63, 148, 192, 244, 63, 10, 152, 73, 191, 167, 16, 74, 63, 148, 192, 244, 63, 10, 152, 73, 191, 167, 16, 74, 63, 148, 192, 244, 63, 10, 152, 73, 191, 167, 16, 74, 63, 148, 192, 244, 63, 10, 152, 73, 191, 112, 238, 134, 60, 196, 159, 6, 190, 245, 180, 57, 188, 112, 238, 134, 60, 196, 159, 6, 190, 245, 180, 57, 188, 112, 238, 134, 60, 196, 159, 6, 190, 245, 180, 57, 188, 112, 238, 134, 60, 196, 159, 6, 190, 245, 180, 57, 188, 78, 109, 73, 63, 162, 168, 243, 63, 12, 212, 73, 63, 78, 109, 73, 63, 162, 168, 243, 63, 12, 212, 73, 63, 78, 109, 73, 63, 162, 168, 243, 63, 12, 212, 73, 63, 78, 109, 73, 63, 162, 168, 243, 63, 12, 212, 73, 63, 129, 17, 74, 191, 148, 192, 244, 63, 10, 152, 73, 191, 129, 17, 74, 191, 148, 192, 244, 63, 10, 152, 73, 191, 129, 17, 74, 191, 148, 192, 244, 63, 10, 152, 73, 191, 129, 17, 74, 191, 148, 192, 244, 63, 10, 152, 73, 191, 40, 110, 73, 191, 162, 168, 243, 63, 12, 212, 73, 63, 40, 110, 73, 191, 162, 168, 243, 63, 12, 212, 73, 63, 40, 110, 73, 191, 162, 168, 243, 63, 12, 212, 73, 63, 40, 110, 73, 191, 162, 168, 243, 63, 12, 212, 73, 63, 127, 226, 80, 60, 145, 90, 125, 64, 9, 163, 158, 60, 127, 226, 80, 60, 145, 90, 125, 64, 9, 163, 158, 60, 127, 226, 80, 60, 145, 90, 125, 64, 9, 163, 158, 60, 127, 226, 80, 60, 145, 90, 125, 64, 9, 163, 158, 60, 4, 35, 254, 255, 254, 255, 255, 191, 252, 220, 2, 0, 1, 73, 62, 242, 89, 180, 164, 203, 8, 221, 66, 153, 250, 220, 254, 92, 251, 182, 64, 242, 255, 127, 252, 92, 126, 155, 128, 228, 252, 220, 2, 0, 1, 73, 62, 242, 250, 220, 254, 92, 251, 182, 64, 242, 1, 35, 252, 92, 130, 100, 128, 228, 255, 127, 1, 163, 254, 255, 255, 191, 255, 127, 252, 92, 126, 155, 128, 228, 89, 180, 164, 203, 8, 221, 66, 153, 250, 220, 254, 92, 251, 182, 64, 242, 4, 35, 254, 255, 254, 255, 255, 191, 252, 220, 2, 0, 1, 73, 62, 242, 167, 75, 166, 203, 133, 178, 121, 209, 1, 35, 252, 92, 130, 100, 128, 228, 255, 127, 1, 163, 254, 255, 255, 191, 255, 127, 252, 92, 126, 155, 128, 228, 167, 75, 166, 203, 133, 178, 121, 209, 1, 35, 252, 92, 130, 100, 128, 228, 255, 127, 1, 163, 254, 255, 255, 191, 4, 35, 254, 255, 254, 255, 255, 191, 89, 180, 164, 203, 8, 221, 66, 153, 167, 75, 166, 203, 133, 178, 121, 209)
 }]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e82ie"]
-radius = 4.89681
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jju7g"]
+height = 1.6808
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qy04o"]
+radius = 4.0
 
 [node name="builder-gem" type="Area3D"]
 script = ExtResource("1_nbjsj")
 
 [node name="GemMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, 0, 0, 0)
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, 0, 0.0413288, 0)
 mesh = SubResource("ArrayMesh_w5n11")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_gsyv8")
@@ -72,12 +75,16 @@ surface_material_override/0 = ExtResource("2_gsyv8")
 mesh = SubResource("ArrayMesh_jl5in")
 surface_material_override/0 = ExtResource("2_6c4dx")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 2.78724, 0)
-shape = SubResource("SphereShape3D_e82ie")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 0.513681, 0)
+shape = SubResource("CapsuleShape3D_jju7g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2tp0u")
 pitch_scale = 1.25
+
+[node name="CollectCollisionSphere" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qy04o")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

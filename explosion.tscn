@@ -61,6 +61,7 @@ subdivide_depth = 10
 script = ExtResource("1_2n5sa")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_1jl2y")
 lifetime = 0.15
 speed_scale = 1.85
