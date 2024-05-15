@@ -17,6 +17,7 @@ var MagicalCrystalScene = preload("res://magical_crystal.tscn")
 var BuilderGemScene = preload("res://builder_gem.tscn")
 var DustParticlesScene = preload("res://dust_particles.tscn")
 
+var gem_pouch : GemPouch 
 var goblin_map = {}
 
 func _no_goblins() -> bool:
@@ -163,20 +164,22 @@ func _on_spawn_dust_particle(pos : Vector3):
 
 
 func _on_drop_builder_gem(pos : Vector3):
-	var new_gem = BuilderGemScene.instantiate()
+	var new_gem : BuilderGem  = BuilderGemScene.instantiate()
 	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_gem.velocity.y = 20
 	new_gem.velocity.x = -3 + randf() * 3
 	new_gem.velocity.z = -3 + randf() * 3
+	new_gem.collect_builder_gem.connect(gem_pouch.collect_builder_gem)
 	add_child.call_deferred(new_gem)
 
 
 func _on_drop_magical_crystal(pos : Vector3):
-	var new_crystal = MagicalCrystalScene.instantiate()
+	var new_crystal : MagicalCrystal = MagicalCrystalScene.instantiate()
 	new_crystal.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_crystal.velocity.y = 20
 	new_crystal.velocity.x = -3 + randf() * 3
 	new_crystal.velocity.z = -3 + randf() * 3
+	new_crystal.collect_magical_crystal.connect(gem_pouch.collect_magical_crystal)
 	add_child.call_deferred(new_crystal)
 
 
@@ -201,3 +204,7 @@ func _physics_process(delta):
 	frame_cnt = frame_cnt + 1 if frame_cnt < FRAME_CNT_MAX else 0
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
 		monster.handle_update(delta, frame_cnt)
+
+
+func _ready():
+	gem_pouch = $GemPouch

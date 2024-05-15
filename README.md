@@ -72,7 +72,8 @@
 - [x] model out builder gems
 - [x] make monsters drop currency
 - [x] model out magic crystals
-- [ ] keep track of currency (start with 3 builder gems)
+- [x] keep track of currency (start with 300 builder gems)
+- [x] more readable [font for numbers](https://www.fontspace.com/alpha-prota-font-f83519)
 - [ ] make towers cost currency in context menu
 
 ## Milestone 8 (TODO) - Giant turtle

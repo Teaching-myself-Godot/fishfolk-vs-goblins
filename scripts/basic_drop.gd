@@ -11,7 +11,7 @@ func _process(_delta):
 		$GemMesh.scale.y += 0.01
 		$GemMesh.scale.z += 0.01
 		$GemMesh.get_surface_override_material(0).emission_energy_multiplier += 0.025
-		$GemMesh.get_surface_override_material(0).albedo_color.a -= 0.025
+		$GemMesh.transparency += 0.025 if $GemMesh.transparency < 1.0 else 0.0
 		if is_instance_valid(touched_by_goblin):
 			position = lerp(position, touched_by_goblin.position, 0.25)
 	else:

@@ -29,8 +29,7 @@ func _shoot():
 func  _is_valid_target(potential_target) -> bool:
 	return ( 
 		super._is_valid_target(potential_target) and 
-		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE) and 
-		potential_target.position.y >= $Launcher.global_position.y
+		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 	)
 
 

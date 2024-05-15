@@ -140,7 +140,7 @@ func _handle_context_menu_arrow_input():
 			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 		else:
 			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
 
 func _handle_context_menus():
 	# open the context menu if requested and valid,
