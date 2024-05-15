@@ -72,7 +72,7 @@
 - [x] model out builder gems
 - [x] make monsters drop currency
 - [x] model out magic crystals
-- [ ] keep track of currency (start with 3.- magic crystals)
+- [ ] keep track of currency (start with 3 builder gems)
 - [ ] make towers cost currency in context menu
 
 ## Milestone 8 (TODO) - Giant turtle
@@ -80,7 +80,6 @@
 - [ ] create a turtle model
 - [ ] make turtle very insensitive to pierce
 - [ ] let flying fish and fish chibi remain equally sensitive to both damage types
-
 
 ## Milestone 9 (TOOD) - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)

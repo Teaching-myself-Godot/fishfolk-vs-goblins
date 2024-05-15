@@ -161,6 +161,7 @@ func _on_spawn_dust_particle(pos : Vector3):
 	explosion_ring.radius = .5
 	add_child.call_deferred(explosion_ring)
 
+
 func _on_drop_builder_gem(pos : Vector3):
 	var new_gem = BuilderGemScene.instantiate()
 	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)

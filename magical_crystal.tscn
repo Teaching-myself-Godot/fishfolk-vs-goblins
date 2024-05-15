@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/basic_drop.gd" id="1_4k8re"]
 [ext_resource type="AudioStream" uid="uid://c6eqprquy818q" path="res://sounds/bell_02.ogg" id="2_a7ihc"]
 [ext_resource type="Material" uid="uid://cisno0pmc23qp" path="res://materials/highlight-white.material" id="2_ety16"]
+[ext_resource type="Material" uid="uid://biq4jlnasw0cj" path="res://materials/amethyst_shine.material" id="2_wctet"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_238ua"]
 
@@ -36,16 +37,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gajvs")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqk1f"]
-resource_local_to_scene = true
-albedo_color = Color(0.658824, 0.345098, 1, 1)
-metallic = 0.89
-metallic_specular = 0.44
-roughness = 0.54
-emission = Color(1, 0.619608, 1, 1)
-emission_energy_multiplier = 0.0
-emission_on_uv2 = true
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_4ho8s"]
 _surfaces = [{
 "aabb": AABB(-0.931805, -1.04818, -0.898364, 1.87494, 2.09669, 1.79393),
@@ -70,7 +61,7 @@ script = ExtResource("1_4k8re")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_bh2sh")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_xqk1f")
+surface_material_override/0 = ExtResource("2_wctet")
 
 [node name="Outline" type="MeshInstance3D" parent="GemMesh"]
 transform = Transform3D(1.05178, 0, 0, 0, 1.05178, 0, 0, 0, 1.05178, 0, 0, 0)

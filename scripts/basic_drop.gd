@@ -25,14 +25,19 @@ func _physics_process(delta):
 		velocity = Vector3.ZERO
 	else:
 		velocity.y = lerp(velocity.y, -gravity, 0.1)
-
 	position += velocity * delta
+
+
+func _collect():
+	printerr("BasicDrop._collect() must be overridden")
+
 
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = true
 	
 	if not touched_by_goblin and is_instance_valid(body) and body.is_in_group(Constants.GROUP_NAME_GOBLINS):
+		_collect()
 		touched_by_goblin = body
 		$GemMesh.get_surface_override_material(0).emission_enabled = true
 		$GemMesh.get_surface_override_material(0).transparency = 1

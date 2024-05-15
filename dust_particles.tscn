@@ -29,7 +29,7 @@ curve = SubResource("Curve_6o4xt")
 spread = 10.0
 initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
-color = Color(0.560784, 0.560784, 0, 0.780392)
+color = Color(0.301961, 0.301961, 0, 1)
 alpha_curve = SubResource("CurveTexture_af5cn")
 anim_offset_max = 1.0
 

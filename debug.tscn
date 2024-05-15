@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
 [ext_resource type="Script" path="res://scripts/my_camera.gd" id="3_jidu1"]
 [ext_resource type="Script" path="res://scripts/debugtext.gd" id="3_tm82y"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
+[ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://sub_scenes/gem_pouch.tscn" id="7_q1ece"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
@@ -40,15 +41,20 @@ _data = {
 }
 point_count = 19
 
+[sub_resource type="LabelSettings" id="LabelSettings_bp2at"]
+line_spacing = 0.0
+font_color = Color(1, 1, 0.654902, 1)
+
 [node name="DebugWorld" type="Node"]
 script = ExtResource("1_81aij")
+metadata/_edit_horizontal_guides_ = [33.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ikt58")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, -27.5745, 4.51649, 0)
-light_energy = 0.8
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
+light_energy = 2.0
 shadow_enabled = true
 
 [node name="CameraPivot" type="Node3D" parent="." groups=["cam"]]
@@ -60,17 +66,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0, 
 current = true
 fov = 38.1
 script = ExtResource("3_jidu1")
-
-[node name="control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-
-[node name="debugtext" type="Label" parent="control"]
-layout_mode = 0
-offset_right = 140.0
-offset_bottom = 74.0
-text = "test	"
-script = ExtResource("3_tm82y")
 
 [node name="terrain" parent="." instance=ExtResource("4_75lcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -150,6 +145,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45245, 0.819286, -13.1708)
 
 [node name="palm-tree18" parent="." instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 1.87114, -7.31752)
+
+[node name="GemPouch" parent="." instance=ExtResource("7_q1ece")]
+metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
+
+[node name="control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_right = 224.0
+
+[node name="debugtext" type="Label" parent="control"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 190.0
+offset_bottom = 37.0
+text = "test	"
+label_settings = SubResource("LabelSettings_bp2at")
+script = ExtResource("3_tm82y")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]

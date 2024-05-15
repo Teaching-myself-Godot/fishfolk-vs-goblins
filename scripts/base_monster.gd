@@ -30,6 +30,7 @@ func handle_update(delta, frame):
 func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS)
 	position = target.global_position
+	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
 	collision_layer = Constants.MONSTER_COLLISION_LAYER
 
 

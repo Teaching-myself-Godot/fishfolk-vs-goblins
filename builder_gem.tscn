@@ -1,7 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://capy7b4w2gvpo"]
 
-[ext_resource type="Script" path="res://scripts/basic_drop.gd" id="1_jdfl1"]
+[ext_resource type="Script" path="res://scripts/builder_gem.gd" id="1_nbjsj"]
 [ext_resource type="Material" uid="uid://cisno0pmc23qp" path="res://materials/highlight-white.material" id="2_6c4dx"]
+[ext_resource type="Material" uid="uid://bfvp707f6pw50" path="res://materials/emerald_shine.material" id="2_gsyv8"]
 [ext_resource type="AudioStream" uid="uid://c6eqprquy818q" path="res://sounds/bell_02.ogg" id="3_2tp0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yd4v8"]
@@ -42,17 +43,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yvww6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjvkr"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0.976471, 0, 1)
-metallic = 0.9
-metallic_specular = 0.45
-roughness = 0.54
-emission_enabled = true
-emission = Color(0.854902, 1, 0.839216, 1)
-emission_energy_multiplier = 0.0
-emission_on_uv2 = true
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_jl5in"]
 _surfaces = [{
 "aabb": AABB(-0.78933, -0.131469, -0.787476, 1.57866, 4.09012, 1.57587),
@@ -70,13 +60,13 @@ _surfaces = [{
 radius = 4.89681
 
 [node name="builder-gem" type="Area3D"]
-script = ExtResource("1_jdfl1")
+script = ExtResource("1_nbjsj")
 
 [node name="GemMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, 0, 0, 0)
 mesh = SubResource("ArrayMesh_w5n11")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_hjvkr")
+surface_material_override/0 = ExtResource("2_gsyv8")
 
 [node name="Outline" type="MeshInstance3D" parent="GemMesh"]
 mesh = SubResource("ArrayMesh_jl5in")
