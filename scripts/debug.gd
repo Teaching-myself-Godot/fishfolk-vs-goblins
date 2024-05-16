@@ -73,6 +73,8 @@ func add_goblin_to_scene(num : int):
 	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
 	new_goblin.build_cannon_tower.connect(_on_goblin_build_cannon_tower)
 	new_goblin.build_anti_air_tower.connect(_on_goblin_build_anti_air_tower)
+	gem_pouch.liquidity_change.connect(new_goblin._on_gem_pouch_contents_changed)
+	new_goblin._on_gem_pouch_contents_changed(gem_pouch.builder_gems, gem_pouch.magical_crystals)
 	add_child.call_deferred(new_goblin)
 
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):

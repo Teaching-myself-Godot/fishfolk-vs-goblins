@@ -70,6 +70,7 @@ font = ExtResource("3_4fm7l")
 font_size = 24
 
 [node name="TreeContextMenu" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_e2law")

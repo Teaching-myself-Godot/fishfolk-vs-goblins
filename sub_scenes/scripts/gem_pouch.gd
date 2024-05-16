@@ -1,21 +1,26 @@
 class_name GemPouch
-
 extends Node2D
 
-@export var builder_gems     : int = 300
+signal liquidity_change(gems : int, crystals : int)
+
+
+@export var builder_gems     : int = 0
 @export var magical_crystals : int = 0
 
-var builder_gems_showing : int = builder_gems
-var magical_crystals_showing : int = magical_crystals
+var builder_gems_showing : int = 0
+var magical_crystals_showing : int = 0
 var builder_gem_count_label : Label
 var magical_crystal_count_label : Label
 
 
-
 func _ready():
+	builder_gems_showing = builder_gems
+	magical_crystals_showing = magical_crystals
 	builder_gem_count_label = $BuilderGems/Label
 	magical_crystal_count_label = $MagicalGems/Label
 	_update_labels()
+	liquidity_change.emit(builder_gems, magical_crystals)
+
 
 func _update_labels():
 	builder_gem_count_label.text = str(builder_gems_showing)
@@ -23,11 +28,13 @@ func _update_labels():
 
 
 func collect_builder_gem():
-	builder_gems += 5
+	builder_gems += 10
+	liquidity_change.emit(builder_gems, magical_crystals)
 
 
 func collect_magical_crystal():
 	magical_crystals += 1
+	liquidity_change.emit(builder_gems, magical_crystals)
 
 
 func _process(_delta):

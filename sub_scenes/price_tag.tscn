@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0k2s7wbhxafk" path="res://sub_scenes/magical_crystal_sub_viewport.tscn" id="4_4mc5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_84ilk"]
+resource_local_to_scene = true
 line_spacing = 0.0
 font = ExtResource("2_e6ey1")
 font_size = 24
@@ -18,6 +19,7 @@ shadow_color = Color(0.823529, 1, 0.788235, 1)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_47odg"]
+resource_local_to_scene = true
 line_spacing = 0.0
 font = ExtResource("2_e6ey1")
 font_size = 24

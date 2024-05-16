@@ -286,3 +286,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 	_reposition_label()
+
+
+func _on_gem_pouch_contents_changed(gems : int, crystals : int):
+	$TreeContextMenu.update_pricetag_label_colors(gems, crystals)

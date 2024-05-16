@@ -140,3 +140,8 @@ func close_submenu():
 
 func rotate_arrow(angle : float):
 	$MenuArrow.rotation = angle
+
+func update_pricetag_label_colors(gems : int, crystals : int):
+	$"All-RangeMenu/Arrow-option/PriceTag".update_label_colors(gems, crystals)
+	$"GroundMenu/Cannon-option/PriceTag".update_label_colors(gems, crystals)
+	$"AirMenu/Anti-Air-option/PriceTag".update_label_colors(gems, crystals)

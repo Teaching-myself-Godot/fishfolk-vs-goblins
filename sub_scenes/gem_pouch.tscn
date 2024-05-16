@@ -39,6 +39,7 @@ shadow_offset = Vector2(0, 0)
 [node name="GemPouch" type="Node2D"]
 position = Vector2(0, 648)
 script = ExtResource("1_m4ymf")
+builder_gems = 100
 metadata/_edit_vertical_guides_ = [168.0, 224.0]
 metadata/_edit_horizontal_guides_ = [34.0, 448.0]
 
