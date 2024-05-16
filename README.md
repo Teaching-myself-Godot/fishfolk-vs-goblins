@@ -75,6 +75,7 @@
 - [x] keep track of currency (start with 300 builder gems)
 - [x] more readable [font for numbers](https://www.fontspace.com/alpha-prota-font-f83519)
 - [ ] make towers cost currency in context menu
+- [ ] in a nice [price tag icon](https://svgsilh.com/image/151102.html)
 
 ## Milestone 8 (TODO) - Giant turtle
 - [ ] add blunt (=area) and piercing damage types

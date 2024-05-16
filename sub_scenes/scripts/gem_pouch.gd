@@ -23,7 +23,7 @@ func _update_labels():
 
 
 func collect_builder_gem():
-	builder_gems += 10
+	builder_gems += 5
 
 
 func collect_magical_crystal():

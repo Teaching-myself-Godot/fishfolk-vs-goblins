@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=27 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
@@ -9,12 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://ce4hru2lfh7vc" path="res://icons/air-option.svg" id="5_n7lqp"]
 [ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
 [ext_resource type="Texture2D" uid="uid://chrs311luoo36" path="res://icons/arrow-option.svg" id="7_2pmu0"]
-[ext_resource type="Script" path="res://scripts/draw_circle.gd" id="7_lanst"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
 [ext_resource type="Texture2D" uid="uid://cnpqrl04b5305" path="res://icons/cannon-option.svg" id="8_tu5i1"]
 [ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="9_j38yi"]
 [ext_resource type="Texture2D" uid="uid://b8o7pa77qgai8" path="res://icons/anti-air-option.svg" id="9_os4ea"]
+[ext_resource type="PackedScene" uid="uid://xniqt5ldhvis" path="res://sub_scenes/price_tag.tscn" id="9_r42en"]
 [ext_resource type="Texture2D" uid="uid://cc5udt7ex2nao" path="res://icons/all-range-option.svg" id="10_6jepf"]
+
+[sub_resource type="Gradient" id="Gradient_4vl0e"]
+offsets = PackedFloat32Array(0.99, 1)
+colors = PackedColorArray(0, 0, 0, 0.12549, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_85k8y"]
+gradient = SubResource("Gradient_4vl0e")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.95)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bu51s"]
 resource_local_to_scene = true
@@ -56,20 +68,17 @@ shadow_color = Color(0, 0, 0, 0.52549)
 [sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
 font = ExtResource("3_4fm7l")
 font_size = 24
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
 
 [node name="TreeContextMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_e2law")
-metadata/_edit_vertical_guides_ = [200.0, -200.0]
-metadata/_edit_horizontal_guides_ = [200.0, -200.0]
+metadata/_edit_vertical_guides_ = [200.0, -200.0, 45.0, -46.0, 79.0]
+metadata/_edit_horizontal_guides_ = [200.0, -200.0, 105.0]
 
 [node name="BackdropCircle" type="Sprite2D" parent="."]
-script = ExtResource("7_lanst")
-radius = 200
-color = Color(0, 0, 0, 0.0980392)
+position = Vector2(0.5, -1.50001)
+texture = SubResource("GradientTexture2D_85k8y")
 
 [node name="MainMenu" type="Node2D" parent="."]
 visible = false
@@ -90,7 +99,6 @@ position = Vector2(120, 0)
 texture = ExtResource("5_n7lqp")
 
 [node name="All-RangeMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="Arrow-option" type="Sprite2D" parent="All-RangeMenu"]
 material = SubResource("ShaderMaterial_wtesy")
@@ -98,12 +106,19 @@ position = Vector2(0, -120)
 texture = ExtResource("7_2pmu0")
 
 [node name="GroundMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="Cannon-option" type="Sprite2D" parent="GroundMenu"]
 material = SubResource("ShaderMaterial_74v5n")
 position = Vector2(-120, 0)
 texture = ExtResource("8_tu5i1")
+
+[node name="PriceTag" parent="GroundMenu/Cannon-option" instance=ExtResource("9_r42en")]
+offset_left = 13.0
+offset_top = -3.8147e-06
+offset_right = 183.0
+offset_bottom = 88.0
+builder_gem_price = 120
+magical_crystal_price = 0
 
 [node name="AirMenu" type="Node2D" parent="."]
 
@@ -111,6 +126,9 @@ texture = ExtResource("8_tu5i1")
 material = SubResource("ShaderMaterial_1vng7")
 position = Vector2(120, 0)
 texture = ExtResource("9_os4ea")
+
+[node name="PriceTag" parent="AirMenu/Anti-Air-option" instance=ExtResource("9_r42en")]
+builder_gem_price = 150
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 texture = ExtResource("8_ivrg5")
@@ -156,10 +174,10 @@ label_settings = SubResource("LabelSettings_uo8ie")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -60.0
-offset_top = 25.0
-offset_right = 60.0
-offset_bottom = 52.0
+offset_left = -56.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 51.0
 text = "All-Range
 "
 label_settings = SubResource("LabelSettings_xw20b")

@@ -67,7 +67,6 @@ func _align():
 
 
 func _ready():
-	$BackdropCircle.radius = MENU_RADIUS
 	_init_menu(MAIN_MENU_NAME)
 	_init_menu("All-Range")
 	_init_menu("Ground")
