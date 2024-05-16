@@ -5,12 +5,12 @@
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="3_itbpt"]
 [ext_resource type="PackedScene" uid="uid://d0k2s7wbhxafk" path="res://sub_scenes/magical_crystal_sub_viewport.tscn" id="4_ry171"]
 
-[sub_resource type="Gradient" id="Gradient_h2dk4"]
+[sub_resource type="Gradient" id="Gradient_s2rvs"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.196078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_02qcp"]
-gradient = SubResource("Gradient_h2dk4")
+gradient = SubResource("Gradient_s2rvs")
 width = 1920
 height = 48
 
@@ -39,7 +39,7 @@ shadow_offset = Vector2(0, 0)
 [node name="GemPouch" type="Node2D"]
 position = Vector2(0, 648)
 script = ExtResource("1_m4ymf")
-builder_gems = 100
+builder_gems = 300
 metadata/_edit_vertical_guides_ = [168.0, 224.0]
 metadata/_edit_horizontal_guides_ = [34.0, 448.0]
 

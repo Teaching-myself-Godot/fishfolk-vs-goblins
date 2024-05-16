@@ -50,7 +50,7 @@
 - [x] use particles to animate the explosion
 - [x] use a shader to show impact tattooed on the terrain
 
-## Milestone 6 (DONE) - Monster-life, Monster-afterlife
+## Milestone 6 - Monster-life, Monster-afterlife
 
 - [x] allow the monsters to die when HP runs out
 - [x] make monster model react to being hit
@@ -58,7 +58,7 @@
 - [x] give the monsters HP bars
 - [x] flying damage numbers 
 
-## Milestone 7 (DONE) - Flying fish, Anti-Air
+## Milestone 7 - Flying fish, Anti-Air
 
 - [x] model aerial defense tower
 - [x] shoot some sort of projectile(s) 
@@ -67,19 +67,19 @@
 - [x] model flying fish
 - [x] create flying route for flying fish
 
-## Milestone 7.1 (DOING) - Capitalism
+## Milestone 8 - Capitalism
 
 - [x] model out builder gems
 - [x] make monsters drop currency
 - [x] model out magic crystals
 - [x] keep track of currency (start with 300 builder gems)
 - [x] more readable [font for numbers](https://www.fontspace.com/alpha-prota-font-f83519)
-- [ ] make towers cost currency in context menu
-- [ ] in a nice [price tag icon](https://svgsilh.com/image/151102.html)
+- [x] make towers cost currency in context menu
+- [x] in a nice [price tag icon](https://svgsilh.com/image/151102.html)
 
-## Milestone 8 (TODO) - Giant turtle
-- [ ] add blunt (=area) and piercing damage types
+## Milestone 9 - Giant turtle
 - [ ] create a turtle model
+- [ ] add blunt (=area) and piercing damage types
 - [ ] make turtle very insensitive to pierce
 - [ ] let flying fish and fish chibi remain equally sensitive to both damage types
 

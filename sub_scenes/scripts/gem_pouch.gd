@@ -37,6 +37,13 @@ func collect_magical_crystal():
 	liquidity_change.emit(builder_gems, magical_crystals)
 
 
+func spend_gems(gems : int, crystals : int):
+	builder_gems -= gems
+	magical_crystals -= crystals
+	builder_gems = 0 if builder_gems < 0 else builder_gems
+	magical_crystals = 0 if magical_crystals < 0 else magical_crystals
+	liquidity_change.emit(builder_gems, magical_crystals)
+
 func _process(_delta):
 	var should_update = false
 	if builder_gems > builder_gems_showing:

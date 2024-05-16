@@ -1,6 +1,7 @@
 class_name TreeContextMenu
-
 extends Control
+
+signal spend_gems(gems : int, crystals : int)
 
 const MENU_RADIUS    = 320.0
 const MAIN_MENU_NAME = "Main"
@@ -126,9 +127,20 @@ func select_targeted_option() -> String:
 		return ""
 	else:
 		var choice = targeted_option
-		close_and_hide()
-		return choice
-
+		var price_tag : PriceTag = (
+			find_child(current_menu + "Menu")
+					.find_child(choice + "-option")
+					.find_child("PriceTag")
+		)
+		if price_tag.can_afford:
+			close_and_hide()
+			spend_gems.emit(
+					price_tag.builder_gem_price,
+					price_tag.magical_crystal_price
+			)
+			return choice
+		else:
+			return ""
 
 func close_submenu():
 	var menu = find_child(current_menu + "Menu")
@@ -141,7 +153,8 @@ func close_submenu():
 func rotate_arrow(angle : float):
 	$MenuArrow.rotation = angle
 
-func update_pricetag_label_colors(gems : int, crystals : int):
-	$"All-RangeMenu/Arrow-option/PriceTag".update_label_colors(gems, crystals)
-	$"GroundMenu/Cannon-option/PriceTag".update_label_colors(gems, crystals)
-	$"AirMenu/Anti-Air-option/PriceTag".update_label_colors(gems, crystals)
+func _on_gem_pouch_contents_changed(gems : int, crystals : int):
+	$"All-RangeMenu/Arrow-option/PriceTag".update_affordable_status(gems, crystals)
+	$"GroundMenu/Cannon-option/PriceTag".update_affordable_status(gems, crystals)
+	$"AirMenu/Anti-Air-option/PriceTag".update_affordable_status(gems, crystals)
+	

@@ -43,7 +43,7 @@ script = ExtResource("1_rp7cw")
 magical_crystal_price = 1
 
 [node name="Pricetag" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.196078)
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(-2, 48)
 rotation = -2.53054
 scale = Vector2(0.1, 0.1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=32 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scripts/tree_context_menu.gd" id="1_e2law"]
 [ext_resource type="Texture2D" uid="uid://bejpprja6nbs4" path="res://icons/red-button.svg" id="2_37u6b"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chscbobcnrogc" path="res://icons/green-button.svg" id="6_klesp"]
 [ext_resource type="Texture2D" uid="uid://chrs311luoo36" path="res://icons/arrow-option.svg" id="7_2pmu0"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="8_ivrg5"]
+[ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="8_nepm6"]
 [ext_resource type="Texture2D" uid="uid://cnpqrl04b5305" path="res://icons/cannon-option.svg" id="8_tu5i1"]
 [ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="9_j38yi"]
 [ext_resource type="Texture2D" uid="uid://b8o7pa77qgai8" path="res://icons/anti-air-option.svg" id="9_os4ea"]
@@ -48,9 +49,57 @@ resource_local_to_scene = true
 shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
 
+[sub_resource type="LabelSettings" id="LabelSettings_sb1pj"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("8_nepm6")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fot3"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("8_nepm6")
+font_size = 24
+font_color = Color(0.419608, 0, 0.647059, 1)
+outline_size = 2
+outline_color = Color(1, 0.556863, 1, 1)
+shadow_size = 7
+shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_74v5n"]
 shader = ExtResource("3_dyfal")
 shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_nbapt"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("8_nepm6")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yih28"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("8_nepm6")
+font_size = 24
+font_color = Color(0.419608, 0, 0.647059, 1)
+outline_size = 2
+outline_color = Color(1, 0.556863, 1, 1)
+shadow_size = 7
+shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vng7"]
 shader = ExtResource("3_dyfal")
@@ -82,7 +131,6 @@ position = Vector2(0.5, -1.50001)
 texture = SubResource("GradientTexture2D_85k8y")
 
 [node name="MainMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="All-Range-option" type="Sprite2D" parent="MainMenu"]
 material = SubResource("ShaderMaterial_bu51s")
@@ -100,6 +148,7 @@ position = Vector2(120, 0)
 texture = ExtResource("5_n7lqp")
 
 [node name="All-RangeMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Arrow-option" type="Sprite2D" parent="All-RangeMenu"]
 material = SubResource("ShaderMaterial_wtesy")
@@ -121,6 +170,7 @@ anchor_top = 0.728606
 anchor_right = 0.142907
 anchor_bottom = 0.728606
 rotation = -0.0450244
+label_settings = SubResource("LabelSettings_sb1pj")
 
 [node name="BuilderGemSubViewport" parent="All-RangeMenu/Arrow-option/PriceTag" index="2"]
 anchor_left = 0.283137
@@ -130,11 +180,13 @@ anchor_bottom = 0.164204
 
 [node name="MagicalCrystalPrice" parent="All-RangeMenu/Arrow-option/PriceTag" index="3"]
 visible = false
+label_settings = SubResource("LabelSettings_3fot3")
 
 [node name="MagicalCrystalSubViewport" parent="All-RangeMenu/Arrow-option/PriceTag" index="4"]
 visible = false
 
 [node name="GroundMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Cannon-option" type="Sprite2D" parent="GroundMenu"]
 material = SubResource("ShaderMaterial_74v5n")
@@ -160,6 +212,7 @@ offset_top = 0.0
 offset_right = 108.0
 offset_bottom = 37.0
 scale = Vector2(-1, -1)
+label_settings = SubResource("LabelSettings_nbapt")
 
 [node name="BuilderGemSubViewport" parent="GroundMenu/Cannon-option/PriceTag" index="2"]
 anchor_left = -0.159959
@@ -174,6 +227,7 @@ anchor_top = 0.58702
 anchor_right = 1.43607
 anchor_bottom = 0.587021
 scale = Vector2(-1, -1)
+label_settings = SubResource("LabelSettings_yih28")
 
 [node name="MagicalCrystalSubViewport" parent="GroundMenu/Cannon-option/PriceTag" index="4"]
 visible = false
@@ -183,6 +237,7 @@ anchor_right = -0.129512
 anchor_bottom = 0.211874
 
 [node name="AirMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Anti-Air-option" type="Sprite2D" parent="AirMenu"]
 material = SubResource("ShaderMaterial_1vng7")
