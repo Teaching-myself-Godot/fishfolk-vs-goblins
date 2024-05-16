@@ -11,5 +11,3 @@ func _ready():
 	else:
 		$MagicalCrystalPrice.hide()
 		$MagicalCrystalSubViewport.hide()
-		$BuilderGemPrice.position = Vector2(20, 20)
-		$BuilderGemSubViewport.position = Vector2(128, 24)

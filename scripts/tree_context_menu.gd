@@ -2,7 +2,7 @@ class_name TreeContextMenu
 
 extends Control
 
-const MENU_RADIUS    = 200.0
+const MENU_RADIUS    = 320.0
 const MAIN_MENU_NAME = "Main"
 const INITIAL_OPTION = "All-Range" 
 
