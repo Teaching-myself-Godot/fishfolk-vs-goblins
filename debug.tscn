@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=18 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="2_m05t1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://sub_scenes/gem_pouch.tscn" id="7_q1ece"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
+[ext_resource type="PackedScene" uid="uid://bcv2x4vqvwskc" path="res://giant_turtle.scn" id="8_ho5lu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -178,6 +179,9 @@ script = ExtResource("3_tm82y")
 position = Vector2(-36, 16)
 scale = Vector2(0.195833, 0.666667)
 texture = SubResource("GradientTexture2D_q4ju7")
+
+[node name="giant-turtle" parent="." instance=ExtResource("8_ho5lu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -1, 6)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]

@@ -78,7 +78,11 @@
 - [x] in a nice [price tag icon](https://svgsilh.com/image/151102.html)
 
 ## Milestone 9 - Giant turtle
-- [ ] create a turtle model
+- [x] create a turtle model
+- [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05)as texture 
+- [ ] animate the model, dragging over the sand
+- [ ] use dust to hide flipper-clipping
+- [ ] use tattooed-shader for dragging coloration on terrain
 - [ ] add blunt (=area) and piercing damage types
 - [ ] make turtle very insensitive to pierce
 - [ ] let flying fish and fish chibi remain equally sensitive to both damage types
