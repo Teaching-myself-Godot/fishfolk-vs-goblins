@@ -33,8 +33,8 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 func _ready():
 	super._ready()
 	chest_height = 1.0
-	$HPBar.max_hp = 10
-	$HPBar.hp = 10
+	$HPBar.max_hp = 30
+	$HPBar.hp = 30
 	add_to_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)
 
 
@@ -55,8 +55,6 @@ func _on_body_entered(body):
 		is_on_floor = true
 		velocity.y = 0
 		target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + SPEED * 2
-
-
 
 
 func _on_despawn_timer_timeout():
