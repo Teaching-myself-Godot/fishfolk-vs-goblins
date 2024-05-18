@@ -11,6 +11,7 @@ var CannonTowerScene = preload("res://cannon_tower.scn")
 var AntiAirTowerScene = preload("res://anti_air_tower.scn")
 var FishChibiScene = preload("res://fish_chibi.scn")
 var FlyingFishScene = preload("res://flying_fish.scn")
+var GiantTurtleScene = preload("res://giant_turtle.scn")
 var ExplosionScene = preload("res://explosion.tscn")
 var ExplosionRingScene = preload("res://explosion_ring.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
@@ -52,7 +53,7 @@ func _unhandled_input(_event):
 
 func add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
-		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate(), false)
+		_spawn_monster($MonsterPath1, GiantTurtleScene.instantiate(), false)
 
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):

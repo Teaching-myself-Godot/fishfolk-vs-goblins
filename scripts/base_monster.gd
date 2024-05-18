@@ -52,7 +52,7 @@ func _spawn_dust():
 
 
 func _drop_gem():
-	for _i in randi_range(0, 2):
+	for _i in randi_range(1, 2):
 		drop_builder_gem.emit(position)
 
 	if randf() < 0.1:

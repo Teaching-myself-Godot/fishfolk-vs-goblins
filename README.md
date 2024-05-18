@@ -79,7 +79,7 @@
 
 ## Milestone 9 - Giant turtle
 - [x] create a turtle model
-- [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05)as texture 
+- [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture 
 - [ ] animate the model, dragging over the sand
 - [ ] use dust to hide flipper-clipping
 - [ ] use tattooed-shader for dragging coloration on terrain
