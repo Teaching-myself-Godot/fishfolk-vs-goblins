@@ -35,6 +35,7 @@ func _ready():
 	chest_height = 1.0
 	$HPBar.max_hp = 30
 	$HPBar.hp = 30
+	$AnimationPlayer.play("slide")
 	add_to_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)
 
 
