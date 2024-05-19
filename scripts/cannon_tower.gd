@@ -76,7 +76,6 @@ func  _is_valid_target(potential_target) -> bool:
 func _ready():
 	super._ready()
 	current_range = 5.0
-	range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_5M
 	$ReloadTimer.start()
 
 

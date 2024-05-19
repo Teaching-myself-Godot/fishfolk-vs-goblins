@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 Constants="*res://scripts/constants.gd"
+Globals="*res://scripts/globals.gd"
 CameraUtil="*res://scripts/camera_util.gd"
 
 [display]

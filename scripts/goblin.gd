@@ -135,12 +135,12 @@ func _handle_context_menu_arrow_input():
 	if is_instance_valid(my_tree):
 		var opt = $TreeContextMenu.targeted_option
 		if  opt == "Arrow" or opt == "Anti-Air":
-			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
+			my_tree.set_range_ring(7.0)
 		elif opt == "Cannon":
-			my_tree.add_to_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+			my_tree.set_range_ring(5.0)
 		else:
-			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-			my_tree.remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+			my_tree.drop_range_ring()
+			my_tree.drop_range_ring()
 
 func _handle_context_menus():
 	# open the context menu if requested and valid,

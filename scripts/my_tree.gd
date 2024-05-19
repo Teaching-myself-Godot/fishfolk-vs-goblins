@@ -5,7 +5,7 @@ var outlines = []
 var felled = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var fall_velocity = 0
-
+var my_range_ring : RangeRing = null
 
 func _ready():
 	add_to_group(Constants.GROUP_NAME_TREES)
@@ -22,10 +22,21 @@ func _physics_process(delta):
 			queue_free()
 
 
+func set_range_ring(radius : float):
+	my_range_ring = RangeRing.new(position, radius)
+	Globals.add_range_ring(my_range_ring)
+
+
+func drop_range_ring():
+	if my_range_ring:
+		Globals.drop_range_ring(my_range_ring)
+		my_range_ring = null
+
+
 func toggle_highlight(flag : bool):
-	if not flag:
-		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_7M)
-		remove_from_group(Constants.GROUP_NAME_RANGE_RINGED_5M)
+	if not flag and my_range_ring:
+		Globals.drop_range_ring(my_range_ring)
+		my_range_ring = null
 
 	for outline in outlines:
 		outline.visible = flag

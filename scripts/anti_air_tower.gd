@@ -76,7 +76,6 @@ func _is_charged() -> bool:
 func _ready():
 	super._ready()
 	current_range = 7.0
-	range_ringed_group_name = Constants.GROUP_NAME_RANGE_RINGED_7M
 	launcher_y = $Launcher.position.y
 	missile_clamps = [
 		$Launcher/MissileClamp0,

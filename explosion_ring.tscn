@@ -15,4 +15,9 @@ autostart = true
 stream = ExtResource("2_it0tg")
 attenuation_model = 2
 
+[node name="ColorationFadeTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="timeout" from="ColorationFadeTimer" to="." method="_on_coloration_fade_timer_timeout"]
