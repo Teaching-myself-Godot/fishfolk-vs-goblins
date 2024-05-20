@@ -15,15 +15,22 @@ func _on_range_rings_changed():
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
 
 
-func _on_landscape_colorations_changed():
+func _process(delta):
 	var landscape_colorations : Array[Vector3] = []
 	var landscape_coloration_radiuses : Array[float] = []
 	var landscape_coloration_fades : Array[float] = []
-
+	var marked_for_removal = []
 	for landscape_coloration : LandscapeColoration in Globals.landscape_colorations:
-		landscape_colorations.append(landscape_coloration.position)
-		landscape_coloration_radiuses.append(landscape_coloration.radius)
-		landscape_coloration_fades.append(landscape_coloration.fade)
+		landscape_coloration.fade += landscape_coloration.fade_progression
+		if landscape_coloration.fade <= 1.0:
+			landscape_colorations.append(landscape_coloration.position)
+			landscape_coloration_radiuses.append(landscape_coloration.radius)
+			landscape_coloration_fades.append(landscape_coloration.fade)
+		else:
+			marked_for_removal.append(landscape_coloration)
+
+	for lc : LandscapeColoration in marked_for_removal:
+		Globals.drop_landscape_coloration(lc)
 
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_positions", landscape_colorations)
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_radiuses", landscape_coloration_radiuses)
@@ -33,5 +40,4 @@ func _on_landscape_colorations_changed():
 
 func _ready():
 	Globals.range_rings_changed.connect(_on_range_rings_changed)
-	Globals.landscape_colorations_changed.connect(_on_landscape_colorations_changed)
 	$Plane/StaticBody3D.add_to_group(Constants.GROUP_NAME_TERRAIN)
