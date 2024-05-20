@@ -83,10 +83,10 @@
 - [x] and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head <-- did not go as planned
 - [x] animate the model, dragging over the sand
 - [x] use tattooed-shader for dragging coloration on terrain
-- [ ] use dust to hide flipper-clipping
+- [x] use dust to hide flipper-clipping
 
 
-## Milestone 9 (TOOD) - Expansion
+## Milestone 9  - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
