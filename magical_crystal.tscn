@@ -75,7 +75,7 @@ surface_material_override/0 = ExtResource("2_ety16")
 transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 0.0248508, 0)
 shape = SubResource("SphereShape3D_52gis")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_a7ihc")
 pitch_scale = 1.25
 

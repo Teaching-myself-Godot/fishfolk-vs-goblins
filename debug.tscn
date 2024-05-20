@@ -43,7 +43,7 @@ point_count = 19
 
 [sub_resource type="Gradient" id="Gradient_h2dk4"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.196078)
+colors = PackedColorArray(0, 0, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q4ju7"]
 gradient = SubResource("Gradient_h2dk4")
@@ -165,8 +165,8 @@ offset_left = 224.0
 offset_right = 224.0
 
 [node name="overlay" type="Sprite2D" parent="control"]
-position = Vector2(-36, 16)
-scale = Vector2(0.195833, 0.666667)
+position = Vector2(464.5, 16)
+scale = Vector2(0.717187, 0.666667)
 texture = SubResource("GradientTexture2D_q4ju7")
 
 [node name="debugtext" type="Label" parent="control"]

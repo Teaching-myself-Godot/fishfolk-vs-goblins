@@ -30,6 +30,7 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 	else:
 		velocity.y = -1.0
 
+
 func _ready():
 	super._ready()
 	chest_height = 1.0

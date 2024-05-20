@@ -13,7 +13,7 @@ var FishChibiScene = preload("res://fish_chibi.scn")
 var FlyingFishScene = preload("res://flying_fish.scn")
 var GiantTurtleScene = preload("res://giant_turtle.scn")
 var ExplosionScene = preload("res://explosion.tscn")
-var ExplosionRingScene = preload("res://explosion_ring.tscn")
+var ExplosionSoundScene = preload("res://explosion_sound.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
 var BuilderGemScene = preload("res://builder_gem.tscn")
 var DustParticlesScene = preload("res://dust_particles.tscn")
@@ -129,14 +129,20 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	add_child.call_deferred(explosion)
 
 	for i in range(3):
-		var explosion_ring = ExplosionRingScene.instantiate()
-		explosion_ring.position = pos + Vector3(-2.0 + randf() * 4, 0.0,  -2.0 + randf() * 4.0)
-		explosion_ring.radius = randf() * 2.0
-		add_child.call_deferred(explosion_ring)
+		Globals.add_landscape_coloration(
+			LandscapeColoration.new(
+				randf() * 2.0,
+				Color(0.169, 0.106, 0),
+				pos + Vector3(-2.0 + randf() * 4, 0.0,  -2.0 + randf() * 4.0),
+				0.005
+			)
+		)
 
-	var main_explosion_ring = ExplosionRingScene.instantiate()
+	var main_explosion_ring = ExplosionSoundScene.instantiate()
 	main_explosion_ring.position = pos
-	main_explosion_ring.radius = 2.0
+	Globals.add_landscape_coloration(
+		LandscapeColoration.new(2.0, Color(0.169, 0.106, 0), pos, 0.005)
+	)
 	add_child.call_deferred(main_explosion_ring)
 
 
@@ -159,13 +165,11 @@ func _get_monster_count() -> int:
 
 func _on_spawn_dust_particle(pos : Vector3):
 	var particles = DustParticlesScene.instantiate()
-	var explosion_ring = ExplosionRingScene.instantiate()
 	particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
 	add_child.call_deferred(particles)
-	explosion_ring.position = pos 
-	explosion_ring.radius = .5
-	add_child.call_deferred(explosion_ring)
-
+	Globals.add_landscape_coloration(
+		LandscapeColoration.new(0.5, Color(0.169, 0.106, 0), pos, 0.005)
+	)
 
 func _on_drop_builder_gem(pos : Vector3):
 	var new_gem : BuilderGem  = BuilderGemScene.instantiate()
