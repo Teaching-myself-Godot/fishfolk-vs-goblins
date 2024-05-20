@@ -15,10 +15,12 @@ func _on_range_rings_changed():
 	$Plane.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
 
 
-func _process(delta):
+func _process(_delta):
 	var landscape_colorations : Array[Vector3] = []
 	var landscape_coloration_radiuses : Array[float] = []
 	var landscape_coloration_fades : Array[float] = []
+	var landscape_coloration_colors : Array[Color] = []
+	
 	var marked_for_removal = []
 	for landscape_coloration : LandscapeColoration in Globals.landscape_colorations:
 		landscape_coloration.fade += landscape_coloration.fade_progression
@@ -26,6 +28,7 @@ func _process(delta):
 			landscape_colorations.append(landscape_coloration.position)
 			landscape_coloration_radiuses.append(landscape_coloration.radius)
 			landscape_coloration_fades.append(landscape_coloration.fade)
+			landscape_coloration_colors.append(landscape_coloration.color)
 		else:
 			marked_for_removal.append(landscape_coloration)
 
@@ -34,6 +37,7 @@ func _process(delta):
 
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_positions", landscape_colorations)
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_radiuses", landscape_coloration_radiuses)
+	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_colors", landscape_coloration_colors)
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("fades", landscape_coloration_fades)
 	$Plane.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("num_active_circles", landscape_colorations.size())
 

@@ -20,9 +20,9 @@ func drop_range_ring(rr : RangeRing):
 
 
 func add_landscape_coloration(lc : LandscapeColoration):
-	landscape_colorations.push_front(lc)
+	landscape_colorations.push_back(lc)
 	if landscape_colorations.size() > 60:
-		landscape_colorations.pop_back()
+		landscape_colorations.pop_front()
 
 
 func drop_landscape_coloration(lc : LandscapeColoration):

@@ -41,11 +41,6 @@ _data = {
 }
 point_count = 19
 
-[sub_resource type="LabelSettings" id="LabelSettings_bp2at"]
-line_spacing = 0.0
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Gradient" id="Gradient_h2dk4"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.196078)
@@ -54,6 +49,10 @@ colors = PackedColorArray(0, 0, 0, 0.196078)
 gradient = SubResource("Gradient_h2dk4")
 width = 1920
 height = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_bp2at"]
+line_spacing = 0.0
+font_color = Color(1, 1, 0, 1)
 
 [node name="DebugWorld" type="Node"]
 script = ExtResource("1_81aij")
@@ -165,6 +164,11 @@ anchors_preset = 0
 offset_left = 224.0
 offset_right = 224.0
 
+[node name="overlay" type="Sprite2D" parent="control"]
+position = Vector2(-36, 16)
+scale = Vector2(0.195833, 0.666667)
+texture = SubResource("GradientTexture2D_q4ju7")
+
 [node name="debugtext" type="Label" parent="control"]
 layout_mode = 0
 offset_left = -224.0
@@ -173,11 +177,6 @@ offset_bottom = 23.0
 text = "test	"
 label_settings = SubResource("LabelSettings_bp2at")
 script = ExtResource("3_tm82y")
-
-[node name="overlay" type="Sprite2D" parent="control"]
-position = Vector2(-36, 16)
-scale = Vector2(0.195833, 0.666667)
-texture = SubResource("GradientTexture2D_q4ju7")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]

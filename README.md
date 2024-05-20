@@ -82,11 +82,9 @@
 - [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture 
 - [x] and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head <-- did not go as planned
 - [x] animate the model, dragging over the sand
+- [x] use tattooed-shader for dragging coloration on terrain
 - [ ] use dust to hide flipper-clipping
-- [ ] use tattooed-shader for dragging coloration on terrain
-- [ ] add blunt (=area) and piercing damage types
-- [ ] make turtle very insensitive to pierce and extra sensitive to blunt
-- [ ] let flying fish and fish chibi remain equally sensitive to both damage types
+
 
 ## Milestone 9 (TOOD) - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
@@ -97,3 +95,9 @@
 - [ ] create true level terrain, with water for the fish-folk to crawl out of
 
 
+## Looking forward - Damage types and upgrades
+- [ ] add blunt (=area) and piercing damage types
+- [ ] add elemental damage maybe?
+- [ ] make turtle very insensitive to pierce and extra sensitive to blunt
+- [ ] let flying fish and fish chibi remain equally sensitive to both damage types
+- [ ] new upgrade system using 'skill'-trees

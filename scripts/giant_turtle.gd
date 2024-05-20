@@ -60,3 +60,14 @@ func _on_body_entered(body):
 
 func _on_despawn_timer_timeout():
 	queue_free()
+
+
+func _on_trail_timer_timeout():
+	Globals.add_landscape_coloration(
+		LandscapeColoration.new(
+			3.0,
+			Color.BLACK,
+			position,
+			0.001
+		)
+	)
