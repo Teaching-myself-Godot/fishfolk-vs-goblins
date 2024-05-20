@@ -4,7 +4,8 @@ extends BaseMonster
 const BOUNCE_FORCE_ON_DAMAGE = 8.0
 const SPEED = 1.2
 var is_on_floor = false
-
+var right_flipper_dust = true
+signal spawn_turtle_flipper_dust_particles(pos : Vector3)
 
 func _apply_motion(delta):
 	var direction = position.direction_to(target.global_position)
@@ -23,7 +24,7 @@ func _apply_motion(delta):
 		velocity = Vector3(0.0, velocity.y, 0.0)
 
 
-func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
+func _apply_damage_motion(_from_direction : Vector3, force : float = 1.0):
 	if $HPBar.hp > 0:
 		velocity.y = BOUNCE_FORCE_ON_DAMAGE * force
 		rotation.y -= randf() * 0.1
@@ -33,6 +34,7 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 
 func _ready():
 	super._ready()
+	right_flipper_dust = true
 	chest_height = 1.0
 	$HPBar.max_hp = 30
 	$HPBar.hp = 30
@@ -72,3 +74,16 @@ func _on_trail_timer_timeout():
 			0.001
 		)
 	)
+
+
+func _on_flipper_dust_timer_timeout():
+	if right_flipper_dust == true:
+		spawn_turtle_flipper_dust_particles.emit(
+			position + Vector3(-2.0, 0.0, 2.75).rotated(Vector3.UP, rotation.y)
+		)
+		right_flipper_dust = false
+	else:
+		spawn_turtle_flipper_dust_particles.emit(
+			position + 	Vector3(-2.0, 0.0, -2.75).rotated(Vector3.UP, rotation.y)
+		)
+		right_flipper_dust = true

@@ -17,6 +17,7 @@ var ExplosionSoundScene = preload("res://explosion_sound.tscn")
 var MagicalCrystalScene = preload("res://magical_crystal.tscn")
 var BuilderGemScene = preload("res://builder_gem.tscn")
 var DustParticlesScene = preload("res://dust_particles.tscn")
+var TurtleFlipperDustParticlesScene = preload("res://turtle_flipper_dust_particles.tscn")
 
 var gem_pouch : GemPouch 
 var goblin_map = {}
@@ -53,7 +54,9 @@ func _unhandled_input(_event):
 
 func add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
-		_spawn_monster($MonsterPath1, GiantTurtleScene.instantiate(), false)
+		var turtle = GiantTurtleScene.instantiate()
+		turtle.spawn_turtle_flipper_dust_particles.connect(_on_spawn_turtle_flipper_dust_particles)
+		_spawn_monster($MonsterPath1, turtle, false)
 
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
@@ -161,6 +164,12 @@ func _spawn_monster(path : Path3D, monster : BaseMonster, limit_frames = true):
 
 func _get_monster_count() -> int:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
+
+
+func _on_spawn_turtle_flipper_dust_particles(pos : Vector3):
+	var particles = TurtleFlipperDustParticlesScene.instantiate()
+	particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
+	add_child.call_deferred(particles)
 
 
 func _on_spawn_dust_particle(pos : Vector3):
