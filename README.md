@@ -86,7 +86,7 @@
 - [x] use dust to hide flipper-clipping
 
 
-## Milestone 9  - Expansion
+## Milestone 10  - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
