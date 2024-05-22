@@ -9,8 +9,8 @@ colors = PackedColorArray(0, 0, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nfdwx"]
 gradient = SubResource("Gradient_h2dk4")
-width = 1920
-height = 48
+width = 500
+height = 500
 
 [sub_resource type="LabelSettings" id="LabelSettings_y3ijt"]
 font = ExtResource("1_t057n")
@@ -19,27 +19,17 @@ font_size = 36
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 543.0
-offset_top = 287.0
-offset_right = 1695.0
-offset_bottom = 933.0
 script = ExtResource("1_03ola")
-metadata/_edit_vertical_guides_ = [562.0]
-metadata/_edit_horizontal_guides_ = [317.0]
 
 [node name="overlay" type="Sprite2D" parent="."]
-position = Vector2(60, 19)
-scale = Vector2(0.291667, 11.0833)
+position = Vector2(575, 321)
 texture = SubResource("GradientTexture2D_nfdwx")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -505.0
-offset_top = -226.0
-offset_right = 646.0
-offset_bottom = 74.0
-pivot_offset = Vector2(505, 256)
-text = "Pause Menu
-
-- press start to continue -"
+[node name="Label" type="Label" parent="overlay"]
+offset_left = -576.0
+offset_top = -232.0
+offset_right = 569.0
+offset_bottom = -192.0
+text = "Pause Menu"
 label_settings = SubResource("LabelSettings_y3ijt")
 horizontal_alignment = 1

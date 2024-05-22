@@ -118,7 +118,7 @@ shadow_color = Color(0, 0, 0, 0.52549)
 font = ExtResource("3_4fm7l")
 font_size = 24
 
-[node name="TreeContextMenu" type="Control"]
+[node name="TreeContextMenu" type="Control" groups=["hud_items"]]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
