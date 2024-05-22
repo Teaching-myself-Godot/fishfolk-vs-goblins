@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://vnxpe45dqhh"]
+[gd_scene load_steps=7 format=3 uid="uid://vnxpe45dqhh"]
 
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/pause_menu.gd" id="1_jh1kq"]
+[ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="2_8vqyl"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_j33ky"]
 
 [sub_resource type="Gradient" id="Gradient_h2dk4"]
@@ -24,6 +25,9 @@ script = ExtResource("1_jh1kq")
 [node name="overlay" type="Sprite2D" parent="."]
 position = Vector2(575, 321)
 texture = SubResource("GradientTexture2D_nfdwx")
+
+[node name="AButton" parent="overlay" instance=ExtResource("2_8vqyl")]
+position = Vector2(5, 245)
 
 [node name="Label" type="Label" parent="overlay"]
 offset_left = -576.0
