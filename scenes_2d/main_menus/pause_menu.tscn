@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vnxpe45dqhh"]
+[gd_scene load_steps=8 format=3 uid="uid://vnxpe45dqhh"]
 
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/pause_menu.gd" id="1_jh1kq"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="2_8vqyl"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_j33ky"]
+[ext_resource type="PackedScene" uid="uid://n7kdq8mfpr2w" path="res://scenes_2d/main_menus/menu_option.tscn" id="3_j4pg8"]
 
 [sub_resource type="Gradient" id="Gradient_h2dk4"]
 offsets = PackedFloat32Array(0)
@@ -17,23 +18,47 @@ height = 500
 font = ExtResource("2_j33ky")
 font_size = 36
 
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_jh1kq")
-
-[node name="overlay" type="Sprite2D" parent="."]
+[node name="PauseMenu" type="Sprite2D"]
 position = Vector2(575, 321)
 texture = SubResource("GradientTexture2D_nfdwx")
+script = ExtResource("1_jh1kq")
 
-[node name="AButton" parent="overlay" instance=ExtResource("2_8vqyl")]
-position = Vector2(5, 245)
-
-[node name="Label" type="Label" parent="overlay"]
-offset_left = -576.0
+[node name="Title" type="Label" parent="."]
+offset_left = -247.0
 offset_top = -232.0
-offset_right = 569.0
+offset_right = 249.0
 offset_bottom = -192.0
 text = "Pause Menu"
 label_settings = SubResource("LabelSettings_y3ijt")
 horizontal_alignment = 1
+
+[node name="Continue" parent="." instance=ExtResource("3_j4pg8")]
+offset_left = -247.0
+offset_top = -49.0
+offset_right = 249.0
+offset_bottom = -17.0
+focus_neighbor_bottom = NodePath("../ToggleFullscreen")
+focus_next = NodePath("../ToggleFullscreen")
+
+[node name="ToggleFullscreen" parent="." instance=ExtResource("3_j4pg8")]
+offset_left = -246.0
+offset_top = -2.0
+offset_right = 250.0
+offset_bottom = 30.0
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Continue")
+text = "Toggle Fullscreen"
+
+[node name="Quit" parent="." instance=ExtResource("3_j4pg8")]
+offset_left = -246.0
+offset_top = 46.0
+offset_right = 250.0
+offset_bottom = 78.0
+focus_neighbor_top = NodePath("../ToggleFullscreen")
+focus_previous = NodePath("../ToggleFullscreen")
+text = "Quit"
+
+[node name="AButton" parent="." instance=ExtResource("2_8vqyl")]
+position = Vector2(5, 245)

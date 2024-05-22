@@ -29,25 +29,12 @@ func _handle_pause_menu_open():
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	get_tree().paused = true
-	$PauseMenu.show()
+	($PauseMenu as PauseMenu).open_menu()
 
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
-		if _no_goblins():
-			get_tree().quit()
-		else:
-			_handle_pause_menu_open()
-
-	for k in range(0, 3):
-		if Input.is_action_pressed("quit-" + str(k)) and Input.is_action_pressed("start-" + str(k)):
-			get_tree().quit()
-
-	if Input.is_action_just_released("f11"):
-		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		_handle_pause_menu_open()
 
 	if Input.is_action_just_released("start-k") and not _is_in_game(0):
 		_add_goblin_to_scene(0)
@@ -251,3 +238,4 @@ func _physics_process(delta):
 
 func _ready():
 	gem_pouch = $GemPouch
+
