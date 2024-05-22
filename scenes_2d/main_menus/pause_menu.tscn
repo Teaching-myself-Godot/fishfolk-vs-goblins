@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://vnxpe45dqhh"]
+
+[ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/pause_menu.gd" id="1_jh1kq"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_j33ky"]
+
+[sub_resource type="Gradient" id="Gradient_h2dk4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nfdwx"]
+gradient = SubResource("Gradient_h2dk4")
+width = 500
+height = 500
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3ijt"]
+font = ExtResource("2_j33ky")
+font_size = 36
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jh1kq")
+
+[node name="overlay" type="Sprite2D" parent="."]
+position = Vector2(575, 321)
+texture = SubResource("GradientTexture2D_nfdwx")
+
+[node name="Label" type="Label" parent="overlay"]
+offset_left = -576.0
+offset_top = -232.0
+offset_right = 569.0
+offset_bottom = -192.0
+text = "Pause Menu"
+label_settings = SubResource("LabelSettings_y3ijt")
+horizontal_alignment = 1

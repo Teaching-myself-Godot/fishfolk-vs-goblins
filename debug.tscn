@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://camera_pivot.tscn" id="2_rvjdn"]
-[ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://terrain.scn" id="4_75lcf"]
-[ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://debugbar.tscn" id="6_3mvtb"]
-[ext_resource type="PackedScene" uid="uid://vnxpe45dqhh" path="res://pause_menu.tscn" id="6_my7n4"]
-[ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://sub_scenes/gem_pouch.tscn" id="7_q1ece"]
-[ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://palm_tree.scn" id="7_ssyn6"]
+[ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="4_75lcf"]
+[ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://scenes_2d/hud/debugbar.tscn" id="6_3mvtb"]
+[ext_resource type="PackedScene" uid="uid://vnxpe45dqhh" path="res://scenes_2d/main_menus/pause_menu.tscn" id="6_my7n4"]
+[ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="7_q1ece"]
+[ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="7_ssyn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
