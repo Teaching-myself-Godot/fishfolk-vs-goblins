@@ -81,6 +81,7 @@ shape = SubResource("CapsuleShape3D_jju7g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_2tp0u")
+volume_db = 40.0
 pitch_scale = 1.25
 
 [node name="CollectCollisionSphere" type="CollisionShape3D" parent="."]

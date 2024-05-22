@@ -36,7 +36,7 @@ shadow_size = 12
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[node name="GemPouch" type="Node2D"]
+[node name="GemPouch" type="Node2D" groups=["hud_items"]]
 position = Vector2(0, 648)
 script = ExtResource("1_m4ymf")
 builder_gems = 300

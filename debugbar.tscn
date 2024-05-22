@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmlpewrex4i8b"]
+
+[ext_resource type="Script" path="res://scripts/debugtext.gd" id="1_fufwi"]
+
+[sub_resource type="Gradient" id="Gradient_fcr02"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q4ju7"]
+gradient = SubResource("Gradient_fcr02")
+width = 1920
+height = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_bp2at"]
+line_spacing = 0.0
+font_color = Color(1, 1, 0, 1)
+
+[node name="debugbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_right = 224.0
+
+[node name="overlay" type="Sprite2D" parent="."]
+position = Vector2(464.5, 16)
+scale = Vector2(0.717187, 0.666667)
+texture = SubResource("GradientTexture2D_q4ju7")
+
+[node name="debugtext" type="Label" parent="."]
+layout_mode = 0
+offset_left = -224.0
+offset_right = -194.0
+offset_bottom = 23.0
+text = "test	"
+label_settings = SubResource("LabelSettings_bp2at")
+script = ExtResource("1_fufwi")

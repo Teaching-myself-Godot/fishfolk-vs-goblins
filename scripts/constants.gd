@@ -8,5 +8,6 @@ const GROUP_NAME_CAMERA = "cam"
 const GROUP_NAME_TERRAIN = "terrain"
 const GROUP_NAME_MONSTERS_AIRBORNE = "airborne_monsters"
 const GROUP_NAME_MONSTERS_GROUNDED = "grounded_monsters"
+const GROUP_NAME_HUD_ITEM = "hud_items"
 
 const MONSTER_COLLISION_LAYER = 2

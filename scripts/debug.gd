@@ -25,10 +25,19 @@ var goblin_map = {}
 func _no_goblins() -> bool:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty()
 
+func _handle_pause_menu_open():
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
+	get_tree().paused = true
+	$PauseMenu.show()
+
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit") and _no_goblins():
-		get_tree().quit()
+	if Input.is_action_just_pressed("quit"):
+		if _no_goblins():
+			get_tree().quit()
+		else:
+			_handle_pause_menu_open()
 
 	for k in range(0, 3):
 		if Input.is_action_pressed("quit-" + str(k)) and Input.is_action_pressed("start-" + str(k)):
@@ -39,31 +48,41 @@ func _unhandled_input(_event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		
-	if Input.is_action_just_released("start-k"):
-		add_goblin_to_scene(0)
+
+	if Input.is_action_just_released("start-k") and not _is_in_game(0):
+		_add_goblin_to_scene(0)
 	if Input.is_action_just_released("start-0"):
-		add_goblin_to_scene(1)
+		_handle_start_button(1)
 	if Input.is_action_just_released("start-1"):
-		add_goblin_to_scene(2)
+		_handle_start_button(2)
 	if Input.is_action_just_released("start-2"):
-		add_goblin_to_scene(3)
+		_handle_start_button(3)
 	if Input.is_action_just_released("start-3"):
-		add_goblin_to_scene(4)
+		_handle_start_button(4)
 
 
-func add_goblin_to_scene(num : int):
+func _handle_start_button(num : int):
+	if _is_in_game(num):
+		_handle_pause_menu_open()
+	else:
+		_add_goblin_to_scene(num)
+
+
+func _is_in_game(num : int):
+	if num in goblin_map:
+		if goblin_map[num] and is_instance_valid(goblin_map[num]):
+			return true
+		else: 
+			goblin_map.erase(num)
+	return false
+
+
+func _add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
 		var turtle = GiantTurtleScene.instantiate()
 		turtle.spawn_turtle_flipper_dust_particles.connect(_on_spawn_turtle_flipper_dust_particles)
 		_spawn_monster($MonsterPath1, turtle, false)
 
-	if num in goblin_map:
-		if goblin_map[num] and is_instance_valid(goblin_map[num]):
-			return
-		else: 
-			goblin_map.erase(num)
-		
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
 	new_goblin.player_num = num
@@ -82,6 +101,7 @@ func add_goblin_to_scene(num : int):
 	new_goblin.find_child("TreeContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
+
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
 	new_tower.built_by_player = player_num
@@ -90,6 +110,7 @@ func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
 	add_child.call_deferred(new_tower)
 
+
 func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	var new_tower : CannonTower = CannonTowerScene.instantiate()
 	new_tower.built_by_player = player_num
@@ -97,6 +118,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - .5, pos.z)
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
 	add_child.call_deferred(new_tower)
+
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
@@ -115,9 +137,11 @@ func _on_missile_tower_fire_missile(missile : AntiAirMissile):
 	missile.spawn_explosion.connect(_on_missile_spawn_explosion)
 	add_child.call_deferred(missile)
 
+
 func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 	cannon_ball.spawn_explosion.connect(_on_cannon_ball_spawn_explosion)
 	add_child.call_deferred(cannon_ball)
+
 
 func _on_missile_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
@@ -125,6 +149,7 @@ func _on_missile_spawn_explosion(pos : Vector3):
 	explosion.size = 3.0
 	explosion.position = pos
 	add_child.call_deferred(explosion)
+
 
 func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
@@ -179,6 +204,7 @@ func _on_spawn_dust_particle(pos : Vector3):
 	Globals.add_landscape_coloration(
 		LandscapeColoration.new(0.5, Color(0.169, 0.106, 0), pos, 0.005)
 	)
+
 
 func _on_drop_builder_gem(pos : Vector3):
 	var new_gem : BuilderGem  = BuilderGemScene.instantiate()

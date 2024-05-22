@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://pg510dfugg1q"]
+
+[ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="1_cxjdy"]
+[ext_resource type="Script" path="res://scripts/my_camera.gd" id="2_hnirt"]
+
+[node name="CameraPivot" type="Node3D" groups=["cam"]]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 8, 9)
+script = ExtResource("1_cxjdy")
+
+[node name="MyCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0, 0)
+current = true
+fov = 38.1
+script = ExtResource("2_hnirt")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://vnxpe45dqhh"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_03ola"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_t057n"]
+
+[sub_resource type="Gradient" id="Gradient_h2dk4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nfdwx"]
+gradient = SubResource("Gradient_h2dk4")
+width = 1920
+height = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3ijt"]
+font = ExtResource("1_t057n")
+font_size = 36
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 543.0
+offset_top = 287.0
+offset_right = 1695.0
+offset_bottom = 933.0
+script = ExtResource("1_03ola")
+metadata/_edit_vertical_guides_ = [562.0]
+metadata/_edit_horizontal_guides_ = [317.0]
+
+[node name="overlay" type="Sprite2D" parent="."]
+position = Vector2(60, 19)
+scale = Vector2(0.291667, 11.0833)
+texture = SubResource("GradientTexture2D_nfdwx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -505.0
+offset_top = -226.0
+offset_right = 646.0
+offset_bottom = 74.0
+pivot_offset = Vector2(505, 256)
+text = "Pause Menu
+
+- press start to continue -"
+label_settings = SubResource("LabelSettings_y3ijt")
+horizontal_alignment = 1
