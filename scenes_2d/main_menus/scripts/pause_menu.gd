@@ -22,7 +22,7 @@ func _unhandled_input(_event):
 	if _is_just_released("cancel"):
 		_close_pause_menu()
 
-	if _is_just_released("confirm"):
+	if _is_just_released("confirm") or Input.is_action_just_released("jump-k"):
 		if $Continue.has_focus():
 			_close_pause_menu()
 		elif $ToggleFullscreen.has_focus():
