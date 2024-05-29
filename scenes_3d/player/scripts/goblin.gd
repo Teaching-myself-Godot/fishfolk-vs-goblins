@@ -26,7 +26,7 @@ var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
 var my_tree : MyTree = null
 var my_tower : BaseTower = null
-
+var my_riding_turtle : GiantTurtle = null
 
 func _initialize_label():
 	$Label.text = str(player_num) + "p"
@@ -224,9 +224,20 @@ func _handle_running(force : float, direction : Vector3):
 		velocity.z = direction.z * speed
 		$Armature.rotation.y = atan2(velocity.x, velocity.z)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
 
+		if is_instance_valid(my_riding_turtle):
+			if position.distance_to(my_riding_turtle.position) > 0.5:
+				direction = position.direction_to(my_riding_turtle.position).normalized()
+				velocity.x = direction.x * MAX_SPEED
+				velocity.z = direction.z * MAX_SPEED
+			else:
+				position.x = my_riding_turtle.position.x
+				position.z = my_riding_turtle.position.z
+				velocity.x = 0
+				velocity.z = 0
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
 
 func _handle_falling(delta : float):
 	if is_on_floor():
@@ -248,7 +259,7 @@ func _handle_falling(delta : float):
 
 func _handle_animation(force : float):
 	if airborne_time < 5:
-		if velocity:
+		if velocity and not is_instance_valid(my_riding_turtle):
 			$AnimationTree.set("active", true)
 			$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
 			$AnimationTree.set("parameters/TimeScale/scale", .1 + force * .9)

@@ -53,13 +53,17 @@ func _on_body_exited(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = false
 
+	if body.is_in_group(Constants.GROUP_NAME_GOBLINS):
+		(body as Goblin).my_riding_turtle = null
 
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
 		is_on_floor = true
 		velocity.y = 0
 		target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + SPEED * 2
-
+	
+	if body.is_in_group(Constants.GROUP_NAME_GOBLINS):
+		(body as Goblin).my_riding_turtle = self
 
 func _on_despawn_timer_timeout():
 	queue_free()
