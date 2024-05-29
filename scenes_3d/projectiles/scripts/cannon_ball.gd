@@ -32,7 +32,7 @@ func _deal_damage():
 			monster.take_damage(damage, position.direction_to(monster.position))
 
 func _on_body_entered(body):
-	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
+	if body.is_in_group(Constants.GROUP_NAME_TERRAIN) or body.is_in_group(Constants.GROUP_NAME_MONSTER_COLLISION):
 		_deal_damage()
 		spawn_explosion.emit(position)
 		$DespawnTimer.start()
