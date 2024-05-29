@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://i8r0qsyem1qb"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_path/scripts/monster_target_zone.gd" id="1_q62at"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x84q8"]
+radius = 1.73722
+
+[sub_resource type="SphereMesh" id="SphereMesh_pbvon"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otd8f"]
+transparency = 1
+albedo_color = Color(0.337255, 1, 1, 0.0588235)
+
+[node name="MonsterTargetZone" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_q62at")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x84q8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.48028, 0, 0, 0, 3.48028, 0, 0, 0, 3.48028, 0, 0, 0)
+mesh = SubResource("SphereMesh_pbvon")
+surface_material_override/0 = SubResource("StandardMaterial3D_otd8f")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

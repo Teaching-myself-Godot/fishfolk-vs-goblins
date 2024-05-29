@@ -85,8 +85,21 @@
 - [x] use tattooed-shader for dragging coloration on terrain
 - [x] use dust to hide flipper-clipping
 
+## Milestone 10.1 - Surfing
+- [x] Make goblin piggyback on turtle 
+- [ ] Make goblin surf on flying fish
+- [ ] Add surfing animation for goblin
 
-## Milestone 10  - Expansion
+## Milestone 10.2 - Editable stages
+- [x] Add MonsterPath scene with anchors that auto-generates a Curve3D to follow
+- [x] Add a MonsterTargetZone area that despawns monsters for now
+- [ ] Add AirAnchor for flying units
+- [ ] Add Spawner scene to MonsterPath with Timed Wave scenes
+- [ ] Add Wave scenes with child Monsters (invisible) to be released using timer
+- [ ] Extract a reusable stage scene, consisting of terrain, trees, paths etc
+- [ ] Create a second stage which can be run with the `debug.gd` script
+
+## Milestone 11  - Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
