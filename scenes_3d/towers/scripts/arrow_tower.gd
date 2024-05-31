@@ -75,7 +75,7 @@ func _ready():
 	super._ready()
 	axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
 	arrow_y = axle_y + 0.2
-	current_range = 7.0
+	current_range = Constants.ARROW_TOWER_BASE_RANGE
 	_load_new_arrow()
 
 func _on_reload_timer_timeout():

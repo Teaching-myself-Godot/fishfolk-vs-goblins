@@ -75,7 +75,7 @@ func _is_charged() -> bool:
 
 func _ready():
 	super._ready()
-	current_range = 7.0
+	current_range = Constants.ANTI_AIR_TOWER_BASE_RANGE
 	launcher_y = $Launcher.position.y
 	missile_clamps = [
 		$Launcher/MissileClamp0,

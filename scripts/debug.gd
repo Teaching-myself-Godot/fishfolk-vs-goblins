@@ -226,6 +226,7 @@ func _on_spawn_timer_2_timeout():
 
 
 func _on_spawn_timer_3_timeout():
+	print($MonsterPath1B)
 	if goblin_map.size() > 0 and _get_monster_count() < 125:
 		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate(), false)
 

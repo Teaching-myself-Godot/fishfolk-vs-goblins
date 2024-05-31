@@ -134,10 +134,12 @@ func _handle_context_menu_arrow_input():
 	# highlight the range of any currently targeted tower in the context menu
 	if is_instance_valid(my_tree):
 		var opt = $TreeContextMenu.targeted_option
-		if  opt == "Arrow" or opt == "Anti-Air":
-			my_tree.set_range_ring(7.0)
+		if  opt == "Arrow":
+			my_tree.set_range_ring(Constants.ARROW_TOWER_BASE_RANGE)
+		elif opt == "Anti-Air":
+			my_tree.set_range_ring(Constants.ANTI_AIR_TOWER_BASE_RANGE)
 		elif opt == "Cannon":
-			my_tree.set_range_ring(5.0)
+			my_tree.set_range_ring(Constants.CANNON_TOWER_BASE_RANGE)
 		else:
 			my_tree.drop_range_ring()
 			my_tree.drop_range_ring()

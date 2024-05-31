@@ -6,7 +6,7 @@ var my_general_area = 2.5
 var my_range_ring : RangeRing = null
 var rise_target_position : Vector3 = Vector3.ZERO
 var built_by_player : int = -1
-var current_range : float = 5.0
+var current_range : float = 10.0
 
 var outlines = []
 var ready_to_fire = false

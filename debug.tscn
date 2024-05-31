@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3ln5xvbd1ve2"]
+[gd_scene load_steps=18 format=3 uid="uid://d3ln5xvbd1ve2"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_81aij"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://camera_pivot.tscn" id="2_rvjdn"]
@@ -43,6 +43,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, -0.157414, 0, 0, 0, 1.1153, 1.14259, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 19
+
+[sub_resource type="Curve3D" id="Curve3D_1tlbj"]
+resource_local_to_scene = true
 
 [node name="DebugWorld" type="Node"]
 script = ExtResource("1_81aij")
@@ -147,6 +150,7 @@ visible = false
 [node name="debugbar" parent="." groups=["hud_items"] instance=ExtResource("6_3mvtb")]
 
 [node name="MonsterPath" parent="." instance=ExtResource("8_uk6sx")]
+curve = SubResource("Curve3D_1tlbj")
 
 [node name="Anchor3" parent="MonsterPath" instance=ExtResource("9_kug07")]
 transform = Transform3D(1, 0, 0, 0, 0.996399, 0.0847909, 0, -0.0847909, 0.996399, 11.1632, 0.0175966, 36.7818)

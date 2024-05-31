@@ -75,7 +75,7 @@ func  _is_valid_target(potential_target) -> bool:
 
 func _ready():
 	super._ready()
-	current_range = 5.0
+	current_range = Constants.CANNON_TOWER_BASE_RANGE
 	$ReloadTimer.start()
 
 

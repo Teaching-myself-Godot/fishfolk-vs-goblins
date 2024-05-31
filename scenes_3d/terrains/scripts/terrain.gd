@@ -10,9 +10,10 @@ func _on_range_rings_changed():
 		range_rings.append(range_ring.position)
 		range_ring_radiuses.append(range_ring.radius)
 
-	$Landscape.get_surface_override_material(0).next_pass.set_shader_parameter("num_active_circles", range_rings.size())
-	$Landscape.get_surface_override_material(0).next_pass.set_shader_parameter("range_positions", range_rings)
-	$Landscape.get_surface_override_material(0).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
+	for i in range($Landscape.get_surface_override_material_count()):
+		$Landscape.get_surface_override_material(i).next_pass.set_shader_parameter("num_active_circles", range_rings.size())
+		$Landscape.get_surface_override_material(i).next_pass.set_shader_parameter("range_positions", range_rings)
+		$Landscape.get_surface_override_material(i).next_pass.set_shader_parameter("range_radiuses", range_ring_radiuses)
 
 
 func _process(_delta):
@@ -35,11 +36,12 @@ func _process(_delta):
 	for lc : LandscapeColoration in marked_for_removal:
 		Globals.drop_landscape_coloration(lc)
 
-	$Landscape.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_positions", landscape_colorations)
-	$Landscape.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_radiuses", landscape_coloration_radiuses)
-	$Landscape.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("range_colors", landscape_coloration_colors)
-	$Landscape.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("fades", landscape_coloration_fades)
-	$Landscape.get_surface_override_material(0).next_pass.next_pass.set_shader_parameter("num_active_circles", landscape_colorations.size())
+	for i in range($Landscape.get_surface_override_material_count()):
+		$Landscape.get_surface_override_material(i).next_pass.next_pass.set_shader_parameter("range_positions", landscape_colorations)
+		$Landscape.get_surface_override_material(i).next_pass.next_pass.set_shader_parameter("range_radiuses", landscape_coloration_radiuses)
+		$Landscape.get_surface_override_material(i).next_pass.next_pass.set_shader_parameter("range_colors", landscape_coloration_colors)
+		$Landscape.get_surface_override_material(i).next_pass.next_pass.set_shader_parameter("fades", landscape_coloration_fades)
+		$Landscape.get_surface_override_material(i).next_pass.next_pass.set_shader_parameter("num_active_circles", landscape_colorations.size())
 
 
 func _ready():
