@@ -26,7 +26,7 @@ var player_num : int = 0
 var target_position : Vector3 = Vector3.ZERO
 var my_tree : MyTree = null
 var my_tower : BaseTower = null
-var my_riding_turtle : GiantTurtle = null
+var my_riding_monster : BaseMonster = null
 
 func _initialize_label():
 	$Label.text = str(player_num) + "p"
@@ -227,14 +227,14 @@ func _handle_running(force : float, direction : Vector3):
 		$Armature.rotation.y = atan2(velocity.x, velocity.z)
 	else:
 
-		if is_instance_valid(my_riding_turtle):
-			if position.distance_to(my_riding_turtle.position) > 0.5:
-				direction = position.direction_to(my_riding_turtle.position).normalized()
+		if is_instance_valid(my_riding_monster):
+			if position.distance_to(my_riding_monster.position) > 0.5:
+				direction = position.direction_to(my_riding_monster.position).normalized()
 				velocity.x = direction.x * MAX_SPEED
 				velocity.z = direction.z * MAX_SPEED
 			else:
-				position.x = my_riding_turtle.position.x
-				position.z = my_riding_turtle.position.z
+				position.x = my_riding_monster.position.x
+				position.z = my_riding_monster.position.z
 				velocity.x = 0
 				velocity.z = 0
 		else:
@@ -261,10 +261,13 @@ func _handle_falling(delta : float):
 
 func _handle_animation(force : float):
 	if airborne_time < 5:
-		if velocity and not is_instance_valid(my_riding_turtle):
+		if velocity and not is_instance_valid(my_riding_monster):
 			$AnimationTree.set("active", true)
 			$AnimationTree.set("parameters/BlendSpace1D/blend_position", force)
 			$AnimationTree.set("parameters/TimeScale/scale", .1 + force * .9)
+		elif is_instance_valid(my_riding_monster):
+			$AnimationTree.set("active", false)
+			$AnimationPlayer.play("surf")
 		else:
 			$AnimationTree.set("active", false)
 			$AnimationPlayer.play("idle")

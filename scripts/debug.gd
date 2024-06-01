@@ -68,8 +68,8 @@ func _is_in_game(num : int):
 func _add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
 		var turtle = GiantTurtleScene.instantiate()
-		turtle.spawn_turtle_flipper_dust_particles.connect(_on_spawn_turtle_flipper_dust_particles)
 		_spawn_monster($MonsterPath1, turtle)
+		(turtle as BaseMonster).drop_crystal = true
 
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
@@ -165,6 +165,9 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 func _spawn_monster(path : Path3D, monster : BaseMonster):
 	var monster_target : PathFollow3D = PathFollow3D.new()
 	path.add_child(monster_target)
+	if monster.has_signal("spawn_turtle_flipper_dust_particles"):
+		monster.spawn_turtle_flipper_dust_particles.connect(_on_spawn_turtle_flipper_dust_particles)
+
 	monster.target = monster_target
 	monster.drop_magical_crystal.connect(_on_drop_magical_crystal)
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)

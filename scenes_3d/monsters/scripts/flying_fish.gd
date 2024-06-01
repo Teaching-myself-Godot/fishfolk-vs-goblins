@@ -56,14 +56,12 @@ func _apply_motion(delta):
 	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21]) * Quaternion(Vector3.FORWARD, bend_window_1[21]))
 
 
-
-
-
 func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 	velocity.y = 20.0 * force
 	velocity.x = from_direction.x * 2 * force
 	velocity.z = from_direction.z * 2 * force
 	$Armature.rotation.z = -.5 * PI + randf() * PI
+
 
 func _ready():
 	super._ready()
@@ -81,9 +79,16 @@ func _ready():
 	]
 
 
+func _on_body_exited(body):
+	if body.is_in_group(Constants.GROUP_NAME_GOBLINS):
+		(body as Goblin).my_riding_monster = null
+
+
 func _on_body_entered(body):
-	if body.is_in_group(Constants.GROUP_NAME_TERRAIN):
-		if $HPBar.hp <= 0:
-			_spawn_dust()
-			_drop_gem()
-			queue_free()
+	if body.is_in_group(Constants.GROUP_NAME_TERRAIN) and $HPBar.hp <= 0:
+		_spawn_dust()
+		_drop_gem()
+		queue_free()
+
+	if body.is_in_group(Constants.GROUP_NAME_GOBLINS):
+		(body as Goblin).my_riding_monster = self
