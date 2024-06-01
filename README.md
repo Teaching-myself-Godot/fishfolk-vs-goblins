@@ -94,8 +94,8 @@
 
 ## Milestone 11 - Surfing
 - [x] Make goblin piggyback on turtle 
-- [ ] Add surfing animation for goblin
-- [ ] Make goblin surf on flying fish
+- [x] Add surfing animation for goblin
+- [x] Make goblin surf on flying fish
 
 ## Milestone 12 - Stage select
 - [ ] Extract a reusable stage scene, consisting of terrain, trees, paths etc
