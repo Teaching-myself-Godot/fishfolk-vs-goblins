@@ -4,7 +4,10 @@ extends Area3D
 var chest_height = 0.75
 var target : PathFollow3D = null
 var velocity = Vector3.ZERO
-
+var speed : float = 0.0
+var hp : int = 10
+var gems : int = 1
+var drop_crystal : bool = false
 
 signal drop_magical_crystal(pos : Vector3)
 signal drop_builder_gem(pos : Vector3)
@@ -29,6 +32,8 @@ func handle_update(delta, frame):
 
 func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS)
+	$HPBar.max_hp = hp
+	$HPBar.hp = hp
 	if is_instance_valid(target):
 		position = target.global_position
 	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
@@ -52,9 +57,9 @@ func _spawn_dust():
 
 
 func _drop_gem():
-	for _i in randi_range(1, 2):
+	for _i in range(gems):
 		drop_builder_gem.emit(position)
 
-	if randf() < 0.1:
+	if drop_crystal:
 		drop_magical_crystal.emit(position)
 

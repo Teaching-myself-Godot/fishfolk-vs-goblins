@@ -1,7 +1,6 @@
 class_name FlyingFish
 extends BaseMonster
 
-const SPEED = 2.0
 var skel : Skeleton3D = null
 var bone_ids : Array[int] = []
 var bend_window_1 : Array[float] = [
@@ -14,13 +13,13 @@ var bend_window_2 : Array[float] = [
 
 func _apply_motion(delta):
 	var direction = position.direction_to(target.global_position)
-	velocity.x = lerp(velocity.x, direction.x * SPEED, 0.25)
-	velocity.z = lerp(velocity.z, direction.z * SPEED, 0.25)
+	velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
+	velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
 
 	if $HPBar.hp > 0:
-		velocity.y = lerp(velocity.y, direction.y * SPEED, 0.25)
-		if position.distance_to(target.global_position) < SPEED * 2:
-			target.progress += delta * SPEED
+		velocity.y = lerp(velocity.y, direction.y * speed, 0.25)
+		if position.distance_to(target.global_position) < speed * 2:
+			target.progress += delta * speed
 	else:
 		velocity.y = lerp(velocity.y, -gravity, 0.1)
 		$Armature.rotation.x = lerp_angle($Armature.rotation.x, 0.5 * PI, 0.05)
@@ -39,7 +38,7 @@ func _apply_motion(delta):
 		Vector2(0, position.y)
 				.angle_to_point(Vector2(Vector2(position.x, position.z)
 				.distance_to(Vector2(pos.x, pos.z)), pos.y))
-	) 
+	)
 	var lerped_x_angle = lerp_angle($Armature.rotation.x, -target_x_angle, 0.025)
 
 	bend_window_1.pop_back()
@@ -68,9 +67,8 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 
 func _ready():
 	super._ready()
+	speed = 2.0 if speed == 0.0 else speed
 	chest_height = 0.0
-	$HPBar.max_hp = 30
-	$HPBar.hp = 30
 	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 	$AnimationPlayer.play("fly")
 	skel = $Armature/Skeleton3D

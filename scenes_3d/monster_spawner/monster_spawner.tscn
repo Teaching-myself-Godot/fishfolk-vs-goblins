@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsmsv2m50sjob"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_spawner.gd" id="1_8rf70"]
+
+[node name="MonsterSpawner" type="Node3D"]
+script = ExtResource("1_8rf70")

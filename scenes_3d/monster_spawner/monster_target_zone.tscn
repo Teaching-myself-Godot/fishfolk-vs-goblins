@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://i8r0qsyem1qb"]
 
-[ext_resource type="Script" path="res://scenes_3d/monster_path/scripts/monster_target_zone.gd" id="1_q62at"]
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_target_zone.gd" id="1_23so3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x84q8"]
 radius = 1.73722
@@ -13,7 +13,7 @@ albedo_color = Color(0.337255, 1, 1, 0.0588235)
 
 [node name="MonsterTargetZone" type="Area3D"]
 collision_mask = 2
-script = ExtResource("1_q62at")
+script = ExtResource("1_23so3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_x84q8")

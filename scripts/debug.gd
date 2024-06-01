@@ -68,7 +68,7 @@ func _add_goblin_to_scene(num : int):
 	if goblin_map.size() == 0:
 		var turtle = GiantTurtleScene.instantiate()
 		turtle.spawn_turtle_flipper_dust_particles.connect(_on_spawn_turtle_flipper_dust_particles)
-		_spawn_monster($MonsterPath1, turtle, false)
+		_spawn_monster($MonsterPath1, turtle)
 
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
@@ -93,7 +93,7 @@ func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
-	new_tower.rise_target_position = Vector3(pos.x, pos.y - 1.5, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
 	add_child.call_deferred(new_tower)
 
@@ -102,7 +102,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	var new_tower : CannonTower = CannonTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
-	new_tower.rise_target_position = Vector3(pos.x, pos.y - 1.5, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
 	add_child.call_deferred(new_tower)
 
@@ -111,7 +111,7 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
-	new_tower.rise_target_position = Vector3(pos.x, pos.y - 1.5, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - 5, pos.z)
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
 	add_child.call_deferred(new_tower)
 
@@ -161,7 +161,7 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	add_child.call_deferred(main_explosion_ring)
 
 
-func _spawn_monster(path : Path3D, monster : BaseMonster, limit_frames = true):
+func _spawn_monster(path : Path3D, monster : BaseMonster):
 	var monster_target : PathFollow3D = PathFollow3D.new()
 	path.add_child(monster_target)
 	monster.target = monster_target
@@ -169,7 +169,6 @@ func _spawn_monster(path : Path3D, monster : BaseMonster, limit_frames = true):
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)
 	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
 	monster.my_frame_cycle = assigned_frame
-	monster.limit_frames = limit_frames
 	assigned_frame = assigned_frame + 1 if assigned_frame < FRAME_CNT_MAX else 0
 	add_child.call_deferred(monster)
 
@@ -226,9 +225,8 @@ func _on_spawn_timer_2_timeout():
 
 
 func _on_spawn_timer_3_timeout():
-	print($MonsterPath1B)
 	if goblin_map.size() > 0 and _get_monster_count() < 125:
-		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate(), false)
+		_spawn_monster($MonsterPath1B, FlyingFishScene.instantiate())
 
 
 func _physics_process(delta):

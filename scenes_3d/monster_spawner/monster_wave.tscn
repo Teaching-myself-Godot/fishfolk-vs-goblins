@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://crjgde67usrmn"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_wave.gd" id="1_tiikj"]
+
+[node name="MonsterWave" type="Timer"]
+script = ExtResource("1_tiikj")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

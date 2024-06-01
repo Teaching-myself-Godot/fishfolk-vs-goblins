@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://vnxpe45dqhh" path="res://scenes_2d/main_menus/pause_menu.tscn" id="6_my7n4"]
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="7_q1ece"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="7_ssyn6"]
-[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_path/monster_path.tscn" id="8_uk6sx"]
-[ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_path/anchor.tscn" id="9_kug07"]
-[ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_path/monster_target_zone.tscn" id="10_lunos"]
+[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="8_uk6sx"]
+[ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="9_kug07"]
+[ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_lunos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,7 +62,6 @@ shadow_enabled = true
 [node name="CameraPivot" parent="." instance=ExtResource("2_rvjdn")]
 
 [node name="terrain" parent="." instance=ExtResource("4_75lcf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.298399)
 
 [node name="palm-tree" parent="terrain" instance=ExtResource("7_ssyn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, 0.522997, 5.34113)
@@ -119,9 +118,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45245, 1.81929, -13.1708)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 2.87114, -7.31752)
 
 [node name="MonsterPath1" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 curve = SubResource("Curve3D_rq7h8")
 
 [node name="MonsterPath1A" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 curve = SubResource("Curve3D_ouoor")
 
 [node name="MonsterPath1B" type="Path3D" parent="."]
@@ -153,28 +154,28 @@ visible = false
 curve = SubResource("Curve3D_1tlbj")
 
 [node name="Anchor3" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(1, 0, 0, 0, 0.996399, 0.0847909, 0, -0.0847909, 0.996399, 11.1632, 0.0175966, 36.7818)
+transform = Transform3D(1, 0, 0, 0, 0.996399, 0.0847909, 0, -0.0847909, 0.996399, 11.1632, 4.07039, 36.7818)
 
 [node name="Anchor" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16243, 0, 23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16243, 4, 23)
 
 [node name="Anchor2" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(1, 0, 0, 0, 0.996399, 0.0847909, 0, -0.0847909, 0.996399, 5.34444, 0.0186374, 15.5578)
+transform = Transform3D(1, 0, 0, 0, 0.996399, 0.0847909, 0, -0.0847909, 0.996399, 5.34444, 4.07039, 15.5578)
 
 [node name="Anchor4" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, 3.49916, 2.18715, 9.64796)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, 3.49916, 4.30304, 9.64796)
 
 [node name="Anchor5" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, 0, 1.16483, 9.91712)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, 0, 3.20059, 9.91712)
 
 [node name="Anchor6" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -9.48548, -0.581369, 5.58436)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -9.48548, 1.6743, 5.58436)
 
 [node name="Anchor7" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -10.8499, 2.95442, -2.02714)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -10.8499, 5.17371, -2.02714)
 
 [node name="Anchor8" parent="MonsterPath" instance=ExtResource("9_kug07")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -8.8329, 1.34097, -7.10308)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -8.8329, 3.64999, -7.10308)
 
 [node name="MonsterTargetZone" parent="MonsterPath" instance=ExtResource("10_lunos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01765, 2.48079, -7.1166)

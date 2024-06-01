@@ -6,6 +6,8 @@ var hp      : int = 5
 var dmg_sum : int = 0
 
 func _draw():
+	if dmg_sum == 0:
+		return
 	var al = $Control/DamageLabel.modulate.a * 2.0
 	al = 1.0 if al > 1.0 else al
 	draw_rect(Rect2(0, 1, 1, 10), Color(255, 255, 255, 0.6))
