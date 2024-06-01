@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://pkmc4ao8dbh1"]
+[gd_scene load_steps=24 format=3 uid="uid://pkmc4ao8dbh1"]
 
 [ext_resource type="Script" path="res://scripts/debug.gd" id="1_unw81"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://camera_pivot.tscn" id="2_m2xxj"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="9_7wr5a"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="10_ngpku"]
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_tcw6y"]
+[ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="11_mrgtq"]
+[ext_resource type="PackedScene" uid="uid://bcv2x4vqvwskc" path="res://scenes_3d/monsters/giant_turtle.scn" id="12_rv5us"]
+[ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="13_o4114"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gojeu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,6 +26,9 @@ sky_material = SubResource("ProceduralSkyMaterial_gojeu")
 background_mode = 2
 sky = SubResource("Sky_ylqb4")
 tonemap_mode = 2
+
+[sub_resource type="Curve3D" id="Curve3D_g28ah"]
+resource_local_to_scene = true
 
 [sub_resource type="Curve3D" id="Curve3D_l7ina"]
 resource_local_to_scene = true
@@ -52,10 +58,6 @@ light_energy = 2.0
 shadow_enabled = true
 
 [node name="CameraPivot" parent="." instance=ExtResource("2_m2xxj")]
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
-autostart = true
 
 [node name="GemPouch" parent="." instance=ExtResource("5_qxjme")]
 builder_gems = 500
@@ -220,6 +222,28 @@ transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.47
 transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.476672, -8.59387, 1.52858, 17.6274)
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("8_o7gdy")]
+
+[node name="MonsterPath" parent="MonsterSpawner" instance=ExtResource("8_6wlwc")]
+curve = SubResource("Curve3D_g28ah")
+
+[node name="Anchor" parent="MonsterSpawner/MonsterPath" instance=ExtResource("9_7wr5a")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -15.133, 4.59068, -7.86744)
+
+[node name="Anchor2" parent="MonsterSpawner/MonsterPath" instance=ExtResource("9_7wr5a")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 15.2876, 2.6554, -12.5118)
+
+[node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("11_mrgtq")]
+wait_time = 5.0
+Monster = ExtResource("12_rv5us")
+monster_count = 5
+gems_per_monster = 3
+crystals_per_wave = 2
+
+[node name="MonsterWave2" parent="MonsterSpawner" instance=ExtResource("11_mrgtq")]
+Monster = ExtResource("13_o4114")
+wave_number = 2
+monster_speed = 0.75
+monster_hp = 1
 
 [node name="MonsterPath1" parent="." instance=ExtResource("8_6wlwc")]
 curve = SubResource("Curve3D_l7ina")
@@ -407,10 +431,14 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, -21.4269
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.418519, 17.4836, 6.1444, -10.163)
 
 [node name="MonsterTargetZone" parent="." instance=ExtResource("10_tcw6y")]
-transform = Transform3D(6.17598, 0, 0, 0, 6.17598, 0, 0, 0, 6.17598, 16.3354, 1.55851, -9.65838)
+transform = Transform3D(4.01968, 0, 0, 0, 4.01968, 0, 0, 0, 4.01968, 16.3354, 1.55851, -9.65838)
 
 [node name="SpawnTimer2" type="Timer" parent="."]
 wait_time = 6.0
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
 autostart = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -441,8 +469,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -68.62
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
 shape = SubResource("BoxShape3D_x3db0")
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_3_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 
 [editable path="CameraPivot"]
-[editable path="MonsterTargetZone"]

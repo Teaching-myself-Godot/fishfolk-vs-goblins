@@ -22,6 +22,7 @@ var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_fl
 var gem_pouch : GemPouch 
 var goblin_map = {}
 
+
 func _no_goblins() -> bool:
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_GOBLINS).is_empty()
 
@@ -111,7 +112,7 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
 	new_tower.built_by_player = player_num
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
-	new_tower.rise_target_position = Vector3(pos.x, pos.y - 5, pos.z)
+	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
 	add_child.call_deferred(new_tower)
 
@@ -237,4 +238,7 @@ func _physics_process(delta):
 
 func _ready():
 	gem_pouch = $GemPouch
+	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
+		spawner.spawn_monster.connect(_spawn_monster)
+		spawner.start_wave(1)
 
