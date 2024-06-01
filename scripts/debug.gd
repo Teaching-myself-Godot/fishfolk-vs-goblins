@@ -145,7 +145,7 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 	add_child.call_deferred(explosion)
 
 	for i in range(3):
-		Globals.add_landscape_coloration(
+		TerrainShaderParams.add_landscape_coloration(
 			LandscapeColoration.new(
 				randf() * 2.0,
 				Color(0.169, 0.106, 0),
@@ -156,7 +156,7 @@ func _on_cannon_ball_spawn_explosion(pos : Vector3):
 
 	var main_explosion_ring = ExplosionSoundScene.instantiate()
 	main_explosion_ring.position = pos
-	Globals.add_landscape_coloration(
+	TerrainShaderParams.add_landscape_coloration(
 		LandscapeColoration.new(2.0, Color(0.169, 0.106, 0), pos, 0.005)
 	)
 	add_child.call_deferred(main_explosion_ring)
@@ -191,7 +191,7 @@ func _on_spawn_dust_particle(pos : Vector3):
 	var particles = DustParticlesScene.instantiate()
 	particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
 	add_child.call_deferred(particles)
-	Globals.add_landscape_coloration(
+	TerrainShaderParams.add_landscape_coloration(
 		LandscapeColoration.new(0.5, Color(0.169, 0.106, 0), pos, 0.005)
 	)
 

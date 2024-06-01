@@ -24,18 +24,18 @@ func _physics_process(delta):
 
 func set_range_ring(radius : float):
 	my_range_ring = RangeRing.new(position, radius)
-	Globals.add_range_ring(my_range_ring)
+	TerrainShaderParams.add_range_ring(my_range_ring)
 
 
 func drop_range_ring():
 	if my_range_ring:
-		Globals.drop_range_ring(my_range_ring)
+		TerrainShaderParams.drop_range_ring(my_range_ring)
 		my_range_ring = null
 
 
 func toggle_highlight(flag : bool):
 	if not flag and my_range_ring:
-		Globals.drop_range_ring(my_range_ring)
+		TerrainShaderParams.drop_range_ring(my_range_ring)
 		my_range_ring = null
 
 	for outline in outlines:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pg510dfugg1q"]
 
-[ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="1_cxjdy"]
-[ext_resource type="Script" path="res://scripts/my_camera.gd" id="2_hnirt"]
+[ext_resource type="Script" path="res://scenes_3d/camera/scripts/camera_pivot.gd" id="1_cxjdy"]
+[ext_resource type="Script" path="res://scenes_3d/camera/scripts/my_camera.gd" id="2_hnirt"]
 
 [node name="CameraPivot" type="Node3D" groups=["cam"]]
 transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 8, 9)

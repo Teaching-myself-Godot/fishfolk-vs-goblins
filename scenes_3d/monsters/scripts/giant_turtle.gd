@@ -69,7 +69,7 @@ func _on_despawn_timer_timeout():
 
 
 func _on_trail_timer_timeout():
-	Globals.add_landscape_coloration(
+	TerrainShaderParams.add_landscape_coloration(
 		LandscapeColoration.new(
 			3.0,
 			Color.BLACK,
