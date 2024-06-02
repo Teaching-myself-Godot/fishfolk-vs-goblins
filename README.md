@@ -41,7 +41,7 @@
 - [x] add cannon tower to the Tree context menu options for Ground
 - [x] make a cannon tower model
 - [x] write `_point_at` code in `cannon_tower.gd`
-- [x] write `_shoot` code 
+- [x] write `_shoot` code
 - [x] use a different range when highlighting (5 metres)
 - [x] make a cannonball sphere
 - [x] use a radius to deal impact damage scaled by distance from epicenter of impact
@@ -56,12 +56,12 @@
 - [x] make monster model react to being hit
 - [x] make monster model react to dying (spinning around 3 axes, flying through the air like the little fish chibi's they are)
 - [x] give the monsters HP bars
-- [x] flying damage numbers 
+- [x] flying damage numbers
 
 ## Milestone 7 - Flying fish, Anti-Air
 
 - [x] model aerial defense tower
-- [x] shoot some sort of projectile(s) 
+- [x] shoot some sort of projectile(s)
 - [x] cannot shoot grounded monsters
 - [x] cannon will not target flying monsters
 - [x] model flying fish
@@ -79,7 +79,7 @@
 
 ## Milestone 9 - Giant turtle
 - [x] create a turtle model
-- [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture 
+- [x] use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture
 - [x] and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head <-- did not go as planned
 - [x] animate the model, dragging over the sand
 - [x] use tattooed-shader for dragging coloration on terrain
@@ -94,17 +94,19 @@
 - [x] create true level terrain, with water for the fish-folk to crawl out of
 
 ## Milestone 11 - Surfing
-- [x] Make goblin piggyback on turtle 
+- [x] Make goblin piggyback on turtle
 - [x] Add surfing animation for goblin
 - [x] Make goblin surf on flying fish
 
-## Milestone 12 - Stage select
-- [ ] Make a main game scene which handles the title screen and menus
-- [ ] Extract a reusable stage scene, consisting of terrain, trees, paths etc
-- [ ] Make a StageHolder node with WorldEnvironment, Camera and Light
-- [ ] Use a stage in the StageHolder as a nice background for the title screen and menus
-- [ ] Add a title screen, which detects controller device via start button
-- [ ] Add a stage select menu
+## Milestone 12 - Stage select 1
+- [x] Make a main game scene which handles the title screen and menus
+- [x] Extract 2 reusable stage scenes
+- [x] Make a StageHolder to hold the current stage
+- [x] Make it possible to switch between stages (select in title screen)
+- [x] Use a stage in the StageHolder as a nice background for the title screen
+- [x] Add a title screen, which detects controller device via start button
+- [ ] Add some MonsterSpawners with a couple of waves to both scenes
+- [ ] Implement a MonsterWaveTimer in the HUD, which starts waves and indicates duration until next wave
 
 ## Milestone 13  - Stage Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
@@ -116,6 +118,7 @@
 
 
 ## Looking forward - Damage types and upgrades
+- [ ] Add a stage select menu
 - [ ] add blunt (=area) and piercing damage types
 - [ ] add elemental damage maybe?
 - [ ] make turtle very insensitive to pierce and extra sensitive to blunt
