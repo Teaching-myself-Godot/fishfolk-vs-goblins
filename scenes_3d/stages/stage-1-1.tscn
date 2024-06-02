@@ -191,6 +191,7 @@ transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.47
 transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.476672, -8.59387, 1.52858, 17.6274)
 
 [node name="GemPouch" parent="." instance=ExtResource("2_rdac5")]
+visible = false
 builder_gems = 500
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
