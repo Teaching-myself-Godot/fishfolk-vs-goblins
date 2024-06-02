@@ -7,6 +7,11 @@ var range_rings = []
 var landscape_colorations = []
 
 
+func clear():
+	range_rings = []
+	landscape_colorations = []
+
+
 func add_range_ring(rr : RangeRing):
 	range_rings.push_front(rr)
 	if range_rings.size() > 60:

@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=7 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_ibf3y"]
+
+[sub_resource type="Gradient" id="Gradient_n5eq8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdc3l"]
+gradient = SubResource("Gradient_n5eq8")
+width = 1152
+height = 648
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1jkn"]
 font = ExtResource("3_ibf3y")
@@ -10,13 +19,17 @@ font_size = 24
 
 [node name="TitleScreen" type="Sprite2D"]
 process_mode = 2
+texture = SubResource("GradientTexture2D_gdc3l")
+centered = false
+script = ExtResource("1_o1xv6")
+
+[node name="Splash" type="Sprite2D" parent="."]
 position = Vector2(578, 336)
 texture = ExtResource("1_053dn")
 offset = Vector2(0, 75)
 region_rect = Rect2(0, 0, 1150, 500)
-script = ExtResource("1_o1xv6")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Splash"]
 offset_left = -66.0
 offset_top = 16.0
 offset_right = 101.0

@@ -1,13 +1,22 @@
 extends Node
 
 enum ControllerID {
-	NONE,
 	KEYBOARD,
 	GAMEPAD_1,
 	GAMEPAD_2,
 	GAMEPAD_3,
-	GAMEPAD_4
+	GAMEPAD_4,
+	NONE
 }
+
+var player_map = {}
+
+
+func get_player_name(cid : ControllerID):
+	if cid in player_map:
+		return str(player_map[cid]) + "p"
+	return str(cid) + "p"
+
 
 func is_just_released(basename : String) -> bool:
 	return (

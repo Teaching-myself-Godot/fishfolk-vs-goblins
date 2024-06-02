@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://doy7owgxttfij"]
+
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
+[ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_fae0n"]
+[ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
+[ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="4_6egpi"]
+[ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="5_p0xbc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u800l"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ylqb4"]
+sky_material = SubResource("ProceduralSkyMaterial_u800l")
+
+[sub_resource type="Environment" id="Environment_pybf5"]
+background_mode = 2
+sky = SubResource("Sky_ylqb4")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fgoe"]
+size = Vector3(238.098, 36.044, 1)
+
+[node name="Stage-1-2" type="Node3D"]
+script = ExtResource("1_6mnvp")
+
+[node name="terrain" parent="." instance=ExtResource("2_fae0n")]
+
+[node name="palm-tree" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, 0.522997, 5.34113)
+
+[node name="palm-tree2" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.792263, 0.043514, 0.10211, -0.043157, 0.798816, -0.00556223, -0.102261, 0, 0.793437, 17.1972, 2.75574, -3.55499)
+
+[node name="palm-tree3" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 3.6678, 0.213723, -1.6927)
+
+[node name="palm-tree4" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1.01315, -0.00331159, -0.40843, -0.0028026, 1.09227, -0.0158082, 0.408434, 0.0157095, 1.01303, 10.8259, 3.59832, -9.61605)
+
+[node name="palm-tree5" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.192, 3.36808, -2.10437)
+
+[node name="palm-tree6" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08007, 0.719905, -3.49195)
+
+[node name="palm-tree7" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 6.53405, 0.083024, 2.25635)
+
+[node name="palm-tree8" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.973181, 0, 0, 0, 0.973181, 0, 0, 0, 0.973181, 16.3203, 0, 7.92831)
+
+[node name="palm-tree9" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.833317, 0, -0.552795, 0, 1, 0, 0.552795, 0, 0.833317, 20.5064, 0, 8.50766)
+
+[node name="palm-tree10" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.998824, 0.0484837, 0, -0.0484837, 0.998824, 0, 0, 0, 1, 25.8268, 0.889387, -0.482526)
+
+[node name="palm-tree15" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99335, 0, -12.9996)
+
+[node name="palm-tree11" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 0.379522, -0.55842, -6.67572)
+
+[node name="palm-tree12" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08358, 0.007433, -13.3233)
+
+[node name="palm-tree13" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34464, 0.058314, -7.61376)
+
+[node name="palm-tree14" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37431, 0.488944, 2.5015)
+
+[node name="palm-tree16" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.537252, 0, -1.16325, 0, 1.28133, 0, 1.16325, 0, 0.537252, -7.69798, 0.224334, -11.2069)
+
+[node name="palm-tree17" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45245, 1.81929, -13.1708)
+
+[node name="palm-tree18" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 2.87114, -7.31752)
+
+[node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
+builder_gems = 100
+metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pybf5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="CameraPivot" parent="." instance=ExtResource("5_p0xbc")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60.4816)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
+shape = SubResource("BoxShape3D_2fgoe")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.6624)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
+shape = SubResource("BoxShape3D_2fgoe")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.901, 0, 15.5465)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
+shape = SubResource("BoxShape3D_2fgoe")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -68.6265, 0, 15.5465)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
+shape = SubResource("BoxShape3D_2fgoe")

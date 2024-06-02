@@ -29,7 +29,7 @@ var my_tower : BaseTower = null
 var my_riding_monster : BaseMonster = null
 
 func _initialize_label():
-	$Label.text = str(player_num) + "p"
+	$Label.text = InputUtil.get_player_name(player_num)
 	var font_resource = $Label.label_settings.font
 	$Label.label_settings = LabelSettings.new()
 	$Label.label_settings.font = font_resource
