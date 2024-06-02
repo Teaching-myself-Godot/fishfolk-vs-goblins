@@ -31,6 +31,15 @@ func _process(_delta):
 		drag_start_x = get_viewport().get_mouse_position().x
 	
 	if Input.is_action_pressed("mousewheel_click"):
-		var delta = drag_start_x - get_viewport().get_mouse_position().x
-		drag_start_x = get_viewport().get_mouse_position().x
+		var mouse_pos = get_viewport().get_mouse_position()
+		var delta = drag_start_x - mouse_pos.x
+		drag_start_x = mouse_pos.x
 		rotate(Vector3.UP, delta / get_viewport().size.x)
+
+		var viewport_right = get_viewport().size.x - 5
+		if mouse_pos.x < 5:
+			Input.warp_mouse(Vector2(viewport_right, mouse_pos.y))
+			drag_start_x = viewport_right
+		elif mouse_pos.x > viewport_right + 1:
+			Input.warp_mouse(Vector2(5, mouse_pos.y))
+			drag_start_x = 5
