@@ -105,7 +105,7 @@
 - [x] Make it possible to switch between stages (select in title screen)
 - [x] Use a stage in the StageHolder as a nice background for the title screen
 - [x] Add a title screen, which detects controller device via start button
-- [ ] Add some MonsterSpawners with a couple of infinite waves to both scenes
+- [x] Add some MonsterSpawners with a couple of infinite waves to both scenes
 
 ## Milestone 13  - Stage Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
