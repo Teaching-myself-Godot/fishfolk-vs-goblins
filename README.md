@@ -91,6 +91,7 @@
 - [x] Add Spawner with MonsterPath and Timed Wave scenes
 - [x] Add Wave scenes with child PackedScene resource as monster type to be released using timer
 - [x] Create a second stage which can be run with the `debug.gd` script
+- [x] create true level terrain, with water for the fish-folk to crawl out of
 
 ## Milestone 11 - Surfing
 - [x] Make goblin piggyback on turtle 
@@ -98,18 +99,20 @@
 - [x] Make goblin surf on flying fish
 
 ## Milestone 12 - Stage select
+- [ ] Make a main game scene which handles the title screen and menus
 - [ ] Extract a reusable stage scene, consisting of terrain, trees, paths etc
-- [ ] Make a main game scene which handles the HUD and pause menu
+- [ ] Make a StageHolder node with WorldEnvironment, Camera and Light
+- [ ] Use a stage in the StageHolder as a nice background for the title screen and menus
+- [ ] Add a title screen, which detects controller device via start button
 - [ ] Add a stage select menu
-- [ ] Make lose condition and win condition for stage
 
-## Milestone 13  - Expansion
+## Milestone 13  - Stage Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
 - [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
 - [ ] make the baby goblin and the attacking monster disappear
 - [ ] make a baby goblin counter
-- [ ] create true level terrain, with water for the fish-folk to crawl out of
+- [ ] Make lose condition and win condition for stage
 
 
 ## Looking forward - Damage types and upgrades

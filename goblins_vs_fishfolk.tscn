@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://vmvsjailhjjs"]
+
+[ext_resource type="Script" path="res://scripts/goblins_vs_fishfolk.gd" id="1_yg1jx"]
+[ext_resource type="PackedScene" uid="uid://dhw0txm3hlokt" path="res://scenes_2d/main_menus/title_screen.tscn" id="2_6h760"]
+
+[node name="GoblinsVsFishfolk" type="Node"]
+script = ExtResource("1_yg1jx")
+
+[node name="TitleScreen" parent="." instance=ExtResource("2_6h760")]
+
+[connection signal="close_title_screen" from="TitleScreen" to="." method="_on_title_screen_close_title_screen"]

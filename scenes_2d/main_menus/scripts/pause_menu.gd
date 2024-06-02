@@ -1,15 +1,6 @@
 class_name PauseMenu
 extends Sprite2D
 
-func _is_just_released(basename : String):
-	return (
-		Input.is_action_just_released(basename + "-k")
-			or Input.is_action_just_released(basename + "-0")
-			or Input.is_action_just_released(basename + "-1")
-			or Input.is_action_just_released(basename + "-2")
-			or Input.is_action_just_released(basename + "-3")
-	)
-
 
 func _toggle_fullscreen():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -19,10 +10,9 @@ func _toggle_fullscreen():
 
 
 func _unhandled_input(_event):
-	if _is_just_released("cancel"):
+	if InputUtil.is_just_released("cancel"):
 		_close_pause_menu()
-
-	if _is_just_released("confirm") or Input.is_action_just_released("jump-k"):
+	if InputUtil.is_just_released("confirm") or Input.is_action_just_released("jump-k"):
 		if $Continue.has_focus():
 			_close_pause_menu()
 		elif $ToggleFullscreen.has_focus():
