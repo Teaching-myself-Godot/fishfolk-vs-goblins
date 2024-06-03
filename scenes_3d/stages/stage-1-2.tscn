@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=19 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_fae0n"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="9_4xu15"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="10_npwai"]
 [ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="11_b3lam"]
+[ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_i0bmu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u800l"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -209,3 +210,21 @@ Monster = ExtResource("11_b3lam")
 monster_speed = 1.985
 monster_hp = 5
 infinite_wave = true
+
+[node name="crib" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.322745, 0, -0.946486, 0, 1, 0, 0.946486, 0, -0.322745, 26.3671, 0.0818147, 6.56368)
+
+[node name="crib2" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.652323, 0, -0.757941, 0, 1, 0, 0.757941, 0, -0.652323, 29.2479, 0.0818146, 5.49388)
+
+[node name="crib3" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(0.837204, 0, -0.546891, 0, 1, 0, 0.546891, 0, 0.837204, 26.4257, 0.0818149, 4.11102)
+
+[node name="crib4" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.992304, 0, -0.123827, 0, 1, 0, 0.123827, 0, -0.992304, 26.3173, 0.0818144, 10.4832)
+
+[node name="crib5" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.966935, 0, 0.255024, 0, 1, 0, -0.255024, 0, -0.966935, 28.5395, 0.0818143, 12.6056)
+
+[node name="crib6" parent="." instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.125541, 0, -0.992089, 0, 1, 0, 0.992089, 0, -0.125541, 28.5484, 0.0818145, 9.46287)

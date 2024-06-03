@@ -107,13 +107,15 @@
 - [x] Add a title screen, which detects controller device via start button
 - [x] Add some MonsterSpawners with a couple of infinite waves to both scenes
 
-## Milestone 13  - Stage Expansion
+## Milestone 13 - Stage Expansion
 - [ ] create a cute goblin village (model a small house, 3 of which makes a village)
-- [ ] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
+- [x] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [ ] make an attack animation when reaching the goal
-- [ ] make the baby goblin and the attacking monster disappear
+- [ ] make the baby goblin and the attacking monster disappear in a cloud of dust
 - [ ] make a baby goblin counter
-- [ ] Make lose condition and win condition for stage
+- [ ] Make lose condition -> all goblins gone
+- [ ] Make condition for stage (all waves passed)
+- [ ] Infinite wave mode has no win condition, but a time score
 - [ ] Implement a MonsterWaveTimer in the HUD, which starts waves and indicates duration until next wave
 
 
