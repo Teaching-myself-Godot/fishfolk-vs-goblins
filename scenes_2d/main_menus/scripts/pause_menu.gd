@@ -1,6 +1,9 @@
 class_name PauseMenu
 extends Sprite2D
 
+signal restart_stage()
+signal open_stage_select()
+
 
 func _toggle_fullscreen():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
@@ -10,10 +13,18 @@ func _toggle_fullscreen():
 
 
 func _unhandled_input(_event):
+	if not visible:
+		return
+
 	if InputUtil.is_just_released("cancel"):
 		_close_pause_menu()
 	if InputUtil.is_just_released("confirm") or Input.is_action_just_released("jump-k"):
 		if $Continue.has_focus():
+			_close_pause_menu()
+		elif $StageSelect.has_focus():
+			open_stage_select.emit()
+		elif $Restart.has_focus():
+			restart_stage.emit()
 			_close_pause_menu()
 		elif $ToggleFullscreen.has_focus():
 			_toggle_fullscreen()

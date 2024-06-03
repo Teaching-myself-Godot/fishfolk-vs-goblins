@@ -9,17 +9,19 @@ func _ready():
 	_on_resize()
 
 func _unhandled_input(_event):
+	if not visible:
+		return
+
 	var c_id = InputUtil.get_just_released_id("start")
 	if not c_id == InputUtil.ControllerID.NONE:
 		InputUtil.player_map[c_id] = 1
 		close_title_screen.emit()
 
-	if Input.is_action_just_released("ui_focus_next"):
+	if Input.is_action_just_released("tab"):
 		toggle_stage_select_test.emit()
 
 	if InputUtil.is_just_released("quit"):
-		toggle_stage_select_test.emit()
-
+		get_tree().quit()
 
 
 func _on_resize():

@@ -10,6 +10,7 @@ var landscape_colorations = []
 func clear():
 	range_rings = []
 	landscape_colorations = []
+	range_rings_changed.emit()
 
 
 func add_range_ring(rr : RangeRing):

@@ -32,13 +32,36 @@ text = "Pause Menu"
 label_settings = SubResource("LabelSettings_y3ijt")
 horizontal_alignment = 1
 
+[node name="StageSelect" parent="." instance=ExtResource("3_j4pg8")]
+offset_left = -247.0
+offset_top = -145.0
+offset_right = 249.0
+offset_bottom = -113.0
+focus_neighbor_bottom = NodePath("../Restart")
+focus_next = NodePath("../Restart")
+text = "Title Screen"
+
+[node name="Restart" parent="." instance=ExtResource("3_j4pg8")]
+offset_left = -247.0
+offset_top = -97.0
+offset_right = 249.0
+offset_bottom = -65.0
+focus_neighbor_top = NodePath("../StageSelect")
+focus_neighbor_bottom = NodePath("../Continue")
+focus_next = NodePath("../Continue")
+focus_previous = NodePath("../StageSelect")
+text = "Restart Stage
+"
+
 [node name="Continue" parent="." instance=ExtResource("3_j4pg8")]
 offset_left = -247.0
 offset_top = -49.0
 offset_right = 249.0
 offset_bottom = -17.0
+focus_neighbor_top = NodePath("../Restart")
 focus_neighbor_bottom = NodePath("../ToggleFullscreen")
 focus_next = NodePath("../ToggleFullscreen")
+focus_previous = NodePath("../Restart")
 
 [node name="ToggleFullscreen" parent="." instance=ExtResource("3_j4pg8")]
 offset_left = -246.0

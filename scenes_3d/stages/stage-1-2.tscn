@@ -137,7 +137,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
 shape = SubResource("BoxShape3D_2fgoe")
 
 [node name="MonsterTargetZone" parent="." instance=ExtResource("6_tr06p")]
-transform = Transform3D(2.8203, 0, 0, 0, 2.8203, 0, 0, 0, 2.8203, 29.515, 0, 9.28377)
+transform = Transform3D(4.57015, 0, 0, 0, 4.57015, 0, 0, 0, 4.57015, 27.6014, 0, 7.88393)
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("7_gfa2d")]
 
