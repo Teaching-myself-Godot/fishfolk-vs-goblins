@@ -2,6 +2,7 @@ class_name Stage
 extends Node
 
 signal open_pause_menu()
+signal gameover()
 
 const FRAME_CNT_MAX = 3
 var frame_cnt = 0
@@ -24,8 +25,12 @@ var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_fl
 var gem_pouch : GemPouch 
 var goblin_map = {}
 
+var enable_pause_menu_delay = 10
+
 
 func _handle_pause_menu_open():
+	if enable_pause_menu_delay > 0:
+		return
 	open_pause_menu.emit()
 
 
@@ -127,8 +132,6 @@ func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 	add_child.call_deferred(cannon_ball)
 
 
-
-
 func _on_missile_spawn_explosion(pos : Vector3):
 	var explosion = ExplosionScene.instantiate()
 	explosion.duration = 0.25
@@ -175,6 +178,12 @@ func _on_spawn_dust_particle(pos : Vector3):
 	)
 
 
+func _on_monster_reached_crib(crib : Crib):
+	if is_instance_valid(crib):
+		_on_spawn_dust_particle(crib.position)
+		crib.queue_free()
+
+
 func _on_drop_builder_gem(pos : Vector3):
 	var new_gem : BuilderGem  = BuilderGemScene.instantiate()
 	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)
@@ -205,15 +214,21 @@ func _spawn_monster(path : Path3D, monster : BaseMonster):
 	monster.drop_magical_crystal.connect(_on_drop_magical_crystal)
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)
 	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
+	monster.kill_your_darling.connect(_on_monster_reached_crib)
 	monster.my_frame_cycle = assigned_frame
 	assigned_frame = assigned_frame + 1 if assigned_frame < FRAME_CNT_MAX else 0
 	add_child.call_deferred(monster)
 
 
 func _physics_process(delta):
+	enable_pause_menu_delay -= 1 if enable_pause_menu_delay > 0 else 0
+
 	frame_cnt = frame_cnt + 1 if frame_cnt < FRAME_CNT_MAX else 0
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
 		monster.handle_update(delta, frame_cnt)
+
+	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
+		gameover.emit()
 
 
 func _ready():
@@ -225,3 +240,4 @@ func _ready():
 
 	for cid in InputUtil.player_map:
 		_add_goblin_to_scene(cid)
+		break

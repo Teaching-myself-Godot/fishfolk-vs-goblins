@@ -107,22 +107,36 @@
 - [x] Add a title screen, which detects controller device via start button
 - [x] Add some MonsterSpawners with a couple of infinite waves to both scenes
 
-## Milestone 13 - Stage Expansion
-- [ ] create a cute goblin village (model a small house, 3 of which makes a village)
+## Milestone 13 - Game over
 - [x] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
-- [ ] make an attack animation when reaching the goal
-- [ ] make the baby goblin and the attacking monster disappear in a cloud of dust
-- [ ] make a baby goblin counter
-- [ ] Make lose condition -> all goblins gone
-- [ ] Make condition for stage (all waves passed)
-- [ ] Infinite wave mode has no win condition, but a time score
+- [x] make an attack animation when reaching the goal
+- [x] make the baby goblin and the attacking monster disappear in a cloud of dust
+- [x] Make lose condition -> all goblin babies gone
+- [x] Show gameover splash
+- [ ] show a baby goblin counter
+
+
+## Next Milestones
+
+- [ ] improve handling of start/pause buttons
+- [ ] Turn title screen into a stage select menu
+- [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
+
 - [ ] Implement a MonsterWaveTimer in the HUD, which starts waves and indicates duration until next wave
+- [ ] Make win condition for stage (all waves passed)
+- [ ] Make camera look behind player more when zoomed in
+- [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
 
+## Release
 
-## Looking forward - Damage types and upgrades
-- [ ] Add a stage select menu
+- [ ] Soft Launch to itch.io
+- [ ] Open source on github?
+- [ ] Short screen recording as promo on youtube
+- [ ] Short tutorial on making your own stage
+
+## Mweh
 - [ ] add blunt (=area) and piercing damage types
 - [ ] add elemental damage maybe?
 - [ ] make turtle very insensitive to pierce and extra sensitive to blunt
 - [ ] let flying fish and fish chibi remain equally sensitive to both damage types
-- [ ] new upgrade system using 'skill'-trees
+- [ ] create a cute goblin village (model a small house, 3 of which makes a village)

@@ -8,10 +8,14 @@ var speed : float = 0.0
 var hp : int = 10
 var gems : int = 1
 var drop_crystal : bool = false
+var attacking : bool = false
+var attack_target : Vector3 = Vector3.ZERO
+var crib_under_attack : Crib
 
 signal drop_magical_crystal(pos : Vector3)
 signal drop_builder_gem(pos : Vector3)
 signal spawn_dust_particles(pos : Vector3)
+signal kill_your_darling(crib : Crib)
 
 var my_frame_cycle : int = 0
 var limit_frames : bool = false
@@ -26,6 +30,11 @@ func _apply_damage_motion(_from_direction : Vector3, _force : float = 1.0):
 func handle_update(delta, frame):
 	if frame == my_frame_cycle or not limit_frames:
 		_apply_motion(delta)
+	
+	if attacking and position.distance_to(attack_target) < 1.0:
+		kill_your_darling.emit(crib_under_attack)
+		queue_free()
+
 	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
 	position += velocity * delta
 
@@ -62,4 +71,14 @@ func _drop_gem():
 
 	if drop_crystal:
 		drop_magical_crystal.emit(position)
+
+func attack(crib : Crib):
+	if is_instance_valid(crib):
+		attacking = true
+		attack_target = crib.position
+		crib_under_attack = crib
+		speed *= 4
+	else:
+		# player must be game over, no more cribs to attack
+		queue_free()
 

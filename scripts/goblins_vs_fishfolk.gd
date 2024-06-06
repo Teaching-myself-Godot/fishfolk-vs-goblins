@@ -20,6 +20,7 @@ func _select_stage(stage : PackedScene):
 	current_stage_scene = stage
 	current_stage = stage.instantiate()
 	current_stage.open_pause_menu.connect(_pause_game)
+	current_stage.gameover.connect(_on_gameover)
 	$StageHolder.add_child(current_stage)
 
 
@@ -28,6 +29,11 @@ func _pause_game():
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	$PauseMenu.open_menu()
+
+
+func _on_gameover():
+	get_tree().paused = true
+	$GameOverSplash.show()
 
 
 func _continue_game():
@@ -58,6 +64,16 @@ func _on_title_screen_toggle_stage_select_test():
 func _on_pause_menu_open_stage_select():
 	get_tree().paused = true
 	$PauseMenu.hide()
+	_select_stage(Stage1_1)
+	toggle_stage_test = false
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
+
+	$TitleScreen.show()
+
+
+func _on_game_over_splash_close_gameover_splash():
+	$GameOverSplash.hide()
 	_select_stage(Stage1_1)
 	toggle_stage_test = false
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):

@@ -7,7 +7,10 @@ var is_on_floor = false
 
 
 func _apply_motion(delta):
-	var direction = position.direction_to(target.global_position)
+	var direction = (
+		position.direction_to(attack_target) if attacking else
+		position.direction_to(target.global_position)
+	)
 	if flying or $HPBar.hp <= 0:
 		velocity.y = lerp(velocity.y, -gravity, 0.1)
 		velocity.x = lerp(velocity.x, 0.0, 0.05)

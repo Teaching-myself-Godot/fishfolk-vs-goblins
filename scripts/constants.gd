@@ -10,6 +10,7 @@ const GROUP_NAME_MONSTERS_AIRBORNE = "airborne_monsters"
 const GROUP_NAME_MONSTERS_GROUNDED = "grounded_monsters"
 const GROUP_NAME_HUD_ITEM = "hud_items"
 const GROUP_NAME_MONSTER_COLLISION = "monster_collision"
+const GROUP_NAME_CRIBS = "cribs"
 
 const MONSTER_COLLISION_LAYER = 2
 

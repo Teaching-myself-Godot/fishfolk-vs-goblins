@@ -12,7 +12,10 @@ var bend_window_2 : Array[float] = [
 
 
 func _apply_motion(delta):
-	var direction = position.direction_to(target.global_position)
+	var direction = (
+		position.direction_to(attack_target) if attacking else
+		position.direction_to(target.global_position)
+	)
 	velocity.x = lerp(velocity.x, direction.x * speed, 0.25)
 	velocity.z = lerp(velocity.z, direction.z * speed, 0.25)
 

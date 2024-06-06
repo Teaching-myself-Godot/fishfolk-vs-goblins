@@ -7,7 +7,10 @@ var right_flipper_dust = true
 signal spawn_turtle_flipper_dust_particles(pos : Vector3)
 
 func _apply_motion(delta):
-	var direction = position.direction_to(target.global_position)
+	var direction = (
+		position.direction_to(attack_target) if attacking else
+		position.direction_to(target.global_position)
+	)
 	if $HPBar.hp > 0:
 		if position.distance_to(target.global_position) < speed * 2:
 			target.progress += delta * speed

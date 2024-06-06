@@ -28,6 +28,9 @@ func _idle_rotate():
 			-0.1,
 			rotation_speed
 	)
+	if my_arrow and is_instance_valid(my_arrow):
+		my_arrow.rotation.y = $Wheel.rotation.y
+		my_arrow.rotation.z = $"Wheel/Wheel_001/Axle".rotation.z
 
 func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 	var wheel_angle = (

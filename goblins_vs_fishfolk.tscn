@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://vmvsjailhjjs"]
+[gd_scene load_steps=5 format=3 uid="uid://vmvsjailhjjs"]
 
 [ext_resource type="Script" path="res://scripts/goblins_vs_fishfolk.gd" id="1_yg1jx"]
 [ext_resource type="PackedScene" uid="uid://dhw0txm3hlokt" path="res://scenes_2d/main_menus/title_screen.tscn" id="2_6h760"]
+[ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="2_y6vnr"]
 [ext_resource type="PackedScene" uid="uid://vnxpe45dqhh" path="res://scenes_2d/main_menus/pause_menu.tscn" id="3_dubeo"]
 
 [node name="GoblinsVsFishfolk" type="Node"]
@@ -9,12 +10,16 @@ script = ExtResource("1_yg1jx")
 
 [node name="StageHolder" type="Node" parent="."]
 
+[node name="GameOverSplash" parent="." instance=ExtResource("2_y6vnr")]
+visible = false
+
 [node name="PauseMenu" parent="." instance=ExtResource("3_dubeo")]
 process_mode = 2
 visible = false
 
 [node name="TitleScreen" parent="." instance=ExtResource("2_6h760")]
 
+[connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="open_stage_select" from="PauseMenu" to="." method="_on_pause_menu_open_stage_select"]
 [connection signal="restart_stage" from="PauseMenu" to="." method="_on_pause_menu_restart_stage"]
 [connection signal="close_title_screen" from="TitleScreen" to="." method="_on_title_screen_close_title_screen"]
