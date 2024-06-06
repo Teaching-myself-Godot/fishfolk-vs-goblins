@@ -237,7 +237,3 @@ func _ready():
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
 		spawner.start_wave(1)
-
-	for cid in InputUtil.player_map:
-		_add_goblin_to_scene(cid)
-		break

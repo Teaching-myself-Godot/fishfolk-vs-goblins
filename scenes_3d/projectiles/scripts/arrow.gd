@@ -7,10 +7,13 @@ var owned_by_player : int = -1
 var fired   : bool = false
 var damage  : int = 5
 var target : BaseMonster = null
+var doing_damage : bool = false
 
 func _physics_process(delta):
 	if fired:
 		position += global_transform.basis.x.normalized() * delta * SPEED
+		if is_instance_valid(target) and position.distance_to(target.position) < 0.5:
+			_do_damage()
 
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("Arrow dissapears, cus totally out of map")
@@ -27,7 +30,11 @@ func _on_body_entered(body : Node3D):
 
 
 func _do_damage():
+	if doing_damage:
+		return
+
 	if fired and target and is_instance_valid(target):
+		doing_damage = true
 		target.take_damage(damage, global_transform.basis.x.normalized())
 		$Cylinder.hide()
 		fired = false

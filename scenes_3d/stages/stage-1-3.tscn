@@ -51,6 +51,7 @@ shadow_enabled = true
 
 [node name="MyCamera" parent="CameraPivot" index="0"]
 transform = Transform3D(1, 0, 0, 0, -8.9407e-08, 1, 0, -1, -8.9407e-08, 1, 0, 0)
+current = false
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("5_dr542")]
 
@@ -233,5 +234,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55805, 3.14977, -49.9974)
 
 [node name="crib10" parent="." instance=ExtResource("12_w1b8s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2682, 3.45135, -50.7883)
+
+[node name="PreviewCam" type="Camera3D" parent="."]
+transform = Transform3D(-0.99988, 0, -0.015498, 0, 1, 0, 0.015498, 0, -0.99988, 3.21029, 9.09682, -60.3998)
+current = true
 
 [editable path="CameraPivot"]

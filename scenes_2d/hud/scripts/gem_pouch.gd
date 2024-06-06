@@ -20,6 +20,8 @@ func _ready():
 	magical_crystal_count_label = $MagicalGems/Label
 	_update_labels()
 	liquidity_change.emit(builder_gems, magical_crystals)
+	get_tree().get_root().size_changed.connect(_on_resize)
+	_on_resize()
 
 
 func _update_labels():
@@ -44,6 +46,7 @@ func spend_gems(gems : int, crystals : int):
 	magical_crystals = 0 if magical_crystals < 0 else magical_crystals
 	liquidity_change.emit(builder_gems, magical_crystals)
 
+
 func _process(_delta):
 	var should_update = false
 	if builder_gems > builder_gems_showing:
@@ -62,7 +65,9 @@ func _process(_delta):
 
 	if should_update == true:
 		_update_labels()
-	
+
+
+func _on_resize():
 	if position.y != get_viewport().size.y:
 		position.y = get_viewport().size.y
 

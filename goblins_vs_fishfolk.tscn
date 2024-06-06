@@ -23,4 +23,5 @@ visible = false
 [connection signal="open_stage_select" from="PauseMenu" to="." method="_on_pause_menu_open_stage_select"]
 [connection signal="restart_stage" from="PauseMenu" to="." method="_on_pause_menu_restart_stage"]
 [connection signal="close_title_screen" from="TitleScreen" to="." method="_on_title_screen_close_title_screen"]
-[connection signal="toggle_stage_select_test" from="TitleScreen" to="." method="_on_title_screen_toggle_stage_select_test"]
+[connection signal="select_next_stage" from="TitleScreen" to="." method="_on_title_screen_select_next_stage"]
+[connection signal="select_previous_stage" from="TitleScreen" to="." method="_on_title_screen_select_previous_stage"]

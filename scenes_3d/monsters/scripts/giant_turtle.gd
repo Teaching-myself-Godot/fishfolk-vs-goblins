@@ -20,9 +20,6 @@ func _apply_motion(delta):
 			velocity.y = lerp(velocity.y, direction.y * speed, 0.1)
 		else:
 			velocity.y -= delta * gravity * 3
-		var target_z_angle = abs(atan2(direction.x, direction.y)) + 1.6 * PI
-		target_z_angle = rotation.z if abs(target_z_angle)  < 6.0 else target_z_angle
-		rotation.z = lerp_angle(rotation.z, target_z_angle, 0.1) 
 		rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z) + 0.5 * PI, 0.05) 
 	else:
 		velocity = Vector3(0.0, velocity.y, 0.0)

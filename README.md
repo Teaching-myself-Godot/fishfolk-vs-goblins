@@ -116,6 +116,12 @@
 - [ ] show a baby goblin counter
 
 
+## Milestone 14 - UI controls
+- [ ] fix game joining / keep better track of controllers input in one singleton
+- [ ] add an (optional) goblin spawn pos to the stage
+- [ ] make all menus use controls, so when paused no buggy stuff
+- [ ] give the game over spash screen a working delay
+
 ## Next Milestones
 
 - [ ] improve handling of start/pause buttons
