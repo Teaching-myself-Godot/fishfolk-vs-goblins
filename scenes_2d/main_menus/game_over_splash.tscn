@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://iiyr6brupo2b"]
+
+[ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/game_over_splash.gd" id="1_c5osj"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_0monw"]
+
+[sub_resource type="Gradient" id="Gradient_n5eq8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdc3l"]
+gradient = SubResource("Gradient_n5eq8")
+width = 1152
+height = 648
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahbcu"]
+font = ExtResource("3_0monw")
+font_size = 40
+
+[node name="GameOverSplash" type="Sprite2D"]
+process_mode = 2
+texture = SubResource("GradientTexture2D_gdc3l")
+centered = false
+script = ExtResource("1_c5osj")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "Game over
+- press any button to continue -"
+label_settings = SubResource("LabelSettings_ahbcu")
+horizontal_alignment = 1
+vertical_alignment = 1
