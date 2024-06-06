@@ -1,8 +1,8 @@
 class_name GoblinsVsFishfolk
 extends Node
 
-var Stage1_1 : PackedScene = preload("res://scenes_3d/stages/stage-1-1.tscn")
-var Stage1_2 : PackedScene = preload("res://scenes_3d/stages/stage-1-2.tscn")
+var Stage1_1 : PackedScene = preload("res://scenes_3d/stages/stage-1-3.tscn")
+var Stage1_2 : PackedScene = preload("res://scenes_3d/stages/stage-1-1.tscn")
 
 var current_stage_scene : PackedScene
 var current_stage : Stage

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bts8ph0eqjf8n"]
+[gd_scene load_steps=17 format=3 uid="uid://bts8ph0eqjf8n"]
 
 [ext_resource type="PackedScene" uid="uid://210ju06uls8u" path="res://scenes_3d/terrains/canyons.scn" id="1_3i35c"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_greq8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="9_awdqy"]
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_eedg3"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="11_jkg1t"]
+[ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_w1b8s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sehu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -199,5 +200,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2554, 14.3869, 59.8238)
 
 [node name="palm-tree22" parent="." instance=ExtResource("11_jkg1t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.4078, 16.0808, 53.1179)
+
+[node name="crib" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10927, 4.54031, -48.0325)
+
+[node name="crib2" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39097, 3.82444, -47.7018)
+
+[node name="crib3" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90998, 1.97965, -54.1611)
+
+[node name="crib4" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94727, 1.48766, -54.7838)
+
+[node name="crib5" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3371, 1.59362, -54.3415)
+
+[node name="crib6" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7951, 5.73077, -47.4934)
+
+[node name="crib7" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08002, 2.65776, -51.956)
+
+[node name="crib8" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.858, 5.28874, -45.7826)
+
+[node name="crib9" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55805, 3.12809, -49.9974)
+
+[node name="crib10" parent="." instance=ExtResource("12_w1b8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2682, 3.33374, -50.7883)
 
 [editable path="CameraPivot"]

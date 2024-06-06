@@ -126,6 +126,7 @@
 - [ ] Make win condition for stage (all waves passed)
 - [ ] Make camera look behind player more when zoomed in
 - [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
+- [ ] add dismantle option to tower menu
 
 ## Release
 
@@ -133,8 +134,10 @@
 - [ ] Open source on github?
 - [ ] Short screen recording as promo on youtube
 - [ ] Short tutorial on making your own stage
+ 
 
 ## Mweh
+- [ ] build staircases?
 - [ ] add blunt (=area) and piercing damage types
 - [ ] add elemental damage maybe?
 - [ ] make turtle very insensitive to pierce and extra sensitive to blunt
