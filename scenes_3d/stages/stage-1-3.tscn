@@ -1,0 +1,203 @@
+[gd_scene load_steps=16 format=3 uid="uid://bts8ph0eqjf8n"]
+
+[ext_resource type="PackedScene" uid="uid://210ju06uls8u" path="res://scenes_3d/terrains/canyons.scn" id="1_3i35c"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_greq8"]
+[ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="2_frsg3"]
+[ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="3_gpyhy"]
+[ext_resource type="PackedScene" uid="uid://bsmsv2m50sjob" path="res://scenes_3d/monster_spawner/monster_spawner.tscn" id="5_dr542"]
+[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="6_oai8k"]
+[ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="7_hvop7"]
+[ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="8_4ed8c"]
+[ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="9_awdqy"]
+[ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_eedg3"]
+[ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="11_jkg1t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sehu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ylqb4"]
+sky_material = SubResource("ProceduralSkyMaterial_0sehu")
+
+[sub_resource type="Environment" id="Environment_xbqbc"]
+background_mode = 2
+sky = SubResource("Sky_ylqb4")
+tonemap_mode = 2
+
+[sub_resource type="Curve3D" id="Curve3D_c4uko"]
+resource_local_to_scene = true
+
+[node name="Stage-1-3" type="Node3D"]
+script = ExtResource("1_greq8")
+
+[node name="canyons" parent="." instance=ExtResource("1_3i35c")]
+transform = Transform3D(0.938191, 0, -0.346117, 0, 1, 0, 0.346117, 0, 0.938191, -31.286, 0, -2.28033)
+
+[node name="GemPouch" parent="." instance=ExtResource("2_frsg3")]
+builder_gems = 350
+magical_crystals = 3
+metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xbqbc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="CameraPivot" parent="." instance=ExtResource("3_gpyhy")]
+
+[node name="MyCamera" parent="CameraPivot" index="0"]
+transform = Transform3D(1, 0, 0, 0, -8.9407e-08, 1, 0, -1, -8.9407e-08, 1, 0, 0)
+
+[node name="MonsterSpawner" parent="." instance=ExtResource("5_dr542")]
+
+[node name="MonsterPath" parent="MonsterSpawner" instance=ExtResource("6_oai8k")]
+curve = SubResource("Curve3D_c4uko")
+
+[node name="Anchor" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -60.1426, 2.10295, 81.0464)
+
+[node name="Anchor2" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -51.1207, 11.41, 59.8646)
+
+[node name="Anchor3" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -45.938, 15.2208, 55.4168)
+
+[node name="Anchor4" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -45.4662, 11.321, 37.7229)
+
+[node name="Anchor5" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -35.4989, 9.54729, 22.4055)
+
+[node name="Anchor6" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -20.5016, 8.3194, 24.3672)
+
+[node name="Anchor7" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -9.34247, 3.81655, 15.8906)
+
+[node name="Anchor8" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -12.0369, 6.09582, -6.10109)
+
+[node name="Anchor9" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.75012, 5.05288, -33.5598)
+
+[node name="Anchor11" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.61065, 5.82609, -43.0096)
+
+[node name="Anchor10" parent="MonsterSpawner/MonsterPath" instance=ExtResource("7_hvop7")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 6.49968, 5.13303, -48.7349)
+
+[node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("8_4ed8c")]
+wait_time = 3.0
+Monster = ExtResource("9_awdqy")
+monster_speed = 2.0
+infinite_wave = true
+
+[node name="MonsterTargetZone" parent="." instance=ExtResource("10_eedg3")]
+transform = Transform3D(3.71452, 0, 0, 0, 3.71452, 0, 0, 0, 3.71452, 6.99971, 3.2458, -48.7446)
+
+[node name="palm-tree" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36551, 1.9206, -60.4722)
+
+[node name="palm-tree2" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3185, 2.16759, -53.3564)
+
+[node name="palm-tree3" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7412, 1.59918, -56.8341)
+
+[node name="palm-tree4" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3633, 8.92854, 70)
+
+[node name="palm-tree5" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.0549154, 0, 0.998491, 0, 1, 0, -0.998491, 0, -0.0549154, -50.1107, 3.31959, 75.6148)
+
+[node name="palm-tree6" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1436, 6.83192, 63.7363)
+
+[node name="palm-tree7" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.99961, 0, -0.0279215, 0, 1, 0, 0.0279215, 0, -0.99961, -79.7004, 2.95386, 61.4466)
+
+[node name="palm-tree8" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.0827734, 0, -0.996569, 0, 1, 0, 0.996569, 0, 0.0827734, -70.7395, 3.0481, 62.3483)
+
+[node name="palm-tree9" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.99961, 0, -0.0279215, 0, 1, 0, 0.0279215, 0, -0.99961, -65.7506, 2.76647, 67.3231)
+
+[node name="palm-tree10" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4032, 6.76194, 54.2878)
+
+[node name="palm-tree11" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.0549154, 0, 0.998491, 0, 1, 0, -0.998491, 0, -0.0549154, -89.3807, 5.75069, 52.6278)
+
+[node name="palm-tree12" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.1835, 7.83544, 48.0241)
+
+[node name="palm-tree13" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.99961, 0, -0.0279215, 0, 1, 0, 0.0279215, 0, -0.99961, -116.74, 3.99522, 45.7343)
+
+[node name="palm-tree14" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.0827734, 0, -0.996569, 0, 1, 0, 0.996569, 0, 0.0827734, -106.792, 7.76972, 42.95)
+
+[node name="palm-tree15" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.99961, 0, -0.0279215, 0, 1, 0, 0.0279215, 0, -0.99961, -106.215, 4.41985, 47.4201)
+
+[node name="palm-tree16" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.847659, 0, -0.530541, 0, 1, 0, 0.530541, 0, 0.847659, -60.707, 2.88434, 69.9465)
+
+[node name="palm-tree23" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.312766, 0, 0.94983, 0, 1, 0, -0.94983, 0, 0.312766, -3.90128, 4.76156, -8.16407)
+
+[node name="palm-tree24" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.965573, 0, 0.260134, 0, 1, 0, -0.260134, 0, -0.965573, -5.47636, 2.01234, 0.0600071)
+
+[node name="palm-tree25" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.312766, 0, 0.94983, 0, 1, 0, -0.94983, 0, 0.312766, -5.82308, 2.44765, 18.1324)
+
+[node name="palm-tree26" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.286123, 0, -0.958193, 0, 1, 0, 0.958193, 0, -0.286123, -28.6246, 7.24489, 19.02)
+
+[node name="palm-tree28" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.286123, 0, -0.958193, 0, 1, 0, 0.958193, 0, -0.286123, -18.2437, 2.81686, 12.3219)
+
+[node name="palm-tree29" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.312766, 0, 0.94983, 0, 1, 0, -0.94983, 0, 0.312766, -36.5137, 10.1009, 19.7598)
+
+[node name="palm-tree30" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.965573, 0, 0.260134, 0, 1, 0, -0.260134, 0, -0.965573, -45.8932, 10.5837, 24.7579)
+
+[node name="palm-tree31" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.312766, 0, 0.94983, 0, 1, 0, -0.94983, 0, 0.312766, -45.7801, 11.051, 34.2421)
+
+[node name="palm-tree32" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.286123, 0, -0.958193, 0, 1, 0, 0.958193, 0, -0.286123, -54.6972, 14.6414, 54.0013)
+
+[node name="palm-tree33" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.97246, 0, -0.233072, 0, 1, 0, 0.233072, 0, 0.97246, -54.2304, 17.2328, 43.6814)
+
+[node name="palm-tree34" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(-0.286123, 0, -0.958193, 0, 1, 0, 0.958193, 0, -0.286123, -49.8041, 13.8956, 44.5315)
+
+[node name="palm-tree35" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.769043, 0, 0.639197, 0, 1, 0, -0.639197, 0, 0.769043, -14.1744, 3.3541, 8.35191)
+
+[node name="palm-tree17" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.885953, 0, 0.463775, 0, 1, 0, -0.463775, 0, 0.885953, -49.053, 7.19247, 69.0743)
+
+[node name="palm-tree18" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(0.423079, -0.182102, -0.433934, 0.0235208, 0.590971, -0.225071, 0.470008, 0.134346, 0.401871, -49.3644, 6.5731, 69.1806)
+
+[node name="palm-tree19" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3057, 9.17118, 63.8119)
+
+[node name="palm-tree20" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.4616, 11.7054, 57.4976)
+
+[node name="palm-tree21" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2554, 14.3869, 59.8238)
+
+[node name="palm-tree22" parent="." instance=ExtResource("11_jkg1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.4078, 16.0808, 53.1179)
+
+[editable path="CameraPivot"]
