@@ -13,25 +13,21 @@ height = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp2at"]
 line_spacing = 0.0
-font_color = Color(1, 1, 0, 1)
 
 [node name="debugbar" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-offset_left = 224.0
-offset_right = 224.0
 pivot_offset = Vector2(-224, 0)
 script = ExtResource("1_fufwi")
 
 [node name="overlay" type="Sprite2D" parent="."]
-position = Vector2(-224, 0)
 texture = SubResource("GradientTexture2D_q4ju7")
 centered = false
 
 [node name="debugtext" type="Label" parent="."]
 layout_mode = 0
-offset_left = -224.0
-offset_right = -194.0
-offset_bottom = 23.0
+offset_right = 30.0
+offset_bottom = 24.0
 text = "test	"
 label_settings = SubResource("LabelSettings_bp2at")

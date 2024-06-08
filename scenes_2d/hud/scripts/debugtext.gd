@@ -1,7 +1,12 @@
 extends Control
 
+func _ready():
+	get_tree().get_root().size_changed.connect(_on_resize)
+	_on_resize()
 
 func _process(_delta):
-	var monsters = get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS)
-	$debugtext.text = str(Engine.get_frames_per_second()) + " fps  - "  + str(monsters.size()) + " monsters - " + str(CameraUtil.get_cam().zoom) + " zoom"
+	$debugtext.text = str(InputUtil.input_map)
 
+func _on_resize():
+	$debugtext.size.x = get_viewport().size.x
+	$overlay.texture.width =  get_viewport().size.x

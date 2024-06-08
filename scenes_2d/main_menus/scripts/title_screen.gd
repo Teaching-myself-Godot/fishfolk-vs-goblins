@@ -21,8 +21,7 @@ func _unhandled_input(_event):
 
 	if (
 		InputUtil.is_just_released("quit") or
-		Input.is_action_just_released("d") or
-		Input.is_action_just_released("tab")
+		Input.is_action_just_released("d")
 	):
 		select_next_stage.emit()
 
