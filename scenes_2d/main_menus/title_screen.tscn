@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=11 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_ibf3y"]
+[ext_resource type="PackedScene" uid="uid://cf2ha5qruwm47" path="res://scenes_2d/main_menus/stage_select_option.tscn" id="4_kqyji"]
+[ext_resource type="PackedScene" uid="uid://d1ltd4sm1gwbt" path="res://scenes_3d/stages/stage-1-1.tscn" id="5_scabv"]
+[ext_resource type="PackedScene" uid="uid://doy7owgxttfij" path="res://scenes_3d/stages/stage-1-2.tscn" id="6_flai6"]
+[ext_resource type="PackedScene" uid="uid://bts8ph0eqjf8n" path="res://scenes_3d/stages/stage-1-3.tscn" id="7_eld54"]
 
 [sub_resource type="Gradient" id="Gradient_n5eq8"]
 offsets = PackedFloat32Array(0)
@@ -37,3 +41,48 @@ offset_bottom = 43.0
 text = "- Press Start -"
 label_settings = SubResource("LabelSettings_y1jkn")
 horizontal_alignment = 1
+
+[node name="StageSelectMenu" type="ScrollContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -180.0
+offset_right = 86.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu"]
+layout_mode = 2
+
+[node name="Stage 1-1" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stage 1-3")
+focus_neighbor_right = NodePath("../Stage 1-2")
+focus_next = NodePath("../Stage 1-2")
+focus_previous = NodePath("../Stage 1-3")
+my_stage = ExtResource("5_scabv")
+
+[node name="Stage 1-2" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stage 1-1")
+focus_neighbor_right = NodePath("../Stage 1-3")
+focus_next = NodePath("../Stage 1-3")
+focus_previous = NodePath("../Stage 1-1")
+text = "Stage 1-2"
+my_stage = ExtResource("6_flai6")
+
+[node name="Stage 1-3" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stage 1-2")
+focus_neighbor_right = NodePath("../Stage 1-1")
+focus_next = NodePath("../Stage 1-1")
+focus_previous = NodePath("../Stage 1-2")
+text = "Stage 1-3"
+my_stage = ExtResource("7_eld54")

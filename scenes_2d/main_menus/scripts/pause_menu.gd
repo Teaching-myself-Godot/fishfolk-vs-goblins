@@ -31,6 +31,7 @@ func _unhandled_input(_event):
 		elif $Quit.has_focus():
 			get_tree().quit()
 
+
 func _close_pause_menu():
 	get_tree().paused = false
 	hide()
