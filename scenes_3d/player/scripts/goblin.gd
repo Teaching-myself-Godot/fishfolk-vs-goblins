@@ -39,6 +39,8 @@ func _initialize_label():
 
 
 func _leave_game():
+	InputUtil.player_map.erase(player_num)
+	InputUtil.input_map.erase(player_num)
 	_unhighlight_my_huggables()
 	$TreeContextMenu.close_and_hide()
 	queue_free()

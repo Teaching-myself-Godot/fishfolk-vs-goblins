@@ -39,12 +39,12 @@ func _continue_game():
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
 
-	for cid in InputUtil.player_map:
-		current_stage._add_goblin_to_scene(cid)
-		break # FIXME: prevent goblins from spawning at same spot
+	var start_pos = Vector3(0, 4, 0)
+	for cid in InputUtil.input_map:
+		current_stage._add_goblin_to_scene(cid, start_pos)
+		start_pos.x += 2
 
-
-func _on_title_screen_close_title_screen():
+func _on_title_screen_confirm_stage():
 	$TitleScreen.hide()
 	_continue_game()
 

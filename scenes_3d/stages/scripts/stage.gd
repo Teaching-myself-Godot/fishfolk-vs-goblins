@@ -62,24 +62,26 @@ func _is_in_game(num : int):
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
 			return true
 		else: 
+			InputUtil.player_map.erase(num)
 			goblin_map.erase(num)
 	return false
 
 
-func _add_goblin_to_scene(num : int):
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 	if num not in InputUtil.player_map:
 		InputUtil.player_map[num] = InputUtil.player_map.size() + 1
 
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
 	new_goblin.player_num = num
-	new_goblin.position = Vector3(0, 4, 0)
+	new_goblin.position = start_pos
 
-	var goblin = get_tree().get_first_node_in_group(Constants.GROUP_NAME_GOBLINS)
-	if goblin and is_instance_valid(goblin):
-		new_goblin.position.x = goblin.position.x + (-2 + randf() * 4)
-		new_goblin.position.z = goblin.position.z + (-2 + randf() * 4)
-		new_goblin.position.y = goblin.position.y + 4
+	var goblin_already_in_stage = get_tree().get_first_node_in_group(Constants.GROUP_NAME_GOBLINS)
+	if is_instance_valid(goblin_already_in_stage):
+		new_goblin.position.x = goblin_already_in_stage.position.x + (-2 + randf() * 4)
+		new_goblin.position.z = goblin_already_in_stage.position.z + (-2 + randf() * 4)
+		new_goblin.position.y = goblin_already_in_stage.position.y + 4
+
 	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
 	new_goblin.build_cannon_tower.connect(_on_goblin_build_cannon_tower)
 	new_goblin.build_anti_air_tower.connect(_on_goblin_build_anti_air_tower)
