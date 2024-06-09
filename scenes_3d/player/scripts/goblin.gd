@@ -100,6 +100,7 @@ func _pressed_valid_confirm_for_a_context_menu() -> bool:
 func _pressed_confirm_in_tree_context_menu() -> bool:
 	return _pressed_valid_confirm_for_a_context_menu() and my_tree and $TreeContextMenu.is_open
 
+
 func _handle_context_menu_confirm():
 	# if a valid final choice is made (select_targeted_option returns non-empy string)
 	# then apply the choice (like: build a tower from the TreeContextMenu)
@@ -162,6 +163,7 @@ func _handle_context_menus():
 		else:
 			$TreeContextMenu.close_submenu()
 
+
 func _get_closest_huggable(group_name : String) -> Node3D:
 	var closest_huggable = null
 
@@ -172,6 +174,7 @@ func _get_closest_huggable(group_name : String) -> Node3D:
 				closest_huggable = candidate
 
 	return closest_huggable
+
 
 func _unhighlight_my_huggables():
 	# unhighlight my tree
@@ -228,7 +231,6 @@ func _handle_running(force : float, direction : Vector3):
 		velocity.z = direction.z * speed
 		$Armature.rotation.y = atan2(velocity.x, velocity.z)
 	else:
-
 		if is_instance_valid(my_riding_monster):
 			if position.distance_to(my_riding_monster.position) > 0.5:
 				direction = position.direction_to(my_riding_monster.position).normalized()
@@ -242,6 +244,7 @@ func _handle_running(force : float, direction : Vector3):
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.z = move_toward(velocity.z, 0, speed)
+
 
 func _handle_falling(delta : float):
 	if is_on_floor():
@@ -287,9 +290,9 @@ func _ready():
 func _process(_delta):
 	_hug_closest_tree_or_tower()
 	_handle_context_menus()
-
 	if _my_button_just_released("quit"):
 		_leave_game()
+
 
 func _physics_process(delta):
 	var input_dir = _get_input_vector()
