@@ -24,9 +24,9 @@ visible = false
 
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="PauseMenu/StageSelect" to="." method="_on_pause_menu_open_stage_select"]
-[connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_pause_menu_restart_stage"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_pause_menu_restart_stage"]
+[connection signal="pressed" from="PauseMenu/StageSelect" to="." method="_on_pause_menu_open_stage_select"]
 [connection signal="pressed" from="PauseMenu/ToggleFullscreen" to="." method="_toggle_fullscreen"]
 [connection signal="pressed" from="PauseMenu/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_on_title_screen_confirm_stage"]

@@ -12,25 +12,12 @@ enum ControllerID {
 const ACTION_NAMES = [
 	"confirm",
 	"jump",
-	"cancel",
-	"start",
-	"quit"
+	"start"
 ]
-
-const SUPPORTED_CONTROLLERS = [
-	ControllerID.KEYBOARD,
-	ControllerID.GAMEPAD_1,
-	ControllerID.GAMEPAD_2,
-	ControllerID.GAMEPAD_3,
-	ControllerID.GAMEPAD_4
-]
-
-const MAX_RECORD_TIME = 200
 
 var player_map = {}
+var cids_registered = []
 
-var input_map = {
-}
 
 func get_player_name(cid : ControllerID):
 	if cid in player_map:
@@ -67,24 +54,9 @@ func get_pressed_ids(basename : String) -> Array:
 	return result
 
 
-func _process(_delta):
+func _unhandled_input(_event):
 	for action_name in ACTION_NAMES:
 		var pressed_ids = get_pressed_ids(action_name)
-		for cid in SUPPORTED_CONTROLLERS:
-			if cid in pressed_ids:
-				input_map[cid] = input_map[cid] if cid in input_map else {}
-				input_map[cid][action_name] = (
-					input_map[cid][action_name] if action_name in input_map[cid] else 0
-				)
-				if input_map[cid][action_name] < 0:
-					input_map[cid][action_name] = 0
-				input_map[cid][action_name] += (
-					1 if input_map[cid][action_name] < MAX_RECORD_TIME else 0
-				)
-			else:
-				if cid in input_map and action_name in input_map[cid]:
-					if input_map[cid][action_name] > 0:
-						input_map[cid][action_name] = 0
-					input_map[cid][action_name] -= (
-						1 if input_map[cid][action_name] > -MAX_RECORD_TIME else 0
-					)
+		for cid in pressed_ids:
+			if cid not in cids_registered:
+				cids_registered.append(cid)

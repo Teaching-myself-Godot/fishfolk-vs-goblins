@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=12 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
@@ -18,6 +18,10 @@ width = 1152
 height = 648
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1jkn"]
+font = ExtResource("3_ibf3y")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1h8v"]
 font = ExtResource("3_ibf3y")
 font_size = 24
 
@@ -41,6 +45,15 @@ offset_bottom = 43.0
 text = "- Press Start -"
 label_settings = SubResource("LabelSettings_y1jkn")
 horizontal_alignment = 1
+
+[node name="Prev" type="Label" parent="."]
+offset_left = 536.0
+offset_top = 144.0
+offset_right = 547.0
+offset_bottom = 179.0
+text = "<"
+label_settings = SubResource("LabelSettings_j1h8v")
+vertical_alignment = 1
 
 [node name="StageSelectMenu" type="ScrollContainer" parent="."]
 anchors_preset = 8
@@ -86,3 +99,12 @@ focus_next = NodePath("../Stage 1-1")
 focus_previous = NodePath("../Stage 1-2")
 text = "Stage 1-3"
 my_stage = ExtResource("7_eld54")
+
+[node name="Next" type="Label" parent="."]
+offset_left = 671.0
+offset_top = 144.0
+offset_right = 682.0
+offset_bottom = 179.0
+text = ">"
+label_settings = SubResource("LabelSettings_j1h8v")
+vertical_alignment = 1

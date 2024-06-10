@@ -47,7 +47,7 @@ func _start_stage():
 		hud_item.show()
 
 	var start_pos = Vector3(0, 4, 0)
-	for cid in InputUtil.input_map:
+	for cid in InputUtil.cids_registered:
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
 

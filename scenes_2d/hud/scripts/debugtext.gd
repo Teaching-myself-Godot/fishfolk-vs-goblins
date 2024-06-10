@@ -5,7 +5,7 @@ func _ready():
 	_on_resize()
 
 func _process(_delta):
-	$debugtext.text = str(InputUtil.input_map)
+	$debugtext.text = str(InputUtil.cids_registered)
 
 func _on_resize():
 	$debugtext.size.x = get_viewport().size.x
