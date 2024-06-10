@@ -44,17 +44,6 @@ func _initialize_label():
 	$Label.label_settings.font_color = LABEL_COLORS[player_num]
 
 
-func _leave_game():
-	if InputUtil.cids_registered.size() == 1:
-		return
-
-	InputUtil.player_map.erase(player_num)
-	InputUtil.cids_registered.erase(player_num)
-	_unhighlight_my_huggables()
-	$TreeContextMenu.close_and_hide()
-	queue_free()
-
-
 func _reposition_label():
 	$Label.position = CameraUtil.get_label_position(position, Vector3(0.5, 0, 0.1))
 
@@ -72,7 +61,7 @@ func _get_mouse_vector_to(pos : Vector2) -> Vector2:
 	return (get_viewport().get_mouse_position() - pos).normalized()
 
 
-# per user button just pressed detection 
+# per user button just pressed detection
 func _my_button_just_pressed(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_pressed(button_key + "-k"):
 		return true
@@ -82,7 +71,7 @@ func _my_button_just_pressed(button_key : String) -> bool:
 	return false
 
 
-# per user button release detection 
+# per user button release detection
 func _my_button_just_released(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_released(button_key + "-k"):
 		return true
@@ -102,7 +91,10 @@ func _should_jump() -> bool:
 
 func _pressed_valid_confirm_for_a_context_menu() -> bool:
 	var joy_confirmed = player_num > 0 and _my_button_just_pressed("confirm")
-	var mouse_confirmed = player_num == 0 and _my_button_just_released("confirm")
+	var mouse_confirmed = player_num == 0 and confirm_cooldown == 0 and  _my_button_just_released("confirm")
+
+	if mouse_confirmed:
+		confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 
 	return joy_confirmed or mouse_confirmed
 
@@ -132,7 +124,7 @@ func _handle_context_menu_confirm():
 func _handle_context_menu_arrow_input():
 	var input_dir = _get_input_vector()
 	var force = Vector2.ZERO.distance_to(input_dir)
-	
+
 	# handle mouse cursor input for arrow
 	if player_num == 0 and force == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		input_dir = _get_mouse_vector_to($TreeContextMenu.position)
@@ -306,9 +298,6 @@ func _process(_delta):
 	confirm_cooldown = confirm_cooldown - 1 if confirm_cooldown > 0 else 0
 	_hug_closest_tree_or_tower()
 	_handle_context_menus()
-
-	if _my_button_just_released("quit"):
-		_leave_game()
 
 	if _my_button_just_released("pause") and pause_cooldown == 0:
 		pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES

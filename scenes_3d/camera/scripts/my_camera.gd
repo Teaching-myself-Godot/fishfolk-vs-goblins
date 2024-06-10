@@ -44,19 +44,19 @@ func _process(_delta):
 		change_zoom(p4_axis, max_d)
 
 	if Input.is_action_just_pressed("mousewheel_up"):
-		change_zoom(-2.0, max_d)
+		change_zoom(-6.0, max_d)
 	elif Input.is_action_just_pressed("mousewheel_down"):
-		change_zoom(2.0, max_d)
+		change_zoom(6.0, max_d)
 
 	if Input.is_action_just_pressed("mousewheel_click"):
 		drag_start_y = get_viewport().get_mouse_position().y
 
 	if Input.is_action_pressed("mousewheel_click"):
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 		var mouse_pos = get_viewport().get_mouse_position()
 		var delta = mouse_pos.y - drag_start_y
 		drag_start_y = mouse_pos.y
 		change_zoom(delta * 0.1, max_d)
-
 		var viewport_bottom = get_viewport().size.y - 5
 		if mouse_pos.y < 5:
 			Input.warp_mouse(Vector2(mouse_pos.x, viewport_bottom))
@@ -64,6 +64,8 @@ func _process(_delta):
 		elif mouse_pos.y > viewport_bottom + 1:
 			Input.warp_mouse(Vector2(mouse_pos.x, 5))
 			drag_start_y = 5
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 	position.y = 9 + max_y + max(zoom, max_d)

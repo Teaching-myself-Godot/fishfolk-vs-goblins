@@ -11,7 +11,6 @@ enum ControllerID {
 
 const ACTION_NAMES = [
 	"confirm",
-	"jump",
 	"start"
 ]
 

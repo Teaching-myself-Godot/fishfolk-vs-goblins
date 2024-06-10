@@ -120,6 +120,8 @@
 - [x] fix game joining / keep better track of controllers input in one singleton
 - [x] make all menus use controls, so when paused no buggy stuff
 - [x] add an (optional) goblin spawn pos to the stage
+- [x] add cooldown times for confirm and pause actions for button overloading
+- [x] hide mouse cursor when middle mouse button is held
 - [ ] give the game over spash screen a working delay
 
 ## Next Milestones
@@ -143,6 +145,7 @@
  
 
 ## Mweh
+- [ ] add leave game option to pause menu?
 - [ ] build staircases?
 - [ ] add blunt (=area) and piercing damage types
 - [ ] add elemental damage maybe?

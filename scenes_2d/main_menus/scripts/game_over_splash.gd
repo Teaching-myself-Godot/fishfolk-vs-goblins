@@ -14,7 +14,7 @@ func _unhandled_input(_event):
 	if not visible:
 		return
 
-	if Input.is_anything_pressed():
+	if InputUtil.is_just_released("start") or InputUtil.is_just_released("confirm"):
 		close_gameover_splash.emit()
 
 

@@ -4,6 +4,7 @@ extends Node
 signal open_pause_menu()
 signal gameover()
 
+const MAX_MONSTERS = 80
 const FRAME_CNT_MAX = 3
 var frame_cnt = 0
 var assigned_frame = 0
@@ -191,8 +192,13 @@ func _on_drop_magical_crystal(pos : Vector3):
 	new_crystal.collect_magical_crystal.connect(gem_pouch.collect_magical_crystal)
 	add_child.call_deferred(new_crystal)
 
+func _count_monsters():
+	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
 
 func _spawn_monster(path : Path3D, monster : BaseMonster):
+	if _count_monsters() > MAX_MONSTERS:
+		return
+
 	var monster_target : PathFollow3D = PathFollow3D.new()
 	path.add_child(monster_target)
 	if monster.has_signal("spawn_turtle_flipper_dust_particles"):
