@@ -9,6 +9,13 @@ func _ready():
 	get_tree().paused = true
 
 
+func _toggle_fullscreen():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
 func _select_stage(stage_scene : PackedScene):
 	if is_instance_valid(current_stage):
 		$StageHolder.remove_child(current_stage)
@@ -33,7 +40,7 @@ func _on_gameover():
 	$GameOverSplash.show()
 
 
-func _continue_game():
+func _start_stage():
 	CameraUtil.get_cam().current = true
 	get_tree().paused = false
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
@@ -44,14 +51,16 @@ func _continue_game():
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
 
+
 func _on_title_screen_confirm_stage():
 	$TitleScreen.hide()
-	_continue_game()
+	_start_stage()
 
 
 func _on_pause_menu_restart_stage():
 	_select_stage(current_stage_scene)
-	_continue_game()
+	$PauseMenu.hide()
+	_start_stage()
 
 
 func _on_pause_menu_open_stage_select():
@@ -67,3 +76,14 @@ func _on_game_over_splash_close_gameover_splash():
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	$TitleScreen.open_title_screen()
+
+
+func _on_quit_pressed():
+	get_tree().quit()
+
+
+func _on_continue_pressed():
+	get_tree().paused = false
+	$PauseMenu.hide()
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.show()

@@ -29,8 +29,7 @@ func _apply_motion(delta):
 
 	$Armature.rotation.z = lerp_angle($Armature.rotation.z, 0, 0.1)
 
-	#var target_x_angle = atan2(direction.x, direction.z)
-	var pos = target.global_position
+	var pos = attack_target if attacking else target.global_position
 	var target_y_angle = -(
 		Vector2(position.x, position.z)
 				.angle_to_point(Vector2(pos.x, pos.z))

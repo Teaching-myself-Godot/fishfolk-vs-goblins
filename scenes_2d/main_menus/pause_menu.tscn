@@ -22,6 +22,7 @@ font_size = 36
 position = Vector2(575, 321)
 texture = SubResource("GradientTexture2D_nfdwx")
 script = ExtResource("1_jh1kq")
+metadata/_edit_vertical_guides_ = [440.0, 728.0]
 
 [node name="Title" type="Label" parent="."]
 offset_left = -247.0
@@ -33,19 +34,19 @@ label_settings = SubResource("LabelSettings_y3ijt")
 horizontal_alignment = 1
 
 [node name="StageSelect" parent="." instance=ExtResource("3_j4pg8")]
-offset_left = -247.0
-offset_top = -145.0
-offset_right = 249.0
+offset_left = -385.0
+offset_top = -161.0
+offset_right = -97.0
 offset_bottom = -113.0
 focus_neighbor_bottom = NodePath("../Restart")
 focus_next = NodePath("../Restart")
 text = "Title Screen"
 
 [node name="Restart" parent="." instance=ExtResource("3_j4pg8")]
-offset_left = -247.0
-offset_top = -97.0
-offset_right = 249.0
-offset_bottom = -65.0
+offset_left = -385.0
+offset_top = -89.0
+offset_right = -97.0
+offset_bottom = -41.0
 focus_neighbor_top = NodePath("../StageSelect")
 focus_neighbor_bottom = NodePath("../Continue")
 focus_next = NodePath("../Continue")
@@ -54,31 +55,31 @@ text = "Restart Stage
 "
 
 [node name="Continue" parent="." instance=ExtResource("3_j4pg8")]
-offset_left = -247.0
-offset_top = -49.0
-offset_right = 249.0
-offset_bottom = -17.0
+offset_left = -385.0
+offset_top = -17.0
+offset_right = -97.0
+offset_bottom = 31.0
 focus_neighbor_top = NodePath("../Restart")
 focus_neighbor_bottom = NodePath("../ToggleFullscreen")
 focus_next = NodePath("../ToggleFullscreen")
 focus_previous = NodePath("../Restart")
+text = "Continue"
 
 [node name="ToggleFullscreen" parent="." instance=ExtResource("3_j4pg8")]
-offset_left = -246.0
-offset_top = -2.0
-offset_right = 250.0
-offset_bottom = 30.0
+offset_left = -385.0
+offset_top = 55.0
+offset_right = -97.0
+offset_bottom = 103.0
 focus_neighbor_top = NodePath("../Continue")
 focus_neighbor_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Continue")
-text = "Toggle Fullscreen"
 
 [node name="Quit" parent="." instance=ExtResource("3_j4pg8")]
-offset_left = -246.0
-offset_top = 46.0
-offset_right = 250.0
-offset_bottom = 78.0
+offset_left = -385.0
+offset_top = 127.0
+offset_right = -97.0
+offset_bottom = 175.0
 focus_neighbor_top = NodePath("../ToggleFullscreen")
 focus_previous = NodePath("../ToggleFullscreen")
 text = "Quit"

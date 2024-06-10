@@ -23,8 +23,12 @@ visible = false
 [node name="debugbar" parent="." instance=ExtResource("5_o58og")]
 
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
-[connection signal="open_stage_select" from="PauseMenu" to="." method="_on_pause_menu_open_stage_select"]
-[connection signal="restart_stage" from="PauseMenu" to="." method="_on_pause_menu_restart_stage"]
+[connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/StageSelect" to="." method="_on_pause_menu_open_stage_select"]
+[connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_pause_menu_restart_stage"]
+[connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/ToggleFullscreen" to="." method="_toggle_fullscreen"]
+[connection signal="pressed" from="PauseMenu/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_on_title_screen_confirm_stage"]
 [connection signal="select_stage" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_select_stage"]
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-2" to="." method="_on_title_screen_confirm_stage"]
@@ -32,4 +36,5 @@ visible = false
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_title_screen_confirm_stage"]
 [connection signal="select_stage" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_select_stage"]
 
+[editable path="PauseMenu"]
 [editable path="TitleScreen"]
