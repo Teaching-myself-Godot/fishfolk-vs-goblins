@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/stage_select_option.gd" id="2_tuiau"]
 
 [node name="StageSelectOption" type="Button"]
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_hdhap")
 theme_override_font_sizes/font_size = 24
 text = "Stage 1-1"

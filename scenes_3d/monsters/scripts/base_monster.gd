@@ -35,7 +35,10 @@ func handle_update(delta, frame):
 		kill_your_darling.emit(crib_under_attack)
 		queue_free()
 
-	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
+	$HPBar.position = (
+		CameraUtil.get_label_position(position, Vector3(0, 2.2, 0)) -
+			Vector2(abs($HPBar.max_hp * 0.5), 14)
+	)
 	position += velocity * delta
 
 
@@ -45,7 +48,10 @@ func _ready():
 	$HPBar.hp = hp
 	if is_instance_valid(target):
 		position = target.global_position
-	$HPBar.position = CameraUtil.get_label_position(position, Vector3(-1.0, 2.2, 1.0))
+	$HPBar.position = (
+		CameraUtil.get_label_position(position, Vector3(0, 2.2, 0)) -
+			Vector2(abs($HPBar.max_hp * 0.5), 14)
+	)
 	collision_layer = Constants.MONSTER_COLLISION_LAYER
 
 

@@ -40,13 +40,21 @@ func _on_gameover():
 	$GameOverSplash.show()
 
 
+func _get_goblin_spawn_point() -> Vector3:
+	var pos = Vector3(0, 4, 0)
+	var spawn = get_tree().get_first_node_in_group(
+		Constants.GROUP_NAME_GOBLIN_SPAWN_POINT
+	)
+	return spawn.position if is_instance_valid(spawn) else pos
+
+
 func _start_stage():
 	CameraUtil.get_cam().current = true
 	get_tree().paused = false
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
 
-	var start_pos = Vector3(0, 4, 0)
+	var start_pos = _get_goblin_spawn_point()
 	for cid in InputUtil.cids_registered:
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2

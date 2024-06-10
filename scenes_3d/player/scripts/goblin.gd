@@ -4,8 +4,10 @@ extends CharacterBody3D
 signal build_arrow_tower(player_num : int, position : Vector3)
 signal build_cannon_tower(player_num : int, position : Vector3)
 signal build_anti_air_tower(player_num : int, position : Vector3)
+signal request_pause_menu()
 
 
+const CONTROL_BUTTON_COOLDOWN_FRAMES = 20
 const HUG_RANGE = 3.0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
@@ -18,6 +20,7 @@ const LABEL_COLORS = [
 	Color(0.5, 0.5, 0.184)
 ]
 
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var chest_height = 1.2
 var airborne_time = 0
@@ -27,6 +30,9 @@ var target_position : Vector3 = Vector3.ZERO
 var my_tree : MyTree = null
 var my_tower : BaseTower = null
 var my_riding_monster : BaseMonster = null
+
+var pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+var confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 
 func _initialize_label():
 	$Label.text = InputUtil.get_player_name(player_num)
@@ -39,6 +45,9 @@ func _initialize_label():
 
 
 func _leave_game():
+	if InputUtil.cids_registered.size() == 1:
+		return
+
 	InputUtil.player_map.erase(player_num)
 	InputUtil.cids_registered.erase(player_num)
 	_unhighlight_my_huggables()
@@ -85,7 +94,7 @@ func _my_button_just_released(button_key : String) -> bool:
 
 func _should_jump() -> bool:
 	# can only start jump if on floor and no context menu is open
-	if not is_on_floor() or $TreeContextMenu.is_open:
+	if not is_on_floor() or $TreeContextMenu.visible:
 		return false
 
 	return _my_button_just_pressed("jump")
@@ -93,7 +102,8 @@ func _should_jump() -> bool:
 
 func _pressed_valid_confirm_for_a_context_menu() -> bool:
 	var joy_confirmed = player_num > 0 and _my_button_just_pressed("confirm")
-	var mouse_confirmed = player_num == 0 and _my_button_just_released("confirm")	
+	var mouse_confirmed = player_num == 0 and _my_button_just_released("confirm")
+
 	return joy_confirmed or mouse_confirmed
 
 
@@ -151,6 +161,7 @@ func _handle_context_menus():
 	# open the context menu if requested and valid,
 	# else handle any open context menu
 	if _my_button_just_pressed("confirm") and my_tree and not $TreeContextMenu.is_open:
+		confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 		$TreeContextMenu.open()
 	elif $TreeContextMenu.is_open:
 		_handle_context_menu_arrow_input()
@@ -158,6 +169,7 @@ func _handle_context_menus():
 
 	# close the context menu, or submenu if requested and valid
 	if _my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
+		pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
 			$TreeContextMenu.close()
 		else:
@@ -284,14 +296,23 @@ func _handle_animation(force : float):
 func _ready():
 	add_to_group(Constants.GROUP_NAME_GOBLINS)
 	airborne_time = 0
+	pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+	confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 	_initialize_label()
 
 
 func _process(_delta):
+	pause_cooldown = pause_cooldown - 1 if pause_cooldown > 0 else 0
+	confirm_cooldown = confirm_cooldown - 1 if confirm_cooldown > 0 else 0
 	_hug_closest_tree_or_tower()
 	_handle_context_menus()
+
 	if _my_button_just_released("quit"):
 		_leave_game()
+
+	if _my_button_just_released("pause") and pause_cooldown == 0:
+		pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+		request_pause_menu.emit()
 
 
 func _physics_process(delta):

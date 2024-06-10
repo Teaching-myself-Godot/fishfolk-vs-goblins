@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bts8ph0eqjf8n"]
+[gd_scene load_steps=18 format=3 uid="uid://bts8ph0eqjf8n"]
 
 [ext_resource type="PackedScene" uid="uid://210ju06uls8u" path="res://scenes_3d/terrains/canyons.scn" id="1_3i35c"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_greq8"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_eedg3"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="11_jkg1t"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_w1b8s"]
+[ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="13_vhxb0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sehu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,14 +32,6 @@ resource_local_to_scene = true
 [node name="Stage-1-3" type="Node3D"]
 script = ExtResource("1_greq8")
 
-[node name="canyons" parent="." instance=ExtResource("1_3i35c")]
-transform = Transform3D(0.938191, 0, -0.346117, 0, 1, 0, 0.346117, 0, 0.938191, -31.286, 0, -2.28033)
-
-[node name="GemPouch" parent="." instance=ExtResource("2_frsg3")]
-builder_gems = 350
-magical_crystals = 3
-metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xbqbc")
 
@@ -47,7 +40,16 @@ transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.50
 light_energy = 2.0
 shadow_enabled = true
 
+[node name="canyons" parent="." instance=ExtResource("1_3i35c")]
+transform = Transform3D(0.938191, 0, -0.346117, 0, 1, 0, 0.346117, 0, 0.938191, -31.286, 0, -2.28033)
+
+[node name="GemPouch" parent="." instance=ExtResource("2_frsg3")]
+builder_gems = 350
+magical_crystals = 3
+metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
+
 [node name="CameraPivot" parent="." instance=ExtResource("3_gpyhy")]
+transform = Transform3D(0.863352, -0.386548, -0.324353, 0, 0.642788, -0.766044, 0.504603, 0.661365, 0.554952, 0, 8, 9)
 
 [node name="MyCamera" parent="CameraPivot" index="0"]
 transform = Transform3D(1, 0, 0, 0, -8.9407e-08, 1, 0, -1, -8.9407e-08, 1, 0, 0)
@@ -236,7 +238,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55805, 3.14977, -49.9974)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2682, 3.45135, -50.7883)
 
 [node name="PreviewCam" type="Camera3D" parent="."]
-transform = Transform3D(-0.99988, 0, -0.015498, 0, 1, 0, 0.015498, 0, -0.99988, 3.21029, 9.09682, -60.3998)
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -34.027, 34.3573, 40.1618)
 current = true
+
+[node name="GoblinSpawnPoint" parent="." instance=ExtResource("13_vhxb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4558, 8.4972, 26.7713)
 
 [editable path="CameraPivot"]

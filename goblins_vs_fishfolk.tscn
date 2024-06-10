@@ -21,6 +21,7 @@ visible = false
 [node name="TitleScreen" parent="." instance=ExtResource("2_6h760")]
 
 [node name="debugbar" parent="." instance=ExtResource("5_o58og")]
+visible = false
 
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]

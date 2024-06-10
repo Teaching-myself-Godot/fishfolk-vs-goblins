@@ -119,7 +119,7 @@
 ## Milestone 14 - UI controls
 - [x] fix game joining / keep better track of controllers input in one singleton
 - [x] make all menus use controls, so when paused no buggy stuff
-- [ ] add an (optional) goblin spawn pos to the stage
+- [x] add an (optional) goblin spawn pos to the stage
 - [ ] give the game over spash screen a working delay
 
 ## Next Milestones

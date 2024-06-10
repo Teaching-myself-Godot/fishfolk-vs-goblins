@@ -25,36 +25,18 @@ var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_fl
 var gem_pouch : GemPouch 
 var goblin_map = {}
 
-var enable_pause_menu_delay = 10
-
-
-func _handle_pause_menu_open():
-	if enable_pause_menu_delay > 0:
-		return
-	open_pause_menu.emit()
-
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("quit"):
-		_handle_pause_menu_open()
-
 	if Input.is_action_just_released("start-k") and not _is_in_game(0):
 		_add_goblin_to_scene(0)
-	if Input.is_action_just_released("start-0"):
-		_handle_start_button(1)
-	if Input.is_action_just_released("start-1"):
-		_handle_start_button(2)
-	if Input.is_action_just_released("start-2"):
-		_handle_start_button(3)
-	if Input.is_action_just_released("start-3"):
-		_handle_start_button(4)
-
-
-func _handle_start_button(num : int):
-	if _is_in_game(num):
-		_handle_pause_menu_open()
-	else:
-		_add_goblin_to_scene(num)
+	if Input.is_action_just_released("start-0") and not _is_in_game(1):
+		_add_goblin_to_scene(1)
+	if Input.is_action_just_released("start-1") and not _is_in_game(2):
+		_add_goblin_to_scene(2)
+	if Input.is_action_just_released("start-2") and not _is_in_game(3):
+		_add_goblin_to_scene(3)
+	if Input.is_action_just_released("start-3") and not _is_in_game(4):
+		_add_goblin_to_scene(4)
 
 
 func _is_in_game(num : int):
@@ -85,11 +67,15 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 	new_goblin.build_arrow_tower.connect(_on_goblin_build_arrow_tower)
 	new_goblin.build_cannon_tower.connect(_on_goblin_build_cannon_tower)
 	new_goblin.build_anti_air_tower.connect(_on_goblin_build_anti_air_tower)
+	new_goblin.request_pause_menu.connect(_on_goblin_request_pause_menu)
 	gem_pouch.liquidity_change.connect(new_goblin._on_gem_pouch_contents_changed)
 	new_goblin._on_gem_pouch_contents_changed(gem_pouch.builder_gems, gem_pouch.magical_crystals)
 	new_goblin.find_child("TreeContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
+
+func _on_goblin_request_pause_menu():
+	open_pause_menu.emit()
 
 
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
@@ -223,8 +209,6 @@ func _spawn_monster(path : Path3D, monster : BaseMonster):
 
 
 func _physics_process(delta):
-	enable_pause_menu_delay -= 1 if enable_pause_menu_delay > 0 else 0
-
 	frame_cnt = frame_cnt + 1 if frame_cnt < FRAME_CNT_MAX else 0
 	for monster : BaseMonster in get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS):
 		monster.handle_update(delta, frame_cnt)
