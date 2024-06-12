@@ -173,7 +173,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085,
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("10_npwai")]
 Monster = ExtResource("11_b3lam")
-monster_speed = 1.985
+monster_speed = 3.0
 monster_hp = 5
 infinite_wave = true
 
@@ -209,7 +209,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085,
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]
 Monster = ExtResource("11_b3lam")
-monster_speed = 1.985
+monster_speed = 3.0
 monster_hp = 5
 infinite_wave = true
 

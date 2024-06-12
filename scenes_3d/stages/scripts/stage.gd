@@ -170,7 +170,7 @@ func _on_spawn_dust_particle(pos : Vector3):
 func _on_monster_reached_crib(crib : Crib):
 	if is_instance_valid(crib):
 		_on_spawn_dust_particle(crib.position)
-		crib.queue_free()
+		crib.be_taken_by_monster()
 
 
 func _on_drop_builder_gem(pos : Vector3):

@@ -107,22 +107,22 @@
 - [x] Add a title screen, which detects controller device via start button
 - [x] Add some MonsterSpawners with a couple of infinite waves to both scenes
 
-## Milestone 13 - Game over
+## Milestone 13 - UI controls
+- [x] fix game joining / keep better track of controllers input in one singleton
+- [x] make all menus use controls, so when paused no buggy stuff
+- [x] add an (optional) goblin spawn pos to the stage
+- [x] add cooldown times for confirm and pause actions for button overloading
+- [x] hide mouse cursor when middle mouse button is held
+- [x] give the game over spash screen a working delay
+
+
+## Milestone 14 - Game over
 - [x] with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - [x] make an attack animation when reaching the goal
 - [x] make the baby goblin and the attacking monster disappear in a cloud of dust
 - [x] Make lose condition -> all goblin babies gone
 - [x] Show gameover splash
 - [ ] show a baby goblin counter
-
-
-## Milestone 14 - UI controls
-- [x] fix game joining / keep better track of controllers input in one singleton
-- [x] make all menus use controls, so when paused no buggy stuff
-- [x] add an (optional) goblin spawn pos to the stage
-- [x] add cooldown times for confirm and pause actions for button overloading
-- [x] hide mouse cursor when middle mouse button is held
-- [ ] give the game over spash screen a working delay
 
 ## Next Milestones
 

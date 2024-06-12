@@ -36,7 +36,6 @@ func _pause_game():
 
 
 func _on_gameover():
-	get_tree().paused = true
 	$GameOverSplash.show()
 
 
