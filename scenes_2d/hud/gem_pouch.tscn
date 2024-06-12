@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://doyct1xu46gwj"]
+[gd_scene load_steps=11 format=3 uid="uid://doyct1xu46gwj"]
 
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/gem_pouch.gd" id="1_m4ymf"]
 [ext_resource type="PackedScene" uid="uid://csx1uijyonu7p" path="res://scenes_2d/hud/builder_gem_sub_viewport.tscn" id="2_b46by"]
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="3_itbpt"]
 [ext_resource type="PackedScene" uid="uid://d0k2s7wbhxafk" path="res://scenes_2d/hud/magical_crystal_sub_viewport.tscn" id="4_ry171"]
+[ext_resource type="PackedScene" uid="uid://cbvirctbtdw2" path="res://scenes_2d/hud/crib_sub_viewport.tscn" id="5_bg12f"]
 
 [sub_resource type="Gradient" id="Gradient_s2rvs"]
 offsets = PackedFloat32Array(0)
@@ -15,10 +16,11 @@ width = 1920
 height = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_mjoah"]
+resource_local_to_scene = true
 line_spacing = 0.0
 font = ExtResource("3_itbpt")
 font_size = 36
-font_color = Color(0.0313726, 0.937255, 0, 1)
+font_color = Color(0.909804, 0.937255, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0.854902, 0.247059, 1)
 shadow_size = 12
@@ -29,11 +31,20 @@ shadow_offset = Vector2(0, 0)
 line_spacing = 0.0
 font = ExtResource("3_itbpt")
 font_size = 36
-font_color = Color(0.419608, 0, 0.647059, 1)
+font_color = Color(0.419608, 1, 0, 1)
 outline_size = 2
 outline_color = Color(1, 0.556863, 1, 1)
 shadow_size = 12
 shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5laau"]
+font = ExtResource("3_itbpt")
+font_size = 36
+outline_size = 2
+outline_color = Color(0, 1, 1, 1)
+shadow_size = 12
+shadow_color = Color(0.87451, 1, 1, 1)
 shadow_offset = Vector2(0, 0)
 
 [node name="GemPouch" type="Node2D" groups=["hud_items"]]
@@ -53,8 +64,8 @@ offset_bottom = -112.0
 metadata/_edit_use_anchors_ = true
 
 [node name="overlay" type="Sprite2D" parent="BuilderGems"]
-position = Vector2(100, -12)
-scale = Vector2(0.0958333, 1.5)
+position = Vector2(96, -12)
+scale = Vector2(0.1, 1.5)
 texture = SubResource("GradientTexture2D_02qcp")
 
 [node name="BuilderGemSubViewport" parent="BuilderGems" instance=ExtResource("2_b46by")]
@@ -86,8 +97,8 @@ offset_bottom = -64.0
 metadata/_edit_use_anchors_ = true
 
 [node name="overlay" type="Sprite2D" parent="MagicalGems"]
-position = Vector2(52, 24)
-scale = Vector2(0.0958333, 1.5)
+position = Vector2(48, 24)
+scale = Vector2(0.1, 1.5)
 texture = SubResource("GradientTexture2D_02qcp")
 
 [node name="MagicalGemSubViewport" parent="MagicalGems" instance=ExtResource("4_ry171")]
@@ -109,5 +120,44 @@ offset_right = 76.0
 offset_bottom = 37.0
 text = "1500"
 label_settings = SubResource("LabelSettings_vdcxt")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Cribs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 80.0
+offset_top = -272.0
+offset_right = 184.0
+offset_bottom = -232.0
+metadata/_edit_use_anchors_ = true
+
+[node name="overlay" type="Sprite2D" parent="Cribs"]
+position = Vector2(48, 24)
+scale = Vector2(0.1, 1.5)
+texture = SubResource("GradientTexture2D_02qcp")
+
+[node name="CribSubViewport" parent="Cribs" instance=ExtResource("5_bg12f")]
+layout_mode = 1
+anchor_left = 0.846154
+anchor_top = -0.2
+anchor_right = 0.846154
+anchor_bottom = -0.2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 66.0
+offset_bottom = 55.0
+
+[node name="Label" type="Label" parent="Cribs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_bottom = 0.2
+offset_left = -32.0
+offset_right = 76.0
+offset_bottom = 37.0
+text = "5
+"
+label_settings = SubResource("LabelSettings_5laau")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true

@@ -168,9 +168,6 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085,
 [node name="Anchor7" parent="MonsterSpawner/MonsterPath" instance=ExtResource("9_4xu15")]
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
 
-[node name="Anchor8" parent="MonsterSpawner/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
-
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("10_npwai")]
 Monster = ExtResource("11_b3lam")
 monster_speed = 3.0
@@ -202,9 +199,6 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.35393,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085, 1.71545, 2.57308)
 
 [node name="Anchor7" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
-
-[node name="Anchor8" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]

@@ -171,6 +171,7 @@ func _on_monster_reached_crib(crib : Crib):
 	if is_instance_valid(crib):
 		_on_spawn_dust_particle(crib.position)
 		crib.be_taken_by_monster()
+		gem_pouch.lose_baby()
 
 
 func _on_drop_builder_gem(pos : Vector3):
@@ -226,6 +227,8 @@ func _physics_process(delta):
 func _ready():
 	TerrainShaderParams.clear()
 	gem_pouch = $GemPouch
+	gem_pouch.cribs = get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).size()
+	gem_pouch._update_labels()
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
 		spawner.start_wave(1)
