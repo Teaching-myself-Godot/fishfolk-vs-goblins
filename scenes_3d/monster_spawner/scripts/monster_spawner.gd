@@ -27,3 +27,4 @@ func start_wave(wave_number : int):
 	for wave in waves:
 		if wave.wave_number == wave_number:
 			wave.start()
+			wave.show()

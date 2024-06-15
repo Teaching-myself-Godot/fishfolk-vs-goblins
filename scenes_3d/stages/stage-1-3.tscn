@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bts8ph0eqjf8n"]
+[gd_scene load_steps=17 format=3 uid="uid://bts8ph0eqjf8n"]
 
 [ext_resource type="PackedScene" uid="uid://210ju06uls8u" path="res://scenes_3d/terrains/canyons.scn" id="1_3i35c"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_greq8"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="6_oai8k"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="7_hvop7"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="8_4ed8c"]
-[ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="9_awdqy"]
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_eedg3"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="11_jkg1t"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_w1b8s"]
@@ -95,7 +94,6 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 6.49968,
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("8_4ed8c")]
 wait_time = 3.0
-Monster = ExtResource("9_awdqy")
 monster_speed = 2.0
 infinite_wave = true
 

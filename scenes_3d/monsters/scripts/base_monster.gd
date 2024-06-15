@@ -1,6 +1,8 @@
 class_name BaseMonster
 extends Area3D
 
+@export var thumbnail : Resource
+
 var chest_height = 0.75
 var target : PathFollow3D = null
 var velocity = Vector3.ZERO

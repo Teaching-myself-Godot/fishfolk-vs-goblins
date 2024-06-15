@@ -25,7 +25,7 @@ var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_fl
 
 var gem_pouch : GemPouch 
 var goblin_map = {}
-
+var current_wave_num = 0
 
 func _unhandled_input(_event):
 	if Input.is_action_just_released("start-k") and not _is_in_game(0):
@@ -224,6 +224,12 @@ func _physics_process(delta):
 		gameover.emit()
 
 
+func _start_next_wave():
+	current_wave_num += 1
+	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
+		spawner.start_wave(current_wave_num)
+
+
 func _ready():
 	TerrainShaderParams.clear()
 	gem_pouch = $GemPouch
@@ -231,4 +237,4 @@ func _ready():
 	gem_pouch._update_labels()
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
-		spawner.start_wave(1)
+	_start_next_wave()

@@ -7,7 +7,7 @@ signal build_anti_air_tower(player_num : int, position : Vector3)
 signal request_pause_menu()
 
 
-const CONTROL_BUTTON_COOLDOWN_FRAMES = 20
+const CONTROL_BUTTON_COOLDOWN_FRAMES = 10
 const HUG_RANGE = 3.0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9

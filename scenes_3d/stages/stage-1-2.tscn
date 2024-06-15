@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=18 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_fae0n"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="8_agk78"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="9_4xu15"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="10_npwai"]
-[ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="11_b3lam"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_i0bmu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u800l"]
@@ -169,7 +168,6 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("10_npwai")]
-Monster = ExtResource("11_b3lam")
 monster_speed = 3.0
 monster_hp = 5
 infinite_wave = true
@@ -202,7 +200,6 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]
-Monster = ExtResource("11_b3lam")
 monster_speed = 3.0
 monster_hp = 5
 infinite_wave = true

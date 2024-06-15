@@ -122,29 +122,29 @@
 - [x] make the baby goblin and the attacking monster disappear in a cloud of dust
 - [x] Make lose condition -> all goblin babies gone
 - [x] Show gameover splash
-- [ ] show a baby goblin counter
+- [x] show a baby goblin counter
 
-## Next Milestones
+## Milestone 15 - Winning the game
 
-- [ ] improve handling of start/pause buttons
-- [ ] Turn title screen into a stage select menu
+- [x] show current wave progression
 - [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-
 - [ ] Implement a MonsterWaveTimer in the HUD, which starts waves and indicates duration until next wave
 - [ ] Make win condition for stage (all waves passed)
-- [ ] Make camera look behind player more when zoomed in
-- [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
 - [ ] add dismantle option to tower menu
 
 ## Release
-
-- [ ] Soft Launch to itch.io
-- [ ] Open source on github?
-- [ ] Short screen recording as promo on youtube
+- [ ] tutorial stage for gamepad and keyboard+mouse
+- [ ] Open source on github MIT
+- [ ] Soft Launch to itch.io with..
+- [ ] html5 sneak preview
+- [ ] windows installer (maybe test other platforms?)
+- [ ] Short screen recording as promo 
 - [ ] Short tutorial on making your own stage
  
 
-## Mweh
+## Future
+- [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
+- [ ] Make camera look behind player more when zoomed in
 - [ ] add leave game option to pause menu?
 - [ ] build staircases?
 - [ ] add blunt (=area) and piercing damage types
