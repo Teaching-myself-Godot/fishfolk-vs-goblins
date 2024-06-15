@@ -67,5 +67,7 @@ func _process(_delta):
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	if Input.is_action_just_released("mousewheel_click"):
+		Input.warp_mouse(get_viewport().size / 2)
 
 	position.y = 9 + max_y + max(zoom, max_d)
