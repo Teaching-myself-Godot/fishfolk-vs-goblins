@@ -28,7 +28,7 @@ shadow_size = 8
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[node name="MonsterWave" type="Timer"]
+[node name="MonsterWave" type="Timer" groups=["monster_waves"]]
 script = ExtResource("1_tiikj")
 Monster = ExtResource("2_pl38s")
 metadata/_edit_horizontal_guides_ = [644.0]
@@ -59,7 +59,7 @@ texture = SubResource("NoiseTexture2D_r8jh6")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.128
-anchor_top = 0.482143
+anchor_top = 0.321429
 anchor_right = 0.476
 anchor_bottom = 0.321429
 offset_left = -32.0
@@ -70,4 +70,9 @@ label_settings = SubResource("LabelSettings_n682u")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="PollWaveClearedTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
 [connection signal="timeout" from="." to="." method="_on_timeout"]
+[connection signal="timeout" from="PollWaveClearedTimer" to="." method="_on_poll_wave_cleared_timer_timeout"]

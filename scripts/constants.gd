@@ -12,6 +12,7 @@ const GROUP_NAME_HUD_ITEM = "hud_items"
 const GROUP_NAME_MONSTER_COLLISION = "monster_collision"
 const GROUP_NAME_CRIBS = "cribs"
 const GROUP_NAME_GOBLIN_SPAWN_POINT = "goblin_spawn_point"
+const GROUP_NAME_MONSTER_WAVES = "monster_waves"
 
 const MONSTER_COLLISION_LAYER = 2
 

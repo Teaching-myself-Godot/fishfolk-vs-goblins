@@ -222,7 +222,8 @@ func _physics_process(delta):
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		gameover.emit()
-
+	#elif monster_wave_emitter.waves_left() == 0 and get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTER_WAVES).is_empty():
+		#stage_won.emit()
 
 func _start_next_wave():
 	current_wave_num += 1

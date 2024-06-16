@@ -25,7 +25,7 @@ func _calculate_crystal_drop() -> bool:
 		return true
 	return false
 
-func _process(_delta):
+func _on_poll_wave_cleared_timer_timeout():
 	if not infinite_wave and monsters_spawned >= monster_count:
 		var monsters_left = monsters_spawned
 		for m in my_monsters:
