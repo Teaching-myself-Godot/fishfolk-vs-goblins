@@ -26,7 +26,7 @@ func _calculate_crystal_drop() -> bool:
 	return false
 
 func _on_poll_wave_cleared_timer_timeout():
-	if not infinite_wave and monsters_spawned >= monster_count:
+	if not infinite_wave and monsters_spawned > 0 and monsters_spawned >= monster_count:
 		var monsters_left = monsters_spawned
 		for m in my_monsters:
 			if not is_instance_valid(m):
@@ -48,6 +48,7 @@ func _on_timeout():
 		my_monsters.append(monster)
 	monsters_spawned += 1
 	_update_label()
+
 
 func _update_label():
 	if infinite_wave:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5y4qo1fjb63"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_wave_emitter.gd" id="1_tc8j7"]
+
+[node name="MonsterWaveEmitter" type="Timer"]
+autostart = true
+script = ExtResource("1_tc8j7")
+
+[connection signal="timeout" from="." to="." method="_start_next_wave_when_waves_are_cleared"]

@@ -21,8 +21,9 @@ func add_range_ring(rr : RangeRing):
 
 
 func drop_range_ring(rr : RangeRing):
-	range_rings.erase(rr)
-	range_rings_changed.emit()
+	if rr in range_rings:
+		range_rings.erase(rr)
+		range_rings_changed.emit()
 
 
 func add_landscape_coloration(lc : LandscapeColoration):

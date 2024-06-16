@@ -28,15 +28,13 @@ func set_range_ring(radius : float):
 
 
 func drop_range_ring():
-	if my_range_ring:
-		TerrainShaderParams.drop_range_ring(my_range_ring)
-		my_range_ring = null
+	TerrainShaderParams.drop_range_ring(my_range_ring)
+	my_range_ring = null
 
 
 func toggle_highlight(flag : bool):
-	if not flag and my_range_ring:
-		TerrainShaderParams.drop_range_ring(my_range_ring)
-		my_range_ring = null
+	if not flag:
+		drop_range_ring()
 
 	for outline in outlines:
 		outline.visible = flag

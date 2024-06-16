@@ -94,5 +94,6 @@ func toggle_highlight(flag : bool):
 	if flag:
 		my_range_ring = RangeRing.new(position, current_range)
 		TerrainShaderParams.add_range_ring(my_range_ring)
-	elif my_range_ring:
+	else:
 		TerrainShaderParams.drop_range_ring(my_range_ring)
+		my_range_ring = null

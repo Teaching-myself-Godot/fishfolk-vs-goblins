@@ -25,7 +25,7 @@ var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_fl
 
 var gem_pouch : GemPouch 
 var goblin_map = {}
-var current_wave_num = 0
+
 
 func _unhandled_input(_event):
 	if Input.is_action_just_released("start-k") and not _is_in_game(0):
@@ -222,13 +222,18 @@ func _physics_process(delta):
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		gameover.emit()
-	#elif monster_wave_emitter.waves_left() == 0 and get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTER_WAVES).is_empty():
-		#stage_won.emit()
+	
+	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
+		if wave_emitter.last_wave_cleared():
+			gameover.emit()
 
-func _start_next_wave():
-	current_wave_num += 1
+
+func _start_wave(wave_num):
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
-		spawner.start_wave(current_wave_num)
+		spawner.start_wave(wave_num)
+
+	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
+		wave_emitter.current_wave = wave_num
 
 
 func _ready():
@@ -238,4 +243,5 @@ func _ready():
 	gem_pouch._update_labels()
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
-	_start_next_wave()
+
+	_start_wave(1)

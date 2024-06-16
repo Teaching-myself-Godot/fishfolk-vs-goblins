@@ -25,6 +25,6 @@ func _on_wave_spawn_monster(monster : BaseMonster):
 
 func start_wave(wave_number : int):
 	for wave in waves:
-		if wave.wave_number == wave_number:
+		if is_instance_valid(wave) and wave.wave_number == wave_number:
 			wave.start()
 			wave.show()

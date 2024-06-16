@@ -147,7 +147,7 @@ func _handle_context_menu_arrow_input():
 			my_tree.set_range_ring(Constants.CANNON_TOWER_BASE_RANGE)
 		else:
 			my_tree.drop_range_ring()
-			my_tree.drop_range_ring()
+
 
 func _handle_context_menus():
 	# open the context menu if requested and valid,
