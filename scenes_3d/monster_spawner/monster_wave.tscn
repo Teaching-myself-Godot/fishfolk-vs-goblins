@@ -31,7 +31,8 @@ shadow_offset = Vector2(0, 0)
 [node name="MonsterWave" type="Timer" groups=["monster_waves"]]
 script = ExtResource("1_tiikj")
 Monster = ExtResource("2_pl38s")
-metadata/_edit_horizontal_guides_ = [644.0]
+metadata/_edit_horizontal_guides_ = [608.0]
+metadata/_edit_vertical_guides_ = [1120.0]
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -41,8 +42,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -56.0
+offset_left = -280.0
+offset_top = -96.0
+offset_right = -30.0
+offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -65,7 +68,7 @@ anchor_bottom = 0.321429
 offset_left = -32.0
 offset_right = 76.0
 offset_bottom = 37.0
-text = "Endless"
+text = "[Wave text]"
 label_settings = SubResource("LabelSettings_n682u")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true

@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://d0k2s7wbhxafk" path="res://scenes_2d/hud/magical_crystal_sub_viewport.tscn" id="4_ry171"]
 [ext_resource type="PackedScene" uid="uid://cbvirctbtdw2" path="res://scenes_2d/hud/crib_sub_viewport.tscn" id="5_bg12f"]
 
-[sub_resource type="Gradient" id="Gradient_s2rvs"]
+[sub_resource type="Gradient" id="Gradient_ti78j"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.196078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_02qcp"]
-gradient = SubResource("Gradient_s2rvs")
+gradient = SubResource("Gradient_ti78j")
 width = 1920
 height = 48
 

@@ -22,6 +22,7 @@ var MagicalCrystalScene = preload("res://scenes_3d/drop_items/magical_crystal.ts
 var BuilderGemScene = preload("res://scenes_3d/drop_items/builder_gem.tscn")
 var DustParticlesScene = preload("res://scenes_3d/effects/dust_particles.tscn")
 var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_flipper_dust_particles.tscn")
+var ToastScene = preload("res://scenes_2d/hud/toast.tscn")
 
 var gem_pouch : GemPouch 
 var goblin_map = {}
@@ -227,6 +228,12 @@ func _physics_process(delta):
 		if wave_emitter.last_wave_cleared():
 			gameover.emit()
 
+func _mk_toast(message : String = "toast message", duration : float = 3.0):
+	var toast = ToastScene.instantiate()
+	toast.message = message
+	toast.duration = duration
+	add_child.call_deferred(toast)
+
 
 func _start_wave(wave_num):
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
@@ -234,7 +241,7 @@ func _start_wave(wave_num):
 
 	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
 		wave_emitter.current_wave = wave_num
-
+		_mk_toast("Wave " + str(wave_num) + " / " + str(wave_emitter.number_of_waves))
 
 func _ready():
 	TerrainShaderParams.clear()
@@ -245,3 +252,4 @@ func _ready():
 		spawner.spawn_monster.connect(_spawn_monster)
 
 	_start_wave(1)
+

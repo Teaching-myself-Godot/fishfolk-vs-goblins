@@ -127,8 +127,8 @@
 ## Milestone 15 - Winning the game
 
 - [x] show current wave progression
+- [x] Implement a MonsterWaveEmitter, which starts waves and reports which wave of how many just started
 - [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-- [ ] Implement a MonsterWaveTimer in the HUD, which starts waves and indicates duration until next wave
 - [ ] Make win condition for stage (all waves passed)
 - [ ] add dismantle option to tower menu
 
@@ -138,9 +138,9 @@
 - [ ] Soft Launch to itch.io with..
 - [ ] html5 sneak preview
 - [ ] windows installer (maybe test other platforms?)
-- [ ] Short screen recording as promo 
+- [ ] Short screen recording as promo
 - [ ] Short tutorial on making your own stage
- 
+
 
 ## Future
 - [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
