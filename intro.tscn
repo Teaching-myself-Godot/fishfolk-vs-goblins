@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1pr8e463kt3c"]
+
+[ext_resource type="Script" path="res://scripts/intro.gd" id="1_n3t1f"]
+[ext_resource type="PackedScene" uid="uid://dqiv18176rqoa" path="res://models/goblin2.blend" id="2_6l0an"]
+[ext_resource type="Script" path="res://scripts/intro_goblin.gd" id="3_hrj2x"]
+
+[sub_resource type="Gradient" id="Gradient_458dc"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.380392, 0.305882, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hr5vg"]
+gradient = SubResource("Gradient_458dc")
+width = 1152
+height = 648
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ptyxv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tw8ea"]
+sky_material = SubResource("ProceduralSkyMaterial_ptyxv")
+
+[sub_resource type="Environment" id="Environment_ich8j"]
+background_mode = 2
+sky = SubResource("Sky_tw8ea")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Intro" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_hr5vg")
+centered = false
+script = ExtResource("1_n3t1f")
+sentences = Array[String](["Who would have thought...", "... after the great 1000 year war ...", "... that ended the orcs and the elves ...", "... men, angels and demons ...", "You would be the last one standing!", "The humble goblin"])
+metadata/_edit_vertical_guides_ = [576.0, 576.0]
+metadata/_edit_horizontal_guides_ = [336.0]
+
+[node name="SentenceTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_top = 136.0
+offset_right = 256.0
+offset_bottom = 648.0
+grow_horizontal = 2
+pivot_offset = Vector2(256, 0)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 1.32666, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 1.05076, 0.25)
+fov = 45.9
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_ich8j")
+
+[node name="goblin2" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_6l0an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.77654)
+script = ExtResource("3_hrj2x")
+
+[node name="GoblinFadeInDelay" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="StartMainGameDelay" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SentenceTimer" to="." method="_show_next_sentence"]
+[connection signal="timeout" from="GoblinFadeInDelay" to="." method="_on_goblin_fade_in_delay_timeout"]
+[connection signal="timeout" from="StartMainGameDelay" to="." method="_start_main_game"]

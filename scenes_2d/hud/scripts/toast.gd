@@ -23,3 +23,6 @@ func _process(_delta):
 
 func _on_duration_timer_timeout():
 	fading = true
+
+func scale_up():
+	$overlay.scale.x += .15
