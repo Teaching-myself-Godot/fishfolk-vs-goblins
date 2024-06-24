@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1pr8e463kt3c"]
+[gd_scene load_steps=13 format=3 uid="uid://b1pr8e463kt3c"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n3t1f"]
 [ext_resource type="PackedScene" uid="uid://dqiv18176rqoa" path="res://models/goblin2.blend" id="2_6l0an"]
 [ext_resource type="Script" path="res://scripts/intro_goblin.gd" id="3_hrj2x"]
+[ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="4_452xj"]
+[ext_resource type="PackedScene" uid="uid://dwwggdgymq166" path="res://models/crib.blend" id="5_sdned"]
+[ext_resource type="PackedScene" uid="uid://b6jvy6v71hqrg" path="res://models/fish-chibi.blend" id="6_5d4lb"]
+[ext_resource type="PackedScene" uid="uid://cl4ywefxwm4el" path="res://models/flying-fish.blend" id="7_di4qi"]
 
 [sub_resource type="Gradient" id="Gradient_458dc"]
 offsets = PackedFloat32Array(0)
@@ -30,13 +34,17 @@ glow_enabled = true
 texture = SubResource("GradientTexture2D_hr5vg")
 centered = false
 script = ExtResource("1_n3t1f")
-sentences = Array[String](["Who would have thought...", "... after the great 1000 year war ...", "... that ended the orcs and the elves ...", "... men, angels and demons ...", "You would be the last one standing!", "The humble goblin"])
-metadata/_edit_vertical_guides_ = [576.0, 576.0]
-metadata/_edit_horizontal_guides_ = [336.0]
+sentences = Array[String](["Who would have thought...", "... after the great 1000 year war ...", "... that ended the orcs and the elves ...", "... men, angels and demons ...", "You would be the last one standing!", "The humble goblin", "Now, however ...", "Neptune, Lord of the Ocean ...", "... has risen from his slumber ... ", "... to conquer the realms of land!", "And the only one in his way ...", "... are you!"])
+metadata/_edit_vertical_guides_ = [576.0, 576.0, 576.0]
+metadata/_edit_horizontal_guides_ = [336.0, 336.0]
 
 [node name="SentenceTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Splash" type="Sprite2D" parent="."]
+texture = ExtResource("4_452xj")
+offset = Vector2(576, 336)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -60,7 +68,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 1.05076, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.051, 0.25)
 fov = 45.9
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
@@ -70,16 +78,149 @@ environment = SubResource("Environment_ich8j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.77654)
 script = ExtResource("3_hrj2x")
 
+[node name="crib" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_sdned")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23505, -0.59661, -4)
+script = ExtResource("3_hrj2x")
+
+[node name="crib3" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_sdned")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23505, -0.59661, 4)
+script = ExtResource("3_hrj2x")
+
+[node name="fish-chibi" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 16)
+
+[node name="fish-chibi2" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 16)
+
+[node name="fish-chibi3" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 17)
+
+[node name="fish-chibi4" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 17)
+
+[node name="fish-chibi5" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 18)
+
+[node name="fish-chibi6" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 18)
+
+[node name="fish-chibi7" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 19)
+
+[node name="fish-chibi8" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 19)
+
+[node name="fish-chibi25" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 28)
+
+[node name="fish-chibi26" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 28)
+
+[node name="fish-chibi27" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 29)
+
+[node name="fish-chibi28" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 29)
+
+[node name="fish-chibi29" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 30)
+
+[node name="fish-chibi30" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 30)
+
+[node name="fish-chibi31" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 31)
+
+[node name="fish-chibi32" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 31)
+
+[node name="fish-chibi9" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 20)
+
+[node name="fish-chibi10" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 20)
+
+[node name="fish-chibi11" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 21)
+
+[node name="fish-chibi12" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 21)
+
+[node name="fish-chibi13" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 22)
+
+[node name="fish-chibi14" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 22)
+
+[node name="fish-chibi15" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 23)
+
+[node name="fish-chibi16" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 23)
+
+[node name="fish-chibi17" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 24)
+
+[node name="fish-chibi18" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 24)
+
+[node name="fish-chibi19" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 25)
+
+[node name="fish-chibi20" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 25)
+
+[node name="fish-chibi21" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 26)
+
+[node name="fish-chibi22" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 26)
+
+[node name="fish-chibi23" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.59661, 27)
+
+[node name="fish-chibi24" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_5d4lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.59661, 27)
+
+[node name="crib4" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_sdned")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44398, -0.59661, 1)
+script = ExtResource("3_hrj2x")
+
+[node name="crib2" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_sdned")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95012, -0.59661, -5.73353)
+script = ExtResource("3_hrj2x")
+
+[node name="flying-fish" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_di4qi")]
+transform = Transform3D(-0.948788, 0.315914, -8.29457e-08, 0.315914, 0.948788, 2.76181e-08, 8.74228e-08, 0, -1, -0.610264, 2.19556, 25.2565)
+
+[node name="flying-fish2" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_di4qi")]
+transform = Transform3D(-0.92444, -0.381329, -8.08171e-08, -0.381329, 0.92444, -3.33368e-08, 8.74228e-08, 0, -1, 1.38974, 2.19556, 22.2565)
+
+[node name="flying-fish3" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_di4qi")]
+transform = Transform3D(-0.905398, 0.424563, -7.91525e-08, 0.424563, 0.905398, 3.71165e-08, 8.74228e-08, 0, -1, 1.90238, 2.19556, 28.3419)
+
 [node name="GoblinFadeInDelay" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
 autostart = true
 
-[node name="StartMainGameDelay" type="Timer" parent="."]
+[node name="GoblinZoomOutDelay" type="Timer" parent="."]
 wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="GoblinFadeOutDelay" type="Timer" parent="."]
+wait_time = 58.0
+one_shot = true
+autostart = true
+
+[node name="StartMainGameDelay" type="Timer" parent="."]
+wait_time = 61.0
 one_shot = true
 autostart = true
 
 [connection signal="timeout" from="SentenceTimer" to="." method="_show_next_sentence"]
 [connection signal="timeout" from="GoblinFadeInDelay" to="." method="_on_goblin_fade_in_delay_timeout"]
+[connection signal="timeout" from="GoblinZoomOutDelay" to="." method="_on_goblin_zoom_out_delay_timeout"]
+[connection signal="timeout" from="GoblinFadeOutDelay" to="." method="_on_goblin_fade_out_delay_timeout"]
 [connection signal="timeout" from="StartMainGameDelay" to="." method="_start_main_game"]
