@@ -83,7 +83,7 @@ func _my_button_just_released(button_key : String) -> bool:
 
 func _should_jump() -> bool:
 	# can only start jump if on floor and no context menu is open
-	if not is_on_floor() or $TreeContextMenu.visible:
+	if not is_on_floor() or $TreeContextMenu.is_open:
 		return false
 
 	return _my_button_just_pressed("jump")
