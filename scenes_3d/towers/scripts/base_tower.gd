@@ -92,8 +92,9 @@ func toggle_highlight(flag : bool):
 		outline.visible = flag
 
 	if flag:
-		my_range_ring = RangeRing.new(position, current_range)
-		TerrainShaderParams.add_range_ring(my_range_ring)
+		if not is_instance_valid(my_range_ring):
+			my_range_ring = RangeRing.new(position, current_range)
+			TerrainShaderParams.add_range_ring(my_range_ring)
 	else:
 		TerrainShaderParams.drop_range_ring(my_range_ring)
 		my_range_ring = null
