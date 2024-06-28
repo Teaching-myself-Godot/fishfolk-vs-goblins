@@ -228,10 +228,16 @@ func _physics_process(delta):
 		if wave_emitter.last_wave_cleared():
 			gameover.emit()
 
-func _mk_toast(message : String = "toast message", duration : float = 3.0):
+func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false):
+	for toasted in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS):
+		toasted.queue_free()
+
 	var toast = ToastScene.instantiate()
 	toast.message = message
 	toast.duration = duration
+	if big:
+		toast.scale_up()
+		toast.scale_up()
 	add_child.call_deferred(toast)
 
 
