@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=11 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_bu10x"]
+[ext_resource type="Material" uid="uid://cddy1otapyrq5" path="res://materials/green-terrain.material" id="3_ruc26"]
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="4_ljqtt"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="5_5did4"]
+[ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="6_g7m6h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,18 +25,12 @@ script = ExtResource("1_2wut6")
 
 [node name="terrain" parent="." instance=ExtResource("2_n0qyl")]
 
-[node name="palm-tree6" parent="terrain" instance=ExtResource("3_bu10x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04664, 0.000112216, -2.07571)
-
-[node name="palm-tree11" parent="terrain" instance=ExtResource("3_bu10x")]
-transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609, 0.022896, -5.25948)
-
-[node name="palm-tree3" parent="terrain" instance=ExtResource("3_bu10x")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156167, -0.276462)
+[node name="Landscape" parent="terrain" index="0"]
+surface_material_override/0 = ExtResource("3_ruc26")
 
 [node name="GemPouch" parent="." instance=ExtResource("4_ljqtt")]
-builder_gems = 270
-magical_crystals = 1
+visible = false
+builder_gems = 0
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -50,6 +46,19 @@ shadow_enabled = true
 [node name="MyCamera" parent="CameraPivot" index="0"]
 current = false
 
+[node name="crib" parent="." instance=ExtResource("6_g7m6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05103, 0.263788, -4.70009)
+
+[node name="palm-tree6" parent="." instance=ExtResource("3_bu10x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04664, 0.000112029, -2.07571)
+
+[node name="palm-tree11" parent="." instance=ExtResource("3_bu10x")]
+transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609, 0.0228954, -5.25948)
+
+[node name="palm-tree3" parent="." instance=ExtResource("3_bu10x")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156252, -0.276462)
+
 [connection signal="open_pause_menu" from="." to="." method="_on_open_pause_menu"]
 
+[editable path="terrain"]
 [editable path="CameraPivot"]
