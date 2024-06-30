@@ -126,6 +126,7 @@
 
 ## Milestone 15 - Winning the game
 
+- [x] add stage music by: https://www.bandlab.com/yoia_
 - [x] show current wave progression
 - [x] Implement a MonsterWaveEmitter, which starts waves and reports which wave of how many just started
 - [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
