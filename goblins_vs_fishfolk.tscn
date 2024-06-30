@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://vmvsjailhjjs"]
+[gd_scene load_steps=7 format=3 uid="uid://vmvsjailhjjs"]
 
 [ext_resource type="Script" path="res://scripts/goblins_vs_fishfolk.gd" id="1_yg1jx"]
 [ext_resource type="PackedScene" uid="uid://dhw0txm3hlokt" path="res://scenes_2d/main_menus/title_screen.tscn" id="2_6h760"]
 [ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="2_y6vnr"]
 [ext_resource type="PackedScene" uid="uid://vnxpe45dqhh" path="res://scenes_2d/main_menus/pause_menu.tscn" id="3_dubeo"]
 [ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://scenes_2d/hud/debugbar.tscn" id="5_o58og"]
+[ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="6_sllsd"]
 
 [node name="GoblinsVsFishfolk" type="Node"]
 script = ExtResource("1_yg1jx")
@@ -23,6 +24,10 @@ visible = false
 [node name="debugbar" parent="." instance=ExtResource("5_o58og")]
 visible = false
 
+[node name="TuneNo1Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sllsd")
+volume_db = -20.0
+
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
@@ -36,6 +41,7 @@ visible = false
 [connection signal="select_stage" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-2" to="." method="_select_stage"]
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_title_screen_confirm_stage"]
 [connection signal="select_stage" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_select_stage"]
+[connection signal="finished" from="TuneNo1Player" to="." method="_on_tune_no_1_player_finished"]
 
 [editable path="PauseMenu"]
 [editable path="TitleScreen"]

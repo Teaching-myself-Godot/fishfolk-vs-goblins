@@ -37,6 +37,7 @@ func _pause_game():
 
 func _on_gameover():
 	get_tree().paused = true
+	$TuneNo1Player.stop()
 	$GameOverSplash.show()
 
 
@@ -58,7 +59,7 @@ func _start_stage():
 	for cid in InputUtil.cids_registered:
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
-
+	$TuneNo1Player.play()
 
 func _on_title_screen_confirm_stage():
 	$TitleScreen.hide()
@@ -95,3 +96,8 @@ func _on_continue_pressed():
 	$PauseMenu.hide()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
+
+
+func _on_tune_no_1_player_finished():
+	if not get_tree().paused:
+		$TuneNo1Player.play()
