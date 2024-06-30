@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://vnxpe45dqhh"]
+[gd_scene load_steps=9 format=3 uid="uid://vnxpe45dqhh"]
 
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/pause_menu.gd" id="1_jh1kq"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="2_8vqyl"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_j33ky"]
 [ext_resource type="PackedScene" uid="uid://n7kdq8mfpr2w" path="res://scenes_2d/main_menus/menu_option.tscn" id="3_j4pg8"]
+[ext_resource type="AudioStream" uid="uid://dvo21s0kpb4v1" path="res://music/tune_no_2.wav" id="5_3qyyo"]
 
 [sub_resource type="Gradient" id="Gradient_h2dk4"]
 offsets = PackedFloat32Array(0)
@@ -90,3 +91,9 @@ text = "Quit"
 
 [node name="AButton" parent="." instance=ExtResource("2_8vqyl")]
 position = Vector2(5, 245)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3qyyo")
+volume_db = -10.0
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

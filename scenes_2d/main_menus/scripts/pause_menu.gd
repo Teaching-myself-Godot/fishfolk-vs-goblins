@@ -21,8 +21,14 @@ func _ready():
 	get_tree().get_root().size_changed.connect(_on_resize)
 	_on_resize()
 	$Continue.grab_focus()
+	$AudioStreamPlayer.play()
 
 
 func open_menu():
 	show()
 	$Continue.grab_focus()
+	$AudioStreamPlayer.play(0.0)
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play()
