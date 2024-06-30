@@ -56,6 +56,7 @@ func _ready():
 	_on_resize()
 	_show_next_sentence()
 	cam = $SubViewportContainer/SubViewport/Camera3D
+	$AudioStreamPlayer.play()
 
 func _on_goblin_fade_in_delay_timeout():
 	goblin_fading_in = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=12 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="4_ljqtt"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="5_5did4"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="6_g7m6h"]
+[ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="8_mhn8w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -57,6 +58,11 @@ transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609,
 
 [node name="palm-tree3" parent="." instance=ExtResource("3_bu10x")]
 transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156252, -0.276462)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_mhn8w")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="open_pause_menu" from="." to="." method="_on_open_pause_menu"]
 

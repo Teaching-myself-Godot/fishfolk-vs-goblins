@@ -16,7 +16,7 @@ var message_suite = {
 		"To PICK a type, LEFT-click MOUSE or press SHIFT",
 		"To CANCEL, RIGHT-click MOUSE or press ESC",
 		"Now build an ARROW-TOWER with your new BUILDER GEMS",
-		"Fisk Folk will soon come to try and take your baby"
+		"Fish Folk will soon come to try and take your baby"
 	],
 	TutorialMode.GAMEPAD: [
 		"To RUN, use L-stick",
@@ -27,7 +27,7 @@ var message_suite = {
 		"To PICK a type, press B (Nintendo A), point with L-stick",
 		"To CANCEL, press A (Nintendo B)",
 		"Now build an ARROW-TOWER with your new BUILDER GEMS",
-		"Fisk Folk will soon come to try and take your baby"
+		"Fish Folk will soon come to try and take your baby"
 	]
 }
 

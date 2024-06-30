@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1pr8e463kt3c"]
+[gd_scene load_steps=14 format=3 uid="uid://b1pr8e463kt3c"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n3t1f"]
 [ext_resource type="PackedScene" uid="uid://dqiv18176rqoa" path="res://models/goblin2.blend" id="2_6l0an"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dwwggdgymq166" path="res://models/crib.blend" id="5_sdned"]
 [ext_resource type="PackedScene" uid="uid://b6jvy6v71hqrg" path="res://models/fish-chibi.blend" id="6_5d4lb"]
 [ext_resource type="PackedScene" uid="uid://cl4ywefxwm4el" path="res://models/flying-fish.blend" id="7_di4qi"]
+[ext_resource type="AudioStream" uid="uid://7lq5i2pw2qml" path="res://music/Intro.wav" id="8_ssocd"]
 
 [sub_resource type="Gradient" id="Gradient_458dc"]
 offsets = PackedFloat32Array(0)
@@ -215,9 +216,13 @@ one_shot = true
 autostart = true
 
 [node name="StartMainGameDelay" type="Timer" parent="."]
-wait_time = 61.0
+wait_time = 65.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ssocd")
+volume_db = -20.0
 
 [connection signal="timeout" from="SentenceTimer" to="." method="_show_next_sentence"]
 [connection signal="timeout" from="GoblinFadeInDelay" to="." method="_on_goblin_fade_in_delay_timeout"]
