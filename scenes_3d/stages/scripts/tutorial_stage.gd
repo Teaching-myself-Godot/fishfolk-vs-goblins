@@ -42,6 +42,7 @@ var check_menu_open = true
 var check_submenu = true
 var check_cancel = true
 var check_build = true
+var check_done = true
 
 var _init_pos = Vector2.ZERO
 var _init_zoom = 9.0
@@ -111,6 +112,11 @@ func _process(_delta):
 			check_build = false
 			_mk_toast(message_suite[mode][8], 10.0, true)
 			_start_wave(2)
+	elif check_done:
+		if find_children("*", "MonsterWave").size() == 0:
+			check_done = false
+			_mk_toast("Thank you for playing the tutorial!", 3, true)
+			$EndTutorialDelay.start()
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
@@ -134,6 +140,22 @@ func _ready():
 	_mk_toast("To JOIN, press either gamepad START or keyboard SPACEBAR", 10, true)
 
 
-func _on_open_pause_menu():
-	# TODO confirm end tutorial in pause mode
+func _unhandled_input(event):
+	super._unhandled_input(event)
+	if goblin_map.size() == 0 and InputUtil.is_just_released("pause"):
+		_open_confirmation_dialog()
+
+
+func _open_confirmation_dialog():
+	get_tree().paused = true
+	$ConfirmationDialog.show()
+
+
+func _on_confirmation_dialog_canceled():
+	get_tree().paused = false
+	$ConfirmationDialog.hide()
+
+
+func _on_confirmation_dialog_confirmed():
 	get_tree().change_scene_to_packed(MainGame)
+

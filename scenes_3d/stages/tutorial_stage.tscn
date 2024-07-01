@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=18 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="10_ue4va"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_4urpg"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_7umqb"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/end_tutorial_confirmation_dialog.gd" id="13_mip6f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -85,10 +86,27 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.72967,
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("12_7umqb")]
 wait_time = 3.0
 wave_number = 2
-monster_count = 3
-monster_speed = 1.4
+monster_count = 2
+monster_speed = 2.0
 
-[connection signal="open_pause_menu" from="." to="." method="_on_open_pause_menu"]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+process_mode = 2
+title = "End tutorial"
+initial_position = 1
+size = Vector2i(417, 100)
+dialog_text = "Do you want to end the tutorial and start the game?"
+dialog_close_on_escape = false
+script = ExtResource("13_mip6f")
+
+[node name="EndTutorialDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="gameover" from="." to="." method="_on_gameover"]
+[connection signal="open_pause_menu" from="." to="." method="_open_confirmation_dialog"]
+[connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="timeout" from="EndTutorialDelay" to="." method="_on_confirmation_dialog_confirmed"]
 
 [editable path="terrain"]
 [editable path="CameraPivot"]

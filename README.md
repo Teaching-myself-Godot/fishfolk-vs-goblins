@@ -134,7 +134,7 @@
 - [ ] add dismantle option to tower menu
 
 ## Release
-- [ ] tutorial stage for gamepad and keyboard+mouse
+- [x] tutorial stage for gamepad and keyboard+mouse
 - [ ] Open source on github MIT
 - [ ] Soft Launch to itch.io with..
 - [ ] html5 sneak preview

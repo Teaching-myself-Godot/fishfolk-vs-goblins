@@ -25,6 +25,7 @@ func _calculate_crystal_drop() -> bool:
 		return true
 	return false
 
+
 func _on_poll_wave_cleared_timer_timeout():
 	if not infinite_wave and monsters_spawned > 0 and monsters_spawned >= monster_count:
 		var monsters_left = monsters_spawned
@@ -56,11 +57,13 @@ func _update_label():
 	else:
 		$Control/Label.text = str(monsters_spawned) + " / " + str(monster_count)
 
+
 func _ready():
 	var monster : BaseMonster = Monster.instantiate()
 	$Control/Sprite2D.texture = monster.thumbnail
 	_update_label()
 	monster.queue_free()
+
 
 func show():
 	$Control.show()
