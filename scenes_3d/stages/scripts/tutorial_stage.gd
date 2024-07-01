@@ -110,6 +110,7 @@ func _process(_delta):
 		):
 			check_build = false
 			_mk_toast(message_suite[mode][8], 10.0, true)
+			_start_wave(2)
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
