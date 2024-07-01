@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_ibf3y"]
 [ext_resource type="PackedScene" uid="uid://cf2ha5qruwm47" path="res://scenes_2d/main_menus/stage_select_option.tscn" id="4_kqyji"]
+[ext_resource type="Theme" uid="uid://yjvrxhj6jvpp" path="res://scenes_2d/main_menus/themes/unfocusable_label_button_theme.tres" id="4_l4jgl"]
 [ext_resource type="PackedScene" uid="uid://d1ltd4sm1gwbt" path="res://scenes_3d/stages/stage-1-1.tscn" id="5_scabv"]
 [ext_resource type="PackedScene" uid="uid://doy7owgxttfij" path="res://scenes_3d/stages/stage-1-2.tscn" id="6_flai6"]
 [ext_resource type="PackedScene" uid="uid://bts8ph0eqjf8n" path="res://scenes_3d/stages/stage-1-3.tscn" id="7_eld54"]
@@ -18,10 +19,6 @@ width = 1152
 height = 648
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1jkn"]
-font = ExtResource("3_ibf3y")
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_j1h8v"]
 font = ExtResource("3_ibf3y")
 font_size = 24
 
@@ -46,7 +43,7 @@ text = "- Press Start -"
 label_settings = SubResource("LabelSettings_y1jkn")
 horizontal_alignment = 1
 
-[node name="Prev" type="Label" parent="."]
+[node name="Prev" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,9 +55,9 @@ offset_right = -29.0
 offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("4_l4jgl")
 text = "<"
-label_settings = SubResource("LabelSettings_j1h8v")
-vertical_alignment = 1
 
 [node name="StageSelectMenu" type="ScrollContainer" parent="."]
 anchors_preset = 8
@@ -107,7 +104,7 @@ focus_previous = NodePath("../Stage 1-2")
 text = "Stage 1-3"
 my_stage = ExtResource("7_eld54")
 
-[node name="Next" type="Label" parent="."]
+[node name="Next" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -119,6 +116,9 @@ offset_right = 107.0
 offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("4_l4jgl")
 text = ">"
-label_settings = SubResource("LabelSettings_j1h8v")
-vertical_alignment = 1
+
+[connection signal="button_up" from="Prev" to="." method="_on_prev_button_up"]
+[connection signal="button_up" from="Next" to="." method="_on_next_button_up"]

@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://yjvrxhj6jvpp"]
+
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_to4q3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4jfe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e480a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qyltu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qxxv"]
+
+[resource]
+default_font = ExtResource("1_to4q3")
+default_font_size = 24
+Button/styles/focus = SubResource("StyleBoxEmpty_m4jfe")
+Button/styles/hover = SubResource("StyleBoxEmpty_e480a")
+Button/styles/normal = SubResource("StyleBoxEmpty_qyltu")
+Button/styles/pressed = SubResource("StyleBoxEmpty_5qxxv")

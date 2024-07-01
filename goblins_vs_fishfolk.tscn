@@ -28,6 +28,14 @@ visible = false
 stream = ExtResource("6_sllsd")
 volume_db = -20.0
 
+[node name="StageWonSplash" parent="." instance=ExtResource("2_y6vnr")]
+visible = false
+
+[node name="Label" parent="StageWonSplash" index="0"]
+text = "Stage Won!
+
+- press any button to continue -"
+
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/Continue" to="." method="_on_continue_pressed"]
@@ -42,6 +50,8 @@ volume_db = -20.0
 [connection signal="pressed" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_title_screen_confirm_stage"]
 [connection signal="select_stage" from="TitleScreen/StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_select_stage"]
 [connection signal="finished" from="TuneNo1Player" to="." method="_on_tune_no_1_player_finished"]
+[connection signal="close_gameover_splash" from="StageWonSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 
 [editable path="PauseMenu"]
 [editable path="TitleScreen"]
+[editable path="StageWonSplash"]

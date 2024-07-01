@@ -129,25 +129,24 @@
 - [x] add stage music by: https://www.bandlab.com/yoia_
 - [x] show current wave progression
 - [x] Implement a MonsterWaveEmitter, which starts waves and reports which wave of how many just started
+- [x] Make win condition for stage (all waves passed)
 - [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-- [ ] Make win condition for stage (all waves passed)
-- [ ] add dismantle option to tower menu
 
 ## Release
+- [x] intro with back story
 - [x] tutorial stage for gamepad and keyboard+mouse
 - [ ] Open source on github MIT
 - [ ] Soft Launch to itch.io with..
-- [ ] html5 sneak preview
+- [ ] Short screen recording as promo and intro
 - [ ] windows installer (maybe test other platforms?)
-- [ ] Short screen recording as promo
 - [ ] Short tutorial on making your own stage
 
 
 ## Future
+- [ ] add dismantle option to tower menu
 - [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
 - [ ] Make camera look behind player more when zoomed in
-- [ ] add leave game option to pause menu?
-- [ ] build staircases?
+- [ ] add leave game option to pause menu
 - [ ] add blunt (=area) and piercing damage types
 - [ ] add elemental damage maybe?
 - [ ] make turtle very insensitive to pierce and extra sensitive to blunt

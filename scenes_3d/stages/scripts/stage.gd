@@ -3,6 +3,7 @@ extends Node
 
 signal open_pause_menu()
 signal gameover()
+signal stage_won()
 
 const MAX_MONSTERS = 80
 const FRAME_CNT_MAX = 3
@@ -226,7 +227,7 @@ func _physics_process(delta):
 	
 	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
 		if wave_emitter.last_wave_cleared():
-			gameover.emit()
+			stage_won.emit()
 
 
 func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false):

@@ -25,3 +25,15 @@ func _on_resize():
 	texture.width = get_viewport().size.x
 	texture.height = get_viewport().size.y
 	$Splash.position = get_viewport().size / 2
+
+
+func _on_prev_button_up():
+	var focused = get_viewport().gui_get_focus_owner()
+	if is_instance_valid(focused) and focused is StageSelectOption:
+		(focused as StageSelectOption).find_prev_valid_focus().grab_focus()
+
+
+func _on_next_button_up():
+	var focused = get_viewport().gui_get_focus_owner()
+	if is_instance_valid(focused) and focused is StageSelectOption:
+		(focused as StageSelectOption).find_next_valid_focus().grab_focus()

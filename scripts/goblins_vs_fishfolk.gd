@@ -25,6 +25,7 @@ func _select_stage(stage_scene : PackedScene):
 	current_stage = current_stage_scene.instantiate()
 	current_stage.open_pause_menu.connect(_pause_game)
 	current_stage.gameover.connect(_on_gameover)
+	current_stage.stage_won.connect(_on_stage_won)
 	$StageHolder.add_child(current_stage)
 
 
@@ -39,6 +40,12 @@ func _on_gameover():
 	get_tree().paused = true
 	$TuneNo1Player.stop()
 	$GameOverSplash.show()
+
+
+func _on_stage_won():
+	get_tree().paused = true
+	$TuneNo1Player.stop()
+	$StageWonSplash.show()
 
 
 func _get_goblin_spawn_point() -> Vector3:
@@ -61,6 +68,7 @@ func _start_stage():
 		start_pos.x += 2
 	$TuneNo1Player.play()
 
+
 func _on_title_screen_confirm_stage():
 	$TitleScreen.hide()
 	_start_stage()
@@ -82,6 +90,7 @@ func _on_pause_menu_open_stage_select():
 
 func _on_game_over_splash_close_gameover_splash():
 	$GameOverSplash.hide()
+	$StageWonSplash.hide()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	$TitleScreen.open_title_screen()
