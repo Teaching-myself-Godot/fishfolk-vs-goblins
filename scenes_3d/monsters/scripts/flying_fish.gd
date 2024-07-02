@@ -51,11 +51,11 @@ func _apply_motion(delta):
 	$Armature.rotation.x = lerped_x_angle
 	$Armature.rotation.y = lerped_y_angle
 
-	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[4]) * Quaternion(Vector3.FORWARD, bend_window_1[4]))
-	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[9]) * Quaternion(Vector3.FORWARD, bend_window_1[9]))
-	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[14]) * Quaternion(Vector3.FORWARD, bend_window_1[14]))
-	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[19]) * Quaternion(Vector3.FORWARD, bend_window_1[19]))
-	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[21]) * Quaternion(Vector3.FORWARD, bend_window_1[21]))
+	skel.set_bone_pose_rotation(bone_ids[0], Quaternion(Vector3.LEFT, bend_window_2[0]) * Quaternion(Vector3.FORWARD, bend_window_1[0]))
+	skel.set_bone_pose_rotation(bone_ids[1], Quaternion(Vector3.LEFT, bend_window_2[4]) * Quaternion(Vector3.FORWARD, bend_window_1[4]))
+	skel.set_bone_pose_rotation(bone_ids[2], Quaternion(Vector3.LEFT, bend_window_2[9]) * Quaternion(Vector3.FORWARD, bend_window_1[9]))
+	skel.set_bone_pose_rotation(bone_ids[3], Quaternion(Vector3.LEFT, bend_window_2[14]) * Quaternion(Vector3.FORWARD, bend_window_1[14]))
+	skel.set_bone_pose_rotation(bone_ids[4], Quaternion(Vector3.LEFT, bend_window_2[16]) * Quaternion(Vector3.FORWARD, bend_window_1[16]))
 
 
 func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
@@ -71,6 +71,7 @@ func _ready():
 	chest_height = 0.0
 	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 	$AnimationPlayer.play("fly")
+	$AnimationPlayer.speed_scale = 2.5
 	skel = $Armature/Skeleton3D
 	bone_ids = [
 		skel.find_bone("Bone.1"),

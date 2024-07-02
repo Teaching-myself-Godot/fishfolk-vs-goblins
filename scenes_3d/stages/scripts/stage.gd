@@ -53,6 +53,7 @@ func _is_in_game(num : int):
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
+	CameraUtil.get_cam().current = true
 	if num not in InputUtil.player_map:
 		InputUtil.player_map[num] = InputUtil.player_map.size() + 1
 

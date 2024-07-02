@@ -57,7 +57,6 @@ func _get_goblin_spawn_point() -> Vector3:
 
 
 func _start_stage():
-	CameraUtil.get_cam().current = true
 	get_tree().paused = false
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
