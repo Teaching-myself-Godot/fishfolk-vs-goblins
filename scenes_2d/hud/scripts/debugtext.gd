@@ -22,7 +22,6 @@ func _unhandled_input(_event):
 			show()
 
 
-
 func _on_resize():
 	$debugtext.size.x = get_viewport().size.x
 	$overlay.texture.width =  get_viewport().size.x

@@ -78,11 +78,11 @@ func _on_goblin_zoom_out_delay_timeout():
 
 
 func _start_main_game():
-	get_tree().change_scene_to_packed(MainGame)
+	get_tree().call_deferred("change_scene_to_packed", MainGame)
 
 
 func _start_tutorial():
-	get_tree().change_scene_to_packed(TutorialScene)
+	get_tree().call_deferred("change_scene_to_packed", TutorialScene)
 
 
 func _unhandled_input(_event):
@@ -103,8 +103,7 @@ func _on_play_tutorial_dialog_confirmed():
 
 
 func _on_play_tutorial_dialog_custom_action(action):
+	$PlayTutorialDialog.hide()
 	if action == "denied":
 		_start_main_game()
-	else:
-		$PlayTutorialDialog.hide()
 
