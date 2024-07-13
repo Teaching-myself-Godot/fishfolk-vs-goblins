@@ -142,7 +142,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - Show gameover splash
 - show a baby goblin counter
 
-### [Milestone 15](tree/milestone-15) - Winning the game, prepping soft launch
+### [Milestone 15](tree/milestone-15) - Winning the game, prepping soft launch (July 13th 2024)
 
 - add stage music by: https://www.bandlab.com/yoia_
 - show current wave progression
