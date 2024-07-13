@@ -13,9 +13,7 @@ roughness = 0.63
 [sub_resource type="SphereShape3D" id="SphereShape3D_tjmdc"]
 radius = 0.176603
 
-[node name="CannonBall" type="RigidBody3D"]
-mass = 100.0
-gravity_scale = 1.2
+[node name="CannonBall" type="Area3D"]
 script = ExtResource("1_bxwho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

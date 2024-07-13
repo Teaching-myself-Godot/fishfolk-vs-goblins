@@ -1,20 +1,23 @@
 class_name CannonBall
-extends RigidBody3D
+extends Area3D
 
 var owned_by_player : int = -1
 var impulse_dir : Vector3 = Vector3.ZERO
+var velocity : Vector3 = Vector3.ZERO
 var damage = 3
 var explosion_range = 4
 
 signal spawn_explosion(pos : Vector3)
 
 func _ready():
-	apply_impulse(impulse_dir * 5)
-	contact_monitor = true
-	max_contacts_reported = 20
+	velocity = impulse_dir * 10
 
 
-func _process(_delta):
+func _physics_process(delta):
+	position += velocity * delta
+	velocity.y = lerp(velocity.y, -gravity, 0.1)
+	velocity.x = lerp(velocity.x, 0.0, 0.01)
+	velocity.z = lerp(velocity.z, 0.0, 0.01)
 	if Vector3.ZERO.distance_to(position) > 250:
 		print("Cannonball dissapears, cus totally out of map")
 		queue_free()

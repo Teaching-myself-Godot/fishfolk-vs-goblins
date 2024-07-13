@@ -23,7 +23,7 @@ func _shoot():
 		my_cannon_ball.rotation.z = $Wheel/Axle.rotation.z
 		my_cannon_ball.impulse_dir = (Vector3.RIGHT
 				.rotated(Vector3.UP, $Wheel.rotation.y)
-				.rotated(Vector3.FORWARD, $Wheel.rotation.z * 1.5)
+				.rotated(Vector3.FORWARD, $Wheel.rotation.z)
 		)
 		fire_cannon_ball.emit(my_cannon_ball)
 		ready_to_fire = false
