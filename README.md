@@ -18,7 +18,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - The family thought the tree-mechanic was cool
 - ...that only works well in 3D
 
-### [Milestone 1](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-1) - multiplayer goblins (April 25th 2024)
+### [Milestone 1](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-1) - multiplayer goblins (April 25th 2024)
 
 - [DeltaBlock font CC0](https://www.fontspace.com/delta-block-font-f108775)
 - [Youtube tutorial: Godot 4 / Blender - Third Person Character From Scratch](https://youtu.be/VasHZZyPpYU?si=uVCYltNUYqa3C8hG)
@@ -26,14 +26,14 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - goblin model and scene, can run and jump
 - 1-5 players, 1 keyboard, up to 4 controllers
 
-### [Milestone 2](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-2) - interactive tree(s) (April 30th 2024)
+### [Milestone 2](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-2) - interactive tree(s) (April 30th 2024)
 
 - [Highlight closest tree with outline mesh](https://www.reddit.com/r/godot/comments/16ulxqs/does_anybody_knows_how_this_3d_model_outline_is/)
 - [Coloration of terrain close to tree](https://www.reddit.com/r/godot/comments/gok070/need_help_getting_world_coordinates_in_shader/)
 - Open menu on B
 - Use menu with L
 
-### [Milestone 3](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-3) - Convert a tree into an arrow-tower (May 3rd 2024)
+### [Milestone 3](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-3) - Convert a tree into an arrow-tower (May 3rd 2024)
 - [Show the range of the tower while selecting](https://godotshaders.com/shader/sdf-range-rings-3d/)
 - make the tower rise out of the ground when built
 - fell all the trees within the radius of the tower
@@ -45,7 +45,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - goblin can only hug 1 thing at at time
 
 
-### [Milestone 4](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-4) - Monsters (May 5th 2024)
+### [Milestone 4](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-4) - Monsters (May 5th 2024)
 - make a monster model
 - make arrow towers point at the closest monster within range
 - animate the monster
@@ -55,7 +55,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - make the arrow towers shoot arrows at the closest monster within range with the speed of the released bow string
 - spawn in a new arrow aligned with the shaft and the tightening bowstring
 
-### [Milestone 5](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-5) - Cannon tower (May 9th 2024)
+### [Milestone 5](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-5) - Cannon tower (May 9th 2024)
 - add cannon tower to the Tree context menu options for Ground
 - make a cannon tower model
 - write `_point_at` code in `cannon_tower.gd`
@@ -68,7 +68,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - use particles to animate the explosion
 - use a shader to show impact tattooed on the terrain
 
-### [Milestone 6](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-6) - Monster-life, Monster-afterlife (May 10th 2024)
+### [Milestone 6](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-6) - Monster-life, Monster-afterlife (May 10th 2024)
 
 - allow the monsters to die when HP runs out
 - make monster model react to being hit
@@ -76,7 +76,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - give the monsters HP bars
 - flying damage numbers
 
-### [Milestone 7](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-7) - Flying fish, Anti-Air (May 13th 2024)
+### [Milestone 7](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-7) - Flying fish, Anti-Air (May 13th 2024)
 
 - model aerial defense tower
 - shoot some sort of projectile(s)
@@ -85,7 +85,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - model flying fish
 - create flying route for flying fish
 
-### [Milestone 8](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-8) - Capitalism (May 16th 2024)
+### [Milestone 8](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-8) - Capitalism (May 16th 2024)
 
 - model out builder gems
 - make monsters drop currency
@@ -95,7 +95,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - make towers cost currency in context menu
 - in a nice [price tag icon](https://svgsilh.com/image/151102.html)
 
-### [Milestone 9](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-9) - Giant turtle (May 20th 2024)
+### [Milestone 9](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-9) - Giant turtle (May 20th 2024)
 - create a turtle model
 - use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture
 - and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head <-- did not go as planned
@@ -103,7 +103,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - use tattooed-shader for dragging coloration on terrain
 - use dust to hide flipper-clipping
 
-### [Milestone 10](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-10) - Editable stages (June 1st 2024)
+### [Milestone 10](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-10) - Editable stages (June 1st 2024)
 - Add MonsterPath scene with anchors that auto-generates a Curve3D to follow
 - Add a MonsterTargetZone area that despawns monsters for now
 - Add Spawner with MonsterPath and Timed Wave scenes
@@ -111,12 +111,12 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - Create a second stage which can be run with the `debug.gd` script
 - create true level terrain, with water for the fish-folk to crawl out of
 
-### [Milestone 11](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-11) - Surfing (June 1st 2024)
+### [Milestone 11](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-11) - Surfing (June 1st 2024)
 - Make goblin piggyback on turtle
 - Add surfing animation for goblin
 - Make goblin surf on flying fish
 
-### [Milestone 12](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-12) - Stage select (June 2nd 2024)
+### [Milestone 12](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-12) - Stage select (June 2nd 2024)
 - Make a main game scene which handles the title screen and menus
 - Extract 2 reusable stage scenes
 - Make a StageHolder to hold the current stage
@@ -125,7 +125,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - Add a title screen, which detects controller device via start button
 - Add some MonsterSpawners with a couple of infinite waves to both scenes
 
-### [Milestone 13](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-13) - UI controls (June 12th 2024)
+### [Milestone 13](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-13) - UI controls (June 12th 2024)
 - fix game joining / keep better track of controllers input in one singleton
 - make all menus use controls, so when paused no buggy stuff
 - add an (optional) goblin spawn pos to the stage
@@ -134,7 +134,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - give the game over spash screen a working delay
 
 
-### [Milestone 14](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-14) - Game over (June 12th 2024)
+### [Milestone 14](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-14) - Game over (June 12th 2024)
 - with little baby goblins in cribs (model a crib with a cute baby in it, 20 of which make a nice target for the monsters to attack)
 - make an attack animation when reaching the goal
 - make the baby goblin and the attacking monster disappear in a cloud of dust
@@ -142,7 +142,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 - Show gameover splash
 - show a baby goblin counter
 
-### [Milestone 15](/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-15) - Winning the game, prepping soft launch (July 13th 2024)
+### [Milestone 15](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-15) - Winning the game, prepping soft launch (July 13th 2024)
 
 - add stage music by: https://www.bandlab.com/yoia_
 - show current wave progression
