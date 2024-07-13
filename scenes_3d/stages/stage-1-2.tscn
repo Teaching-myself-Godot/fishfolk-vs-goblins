@@ -183,31 +183,30 @@ infinite_wave = true
 visible = true
 
 [node name="MonsterSpawner2" parent="." instance=ExtResource("7_gfa2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47969, 0, 0)
 
 [node name="MonsterPath" parent="MonsterSpawner2" instance=ExtResource("8_agk78")]
 curve = SubResource("Curve3D_khxbu")
 
 [node name="Anchor" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.55522, 1.67408, 39.5655)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.55791, 1.67408, 39.5655)
 
 [node name="Anchor2" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.85117, 1.67805, 3.4609)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.85386, 1.69647, 3.4609)
 
 [node name="Anchor3" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.56005, 1.6996, -7.04495)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -3.56274, 1.67704, -7.04495)
 
 [node name="Anchor4" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 0.991226, 1.6744, -9.11653)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -0.0114653, 1.67439, -9.11653)
 
 [node name="Anchor5" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.35393, 1.67695, -4.23353)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 6.35124, 1.67465, -4.23353)
 
 [node name="Anchor6" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085, 1.71545, 2.57308)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 13.3058, 1.68551, 2.57308)
 
 [node name="Anchor7" parent="MonsterSpawner2/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 28.3058, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]
 monster_speed = 2.0
@@ -220,31 +219,30 @@ offset_top = -152.0
 offset_bottom = -96.0
 
 [node name="MonsterSpawner4" parent="." instance=ExtResource("7_gfa2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47969, 0, 0)
 
 [node name="MonsterPath" parent="MonsterSpawner4" instance=ExtResource("8_agk78")]
 curve = SubResource("Curve3D_u725d")
 
 [node name="Anchor" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.55522, 1.67408, 39.5655)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.22637, 1.67408, 39.4559)
 
 [node name="Anchor2" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.85117, 10.6268, 3.4609)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.52232, 10.6268, 3.35128)
 
 [node name="Anchor3" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.56005, 6.44349, -7.04495)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.2312, 6.44349, -7.15457)
 
 [node name="Anchor4" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 0.991226, 10.6231, -9.11653)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.32008, 10.6231, -9.22615)
 
 [node name="Anchor5" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.35393, 6.42084, -4.23353)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.68278, 6.42084, -4.34315)
 
 [node name="Anchor6" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085, 10.6642, 2.57308)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.6374, 10.6642, 2.46346)
 
 [node name="Anchor7" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.6374, 1.67408, 7.46346)
 
 [node name="MonsterWave2" parent="MonsterSpawner4" instance=ExtResource("10_npwai")]
 wait_time = 10.0
@@ -259,31 +257,30 @@ offset_top = -264.0
 offset_bottom = -208.0
 
 [node name="MonsterSpawner3" parent="." instance=ExtResource("7_gfa2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47969, 0, 0)
 
 [node name="MonsterPath" parent="MonsterSpawner3" instance=ExtResource("8_agk78")]
 curve = SubResource("Curve3D_16p1v")
 
 [node name="Anchor" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.90063, 1.67408, 39.5923)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.44963, 1.67408, 39.5923)
 
 [node name="Anchor2" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.19658, 1.69104, 3.48769)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.74558, 1.6844, 3.48769)
 
 [node name="Anchor3" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -1.90546, 1.67982, -7.01816)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -1.45446, 1.75649, -7.01816)
 
 [node name="Anchor4" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.64582, 1.67445, -9.08974)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 2.09682, 1.67422, -9.08974)
 
 [node name="Anchor5" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 8.00852, 1.67428, -4.20674)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 8.45952, 1.71052, -4.20674)
 
 [node name="Anchor6" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.9631, 1.68755, 2.59987)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 15.4141, 1.76088, 2.59987)
 
 [node name="Anchor7" parent="MonsterSpawner3/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.9631, 1.67408, 7.59987)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 30.4141, 1.67408, 7.59987)
 
 [node name="MonsterWave" parent="MonsterSpawner3" instance=ExtResource("10_npwai")]
 monster_speed = 2.0
