@@ -8,7 +8,7 @@ Many thanks go out to my creative manager, son, and author of the musical scores
 
 ## The creative process
 
-Next up is a listing of the milestones I tagged (except mileston 0 of course).
+Next up is a listing of the milestones I tagged (except milestone 0 of course).
 
 ### Milestone 0 - the inception (April 20th 2024)
 
