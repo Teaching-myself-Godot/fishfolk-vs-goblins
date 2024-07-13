@@ -4,7 +4,7 @@ A fan-game of [Pixeljunk's "Monsters 2"](https://store.steampowered.com/app/7498
 
 My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
-Many thanks go out to my creative manager, son, and author of the musical scores: ['Yoia' at bandlab](https://www.bandlab.com/yoia_). Without him, there would have been no HP bars, no damage indicators shouting "Overkill", no sound and no music in this game.
+Many thanks go out to my creative manager, son, and author of the musical scores: [くコ:彡Amna at bandlab](https://www.bandlab.com/yoia_). Without him, there would have been no HP bars, no damage indicators shouting "Overkill", no sound and no music in this game.
 
 ## The creative process
 
@@ -144,7 +144,7 @@ Next up is a listing of the milestones I tagged (except mileston 0 of course).
 
 ### [Milestone 15](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-15) - Winning the game, prepping soft launch (July 13th 2024)
 
-- add stage music by: https://www.bandlab.com/yoia_
+- add stage music by: [くコ:彡Amna](https://www.bandlab.com/yoia_)
 - show current wave progression
 - Implement a MonsterWaveEmitter, which starts waves and reports which wave of how many just started
 - Make win condition for stage (all waves passed)
