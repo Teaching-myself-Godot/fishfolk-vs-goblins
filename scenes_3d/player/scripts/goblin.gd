@@ -83,7 +83,7 @@ func _my_button_just_released(button_key : String) -> bool:
 
 func _should_jump() -> bool:
 	# can only start jump if on floor and no context menu is open
-	if not is_on_floor() or $TreeContextMenu.is_open:
+	if not is_on_floor() or $TreeContextMenu.is_open or $TowerContextMenu.is_open:
 		return false
 
 	return _my_button_just_pressed("jump")
@@ -98,17 +98,12 @@ func _pressed_valid_confirm_for_a_context_menu() -> bool:
 
 	return joy_confirmed or mouse_confirmed
 
-
-func _pressed_confirm_in_tree_context_menu() -> bool:
-	return _pressed_valid_confirm_for_a_context_menu() and my_tree and $TreeContextMenu.is_open
-
-
-func _handle_context_menu_confirm():
+func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 	# if a valid final choice is made (select_targeted_option returns non-empy string)
 	# then apply the choice (like: build a tower from the TreeContextMenu)
-	if _pressed_confirm_in_tree_context_menu():
-		var choice = $TreeContextMenu.select_targeted_option()
-		if choice != "" and my_tree and is_instance_valid(my_tree):
+	if _pressed_valid_confirm_for_a_context_menu() and context_menu.is_open:
+		var choice = context_menu.select_targeted_option()
+		if choice != "" and is_instance_valid(my_tree):
 			if choice == "Arrow":
 				build_arrow_tower.emit(player_num, my_tree.position)
 			elif choice == "Cannon":
@@ -119,26 +114,32 @@ func _handle_context_menu_confirm():
 			my_tree = null
 			if player_num > 0:
 				Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
+		elif is_instance_valid(my_tower):
+			if choice == "Dismantle":
+				print("TODO: dismantle tower and regrow trees!")
+				my_tower.toggle_highlight(false)
+				my_tower = null
+				if player_num > 0:
+					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 
-
-func _handle_context_menu_arrow_input():
+func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
 	var input_dir = _get_input_vector()
 	var force = Vector2.ZERO.distance_to(input_dir)
 
 	# handle mouse cursor input for arrow
 	if player_num == 0 and force == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		input_dir = _get_mouse_vector_to($TreeContextMenu.position)
+		input_dir = _get_mouse_vector_to(context_menu.position)
 		force = 1
 
 	# rotate the arrow to the pointed at angle
 	if force > 0.5:
-		$TreeContextMenu.rotate_arrow(input_dir.normalized().angle())
+		context_menu.rotate_arrow(input_dir.normalized().angle())
 	else:
-		$TreeContextMenu.rotate_arrow(-PI * .5)
+		context_menu.rotate_arrow(-PI * .5)
 
 	# highlight the range of any currently targeted tower in the context menu
 	if is_instance_valid(my_tree):
-		var opt = $TreeContextMenu.targeted_option
+		var opt = context_menu.targeted_option
 		if  opt == "Arrow":
 			my_tree.set_range_ring(Constants.ARROW_TOWER_BASE_RANGE)
 		elif opt == "Anti-Air":
@@ -150,22 +151,23 @@ func _handle_context_menu_arrow_input():
 
 
 func _handle_context_menus():
-	# open the context menu if requested and valid,
-	# else handle any open context menu
-	if _my_button_just_pressed("confirm") and my_tree and not $TreeContextMenu.is_open:
-		confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
-		$TreeContextMenu.open()
-	elif $TreeContextMenu.is_open:
-		_handle_context_menu_arrow_input()
-		_handle_context_menu_confirm()
+	for context_menu : ContextMenuBase in [$TreeContextMenu, $TowerContextMenu]:
+		# open the context menu if requested and valid,
+		# else handle any open context menu
+		if _my_button_just_pressed("confirm") and context_menu.visible and not context_menu.is_open:
+			confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+			context_menu.open()
+		elif context_menu.is_open:
+			_handle_context_menu_arrow_input(context_menu)
+			_handle_context_menu_confirm(context_menu)
 
-	# close the context menu, or submenu if requested and valid
-	if _my_button_just_pressed("cancel") and $TreeContextMenu.is_open:
-		pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
-		if $TreeContextMenu.current_menu == $TreeContextMenu.MAIN_MENU_NAME:
-			$TreeContextMenu.close()
-		else:
-			$TreeContextMenu.close_submenu()
+		# close the context menu, or submenu if requested and valid
+		if _my_button_just_pressed("cancel") and context_menu.is_open:
+			pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+			if context_menu.current_menu == context_menu.MAIN_MENU_NAME:
+				context_menu.close()
+			else:
+				context_menu.close_submenu()
 
 
 func _get_closest_huggable(group_name : String) -> Node3D:
@@ -209,16 +211,18 @@ func _hug_closest_tree_or_tower():
 			my_tower = null
 
 	# highlight the closest tree for me if I have one
-	if my_tree and is_instance_valid(my_tree):
+	if is_instance_valid(my_tree):
 		my_tree.toggle_highlight(true)
 		$TreeContextMenu.show_at(CameraUtil.get_label_position(my_tree.position, Vector3(2, 0, 0)))
 	else:
 		$TreeContextMenu.close_and_hide()
 
-	if my_tower and is_instance_valid(my_tower):
+	# highlight the closest tower for me if I have one
+	if not my_tree and is_instance_valid(my_tower):
 		my_tower.toggle_highlight(true)
+		$TowerContextMenu.show_at(CameraUtil.get_label_position(my_tower.position, Vector3(2, 0, 0)))
 	else:
-		pass
+		$TowerContextMenu.close_and_hide()
 
 
 func _handle_jumping():
@@ -228,7 +232,7 @@ func _handle_jumping():
 
 func _handle_running(force : float, direction : Vector3):
 	# we can only run when we're not interacting with a menu
-	if direction and not $TreeContextMenu.is_open:
+	if direction and not $TreeContextMenu.is_open and not $TowerContextMenu.is_open:
 		direction = direction.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y)
 		speed = force * MAX_SPEED
 		velocity.x = direction.x * speed
@@ -321,3 +325,4 @@ func _physics_process(delta):
 
 func _on_gem_pouch_contents_changed(gems : int, crystals : int):
 	$TreeContextMenu._on_gem_pouch_contents_changed(gems, crystals)
+	$TowerContextMenu._on_gem_pouch_contents_changed(gems, crystals)

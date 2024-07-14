@@ -75,6 +75,7 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 	gem_pouch.liquidity_change.connect(new_goblin._on_gem_pouch_contents_changed)
 	new_goblin._on_gem_pouch_contents_changed(gem_pouch.builder_gems, gem_pouch.magical_crystals)
 	new_goblin.find_child("TreeContextMenu").spend_gems.connect(gem_pouch.spend_gems)
+	new_goblin.find_child("TowerContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
 

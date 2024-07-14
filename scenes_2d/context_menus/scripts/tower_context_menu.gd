@@ -9,4 +9,4 @@ func _ready():
 
 
 func _on_gem_pouch_contents_changed(gems : int, crystals : int):
-	$"Dismantle-option/PriceTag".update_affordable_status(gems, crystals)
+	$"MainMenu/Dismantle-option/PriceTag".update_affordable_status(gems, crystals)

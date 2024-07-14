@@ -50,6 +50,7 @@ texture = ExtResource("1_g0gxm")
 
 [node name="PriceTag" parent="MainMenu/Dismantle-option" instance=ExtResource("7_y2y3k")]
 builder_gem_price = 20
+magical_crystal_price = 0
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 texture = ExtResource("11_36xgm")
