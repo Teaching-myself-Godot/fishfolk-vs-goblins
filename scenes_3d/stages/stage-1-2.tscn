@@ -55,6 +55,12 @@ transform = Transform3D(0.792263, 0.043514, 0.10211, -0.043157, 0.798816, -0.005
 [node name="palm-tree3" parent="terrain" instance=ExtResource("3_ra3wo")]
 transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 3.6678, 0.213723, -1.6927)
 
+[node name="palm-tree19" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 0.143606, 0.213723, -2.36108)
+
+[node name="palm-tree20" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 1.54113, 0.213723, -4.8827)
+
 [node name="palm-tree4" parent="terrain" instance=ExtResource("3_ra3wo")]
 transform = Transform3D(1.01315, -0.00331159, -0.40843, -0.0028026, 1.09227, -0.0158082, 0.408434, 0.0157095, 1.01303, 10.8259, 3.59832, -9.61605)
 
@@ -90,6 +96,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34464, 0.058314, -7.61376)
 
 [node name="palm-tree14" parent="terrain" instance=ExtResource("3_ra3wo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37431, 0.488944, 2.5015)
+
+[node name="palm-tree21" parent="terrain" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27141, 0.53057, -0.263169)
 
 [node name="palm-tree16" parent="terrain" instance=ExtResource("3_ra3wo")]
 transform = Transform3D(0.537252, 0, -1.16325, 0, 1.28133, 0, 1.16325, 0, 0.537252, -7.69798, 0.224334, -11.2069)

@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=3 uid="uid://nb0vibtqx5cw"]
+
+[ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
+[ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
+[ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_1p6ou"]
+[ext_resource type="PackedScene" uid="uid://xniqt5ldhvis" path="res://scenes_2d/hud/price_tag.tscn" id="7_y2y3k"]
+[ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="11_36xgm"]
+[ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="12_gpwss"]
+[ext_resource type="PackedScene" uid="uid://ddpbkvarml5rb" path="res://scenes_2d/b_button.tscn" id="13_g8obl"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_f8xx1"]
+
+[sub_resource type="Gradient" id="Gradient_4vl0e"]
+offsets = PackedFloat32Array(0.99, 1)
+colors = PackedColorArray(0, 0, 0, 0.12549, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_85k8y"]
+gradient = SubResource("Gradient_4vl0e")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.95)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgxa7"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
+font = ExtResource("14_f8xx1")
+font_size = 24
+
+[node name="TowerContextMenu" type="Control" groups=["hud_items"]]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n8180")
+metadata/_edit_vertical_guides_ = [200.0, -200.0, 45.0, -46.0, 79.0]
+metadata/_edit_horizontal_guides_ = [200.0, -200.0, 105.0]
+
+[node name="BackdropCircle" type="Sprite2D" parent="."]
+position = Vector2(0.5, -1.50001)
+texture = SubResource("GradientTexture2D_85k8y")
+
+[node name="MainMenu" type="Node2D" parent="."]
+
+[node name="Dismantle-option" type="Sprite2D" parent="MainMenu"]
+material = SubResource("ShaderMaterial_rgxa7")
+position = Vector2(0, 120)
+texture = ExtResource("1_g0gxm")
+
+[node name="PriceTag" parent="MainMenu/Dismantle-option" instance=ExtResource("7_y2y3k")]
+builder_gem_price = 20
+magical_crystal_price = 0
+
+[node name="MenuArrow" type="Sprite2D" parent="."]
+texture = ExtResource("11_36xgm")
+offset = Vector2(50, 0)
+
+[node name="AButton" parent="." instance=ExtResource("12_gpwss")]
+position = Vector2(174, 172)
+
+[node name="BButton" parent="." instance=ExtResource("13_g8obl")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 51.0
+text = "Dismantle
+"
+label_settings = SubResource("LabelSettings_xw20b")
+horizontal_alignment = 1
