@@ -2,9 +2,21 @@
 
 A fan-game of [Pixeljunk's "Monsters 2"](https://store.steampowered.com/app/749800/PixelJunk_Monsters_2/).
 
+
 My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
+## Download the game from [itch.io](https://itch.io/games/genre-strategy/local-multiplayer/tag-3d/tag-tower-defense)
+
+[https://renevanderark.itch.io/goblins-vs-fishfolk](https://renevanderark.itch.io/goblins-vs-fishfolk)
+
+[![cover](cover.gif)](https://renevanderark.itch.io/goblins-vs-fishfolk)
+
+
+## A Word of Gratitude
+
 Many thanks go out to my creative manager, son, and author of the musical scores: [くコ:彡Amna at bandlab](https://www.bandlab.com/yoia_). Without him, there would have been no HP bars, no damage indicators shouting "Overkill", no sound and no music in this game.
+
+Also my wife and colleagues who were so kind to playtest this game on different machines and platforms
 
 ## The creative process
 
