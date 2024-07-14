@@ -173,6 +173,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 ### Milestone 17 - The balancing act
 - [ ] create context menu for towers
 - [ ] add dismantle option to tower menu (refund some builder gems, no crystals)
+- [ ] remember which trees were felled and regrow
 - [ ] add damage upgrade option to tower menu (1pt of damage for cannon and anti-air, 3pts for arrow tower) - each upgrade costs double the magical crystals
 - [ ] add turtles and flying fish to stage 1-3
 - [ ] add HP progression interval to stage 1-3
