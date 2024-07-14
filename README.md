@@ -170,13 +170,25 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - Make the promo-videos on Youtube listed
 - Grab a little attention via socials (I use almost none so that'll do fine :D)
 
-### Milestone 17 - The balancing act
+### Milestone 17 - Tower context menu I: dismantling towers
 - [x] create context menu for towers
-- [x] add dismantle option to tower menu (refund some builder gems, no crystals)
+- [x] add dismantle option to tower menu (costs 20 builder gems, no crystals)
 - [ ] remember which trees were felled and regrow them
-- [ ] add damage upgrade option to tower menu (1pt of damage for cannon and anti-air, 3pts for arrow tower) - each upgrade costs double the magical crystals
-- [ ] add turtles and flying fish to stage 1-3
-- [ ] add HP progression interval to stage 1-3
+
+### Milestone 18 - Monster wave modes 
+- [ ] remove infinite boolean from MonsterWave
+- [ ] add A dedicated EndlessMonsterWave 
+- [ ] add CountdownMonsterWave showing countdown time on label
+- [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
+
+
+### Milestone 19 - Tower Context Menu II: upgrading towers
+- [ ] add damage upgrade option to tower menu 
+- [ ] add range upgrade option to tower menu
+- [ ] add rate of fire upgrade option to tower menu
+- [ ] dynamically upgradable price tag
+- [ ] show tower upgrade level labels
+
 
 ## Future ideas...
 - Short tutorial on making your own stage

@@ -231,6 +231,7 @@ func _physics_process(delta):
 		if wave_emitter.last_wave_cleared():
 			stage_won.emit()
 
+	# TODO: if no WaveEmitter is present, stage_won.emit() if all waves were freed
 
 func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false):
 	for toasted in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS):
