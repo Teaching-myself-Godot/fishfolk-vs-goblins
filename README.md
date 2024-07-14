@@ -2,12 +2,11 @@
 
 A fan-game of [Pixeljunk's "Monsters 2"](https://store.steampowered.com/app/749800/PixelJunk_Monsters_2/).
 
-
 My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
 ## Download the game from [itch.io](https://itch.io/games/genre-strategy/local-multiplayer/tag-3d/tag-tower-defense)
 
-[https://renevanderark.itch.io/goblins-vs-fishfolk](https://renevanderark.itch.io/goblins-vs-fishfolk)
+[Download Goblins vs. Fishfolk on Itch](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
 [![cover](cover.gif)](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
@@ -165,24 +164,27 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - Short screen recordings for promo and intro
 - Windows installer (maybe test other platforms? - Linux worked)
 
+### [Milestone 16](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-16) - Release (July 14th 2024)
+- Publish code by opening up the repo with MIT license
+- Soft Launch to itch.io
+- Make the promo-videos on Youtube listed
+- Grab a little attention via socials (I use almost none so that'll do fine :D)
 
-### Milestone 16 - Release
-- [ ] Publish code by opening up the repo with MIT license
-- [ ] Soft Launch to itch.io
-- [ ] Make the promo-videos on Youtube listed
-- [ ] Grab a little attention via socials (I use almost none so that'll do fine :D)
+### Milestone 17 - The balancing act
+- [ ] create context menu for towers
+- [ ] add dismantle option to tower menu (refund some builder gems, no crystals)
+- [ ] add damage upgrade option to tower menu (1pt of damage for cannon and anti-air, 3pts for arrow tower) - each upgrade costs double the magical crystals
+- [ ] add turtles and flying fish to stage 1-3
+- [ ] add HP progression interval to stage 1-3
 
-
-## Future ideas ?
-- [ ] Short tutorial on making your own stage
-- [ ] Short tutorial on contributing by forking
-- [ ] show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-- [ ] add dismantle option to tower menu
-- [ ] add tower menu system using stat-upgrades (damage, range, projectile speed)
-- [ ] Make camera look behind player more when zoomed in
-- [ ] add leave game option to pause menu
-- [ ] add blunt (=area) and piercing damage types
-- [ ] add elemental damage maybe?
-- [ ] make turtle very insensitive to pierce and extra sensitive to blunt
-- [ ] let flying fish and fish chibi remain equally sensitive to both damage types
-- [ ] create a cute goblin village (model a small house, 3 of which makes a village)
+## Future ideas...
+- Short tutorial on making your own stage
+- Short tutorial on contributing by forking
+- Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
+- Make camera look behind player more when zoomed in (only single player)
+- Control a single tower via extra 3D viewport
+- Re-add leave game option to pause menu
+- add blunt (=area) and piercing damage types
+- add elemental damage maybe?
+- create a cute goblin village (model a small house, 3 of which makes a village)
+- 3D cutscenes with more back story?
