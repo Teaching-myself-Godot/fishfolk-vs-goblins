@@ -173,17 +173,17 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 ### Milestone 17 - Tower context menu I: dismantling towers
 - [x] create context menu for towers
 - [x] add dismantle option to tower menu (costs 20 builder gems, no crystals)
-- [ ] remember which trees were felled and regrow them
+- [x] remember which trees were felled and regrow them
 
-### Milestone 18 - Monster wave modes 
+### Milestone 18 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave
-- [ ] add A dedicated EndlessMonsterWave 
+- [ ] add A dedicated EndlessMonsterWave
 - [ ] add CountdownMonsterWave showing countdown time on label
 - [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
 
 
 ### Milestone 19 - Tower Context Menu II: upgrading towers
-- [ ] add damage upgrade option to tower menu 
+- [ ] add damage upgrade option to tower menu
 - [ ] add range upgrade option to tower menu
 - [ ] add rate of fire upgrade option to tower menu
 - [ ] dynamically upgradable price tag

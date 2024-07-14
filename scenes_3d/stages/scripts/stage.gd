@@ -89,6 +89,7 @@ func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
+	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
 
 
@@ -98,6 +99,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
+	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
 
 
@@ -107,8 +109,8 @@ func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
+	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
-
 
 
 func _on_arrow_tower_load_arrow(arrow : Arrow):
@@ -230,8 +232,8 @@ func _physics_process(delta):
 	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
 		if wave_emitter.last_wave_cleared():
 			stage_won.emit()
-
 	# TODO: if no WaveEmitter is present, stage_won.emit() if all waves were freed
+
 
 func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false):
 	for toasted in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS):
@@ -253,6 +255,7 @@ func _start_wave(wave_num):
 	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
 		wave_emitter.current_wave = wave_num
 		_mk_toast("Wave " + str(wave_num) + " / " + str(wave_emitter.number_of_waves))
+
 
 func _ready():
 	TerrainShaderParams.clear()

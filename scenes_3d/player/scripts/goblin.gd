@@ -116,11 +116,12 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 				Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
 		elif is_instance_valid(my_tower):
 			if choice == "Dismantle":
-				print("TODO: dismantle tower and regrow trees!")
+				my_tower.dismantle()
 				my_tower.toggle_highlight(false)
 				my_tower = null
 				if player_num > 0:
 					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
+
 
 func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
 	var input_dir = _get_input_vector()

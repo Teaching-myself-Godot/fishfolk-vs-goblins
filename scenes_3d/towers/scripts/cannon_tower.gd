@@ -76,6 +76,7 @@ func  _is_valid_target(potential_target) -> bool:
 func _ready():
 	super._ready()
 	current_range = Constants.CANNON_TOWER_BASE_RANGE
+	drop_gem_amount = 8
 	$ReloadTimer.start()
 
 
@@ -86,3 +87,4 @@ func _on_reload_timer_timeout():
 
 func _on_shoot_timer_timeout():
 	ready_to_fire = true
+
