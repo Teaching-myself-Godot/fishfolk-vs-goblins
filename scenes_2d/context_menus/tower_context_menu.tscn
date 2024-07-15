@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=20 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
 [ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_1p6ou"]
+[ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="5_4jdt7"]
+[ext_resource type="Texture2D" uid="uid://c8pmmo8t77603" path="res://icons/range-upgrade-option.svg" id="5_avqmm"]
 [ext_resource type="PackedScene" uid="uid://xniqt5ldhvis" path="res://scenes_2d/hud/price_tag.tscn" id="7_y2y3k"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="11_36xgm"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="12_gpwss"]
@@ -24,6 +26,58 @@ fill_to = Vector2(0.7, 0.95)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rgxa7"]
 shader = ExtResource("2_1p6ou")
 shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_p1agf"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1cbjt"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.419608, 0, 0.647059, 1)
+outline_size = 2
+outline_color = Color(1, 0.556863, 1, 1)
+shadow_size = 7
+shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja11l"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_gpjv3"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wv41f"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.419608, 0, 0.647059, 1)
+outline_size = 2
+outline_color = Color(1, 0.556863, 1, 1)
+shadow_size = 7
+shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
 font = ExtResource("14_f8xx1")
@@ -52,7 +106,63 @@ texture = ExtResource("1_g0gxm")
 builder_gem_price = 20
 magical_crystal_price = 0
 
+[node name="BuilderGemPrice" parent="MainMenu/Dismantle-option/PriceTag" index="1"]
+offset_left = 0.413679
+offset_top = -17.7186
+offset_right = 95.4137
+offset_bottom = 19.2814
+text = "20"
+label_settings = SubResource("LabelSettings_p1agf")
+
+[node name="BuilderGemSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
+offset_left = 73.2085
+offset_top = 37.3176
+offset_right = 113.208
+offset_bottom = 77.3176
+
+[node name="MagicalCrystalPrice" parent="MainMenu/Dismantle-option/PriceTag" index="3"]
+visible = false
+label_settings = SubResource("LabelSettings_1cbjt")
+
+[node name="MagicalCrystalSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
+visible = false
+
+[node name="Range Upgrade-option" type="Sprite2D" parent="MainMenu"]
+material = SubResource("ShaderMaterial_ja11l")
+position = Vector2(0, -120)
+texture = ExtResource("5_avqmm")
+
+[node name="PriceTag" parent="MainMenu/Range Upgrade-option" instance=ExtResource("7_y2y3k")]
+offset_left = 36.0
+offset_top = -88.0
+offset_right = 206.0
+offset_bottom = 1.52588e-05
+rotation = -0.523598
+builder_gem_price = 0
+
+[node name="BuilderGemPrice" parent="MainMenu/Range Upgrade-option/PriceTag" index="1"]
+visible = false
+label_settings = SubResource("LabelSettings_gpjv3")
+
+[node name="BuilderGemSubViewport" parent="MainMenu/Range Upgrade-option/PriceTag" index="2"]
+visible = false
+
+[node name="MagicalCrystalPrice" parent="MainMenu/Range Upgrade-option/PriceTag" index="3"]
+offset_top = -17.0
+offset_right = 62.9999
+offset_bottom = 20.0
+text = "1
+"
+label_settings = SubResource("LabelSettings_wv41f")
+
+[node name="MagicalCrystalSubViewport" parent="MainMenu/Range Upgrade-option/PriceTag" index="4"]
+offset_left = 70.2923
+offset_top = -25.0471
+offset_right = 110.292
+offset_bottom = 14.9529
+
 [node name="MenuArrow" type="Sprite2D" parent="."]
+rotation = -1.55509
 texture = ExtResource("11_36xgm")
 offset = Vector2(50, 0)
 
@@ -63,11 +173,14 @@ position = Vector2(174, 172)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -56.0
+offset_left = -81.0
 offset_top = 24.0
-offset_right = 64.0
+offset_right = 82.0
 offset_bottom = 51.0
-text = "Dismantle
+text = "Range Upgrade
 "
 label_settings = SubResource("LabelSettings_xw20b")
 horizontal_alignment = 1
+
+[editable path="MainMenu/Dismantle-option/PriceTag"]
+[editable path="MainMenu/Range Upgrade-option/PriceTag"]
