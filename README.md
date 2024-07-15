@@ -170,24 +170,25 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - Make the promo-videos on Youtube listed
 - Grab a little attention via socials (I use almost none so that'll do fine :D)
 
-### [Milestone 17](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-17) - Tower context menu I: dismantling towers
+### [Milestone 17](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-17) - Tower context menu I: dismantling towers (July 14th 2024)
 - create context menu for towers
 - add dismantle option to tower menu (costs 20 builder gems, no crystals)
 - remember which trees were felled and regrow them
+
+### Milestone 18 - Tower Context Menu II: upgrading towers
+- [ ] add damage upgrade option to tower menu
+- [ ] add range upgrade option to tower menu
+- [ ] add rate of fire upgrade option to tower menu
+- [ ] dynamically upgradable price tag for tower menu options
+- [ ] keep track of upgrades
+- [ ] show tower upgrade level labels in 3D viewport
+
 
 ### Milestone 18 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave
 - [ ] add A dedicated EndlessMonsterWave
 - [ ] add CountdownMonsterWave showing countdown time on label
 - [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
-
-### Milestone 19 - Tower Context Menu II: upgrading towers
-- [ ] add damage upgrade option to tower menu
-- [ ] add range upgrade option to tower menu
-- [ ] add rate of fire upgrade option to tower menu
-- [ ] dynamically upgradable price tag
-- [ ] show tower upgrade level labels
-
 
 ## Future ideas...
 - Short tutorial on making your own stage
