@@ -176,12 +176,12 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - remember which trees were felled and regrow them
 
 ### Milestone 18 - Tower Context Menu II: upgrading towers
-- [ ] add damage upgrade option to tower menu
-- [ ] add range upgrade option to tower menu
-- [ ] add rate of fire upgrade option to tower menu
-- [ ] dynamically upgradable price tag for tower menu options
-- [ ] keep track of upgrades
-- [ ] show tower upgrade level labels in 3D viewport
+- [x] add damage upgrade option to tower menu
+- [x] add range upgrade option to tower menu
+- [x] add rate of fire upgrade option to tower menu
+- [ ] implement upgrade stats on tower
+- [ ] show tower stats in tower context menu
+- [ ] increase prices in tower menu options per tower
 
 
 ### Milestone 18 - Monster wave modes
