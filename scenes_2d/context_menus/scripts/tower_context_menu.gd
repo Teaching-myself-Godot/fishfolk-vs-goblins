@@ -21,5 +21,5 @@ func close():
 func _on_gem_pouch_contents_changed(gems : int, crystals : int):
 	$"MainMenu/Dismantle-option/PriceTag".update_affordable_status(gems, crystals)
 	$"UpgradeMenu/Range-option/PriceTag".update_affordable_status(gems, crystals)
-	$"UpgradeMenu/Rate of Fire-option/PriceTag".update_affordable_status(gems, crystals)
+	$"UpgradeMenu/Reload Time-option/PriceTag".update_affordable_status(gems, crystals)
 	$"UpgradeMenu/Damage-option/PriceTag".update_affordable_status(gems, crystals)

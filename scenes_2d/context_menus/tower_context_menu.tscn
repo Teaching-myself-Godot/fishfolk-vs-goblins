@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=35 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="11_36xgm"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="12_gpwss"]
 [ext_resource type="PackedScene" uid="uid://ddpbkvarml5rb" path="res://scenes_2d/b_button.tscn" id="13_g8obl"]
+[ext_resource type="Texture2D" uid="uid://2cshmk043agh" path="res://icons/damage-stat.svg" id="14_eurmp"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_f8xx1"]
+[ext_resource type="Texture2D" uid="uid://ckhls3evdiw3p" path="res://icons/range-stat.svg" id="15_nladh"]
+[ext_resource type="Texture2D" uid="uid://bdk8ue0fmh7fe" path="res://icons/rate-of-fire-stat.svg" id="16_s8w3c"]
 
 [sub_resource type="Gradient" id="Gradient_4vl0e"]
 offsets = PackedFloat32Array(0.99, 1)
@@ -122,13 +125,40 @@ shadow_offset = Vector2(0, 0)
 font = ExtResource("14_f8xx1")
 font_size = 24
 
+[sub_resource type="LabelSettings" id="LabelSettings_skkn1"]
+resource_local_to_scene = true
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(1, 0.376471, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bk1qs"]
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_laha4"]
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(0.243137, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqbfv"]
+font = ExtResource("5_4jdt7")
+font_size = 24
+outline_size = 7
+outline_color = Color(0, 1, 1, 1)
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
+
 [node name="TowerContextMenu" type="Control" groups=["hud_items"]]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_n8180")
-metadata/_edit_vertical_guides_ = [200.0, -200.0, 45.0, -46.0, 79.0]
-metadata/_edit_horizontal_guides_ = [200.0, -200.0, 105.0]
+metadata/_edit_vertical_guides_ = [591.0, 373.0, 368.0]
+metadata/_edit_horizontal_guides_ = [63.0, 128.0, 192.0]
 
 [node name="BackdropCircle" type="Sprite2D" parent="."]
 position = Vector2(0.5, -1.50001)
@@ -142,6 +172,7 @@ position = Vector2(0, 120)
 texture = ExtResource("1_g0gxm")
 
 [node name="PriceTag" parent="MainMenu/Dismantle-option" instance=ExtResource("7_y2y3k")]
+rotation = 0.785397
 builder_gem_price = 20
 magical_crystal_price = 0
 
@@ -208,27 +239,27 @@ offset_top = -25.0471
 offset_right = 110.292
 offset_bottom = 14.9529
 
-[node name="Rate of Fire-option" type="Sprite2D" parent="UpgradeMenu"]
+[node name="Reload Time-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_786b8")
 position = Vector2(133, -1)
 texture = ExtResource("7_gxbnm")
 
-[node name="PriceTag" parent="UpgradeMenu/Rate of Fire-option" instance=ExtResource("7_y2y3k")]
-offset_left = 56.0
-offset_top = -46.0
-offset_right = 226.0
-offset_bottom = 42.0
-rotation = 0.0
+[node name="PriceTag" parent="UpgradeMenu/Reload Time-option" instance=ExtResource("7_y2y3k")]
+offset_left = 46.0
+offset_top = -72.0
+offset_right = 216.0
+offset_bottom = 16.0
+rotation = -0.523598
 builder_gem_price = 0
 
-[node name="BuilderGemPrice" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="1"]
+[node name="BuilderGemPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="1"]
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="2"]
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
 visible = false
 
-[node name="MagicalCrystalPrice" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="3"]
 offset_top = -17.0
 offset_right = 62.9999
 offset_bottom = 20.0
@@ -236,7 +267,7 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_wv41f")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="4"]
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
 offset_left = 70.2923
 offset_top = -25.0471
 offset_right = 110.292
@@ -310,11 +341,81 @@ offset_left = -116.0
 offset_top = 24.0
 offset_right = 117.0
 offset_bottom = 51.0
-text = "Range Upgrade"
+text = "Upgrade"
 label_settings = SubResource("LabelSettings_xw20b")
 horizontal_alignment = 1
 
+[node name="Damage-stat" type="Sprite2D" parent="."]
+position = Vector2(308, 166)
+texture = ExtResource("14_eurmp")
+
+[node name="Label" type="Label" parent="Damage-stat"]
+offset_left = -82.0
+offset_top = 12.0
+offset_right = -40.0
+offset_bottom = 26.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_skkn1")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Damage-stat"]
+offset_left = 65.0
+offset_top = 12.0
+offset_right = 79.0
+offset_bottom = 26.0
+text = "h.p."
+label_settings = SubResource("LabelSettings_skkn1")
+
+[node name="Range-stat" type="Sprite2D" parent="."]
+position = Vector2(309, 101)
+texture = ExtResource("15_nladh")
+
+[node name="Label" type="Label" parent="Range-stat"]
+offset_left = -83.0
+offset_top = 13.0
+offset_right = -48.0
+offset_bottom = 27.0
+text = "Range"
+label_settings = SubResource("LabelSettings_bk1qs")
+
+[node name="Label2" type="Label" parent="Range-stat"]
+offset_left = 64.0
+offset_top = 13.0
+offset_right = 76.0
+offset_bottom = 27.0
+text = "m."
+label_settings = SubResource("LabelSettings_bk1qs")
+
+[node name="Rate-of-fire-stat" type="Sprite2D" parent="."]
+position = Vector2(309, 36)
+texture = ExtResource("16_s8w3c")
+
+[node name="Label" type="Label" parent="Rate-of-fire-stat"]
+offset_left = -83.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = 27.0
+text = "Reload Time"
+label_settings = SubResource("LabelSettings_laha4")
+
+[node name="Label2" type="Label" parent="Rate-of-fire-stat"]
+offset_left = 64.0
+offset_top = 13.0
+offset_right = 87.0
+offset_bottom = 27.0
+text = "sec."
+label_settings = SubResource("LabelSettings_laha4")
+
+[node name="Label3" type="Label" parent="Rate-of-fire-stat"]
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 59.0
+offset_bottom = 26.0
+text = "1.25"
+label_settings = SubResource("LabelSettings_eqbfv")
+horizontal_alignment = 2
+
 [editable path="MainMenu/Dismantle-option/PriceTag"]
 [editable path="UpgradeMenu/Range-option/PriceTag"]
-[editable path="UpgradeMenu/Rate of Fire-option/PriceTag"]
+[editable path="UpgradeMenu/Reload Time-option/PriceTag"]
 [editable path="UpgradeMenu/Damage-option/PriceTag"]

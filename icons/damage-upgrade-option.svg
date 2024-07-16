@@ -26,14 +26,15 @@
      showguides="true"
      inkscape:zoom="5.6568543"
      inkscape:cx="67.528697"
-     inkscape:cy="30.49398"
-     inkscape:window-width="2880"
-     inkscape:window-height="1514"
+     inkscape:cy="44.636115"
+     inkscape:window-width="1920"
+     inkscape:window-height="1094"
      inkscape:window-x="-11"
-     inkscape:window-y="-9"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
-     inkscape:lockguides="true">
+     inkscape:lockguides="true"
+     showgrid="false">
     <sodipodi:guide
        position="19.940283,16.744109"
        orientation="1,0"
@@ -55,7 +56,7 @@
     <ellipse
        style="fill:#141414;fill-opacity:0.513043;stroke:none;stroke-width:6.26679;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
        id="path4"
-       cx="15.263537"
+       cx="16.011892"
        cy="13.821731"
        rx="14.334479"
        ry="14.020967" />
