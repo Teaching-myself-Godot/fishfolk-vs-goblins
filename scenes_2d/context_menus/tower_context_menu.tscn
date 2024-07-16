@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=28 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
 [ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_1p6ou"]
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="5_4jdt7"]
 [ext_resource type="Texture2D" uid="uid://c8pmmo8t77603" path="res://icons/range-upgrade-option.svg" id="5_avqmm"]
+[ext_resource type="Texture2D" uid="uid://b22myfvy7soff" path="res://icons/upgrade-option.svg" id="6_hfrc3"]
 [ext_resource type="Texture2D" uid="uid://7pdd8g8solgy" path="res://icons/rate-of-fire-upgrade-option.svg" id="7_gxbnm"]
 [ext_resource type="PackedScene" uid="uid://xniqt5ldhvis" path="res://scenes_2d/hud/price_tag.tscn" id="7_y2y3k"]
 [ext_resource type="Texture2D" uid="uid://cp3ththokav5f" path="res://icons/damage-upgrade-option.svg" id="8_3w215"]
@@ -52,6 +53,10 @@ outline_color = Color(1, 0.556863, 1, 1)
 shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jheev"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ja11l"]
 shader = ExtResource("2_1p6ou")
@@ -161,12 +166,20 @@ label_settings = SubResource("LabelSettings_1cbjt")
 [node name="MagicalCrystalSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
 visible = false
 
-[node name="Range-option" type="Sprite2D" parent="MainMenu"]
+[node name="Upgrade-option" type="Sprite2D" parent="MainMenu"]
+material = SubResource("ShaderMaterial_jheev")
+position = Vector2(0, -120)
+texture = ExtResource("6_hfrc3")
+
+[node name="UpgradeMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="Range-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_ja11l")
 position = Vector2(0, -120)
 texture = ExtResource("5_avqmm")
 
-[node name="PriceTag" parent="MainMenu/Range-option" instance=ExtResource("7_y2y3k")]
+[node name="PriceTag" parent="UpgradeMenu/Range-option" instance=ExtResource("7_y2y3k")]
 offset_left = 36.0
 offset_top = -88.0
 offset_right = 206.0
@@ -174,14 +187,14 @@ offset_bottom = 1.52588e-05
 rotation = -0.523598
 builder_gem_price = 0
 
-[node name="BuilderGemPrice" parent="MainMenu/Range-option/PriceTag" index="1"]
+[node name="BuilderGemPrice" parent="UpgradeMenu/Range-option/PriceTag" index="1"]
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="MainMenu/Range-option/PriceTag" index="2"]
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
 visible = false
 
-[node name="MagicalCrystalPrice" parent="MainMenu/Range-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Range-option/PriceTag" index="3"]
 offset_top = -17.0
 offset_right = 62.9999
 offset_bottom = 20.0
@@ -189,18 +202,18 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_wv41f")
 
-[node name="MagicalCrystalSubViewport" parent="MainMenu/Range-option/PriceTag" index="4"]
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
 offset_left = 70.2923
 offset_top = -25.0471
 offset_right = 110.292
 offset_bottom = 14.9529
 
-[node name="Rate of Fire-option" type="Sprite2D" parent="MainMenu"]
+[node name="Rate of Fire-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_786b8")
 position = Vector2(133, -1)
 texture = ExtResource("7_gxbnm")
 
-[node name="PriceTag" parent="MainMenu/Rate of Fire-option" instance=ExtResource("7_y2y3k")]
+[node name="PriceTag" parent="UpgradeMenu/Rate of Fire-option" instance=ExtResource("7_y2y3k")]
 offset_left = 56.0
 offset_top = -46.0
 offset_right = 226.0
@@ -208,14 +221,14 @@ offset_bottom = 42.0
 rotation = 0.0
 builder_gem_price = 0
 
-[node name="BuilderGemPrice" parent="MainMenu/Rate of Fire-option/PriceTag" index="1"]
+[node name="BuilderGemPrice" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="1"]
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="MainMenu/Rate of Fire-option/PriceTag" index="2"]
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="2"]
 visible = false
 
-[node name="MagicalCrystalPrice" parent="MainMenu/Rate of Fire-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="3"]
 offset_top = -17.0
 offset_right = 62.9999
 offset_bottom = 20.0
@@ -223,18 +236,18 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_wv41f")
 
-[node name="MagicalCrystalSubViewport" parent="MainMenu/Rate of Fire-option/PriceTag" index="4"]
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Rate of Fire-option/PriceTag" index="4"]
 offset_left = 70.2923
 offset_top = -25.0471
 offset_right = 110.292
 offset_bottom = 14.9529
 
-[node name="Damage-option" type="Sprite2D" parent="MainMenu"]
+[node name="Damage-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_f0l1f")
 position = Vector2(-120, 0)
 texture = ExtResource("8_3w215")
 
-[node name="PriceTag" parent="MainMenu/Damage-option" instance=ExtResource("7_y2y3k")]
+[node name="PriceTag" parent="UpgradeMenu/Damage-option" instance=ExtResource("7_y2y3k")]
 offset_left = -38.0
 offset_top = -16.0
 offset_right = 132.0
@@ -242,7 +255,7 @@ offset_bottom = 72.0
 rotation = 2.35619
 builder_gem_price = 0
 
-[node name="BuilderGemPrice" parent="MainMenu/Damage-option/PriceTag" index="1"]
+[node name="BuilderGemPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="1"]
 visible = false
 anchor_left = 1.21456
 anchor_top = 0.779868
@@ -255,14 +268,14 @@ offset_bottom = 37.0
 scale = Vector2(-1, -1)
 label_settings = SubResource("LabelSettings_844mx")
 
-[node name="BuilderGemSubViewport" parent="MainMenu/Damage-option/PriceTag" index="2"]
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
 visible = false
 anchor_left = -0.159959
 anchor_top = 0.148064
 anchor_right = -0.159959
 anchor_bottom = 0.148064
 
-[node name="MagicalCrystalPrice" parent="MainMenu/Damage-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="3"]
 anchor_left = 1.50796
 anchor_top = 0.64261
 anchor_right = 1.50796
@@ -274,7 +287,7 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_g4psc")
 
-[node name="MagicalCrystalSubViewport" parent="MainMenu/Damage-option/PriceTag" index="4"]
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
 anchor_left = -0.0576202
 anchor_top = 0.301409
 anchor_right = -0.0576201
@@ -302,6 +315,6 @@ label_settings = SubResource("LabelSettings_xw20b")
 horizontal_alignment = 1
 
 [editable path="MainMenu/Dismantle-option/PriceTag"]
-[editable path="MainMenu/Range-option/PriceTag"]
-[editable path="MainMenu/Rate of Fire-option/PriceTag"]
-[editable path="MainMenu/Damage-option/PriceTag"]
+[editable path="UpgradeMenu/Range-option/PriceTag"]
+[editable path="UpgradeMenu/Rate of Fire-option/PriceTag"]
+[editable path="UpgradeMenu/Damage-option/PriceTag"]
