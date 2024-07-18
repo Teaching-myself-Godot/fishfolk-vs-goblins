@@ -184,7 +184,12 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [ ] implement upgrade stats on tower
 - [ ] increase prices in tower menu options per tower
 
-### Milestone 18 - Monster wave modes
+### Milestone 19 - Better tutorial
+- [ ] create a dynamic checklist to complete lessons
+- [ ] separate controls tutorial from gameplay tutorial
+
+
+### Milestone 20 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave
 - [ ] add A dedicated EndlessMonsterWave
 - [ ] add CountdownMonsterWave showing countdown time on label
