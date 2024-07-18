@@ -62,9 +62,11 @@ func restore_if_have_room():
 	show()
 	add_to_group(Constants.GROUP_NAME_TREES)
 	felled = false
+	$CollisionShape3D.disabled = false
 
 
 func fell():
 	if not felled:
 		felled = true
+		$CollisionShape3D.disabled = true
 		rotation_degrees.y = randi() * 360

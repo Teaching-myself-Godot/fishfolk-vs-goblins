@@ -18,6 +18,7 @@ func _shoot():
 	if  my_arrow and is_instance_valid(my_arrow) and _have_valid_target():
 		_point_at(current_target.position, current_target.chest_height, false)
 		$AnimationPlayer.play("shoot")
+		my_arrow.damage = current_damage
 		my_arrow.target = current_target
 		my_arrow.fired = true
 		my_arrow = null
@@ -82,6 +83,9 @@ func _ready():
 	axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
 	arrow_y = axle_y + 0.2
 	current_range = Constants.ARROW_TOWER_BASE_RANGE
+	current_damage = Constants.ARROW_TOWER_BASE_DAMAGE
+	current_reload_time = Constants.ARROW_TOWER_BASE_RELOAD_TIME
+	$ReloadTimer.wait_time = current_reload_time
 	drop_gem_amount = 7
 	_load_new_arrow()
 

@@ -222,6 +222,7 @@ func _hug_closest_tree_or_tower():
 	if not my_tree and is_instance_valid(my_tower):
 		my_tower.toggle_highlight(true)
 		$TowerContextMenu.show_at(CameraUtil.get_label_position(my_tower.position, Vector3(2, 0, 0)))
+		$TowerContextMenu.set_stats(my_tower)
 	else:
 		$TowerContextMenu.close_and_hide()
 

@@ -18,6 +18,11 @@ func _toggle_option_blink(opt, flag : bool):
 		stat.material.set("shader_parameter/blink", flag)
 
 
+func set_stats(tower : BaseTower):
+	$"Stats/Range/Value".text = str(tower.current_range)
+	$"Stats/Damage/Value".text = str(tower.current_damage)
+	$"Stats/Reload Time/Value".text = str(tower.current_reload_time)
+
 
 func open():
 	super.open()

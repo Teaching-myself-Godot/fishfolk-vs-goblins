@@ -25,6 +25,10 @@ func _shoot():
 				.rotated(Vector3.UP, $Wheel.rotation.y)
 				.rotated(Vector3.FORWARD, $Wheel.rotation.z)
 		)
+		my_cannon_ball.target_distance = (
+			Vector2(position.x, position.z)
+				.distance_to(Vector2(current_target.position.x, current_target.position.z))
+		) - (position.y - current_target.position.y)
 		fire_cannon_ball.emit(my_cannon_ball)
 		ready_to_fire = false
 		$ReloadTimer.start()
@@ -76,8 +80,11 @@ func  _is_valid_target(potential_target) -> bool:
 func _ready():
 	super._ready()
 	current_range = Constants.CANNON_TOWER_BASE_RANGE
+	current_damage = Constants.CANNON_TOWER_BASE_DAMAGE
+	current_reload_time = Constants.CANNON_TOWER_BASE_RELOAD_TIME
 	drop_gem_amount = 8
-	$ReloadTimer.start()
+	$ReloadTimer.wait_time = current_reload_time
+	$ShootTimer.start()
 
 
 func _on_reload_timer_timeout():

@@ -8,7 +8,6 @@ var my_general_area = 2.5
 var my_range_ring : RangeRing = null
 var rise_target_position : Vector3 = Vector3.ZERO
 var built_by_player : int = -1
-var current_range : float = 10.0
 
 var outlines = []
 var ready_to_fire = false
@@ -18,6 +17,10 @@ var dismantled = false
 var original_y_position = 0.0
 var drop_gem_amount = 1
 
+# upgradables
+var current_range       : float = 10.0
+var current_damage      : int = 5
+var current_reload_time : float = 3.0
 
 func _fell_trees_in_my_general_area():
 	for tree : MyTree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):

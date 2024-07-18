@@ -276,11 +276,11 @@ position = Vector2(133, -1)
 texture = ExtResource("7_gxbnm")
 
 [node name="PriceTag" parent="UpgradeMenu/Reload Time-option" instance=ExtResource("7_y2y3k")]
-offset_left = 46.0
-offset_top = -72.0
-offset_right = 216.0
-offset_bottom = 16.0
-rotation = -0.523598
+offset_left = 17.0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 89.0
+rotation = 0.785397
 builder_gem_price = 0
 
 [node name="BuilderGemPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="1"]
