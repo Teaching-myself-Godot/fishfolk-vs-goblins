@@ -181,8 +181,8 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [x] add rate of fire upgrade option to tower menu
 - [x] add tower stats design in tower context menu
 - [x] show actual upgrade stats in tower context menu
-- [ ] implement upgrade stats on tower
-- [ ] increase prices in tower menu options per tower
+- [x] implement upgrade stats on tower
+- [x] increase prices in tower menu options per tower
 
 ### Milestone 19 - Better tutorial
 - [ ] create a dynamic checklist to complete lessons
