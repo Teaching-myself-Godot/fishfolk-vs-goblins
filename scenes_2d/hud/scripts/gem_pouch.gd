@@ -32,6 +32,7 @@ func _update_labels():
 	magical_crystal_count_label.text = str(magical_crystals_showing)
 	crib_count_label.text = str(cribs)
 
+
 func collect_builder_gem():
 	builder_gems += 10
 	liquidity_change.emit(builder_gems, magical_crystals)

@@ -187,7 +187,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 ### Milestone 19 - Better tutorial
 - [ ] create a dynamic checklist to complete lessons
 - [ ] separate controls tutorial from gameplay tutorial
-
+- [ ] use dynamically drawn arrows to point from things --> at things
 
 ### Milestone 20 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave
