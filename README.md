@@ -175,7 +175,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - add dismantle option to tower menu (costs 20 builder gems, no crystals)
 - remember which trees were felled and regrow them
 
-### Milestone 18 - Tower Context Menu II: upgrading towers
+### [Milestone 18](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-18) - Tower Context Menu II: upgrading towers (July 20th 2024)
 - [x] add damage upgrade option to tower menu
 - [x] add range upgrade option to tower menu
 - [x] add rate of fire upgrade option to tower menu
