@@ -111,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 2.87114, -7.31752)
 
 [node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
 builder_gems = 600
-magical_crystals = 100
+magical_crystals = 1
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
