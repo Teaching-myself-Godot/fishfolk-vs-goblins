@@ -100,6 +100,10 @@ func _on_shoot_timer_timeout():
 
 func dismantle():
 	super.dismantle()
-
 	if is_instance_valid(my_arrow):
 		my_arrow.queue_free()
+
+
+func upgrade_reload_time():
+	super.upgrade_reload_time()
+	$ReloadTimer.wait_time = current_reload_time

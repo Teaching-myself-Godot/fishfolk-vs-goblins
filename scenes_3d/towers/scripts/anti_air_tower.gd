@@ -87,9 +87,13 @@ func _ready():
 		$Launcher/MissileClamp3
 	]
 	$ShootTimer.wait_time = current_reload_time
-	$ShootTimer.start()
+	ready_to_fire = true
 
 
 func _on_shoot_timer_timeout():
 	ready_to_fire = true
 
+
+func upgrade_reload_time():
+	super.upgrade_reload_time()
+	$ShootTimer.wait_time = current_reload_time

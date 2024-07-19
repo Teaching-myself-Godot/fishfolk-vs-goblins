@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=38 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
@@ -77,18 +77,6 @@ shadow_size = 7
 shadow_color = Color(0.823529, 1, 0.788235, 1)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_wv41f"]
-resource_local_to_scene = true
-line_spacing = 0.0
-font = ExtResource("5_4jdt7")
-font_size = 24
-font_color = Color(0.419608, 0, 0.647059, 1)
-outline_size = 2
-outline_color = Color(1, 0.556863, 1, 1)
-shadow_size = 7
-shadow_color = Color(1, 0.933333, 1, 1)
-shadow_offset = Vector2(0, 0)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_786b8"]
 shader = ExtResource("2_1p6ou")
 shader_parameter/blink = false
@@ -107,18 +95,6 @@ outline_size = 3
 outline_color = Color(0, 0.854902, 0.247059, 1)
 shadow_size = 7
 shadow_color = Color(0.823529, 1, 0.788235, 1)
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g4psc"]
-resource_local_to_scene = true
-line_spacing = 0.0
-font = ExtResource("5_4jdt7")
-font_size = 24
-font_color = Color(0.419608, 0, 0.647059, 1)
-outline_size = 2
-outline_color = Color(1, 0.556863, 1, 1)
-shadow_size = 7
-shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
@@ -234,7 +210,6 @@ position = Vector2(0, -120)
 texture = ExtResource("6_hfrc3")
 
 [node name="UpgradeMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="Range-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_ja11l")
@@ -262,7 +237,6 @@ offset_right = 62.9999
 offset_bottom = 20.0
 text = "1
 "
-label_settings = SubResource("LabelSettings_wv41f")
 
 [node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
 offset_left = 70.2923
@@ -296,7 +270,6 @@ offset_right = 62.9999
 offset_bottom = 20.0
 text = "1
 "
-label_settings = SubResource("LabelSettings_wv41f")
 
 [node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
 offset_left = 70.2923
@@ -347,7 +320,6 @@ offset_bottom = 45.3423
 scale = Vector2(-1, -1)
 text = "1
 "
-label_settings = SubResource("LabelSettings_g4psc")
 
 [node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
 anchor_left = -0.0576202

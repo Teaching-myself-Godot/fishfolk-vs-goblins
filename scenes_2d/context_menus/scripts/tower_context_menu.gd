@@ -22,6 +22,15 @@ func set_stats(tower : BaseTower):
 	$"Stats/Range/Value".text = str(tower.current_range)
 	$"Stats/Damage/Value".text = str(tower.current_damage)
 	$"Stats/Reload Time/Value".text = str(tower.current_reload_time)
+	$"UpgradeMenu/Range-option/PriceTag".update_price(
+			0, tower.range_upgrade_price
+	)
+	$"UpgradeMenu/Reload Time-option/PriceTag".update_price(
+			0, tower.reload_time_upgrade_price
+	)
+	$"UpgradeMenu/Damage-option/PriceTag".update_price(
+			0, tower.damage_upgrade_price
+	)
 
 
 func open():

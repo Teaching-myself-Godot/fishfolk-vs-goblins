@@ -18,9 +18,12 @@ var original_y_position = 0.0
 var drop_gem_amount = 1
 
 # upgradables
-var current_range       : float = 10.0
-var current_damage      : int = 5
+var current_range : float = 10.0
+var current_damage : int = 5
 var current_reload_time : float = 3.0
+var range_upgrade_price : int = 1
+var damage_upgrade_price : int = 1
+var reload_time_upgrade_price : int = 1
 
 func _fell_trees_in_my_general_area():
 	for tree : MyTree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):
@@ -138,3 +141,22 @@ func dismantle():
 	dismantled = true
 	for _i in range(drop_gem_amount):
 		drop_builder_gem.emit(position + Vector3(0, 2, 0))
+
+
+func upgrade_reload_time():
+	if current_reload_time > 1:
+		current_reload_time -= 1
+		reload_time_upgrade_price = (
+			reload_time_upgrade_price + 1 if current_reload_time > 1
+			else -1
+		)
+
+
+func upgrade_damage():
+	current_damage += 1
+	damage_upgrade_price += 1
+
+
+func upgrade_range():
+	current_range += 0.5
+	range_upgrade_price += 1
