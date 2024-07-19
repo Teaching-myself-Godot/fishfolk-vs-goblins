@@ -1,13 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=38 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
 [ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_1p6ou"]
+[ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="5_4jdt7"]
+[ext_resource type="Texture2D" uid="uid://c8pmmo8t77603" path="res://icons/range-upgrade-option.svg" id="5_avqmm"]
+[ext_resource type="Texture2D" uid="uid://b22myfvy7soff" path="res://icons/upgrade-option.svg" id="6_hfrc3"]
+[ext_resource type="Texture2D" uid="uid://7pdd8g8solgy" path="res://icons/rate-of-fire-upgrade-option.svg" id="7_gxbnm"]
 [ext_resource type="PackedScene" uid="uid://xniqt5ldhvis" path="res://scenes_2d/hud/price_tag.tscn" id="7_y2y3k"]
+[ext_resource type="Texture2D" uid="uid://cp3ththokav5f" path="res://icons/damage-upgrade-option.svg" id="8_3w215"]
 [ext_resource type="Texture2D" uid="uid://bwhk66xbe5g77" path="res://icons/menu-arrow.svg" id="11_36xgm"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="12_gpwss"]
 [ext_resource type="PackedScene" uid="uid://ddpbkvarml5rb" path="res://scenes_2d/b_button.tscn" id="13_g8obl"]
+[ext_resource type="Texture2D" uid="uid://2cshmk043agh" path="res://icons/damage-stat.svg" id="14_eurmp"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_f8xx1"]
+[ext_resource type="Texture2D" uid="uid://ckhls3evdiw3p" path="res://icons/range-stat.svg" id="15_nladh"]
+[ext_resource type="Texture2D" uid="uid://bdk8ue0fmh7fe" path="res://icons/rate-of-fire-stat.svg" id="16_s8w3c"]
 
 [sub_resource type="Gradient" id="Gradient_4vl0e"]
 offsets = PackedFloat32Array(0.99, 1)
@@ -25,23 +33,145 @@ fill_to = Vector2(0.7, 0.95)
 shader = ExtResource("2_1p6ou")
 shader_parameter/blink = false
 
+[sub_resource type="LabelSettings" id="LabelSettings_p1agf"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1cbjt"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.419608, 0, 0.647059, 1)
+outline_size = 2
+outline_color = Color(1, 0.556863, 1, 1)
+shadow_size = 7
+shadow_color = Color(1, 0.933333, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jheev"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja11l"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_gpjv3"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_786b8"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0l1f"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_844mx"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(0.0313726, 0.937255, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0.854902, 0.247059, 1)
+shadow_size = 7
+shadow_color = Color(0.823529, 1, 0.788235, 1)
+shadow_offset = Vector2(0, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
 font = ExtResource("14_f8xx1")
 font_size = 24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e84sb"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_skkn1"]
+resource_local_to_scene = true
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(1, 0.376471, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdt2y"]
+font = ExtResource("5_4jdt7")
+font_size = 24
+font_color = Color(1, 1, 1, 0.733333)
+outline_size = 7
+outline_color = Color(1, 0.415686, 0, 1)
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhvbf"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_bk1qs"]
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qn4cr"]
+font = ExtResource("5_4jdt7")
+font_size = 24
+outline_size = 7
+outline_color = Color(0.458824, 0.847059, 0, 1)
+shadow_size = 6
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwunn"]
+shader = ExtResource("2_1p6ou")
+shader_parameter/blink = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_laha4"]
+font = ExtResource("14_f8xx1")
+font_size = 12
+outline_size = 1
+outline_color = Color(0.243137, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqbfv"]
+font = ExtResource("5_4jdt7")
+font_size = 24
+outline_size = 7
+outline_color = Color(0, 1, 1, 1)
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
 
 [node name="TowerContextMenu" type="Control" groups=["hud_items"]]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_n8180")
-metadata/_edit_vertical_guides_ = [200.0, -200.0, 45.0, -46.0, 79.0]
-metadata/_edit_horizontal_guides_ = [200.0, -200.0, 105.0]
+metadata/_edit_vertical_guides_ = [591.0, 373.0, 187.0]
+metadata/_edit_horizontal_guides_ = [-37.0, 24.0, 192.0]
 
 [node name="BackdropCircle" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.5, -1.50001)
 texture = SubResource("GradientTexture2D_85k8y")
 
 [node name="MainMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Dismantle-option" type="Sprite2D" parent="MainMenu"]
 material = SubResource("ShaderMaterial_rgxa7")
@@ -49,25 +179,278 @@ position = Vector2(0, 120)
 texture = ExtResource("1_g0gxm")
 
 [node name="PriceTag" parent="MainMenu/Dismantle-option" instance=ExtResource("7_y2y3k")]
+rotation = 0.785397
 builder_gem_price = 20
 magical_crystal_price = 0
 
+[node name="BuilderGemPrice" parent="MainMenu/Dismantle-option/PriceTag" index="1"]
+offset_left = 0.413679
+offset_top = -17.7186
+offset_right = 95.4137
+offset_bottom = 19.2814
+text = "20"
+label_settings = SubResource("LabelSettings_p1agf")
+
+[node name="BuilderGemSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
+offset_left = 73.2085
+offset_top = 37.3176
+offset_right = 113.208
+offset_bottom = 77.3176
+
+[node name="MagicalCrystalPrice" parent="MainMenu/Dismantle-option/PriceTag" index="3"]
+visible = false
+label_settings = SubResource("LabelSettings_1cbjt")
+
+[node name="MagicalCrystalSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
+visible = false
+
+[node name="Upgrade-option" type="Sprite2D" parent="MainMenu"]
+material = SubResource("ShaderMaterial_jheev")
+position = Vector2(0, -120)
+texture = ExtResource("6_hfrc3")
+
+[node name="UpgradeMenu" type="Node2D" parent="."]
+
+[node name="Range-option" type="Sprite2D" parent="UpgradeMenu"]
+material = SubResource("ShaderMaterial_ja11l")
+position = Vector2(0, -120)
+texture = ExtResource("5_avqmm")
+
+[node name="PriceTag" parent="UpgradeMenu/Range-option" instance=ExtResource("7_y2y3k")]
+offset_left = 36.0
+offset_top = -88.0
+offset_right = 206.0
+offset_bottom = 1.52588e-05
+rotation = -0.523598
+builder_gem_price = 0
+
+[node name="BuilderGemPrice" parent="UpgradeMenu/Range-option/PriceTag" index="1"]
+visible = false
+label_settings = SubResource("LabelSettings_gpjv3")
+
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
+visible = false
+
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Range-option/PriceTag" index="3"]
+offset_top = -17.0
+offset_right = 62.9999
+offset_bottom = 20.0
+text = "1
+"
+
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
+offset_left = 70.2923
+offset_top = -25.0471
+offset_right = 110.292
+offset_bottom = 14.9529
+
+[node name="Reload Time-option" type="Sprite2D" parent="UpgradeMenu"]
+material = SubResource("ShaderMaterial_786b8")
+position = Vector2(133, -1)
+texture = ExtResource("7_gxbnm")
+
+[node name="PriceTag" parent="UpgradeMenu/Reload Time-option" instance=ExtResource("7_y2y3k")]
+offset_left = 17.0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 89.0
+rotation = 0.785397
+builder_gem_price = 0
+
+[node name="BuilderGemPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="1"]
+visible = false
+label_settings = SubResource("LabelSettings_gpjv3")
+
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
+visible = false
+
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="3"]
+offset_top = -17.0
+offset_right = 62.9999
+offset_bottom = 20.0
+text = "1
+"
+
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
+offset_left = 70.2923
+offset_top = -25.0471
+offset_right = 110.292
+offset_bottom = 14.9529
+
+[node name="Damage-option" type="Sprite2D" parent="UpgradeMenu"]
+material = SubResource("ShaderMaterial_f0l1f")
+position = Vector2(-120, 0)
+texture = ExtResource("8_3w215")
+
+[node name="PriceTag" parent="UpgradeMenu/Damage-option" instance=ExtResource("7_y2y3k")]
+offset_left = -38.0
+offset_top = -16.0
+offset_right = 132.0
+offset_bottom = 72.0
+rotation = 2.35619
+builder_gem_price = 0
+
+[node name="BuilderGemPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="1"]
+visible = false
+anchor_left = 1.21456
+anchor_top = 0.779868
+anchor_right = 1.21456
+anchor_bottom = 0.779868
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 108.0
+offset_bottom = 37.0
+scale = Vector2(-1, -1)
+label_settings = SubResource("LabelSettings_844mx")
+
+[node name="BuilderGemSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
+visible = false
+anchor_left = -0.159959
+anchor_top = 0.148064
+anchor_right = -0.159959
+anchor_bottom = 0.148064
+
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="3"]
+anchor_left = 1.50796
+anchor_top = 0.64261
+anchor_right = 1.50796
+anchor_bottom = 0.642612
+offset_top = 8.34224
+offset_bottom = 45.3423
+scale = Vector2(-1, -1)
+text = "1
+"
+
+[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
+anchor_left = -0.0576202
+anchor_top = 0.301409
+anchor_right = -0.0576201
+anchor_bottom = 0.301409
+offset_top = -2.64491
+offset_bottom = 37.3551
+
 [node name="MenuArrow" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("11_36xgm")
 offset = Vector2(50, 0)
 
 [node name="AButton" parent="." instance=ExtResource("12_gpwss")]
+visible = false
 position = Vector2(174, 172)
 
 [node name="BButton" parent="." instance=ExtResource("13_g8obl")]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = -56.0
+offset_left = -116.0
 offset_top = 24.0
-offset_right = 64.0
+offset_right = 117.0
 offset_bottom = 51.0
-text = "Dismantle
-"
+text = "Upgrade"
 label_settings = SubResource("LabelSettings_xw20b")
 horizontal_alignment = 1
+
+[node name="Stats" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 128.0
+offset_right = 128.0
+
+[node name="Damage" type="Sprite2D" parent="Stats"]
+material = SubResource("ShaderMaterial_e84sb")
+texture = ExtResource("14_eurmp")
+
+[node name="NameLabel" type="Label" parent="Stats/Damage"]
+offset_left = -82.0
+offset_top = 12.0
+offset_right = -40.0
+offset_bottom = 26.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_skkn1")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitLabel" type="Label" parent="Stats/Damage"]
+offset_left = 65.0
+offset_top = 12.0
+offset_right = 79.0
+offset_bottom = 26.0
+text = "h.p."
+label_settings = SubResource("LabelSettings_skkn1")
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/Damage"]
+offset_left = 16.0
+offset_right = 56.0
+offset_bottom = 24.0
+text = "5"
+label_settings = SubResource("LabelSettings_sdt2y")
+horizontal_alignment = 2
+
+[node name="Range" type="Sprite2D" parent="Stats"]
+material = SubResource("ShaderMaterial_nhvbf")
+position = Vector2(0, -64)
+texture = ExtResource("15_nladh")
+
+[node name="NameLabel" type="Label" parent="Stats/Range"]
+offset_left = -83.0
+offset_top = 13.0
+offset_right = -48.0
+offset_bottom = 27.0
+text = "Range"
+label_settings = SubResource("LabelSettings_bk1qs")
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitLabel" type="Label" parent="Stats/Range"]
+offset_left = 64.0
+offset_top = 13.0
+offset_right = 76.0
+offset_bottom = 27.0
+text = "m."
+label_settings = SubResource("LabelSettings_bk1qs")
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/Range"]
+offset_right = 56.0
+offset_bottom = 24.0
+text = "5"
+label_settings = SubResource("LabelSettings_qn4cr")
+horizontal_alignment = 2
+
+[node name="Reload Time" type="Sprite2D" parent="Stats"]
+material = SubResource("ShaderMaterial_rwunn")
+position = Vector2(0, -128)
+texture = ExtResource("16_s8w3c")
+
+[node name="NameLabel" type="Label" parent="Stats/Reload Time"]
+offset_left = -83.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = 27.0
+text = "Reload Time"
+label_settings = SubResource("LabelSettings_laha4")
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitLabel" type="Label" parent="Stats/Reload Time"]
+offset_left = 64.0
+offset_top = 13.0
+offset_right = 87.0
+offset_bottom = 27.0
+text = "sec."
+label_settings = SubResource("LabelSettings_laha4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/Reload Time"]
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 59.0
+offset_bottom = 26.0
+text = "1.25"
+label_settings = SubResource("LabelSettings_eqbfv")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[editable path="MainMenu/Dismantle-option/PriceTag"]
+[editable path="UpgradeMenu/Range-option/PriceTag"]
+[editable path="UpgradeMenu/Reload Time-option/PriceTag"]
+[editable path="UpgradeMenu/Damage-option/PriceTag"]

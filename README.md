@@ -176,15 +176,20 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - remember which trees were felled and regrow them
 
 ### Milestone 18 - Tower Context Menu II: upgrading towers
-- [ ] add damage upgrade option to tower menu
-- [ ] add range upgrade option to tower menu
-- [ ] add rate of fire upgrade option to tower menu
-- [ ] dynamically upgradable price tag for tower menu options
-- [ ] keep track of upgrades
-- [ ] show tower upgrade level labels in 3D viewport
+- [x] add damage upgrade option to tower menu
+- [x] add range upgrade option to tower menu
+- [x] add rate of fire upgrade option to tower menu
+- [x] add tower stats design in tower context menu
+- [x] show actual upgrade stats in tower context menu
+- [x] implement upgrade stats on tower
+- [x] increase prices in tower menu options per tower
+
+### Milestone 19 - Better tutorial
+- [ ] create a dynamic checklist to complete lessons
+- [ ] separate controls tutorial from gameplay tutorial
 
 
-### Milestone 18 - Monster wave modes
+### Milestone 20 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave
 - [ ] add A dedicated EndlessMonsterWave
 - [ ] add CountdownMonsterWave showing countdown time on label

@@ -6,11 +6,13 @@ var impulse_dir : Vector3 = Vector3.ZERO
 var velocity : Vector3 = Vector3.ZERO
 var damage = 3
 var explosion_range = 4
+var doing_damage = false
+var target_distance = 5
 
 signal spawn_explosion(pos : Vector3)
 
 func _ready():
-	velocity = impulse_dir * 10
+	velocity = impulse_dir * (target_distance * 2)
 
 
 func _physics_process(delta):
@@ -23,6 +25,9 @@ func _physics_process(delta):
 		queue_free()
 
 func _deal_damage():
+	if doing_damage:
+		return
+	doing_damage = true
 	var monsters = (
 		get_tree()
 		.get_nodes_in_group(Constants.GROUP_NAME_MONSTERS)

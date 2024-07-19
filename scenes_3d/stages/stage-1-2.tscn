@@ -110,7 +110,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45245, 1.81929, -13.1708)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 2.87114, -7.31752)
 
 [node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
-builder_gems = 120
+builder_gems = 600
+magical_crystals = 1
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -184,6 +185,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.3085,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("10_npwai")]
+wait_time = 2.0
 monster_speed = 2.0
 monster_hp = 3
 infinite_wave = true
@@ -218,8 +220,10 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 13.3058,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 28.3058, 1.67408, 7.57308)
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]
+wait_time = 2.0
 monster_speed = 2.0
 monster_hp = 3
+gems_per_monster = 0
 infinite_wave = true
 
 [node name="Control" parent="MonsterSpawner2/MonsterWave" index="0"]
@@ -258,6 +262,7 @@ wait_time = 10.0
 Monster = ExtResource("11_vkp3i")
 monster_speed = 2.4
 monster_hp = 5
+gems_per_monster = 2
 infinite_wave = true
 
 [node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
@@ -292,6 +297,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 15.4141,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 30.4141, 1.67408, 7.59987)
 
 [node name="MonsterWave" parent="MonsterSpawner3" instance=ExtResource("10_npwai")]
+wait_time = 2.0
 monster_speed = 2.0
 monster_hp = 3
 gems_per_monster = 0

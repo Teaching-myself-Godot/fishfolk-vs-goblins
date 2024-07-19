@@ -4,7 +4,6 @@ extends BaseTower
 signal fire_anti_air_missile(anti_air_missile : AntiAirMissile)
 var AntiAirMissileScene = preload("res://scenes_3d/projectiles/anti_air_missile.scn")
 
-
 var launcher_y = 0.0
 var rotation_speed = 0.85
 var current_missile_index : int = 0
@@ -17,11 +16,12 @@ func _shoot():
 		new_missile.target = current_target
 		new_missile.owned_by_player = built_by_player
 		new_missile.position = missile_clamps[current_missile_index].global_position
+		new_missile.damage = current_damage
 		current_missile_index = current_missile_index + 1 if current_missile_index < 3 else 0
 		ready_to_fire = false
 		fire_anti_air_missile.emit(new_missile)
 		if current_missile_index == 0:
-			$ShootTimer.wait_time = 2.0
+			$ShootTimer.wait_time = current_reload_time
 		else:
 			$ShootTimer.wait_time = 0.1
 		$ShootTimer.start()
@@ -76,6 +76,8 @@ func _is_charged() -> bool:
 func _ready():
 	super._ready()
 	current_range = Constants.ANTI_AIR_TOWER_BASE_RANGE
+	current_damage = Constants.ANTI_AIR_TOWER_BASE_DAMAGE
+	current_reload_time = Constants.ANTI_AIR_TOWER_BASE_RELOAD_TIME
 	drop_gem_amount = 9
 	launcher_y = $Launcher.position.y
 	missile_clamps = [
@@ -84,9 +86,14 @@ func _ready():
 		$Launcher/MissileClamp2,
 		$Launcher/MissileClamp3
 	]
-	$ShootTimer.start()
+	$ShootTimer.wait_time = current_reload_time
+	ready_to_fire = true
 
 
 func _on_shoot_timer_timeout():
 	ready_to_fire = true
 
+
+func upgrade_reload_time():
+	super.upgrade_reload_time()
+	$ShootTimer.wait_time = current_reload_time

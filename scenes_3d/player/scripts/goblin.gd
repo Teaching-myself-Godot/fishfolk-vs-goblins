@@ -121,7 +121,14 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 				my_tower = null
 				if player_num > 0:
 					Input.start_joy_vibration(player_num - 1, .5, .25, 1.5)
+			elif choice == "Range":
+				my_tower.upgrade_range()
+			elif choice == "Damage":
+				my_tower.upgrade_damage()
+			elif choice == "Reload Time":
+				my_tower.upgrade_reload_time()
 
+			my_tower = null
 
 func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
 	var input_dir = _get_input_vector()
@@ -222,6 +229,7 @@ func _hug_closest_tree_or_tower():
 	if not my_tree and is_instance_valid(my_tower):
 		my_tower.toggle_highlight(true)
 		$TowerContextMenu.show_at(CameraUtil.get_label_position(my_tower.position, Vector3(2, 0, 0)))
+		$TowerContextMenu.set_stats(my_tower)
 	else:
 		$TowerContextMenu.close_and_hide()
 

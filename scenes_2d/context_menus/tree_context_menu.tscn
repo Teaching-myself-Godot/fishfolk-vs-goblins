@@ -158,7 +158,10 @@ anchor_left = 0.142907
 anchor_top = 0.728606
 anchor_right = 0.142907
 anchor_bottom = 0.728606
-rotation = -0.0450244
+offset_left = -3.29419
+offset_top = -37.1173
+offset_right = 104.706
+offset_bottom = -0.117367
 label_settings = SubResource("LabelSettings_sb1pj")
 
 [node name="BuilderGemSubViewport" parent="All-RangeMenu/Arrow-option/PriceTag" index="2"]
@@ -166,6 +169,10 @@ anchor_left = 0.283137
 anchor_top = 0.164204
 anchor_right = 0.283137
 anchor_bottom = 0.164204
+offset_left = 80.8667
+offset_top = 15.55
+offset_right = 120.866
+offset_bottom = 55.55
 
 [node name="MagicalCrystalPrice" parent="All-RangeMenu/Arrow-option/PriceTag" index="3"]
 visible = false

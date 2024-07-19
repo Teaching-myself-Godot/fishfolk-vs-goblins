@@ -81,6 +81,8 @@ func show_at(pos : Vector2):
 
 
 func close_and_hide():
+	for opt in menu_options[current_menu]:
+		_toggle_option_blink(opt, false)
 	current_menu = MAIN_MENU_NAME
 	targeted_option = initial_option
 	close()
@@ -131,6 +133,8 @@ func select_targeted_option() -> String:
 			return ""
 
 func close_submenu():
+	for opt in menu_options[current_menu]:
+		_toggle_option_blink(opt, false)
 	var menu = find_child(current_menu + "Menu")
 	if is_instance_valid(menu):
 		menu.hide()
