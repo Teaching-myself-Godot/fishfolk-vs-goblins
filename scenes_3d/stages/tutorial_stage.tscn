@@ -88,6 +88,7 @@ wait_time = 3.0
 wave_number = 2
 monster_count = 2
 monster_speed = 2.0
+monster_hp = 1
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 process_mode = 2
