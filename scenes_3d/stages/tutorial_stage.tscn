@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=19 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_4urpg"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_7umqb"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/end_tutorial_confirmation_dialog.gd" id="13_mip6f"]
+[ext_resource type="PackedScene" uid="uid://dqhbgk3sotcs8" path="res://scenes_2d/hud/arrow.tscn" id="14_vtjtp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -102,6 +103,12 @@ script = ExtResource("13_mip6f")
 [node name="EndTutorialDelay" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="Arrow" parent="." instance=ExtResource("14_vtjtp")]
+visible = false
+position = Vector2(-8, -24)
+color = Color(0.988235, 0.223529, 0.196078, 1)
+outline_color = Color(0.288138, 0, 0.00151281, 0.403922)
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
 [connection signal="open_pause_menu" from="." to="." method="_open_confirmation_dialog"]

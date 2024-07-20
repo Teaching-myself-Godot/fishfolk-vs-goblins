@@ -29,7 +29,6 @@ InputUtil="*res://scripts/input_util.gd"
 
 [display]
 
-window/size/mode=4
 window/stretch/aspect="ignore"
 
 [input]

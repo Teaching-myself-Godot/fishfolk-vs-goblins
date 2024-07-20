@@ -52,6 +52,13 @@ func _process(_delta):
 	if not main_player_cid in goblin_map:
 		return
 
+	$Arrow.show()
+	$Arrow.from = CameraUtil.get_label_position(
+			goblin_map[main_player_cid].position +
+			goblin_map[main_player_cid].position.direction_to($"palm-tree3".position)
+	)
+	$Arrow.to = CameraUtil.get_label_position($"palm-tree3".position)
+
 	if check_running:
 		var pos = Vector2(
 			goblin_map[main_player_cid].position.x,
@@ -158,4 +165,5 @@ func _on_confirmation_dialog_canceled():
 
 func _on_confirmation_dialog_confirmed():
 	get_tree().call_deferred("change_scene_to_packed", MainGame)
+
 
