@@ -39,7 +39,7 @@ func _on_resize():
 func _process(_delta):
 	if goblin_fading_in:
 		if $SubViewportContainer.modulate.a < 1.0:
-			$SubViewportContainer.modulate.a += 0.002 
+			$SubViewportContainer.modulate.a += 0.002
 		if $Splash.modulate.a > 0.0:
 			$Splash.modulate.a -= 0.01
 
@@ -87,8 +87,8 @@ func _start_tutorial():
 
 func _unhandled_input(_event):
 	if (
-		InputUtil.is_just_released("start") or 
-		InputUtil.is_just_released("confirm") or 
+		InputUtil.is_just_released("start") or
+		InputUtil.is_just_released("confirm") or
 		InputUtil.is_just_released("cancel")
 	):
 		$PlayTutorialDialog.show()

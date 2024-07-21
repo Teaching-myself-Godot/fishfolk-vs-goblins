@@ -25,7 +25,7 @@ var DustParticlesScene = preload("res://scenes_3d/effects/dust_particles.tscn")
 var TurtleFlipperDustParticlesScene = preload("res://scenes_3d/effects/turtle_flipper_dust_particles.tscn")
 var ToastScene = preload("res://scenes_2d/hud/toast.tscn")
 
-var gem_pouch : GemPouch 
+var gem_pouch : GemPouch
 var goblin_map = {}
 
 
@@ -46,7 +46,7 @@ func _is_in_game(num : int):
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
 			return true
-		else: 
+		else:
 			InputUtil.player_map.erase(num)
 			goblin_map.erase(num)
 	return false
@@ -228,7 +228,7 @@ func _physics_process(delta):
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		gameover.emit()
-	
+
 	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
 		if wave_emitter.last_wave_cleared():
 			stage_won.emit()

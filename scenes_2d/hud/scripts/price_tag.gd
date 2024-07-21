@@ -39,7 +39,7 @@ func update_affordable_status(gems : int, crystals : int):
 	else:
 		$BuilderGemPrice.label_settings.font_color = Color(0.031, 0.937, 0)
 		$BuilderGemPrice.label_settings.outline_color = Color(0, 0.855, 0.247)
-		
+
 	if crystals < magical_crystal_price or magical_crystal_price < 0:
 		$MagicalCrystalPrice.label_settings.font_color = Color.RED
 		$MagicalCrystalPrice.label_settings.outline_color = Color.RED

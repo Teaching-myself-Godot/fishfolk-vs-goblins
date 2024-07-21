@@ -32,7 +32,7 @@ func _apply_damage_motion(_from_direction : Vector3, _force : float = 1.0):
 func handle_update(delta, frame):
 	if frame == my_frame_cycle or not limit_frames:
 		_apply_motion(delta)
-	
+
 	if attacking and position.distance_to(attack_target) < 1.0:
 		kill_your_darling.emit(crib_under_attack)
 		queue_free()
@@ -63,7 +63,7 @@ func get_hp():
 
 func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
 	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
-	$HPBar.hp -= actual_damage 
+	$HPBar.hp -= actual_damage
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	_apply_damage_motion(from_direction, force)

@@ -34,7 +34,7 @@ func _deal_damage():
 	)
 	for monster : BaseMonster in monsters:
 		if (
-			is_instance_valid(monster) and 
+			is_instance_valid(monster) and
 			position.distance_to(monster.position) < explosion_range
 		):
 			monster.take_damage(damage, position.direction_to(monster.position))

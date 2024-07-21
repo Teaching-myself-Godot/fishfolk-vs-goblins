@@ -17,7 +17,7 @@ func _shoot():
 			Vector3.RIGHT
 				.rotated(Vector3.UP, $Wheel.rotation.y)
 				.rotated(Vector3.FORWARD, $Wheel.rotation.z)
-		) + position + $Wheel/Axle.position 
+		) + position + $Wheel/Axle.position
 		my_cannon_ball.owned_by_player = built_by_player
 		my_cannon_ball.rotation.y = $Wheel.rotation.y
 		my_cannon_ball.rotation.z = $Wheel/Axle.rotation.z
@@ -71,8 +71,8 @@ func _idle_rotate():
 	pass
 
 func  _is_valid_target(potential_target) -> bool:
-	return ( 
-		super._is_valid_target(potential_target) and 
+	return (
+		super._is_valid_target(potential_target) and
 		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)
 	)
 

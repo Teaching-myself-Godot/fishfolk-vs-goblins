@@ -10,7 +10,7 @@ enum EmissionMode {
 	## When all monsters from MonsterWave nodes with the current wave_number
 	## have been defeated a new wave with start automatically
 	WAIT_FOR_WAVES_TO_CLEAR,
-	## In this case you decide, for instance by adding a timer interval 
+	## In this case you decide, for instance by adding a timer interval
 	## which connects to the _start_next_wave() function
 	USER_DEFINED
 }
@@ -36,7 +36,7 @@ func current_waves_are_cleared() -> bool:
 	for wave : MonsterWave in all_waves:
 		if wave.wave_number == current_wave:
 			return false
-	
+
 	return true
 
 

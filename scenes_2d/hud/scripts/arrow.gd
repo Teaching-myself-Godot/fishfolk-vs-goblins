@@ -11,8 +11,8 @@ func _process(_delta):
 	var size = from.distance_to(to)
 	if size < ARROW_POINT_WIDTH + 10:
 		size = ARROW_POINT_WIDTH + 10
-	
-	
+
+
 	$PointFill.offset.x = size - ARROW_POINT_WIDTH
 	$Outline.points[1].x = size - ARROW_POINT_WIDTH + 2
 	$Outline.points[2].x = size - ARROW_POINT_WIDTH

@@ -1,7 +1,7 @@
 class_name TreeContextMenu
 extends ContextMenuBase
 
-const INITIAL_OPTION = "All-Range" 
+const INITIAL_OPTION = "All-Range"
 
 func _ready():
 	_init_menu(MAIN_MENU_NAME)
