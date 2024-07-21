@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://s6gmto1dt28h"]
+
+[ext_resource type="Script" path="res://scenes_2d/checklist/scripts/checklist_item.gd" id="1_islui"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_miymx"]
+
+[sub_resource type="Gradient" id="Gradient_t7knf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 0.188235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gmh1x"]
+gradient = SubResource("Gradient_t7knf")
+width = 20
+height = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_aviaf"]
+font = ExtResource("2_miymx")
+
+[node name="ChecklistItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_islui")
+
+[node name="ChecklistBox" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Fill" type="Sprite2D" parent="ChecklistBox"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_gmh1x")
+centered = false
+
+[node name="Outline" type="Line2D" parent="ChecklistBox"]
+points = PackedVector2Array(0, 0, 20, 0, 20, 20, 0, 20)
+closed = true
+width = 2.0
+joint_mode = 2
+
+[node name="Checkmark" type="Line2D" parent="ChecklistBox"]
+position = Vector2(0, -1)
+points = PackedVector2Array(5, 11, 9, 15, 16, 7)
+width = 4.0
+default_color = Color(0, 1, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 498.0
+offset_bottom = 42.0
+text = "RUN around using 'w', 's', 'a' and 'd' or arrow buttons"
+label_settings = SubResource("LabelSettings_aviaf")
