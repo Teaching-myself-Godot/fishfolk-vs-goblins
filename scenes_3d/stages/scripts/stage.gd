@@ -235,7 +235,7 @@ func _physics_process(delta):
 	# TODO: if no WaveEmitter is present, stage_won.emit() if all waves were freed
 
 
-func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false):
+func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false) -> Toast:
 	for toasted in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS):
 		toasted.queue_free()
 
@@ -246,6 +246,7 @@ func _mk_toast(message : String = "toast message", duration : float = 3.0, big :
 		toast.scale_up()
 		toast.scale_up()
 	add_child.call_deferred(toast)
+	return toast
 
 
 func _start_wave(wave_num):

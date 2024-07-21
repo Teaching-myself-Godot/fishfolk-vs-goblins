@@ -187,11 +187,13 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 ### Milestone 19 - Better tutorial
 - [x] create 2D arrow scene
 - [x] create a ChecklistItem scene
-- [ ] use checklist items scene to keep track of lessons
-- [ ] rotate around messages of open items
+- [x] use checklist items scene to keep track of lessons
+- [x] implement the checklists for the controls tutorial
+- [ ] implement the checklists for gameplay
+- [ ] use toasts to highlight checklist items which are still open
 - [ ] replace confirm modals with 2D scene
-- [ ] separate controls tutorial from gameplay tutorial
 - [ ] use dynamically drawn arrows to point from things --> at things
+- [ ] explain more details of using these arrows and a top-right text box
 
 ### Milestone 20 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave

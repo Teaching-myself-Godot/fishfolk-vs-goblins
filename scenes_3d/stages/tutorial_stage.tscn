@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=22 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_4urpg"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_7umqb"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/end_tutorial_confirmation_dialog.gd" id="13_mip6f"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_3bqw1"]
+[ext_resource type="PackedScene" uid="uid://s6gmto1dt28h" path="res://scenes_2d/checklist/ChecklistItem.tscn" id="14_pn5o8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +30,14 @@ tonemap_mode = 2
 
 [sub_resource type="Curve3D" id="Curve3D_33v1q"]
 resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vmqk"]
+font = ExtResource("14_3bqw1")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_2a6hp"]
+font = ExtResource("14_3bqw1")
+font_color = Color(1, 1, 1, 0.631373)
 
 [node name="TutorialStage" type="Node"]
 script = ExtResource("1_2wut6")
@@ -102,6 +112,144 @@ script = ExtResource("13_mip6f")
 [node name="EndTutorialDelay" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="KeyboardTutorial" type="Panel" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 458.0
+offset_bottom = 212.0
+
+[node name="Label" type="Label" parent="KeyboardTutorial"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 256.0
+offset_bottom = 52.0
+text = "Basic Controls"
+label_settings = SubResource("LabelSettings_8vmqk")
+
+[node name="CheckRunning" parent="KeyboardTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 68.0
+offset_right = 443.0
+offset_bottom = 88.0
+text = "RUN around using 'W', 'A', 'S' and 'D' or the Arrow-keys"
+informative_text = "You can RUN using 'w', 'a', 's' and 'd' or the Arrow-keys"
+
+[node name="CheckJumping" parent="KeyboardTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 100.0
+offset_right = 443.0
+offset_bottom = 120.0
+text = "JUMP by pressing the SPACEBAR"
+informative_text = "You can JUMP by pressing the spacebar"
+
+[node name="CheckZooming" parent="KeyboardTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 435.0
+offset_bottom = 152.0
+text = "ZOOM in and out by using the MOUSEWHEEL"
+informative_text = "To ZOOM,  click and drag MOUSEWHEEL up and down, or scroll normally"
+
+[node name="CheckLooking" parent="KeyboardTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 435.0
+offset_bottom = 184.0
+text = "LOOK AROUND by clicking + dragging the MOUSEWHEEL"
+informative_text = "To LOOK AROUND, click and drag MOUSEWHEEL left and right"
+
+[node name="GamepadTutorial" type="Panel" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 458.0
+offset_bottom = 212.0
+
+[node name="Label" type="Label" parent="GamepadTutorial"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 256.0
+offset_bottom = 52.0
+text = "Basic Controls"
+label_settings = SubResource("LabelSettings_8vmqk")
+
+[node name="CheckRunning" parent="GamepadTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 68.0
+offset_right = 443.0
+offset_bottom = 88.0
+text = "RUN around using the L-stick"
+informative_text = "To RUN, use L-stick of your gamepad"
+
+[node name="CheckJumping" parent="GamepadTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 100.0
+offset_right = 443.0
+offset_bottom = 120.0
+text = "JUMP by pressing A - (B on the Pro Controller)"
+informative_text = "JUMP by pressing A - (B on the Pro Controller)"
+
+[node name="CheckZooming" parent="GamepadTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 435.0
+offset_bottom = 152.0
+text = "ZOOM in and out by moving the R-stick up and down"
+informative_text = "To ZOOM,  click and drag MOUSEWHEEL up and down, or scroll normally"
+
+[node name="CheckLooking" parent="GamepadTutorial" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 435.0
+offset_bottom = 184.0
+text = "LOOK AROUND by moving the R-stick left and right"
+informative_text = "LOOK AROUND by moving the R-stick left and right"
+
+[node name="IntroText" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -464.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = 240.0
+grow_horizontal = 0
+
+[node name="Title" type="Label" parent="IntroText"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 440.0
+offset_bottom = 40.0
+text = "Welcome to Goblins vs. Fishfolk"
+label_settings = SubResource("LabelSettings_8vmqk")
+autowrap_mode = 3
+
+[node name="Body" type="Label" parent="IntroText"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 221.0
+text = "Goblins vs. Fishfolk is a \"Tower Defense\" game inspired by Pixeljunk's Monsters 2.
+
+The goal of a Tower Defense game is to protect your base by building towers. In this game you will be converting trees into towers.
+
+First let's learn the controls."
+label_settings = SubResource("LabelSettings_2a6hp")
+autowrap_mode = 2
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
 [connection signal="open_pause_menu" from="." to="." method="_open_confirmation_dialog"]
