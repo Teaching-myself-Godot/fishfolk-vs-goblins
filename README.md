@@ -176,16 +176,20 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - remember which trees were felled and regrow them
 
 ### [Milestone 18](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-18) - Tower Context Menu II: upgrading towers (July 20th 2024)
-- [x] add damage upgrade option to tower menu
-- [x] add range upgrade option to tower menu
-- [x] add rate of fire upgrade option to tower menu
-- [x] add tower stats design in tower context menu
-- [x] show actual upgrade stats in tower context menu
-- [x] implement upgrade stats on tower
-- [x] increase prices in tower menu options per tower
+- add damage upgrade option to tower menu
+- add range upgrade option to tower menu
+- add rate of fire upgrade option to tower menu
+- add tower stats design in tower context menu
+- show actual upgrade stats in tower context menu
+- implement upgrade stats on tower
+- increase prices in tower menu options per tower
 
 ### Milestone 19 - Better tutorial
-- [ ] create a dynamic checklist to complete lessons
+- [x] create 2D arrow scene
+- [x] create a ChecklistItem scene
+- [ ] use checklist items scene to keep track of lessons
+- [ ] rotate around messages of open items
+- [ ] replace confirm modals with 2D scene
 - [ ] separate controls tutorial from gameplay tutorial
 - [ ] use dynamically drawn arrows to point from things --> at things
 
