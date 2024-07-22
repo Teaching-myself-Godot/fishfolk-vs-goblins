@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/end_tutorial_confirmation_dialog.gd" id="13_mip6f"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_3bqw1"]
 [ext_resource type="PackedScene" uid="uid://s6gmto1dt28h" path="res://scenes_2d/checklist/ChecklistItem.tscn" id="14_pn5o8"]
+[ext_resource type="PackedScene" uid="uid://cp46skoyrt7a0" path="res://scenes_2d/hud/explanation_text.tscn" id="16_xtmyw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,10 +35,6 @@ resource_local_to_scene = true
 [sub_resource type="LabelSettings" id="LabelSettings_8vmqk"]
 font = ExtResource("14_3bqw1")
 font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_2a6hp"]
-font = ExtResource("14_3bqw1")
-font_color = Color(1, 1, 1, 0.631373)
 
 [node name="TutorialStage" type="Node"]
 script = ExtResource("1_2wut6")
@@ -217,39 +214,13 @@ offset_bottom = 184.0
 text = "LOOK AROUND by moving the R-stick left and right"
 informative_text = "LOOK AROUND by moving the R-stick left and right"
 
-[node name="IntroText" type="Panel" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -464.0
-offset_top = 8.0
-offset_right = -14.0
-offset_bottom = 240.0
-grow_horizontal = 0
+[node name="ExplanationText" parent="." instance=ExtResource("16_xtmyw")]
 
-[node name="Title" type="Label" parent="IntroText"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 440.0
-offset_bottom = 40.0
-text = "Welcome to Goblins vs. Fishfolk"
-label_settings = SubResource("LabelSettings_8vmqk")
-autowrap_mode = 3
-
-[node name="Body" type="Label" parent="IntroText"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 56.0
-offset_right = 440.0
-offset_bottom = 221.0
+[node name="Body" parent="ExplanationText" index="1"]
 text = "Goblins vs. Fishfolk is a \"Tower Defense\" game inspired by Pixeljunk's Monsters 2.
 
-The goal of a Tower Defense game is to protect your base by building towers. In this game you will be converting trees into towers.
-
-First let's learn the controls."
-label_settings = SubResource("LabelSettings_2a6hp")
-autowrap_mode = 2
+The goal of a \"tower defense\" is to protect your base by building towers.  In this game you will be converting trees into towers to protect  babies.
+"
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
 [connection signal="open_pause_menu" from="." to="." method="_open_confirmation_dialog"]
@@ -259,3 +230,4 @@ autowrap_mode = 2
 
 [editable path="terrain"]
 [editable path="CameraPivot"]
+[editable path="ExplanationText"]

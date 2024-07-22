@@ -3,7 +3,7 @@ class_name TutorialStage
 extends Stage
 
 var MainGame = preload("res://goblins_vs_fishfolk.tscn")
-
+var ArrowScene = preload("res://scenes_2d/hud/pointing_arrow.tscn")
 enum TutorialMode { KEYBOARD, GAMEPAD }
 
 #var message_suite = {
@@ -34,21 +34,49 @@ enum TutorialMode { KEYBOARD, GAMEPAD }
 var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
 
+# Basic controls
 var check_running = true
 var check_jumping = true
 var check_zooming = true
 var check_looking = true
+
+# Gameplay
+var show_explain_goblin = false
+var show_goblin_arrow_frames = 360
+
+
 var check_menu_open = true
 var check_submenu = true
 var check_cancel = true
 var check_build = true
-var check_done = true
+var check_upgrade = true
+#var check_done = true
 
 var _init_pos = Vector2.ZERO
 var _init_zoom = null
 var _init_rot = 0.0
+var _cooldown_pause = 20
 
-var cooldown_pause = 20
+func _learning_controls() -> bool:
+	return check_jumping or check_running or check_zooming or check_looking
+
+
+func _learning_gameplay() -> bool:
+	return check_menu_open or check_submenu or check_cancel or check_build or check_upgrade
+
+
+func _get_goblin_pointer_pos() -> Vector2:
+	return CameraUtil.get_label_position(
+			goblin_map[main_player_cid].position,
+			Vector3(0, 2.5, 0)
+	) + Vector2(7, 0)
+
+
+func _update_arrow_to(to : Vector2) -> void:
+	for arrow in get_tree().get_nodes_in_group(Constants.GROUP_NAME_ARROW_2D):
+		arrow.to = to
+
+
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -56,43 +84,56 @@ func _process(_delta):
 
 	if _init_zoom == null:
 		_init_zoom = CameraUtil.get_cam().zoom
-	if cooldown_pause > 0:
-		cooldown_pause -= 1
 
-	$KeyboardTutorial/CheckRunning.set_checked(not check_running)
-	$KeyboardTutorial/CheckJumping.set_checked(not check_jumping)
-	$KeyboardTutorial/CheckZooming.set_checked(not check_zooming)
-	$KeyboardTutorial/CheckLooking.set_checked(not check_looking)
-	$GamepadTutorial/CheckRunning.set_checked(not check_running)
-	$GamepadTutorial/CheckJumping.set_checked(not check_jumping)
-	$GamepadTutorial/CheckZooming.set_checked(not check_zooming)
-	$GamepadTutorial/CheckLooking.set_checked(not check_looking)
+	if _cooldown_pause > 0:
+		_cooldown_pause -= 1
 
 
-	if check_running:
-		var pos = Vector2(
-			goblin_map[main_player_cid].position.x,
-			goblin_map[main_player_cid].position.z,
-		)
-		if pos.distance_to(_init_pos) > 3.0:
-			check_running = false
-			#_mk_toast(message_suite[mode][1], 10.0, true)
-
-	if check_jumping and cooldown_pause == 0:
-		if InputUtil.is_just_released("jump"):
-			check_jumping = false
-			#_mk_toast(message_suite[mode][2], 10.0, true)
-
-	if check_zooming:
-		if abs(CameraUtil.get_cam().zoom - _init_zoom) > 5.0:
-			check_zooming = false
-			_init_rot = CameraUtil.get_cam_pivot().rotation.y
-			#_mk_toast(message_suite[mode][3], 10.0, true)
-
-	if check_looking:
-		if abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1:
-			check_looking = false
-			#_mk_toast(message_suite[mode][4], 10.0, true)
+	if _learning_controls():
+		if false in [check_running, check_jumping, check_zooming, check_looking]:
+			$ExplanationText.fading = true
+			_destroy_arrow()
+		if check_running:
+			var pos = Vector2(
+				goblin_map[main_player_cid].position.x,
+				goblin_map[main_player_cid].position.z,
+			)
+			if pos.distance_to(_init_pos) > 3.0:
+				check_running = false
+				$KeyboardTutorial/CheckRunning.set_checked(true)
+				$GamepadTutorial/CheckRunning.set_checked(true)
+		if check_jumping and _cooldown_pause == 0:
+			if InputUtil.is_just_released("jump"):
+				check_jumping = false
+				$GamepadTutorial/CheckJumping.set_checked(true)
+				$KeyboardTutorial/CheckJumping.set_checked(true)
+		if check_zooming:
+			if abs(CameraUtil.get_cam().zoom - _init_zoom) > 5.0:
+				check_zooming = false
+				_init_rot = CameraUtil.get_cam_pivot().rotation.y
+				$GamepadTutorial/CheckZooming.set_checked(true)
+				$KeyboardTutorial/CheckZooming.set_checked(true)
+		if check_looking:
+			if abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.2:
+				check_looking = false
+				$GamepadTutorial/CheckLooking.set_checked(true)
+				$KeyboardTutorial/CheckLooking.set_checked(true)
+	elif _learning_gameplay():
+		if not show_explain_goblin:
+			show_explain_goblin = true
+			$ExplanationText.fading = false
+			$ExplanationText/Title.text = "The Humble Goblin"
+			$ExplanationText/Body.text = "This is you, the humble Goblin."
+			_mk_arrow(
+					$ExplanationText.position + Vector2(5, 72),
+					_get_goblin_pointer_pos()
+			)
+		elif show_goblin_arrow_frames > 0:
+			show_goblin_arrow_frames -= 1
+			_update_arrow_to(_get_goblin_pointer_pos())
+		elif show_goblin_arrow_frames == 0:
+			_destroy_arrow()
+			show_goblin_arrow_frames = -1
 
 
 	#elif (
@@ -157,16 +198,40 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 		else:
 			mode = TutorialMode.GAMEPAD
 			$GamepadTutorial.show()
-		#_mk_toast(message_suite[mode][0], 10.0, true)
+		_mk_arrow(
+				$ExplanationText.position + Vector2(5, $ExplanationText.size.y - 24),
+				$KeyboardTutorial.position + Vector2(
+						$KeyboardTutorial.size.x, $KeyboardTutorial.size.y * 0.5
+				)
+		)
+		$ExplanationText/Body.text += "\nFirst, let's learn the controls."
+		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
+			tree.fell()
+		for crib in get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS):
+			crib.hide()
+
 
 
 func _ready():
 	super._ready()
-	_mk_toast(
+	var toast : Toast = _mk_toast(
 			"To JOIN, press either gamepad START or keyboard SPACEBAR",
 			100,
 			true
-	).set_anchors_preset(Control.PRESET_CENTER)
+	)
+	toast.set_anchors_preset(Control.PRESET_CENTER)
+
+
+func _mk_arrow(from : Vector2, to : Vector2) -> void:
+	var arrow : PointingArrow = ArrowScene.instantiate()
+	arrow.from = from
+	arrow.to = to
+	add_child.call_deferred(arrow)
+
+
+func _destroy_arrow() -> void:
+	for arrow in get_tree().get_nodes_in_group(Constants.GROUP_NAME_ARROW_2D):
+		arrow.fading = true
 
 
 func _unhandled_input(event):

@@ -13,6 +13,7 @@ func _ready():
 	$DurationTimer.start()
 	modulate.a = 0.0
 
+
 func _process(_delta):
 	if fading:
 		modulate.a -= 0.05
@@ -21,8 +22,10 @@ func _process(_delta):
 	elif modulate.a < 1.0:
 		modulate.a += 0.1
 
+
 func _on_duration_timer_timeout():
 	fading = true
+
 
 func scale_up():
 	$overlay.scale.x += .15

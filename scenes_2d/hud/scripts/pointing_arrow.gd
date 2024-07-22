@@ -1,3 +1,4 @@
+class_name PointingArrow
 extends Node2D
 
 const ARROW_POINT_WIDTH = 50
@@ -7,11 +8,12 @@ const ARROW_POINT_WIDTH = 50
 @export var color : Color
 @export var outline_color : Color
 
+var fading = false
+
 func _process(_delta):
 	var size = from.distance_to(to)
 	if size < ARROW_POINT_WIDTH + 10:
 		size = ARROW_POINT_WIDTH + 10
-
 
 	$PointFill.offset.x = size - ARROW_POINT_WIDTH
 	$Outline.points[1].x = size - ARROW_POINT_WIDTH + 2
@@ -26,4 +28,14 @@ func _process(_delta):
 	$PointFill.modulate = color
 	$LineFill.modulate = color
 	$Outline.default_color = outline_color
-	queue_redraw()
+
+	if fading:
+		modulate.a -= 0.05
+		if modulate.a <= 0.0:
+			queue_free()
+	elif modulate.a < 1.0:
+		modulate.a += 0.025
+
+
+func _ready() -> void:
+	modulate.a = 0

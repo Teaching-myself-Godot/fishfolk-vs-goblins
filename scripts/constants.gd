@@ -1,5 +1,6 @@
 extends Node
 
+const GROUP_NAME_ARROW_2D = "arrow-2d"
 const GROUP_NAME_MONSTERS = "monsters"
 const GROUP_NAME_GOBLINS = "goblins"
 const GROUP_NAME_TREES = "trees"
@@ -29,3 +30,4 @@ const ANTI_AIR_TOWER_BASE_DAMAGE = 1
 const CANNON_TOWER_BASE_RELOAD_TIME = 5.0
 const ARROW_TOWER_BASE_RELOAD_TIME = 5.0
 const ANTI_AIR_TOWER_BASE_RELOAD_TIME = 5.0
+
