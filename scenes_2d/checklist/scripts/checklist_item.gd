@@ -1,8 +1,12 @@
-extends Control
+class_name ChecklistItem
+extends Button
 
 @export var informative_text : String = ""
 
+var _checked
+
 func set_checked(flag : bool) -> void:
+	_checked = flag
 	if flag:
 		$Checkmark.show()
 		modulate.a = 1.0

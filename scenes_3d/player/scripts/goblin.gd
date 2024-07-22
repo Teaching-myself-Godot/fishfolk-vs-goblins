@@ -131,6 +131,8 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 			my_tower = null
 
 func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
+	if confirm_cooldown > 0:
+		return
 	var input_dir = _get_input_vector()
 	var force = Vector2.ZERO.distance_to(input_dir)
 
