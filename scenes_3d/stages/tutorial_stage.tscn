@@ -38,6 +38,7 @@ font_size = 24
 
 [node name="TutorialStage" type="Node"]
 script = ExtResource("1_2wut6")
+metadata/_edit_horizontal_guides_ = [112.0]
 
 [node name="terrain" parent="." instance=ExtResource("2_n0qyl")]
 
@@ -63,7 +64,13 @@ shadow_enabled = true
 current = false
 
 [node name="crib" parent="." instance=ExtResource("6_g7m6h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05103, 0.263788, -4.70009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78945, 0.653944, -1.80743)
+
+[node name="crib2" parent="." instance=ExtResource("6_g7m6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492465, 1.01403, -3.01857)
+
+[node name="crib3" parent="." instance=ExtResource("6_g7m6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90456, 0.404646, 1.60974)
 
 [node name="palm-tree6" parent="." instance=ExtResource("3_bu10x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04664, 0.000112029, -2.07571)
@@ -88,7 +95,7 @@ curve = SubResource("Curve3D_33v1q")
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 23.8658, 1.67408, 8.83608)
 
 [node name="Anchor2" parent="MonsterSpawner/MonsterPath" instance=ExtResource("11_4urpg")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.72967, 2.5219, -2.35462)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 0, 2.19606, 0)
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("12_7umqb")]
 wait_time = 3.0

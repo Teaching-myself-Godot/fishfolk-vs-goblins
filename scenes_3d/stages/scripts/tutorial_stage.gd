@@ -31,6 +31,9 @@ enum TutorialMode { KEYBOARD, GAMEPAD }
 	#]
 #}
 
+const ONE_SECOND = 60
+const POINTING_AT_TIME = ONE_SECOND * 5
+
 var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
 
@@ -42,8 +45,8 @@ var check_looking = true
 
 # Gameplay
 var show_explain_goblin = false
-var show_goblin_arrow_frames = 360
-
+var show_goblin_arrow_frames = POINTING_AT_TIME
+var show_babies_arrow_frames = POINTING_AT_TIME
 
 var check_menu_open = true
 var check_submenu = true
@@ -52,10 +55,13 @@ var check_build = true
 var check_upgrade = true
 #var check_done = true
 
+var current_checklist : Control = null
+
 var _init_pos = Vector2.ZERO
 var _init_zoom = null
 var _init_rot = 0.0
 var _cooldown_pause = 20
+
 
 func _learning_controls() -> bool:
 	return check_jumping or check_running or check_zooming or check_looking
@@ -68,14 +74,13 @@ func _learning_gameplay() -> bool:
 func _get_goblin_pointer_pos() -> Vector2:
 	return CameraUtil.get_label_position(
 			goblin_map[main_player_cid].position,
-			Vector3(0, 2.5, 0)
+			Vector3(0, 2.0, 0)
 	) + Vector2(7, 0)
 
 
 func _update_arrow_to(to : Vector2) -> void:
 	for arrow in get_tree().get_nodes_in_group(Constants.GROUP_NAME_ARROW_2D):
 		arrow.to = to
-
 
 
 func _process(_delta):
@@ -123,18 +128,37 @@ func _process(_delta):
 			show_explain_goblin = true
 			$ExplanationText.fading = false
 			$ExplanationText/Title.text = "The Humble Goblin"
-			$ExplanationText/Body.text = "This is you, the humble Goblin."
+			$ExplanationText/Body.text = "This is you, the humble Goblin.\n"
 			_mk_arrow(
 					$ExplanationText.position + Vector2(5, 72),
 					_get_goblin_pointer_pos()
 			)
 		elif show_goblin_arrow_frames > 0:
 			show_goblin_arrow_frames -= 1
+			if (
+					show_goblin_arrow_frames < POINTING_AT_TIME - ONE_SECOND and
+					current_checklist.modulate.a > 0
+			):
+				current_checklist.modulate.a -= 0.025
 			_update_arrow_to(_get_goblin_pointer_pos())
 		elif show_goblin_arrow_frames == 0:
 			_destroy_arrow()
 			show_goblin_arrow_frames = -1
-
+			$ExplanationText/Body.text += "\nAnd these are your babies.\n"
+			_mk_arrow(
+					$ExplanationText.position + Vector2(5, 108),
+					CameraUtil.get_label_position(Vector3(0, 1, 0))
+			)
+		elif show_babies_arrow_frames > 0:
+			show_babies_arrow_frames -= 1
+			_update_arrow_to(CameraUtil.get_label_position(Vector3(0, 1, 0)))
+		elif show_babies_arrow_frames == 0:
+			_destroy_arrow()
+			show_babies_arrow_frames = -1
+			$ExplanationText/Body.text += (
+				"\nSoon, you must protect your babies " +
+				"from dangerous fishfolk by turning these trees into towers."
+			)
 
 	#elif (
 			#check_menu_open and
@@ -181,7 +205,7 @@ func _process(_delta):
 			#$EndTutorialDelay.start()
 
 
-func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
 	super._add_goblin_to_scene(num, start_pos)
 	for toasted : Toast in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS):
 		toasted.fading = true
@@ -194,21 +218,21 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 		)
 		if num == InputUtil.ControllerID.KEYBOARD:
 			mode = TutorialMode.KEYBOARD
-			$KeyboardTutorial.show()
+			current_checklist = $KeyboardTutorial
 		else:
 			mode = TutorialMode.GAMEPAD
-			$GamepadTutorial.show()
+			current_checklist = $GamepadTutorial
+		current_checklist.show()
 		_mk_arrow(
 				$ExplanationText.position + Vector2(5, $ExplanationText.size.y - 24),
-				$KeyboardTutorial.position + Vector2(
-						$KeyboardTutorial.size.x, $KeyboardTutorial.size.y * 0.5
+				current_checklist.position + Vector2(
+						current_checklist.size.x, current_checklist.size.y * 0.5
 				)
 		)
 		$ExplanationText/Body.text += "\nFirst, let's learn the controls."
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
-			tree.fell()
-		for crib in get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS):
-			crib.hide()
+			tree.remove_from_group(Constants.GROUP_NAME_TREES)
+
 
 
 
