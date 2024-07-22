@@ -176,13 +176,13 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - remember which trees were felled and regrow them
 
 ### [Milestone 18](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-18) - Tower Context Menu II: upgrading towers (July 20th 2024)
-- [x] add damage upgrade option to tower menu
-- [x] add range upgrade option to tower menu
-- [x] add rate of fire upgrade option to tower menu
-- [x] add tower stats design in tower context menu
-- [x] show actual upgrade stats in tower context menu
-- [x] implement upgrade stats on tower
-- [x] increase prices in tower menu options per tower
+- add damage upgrade option to tower menu
+- add range upgrade option to tower menu
+- add rate of fire upgrade option to tower menu
+- add tower stats design in tower context menu
+- show actual upgrade stats in tower context menu
+- implement upgrade stats on tower
+- increase prices in tower menu options per tower
 
 ### Milestone 19 - Better tutorial
 - [ ] create a dynamic checklist to complete lessons
@@ -196,6 +196,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
 
 ## Future ideas...
+- Enrich [the back story](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
