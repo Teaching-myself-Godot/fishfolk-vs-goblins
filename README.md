@@ -202,6 +202,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
 
 ## Future ideas...
+- Enrich [the back story](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
