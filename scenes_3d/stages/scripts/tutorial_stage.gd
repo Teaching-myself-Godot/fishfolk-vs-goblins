@@ -111,11 +111,11 @@ func _handle_extra_hint_timer():
 		_show_extra_hint()
 
 
-func _check_checkbox(name : String):
+func _check_checkbox(checkbox_name : String):
 	if is_instance_valid(current_checklist):
 		waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
 		_hide_help_message()
-		current_checklist.find_child(name).set_checked(true)
+		current_checklist.find_child(checkbox_name).set_checked(true)
 
 
 func _handle_learning_controls_frame():
