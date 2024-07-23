@@ -49,6 +49,7 @@ surface_material_override/0 = ExtResource("3_ruc26")
 [node name="GemPouch" parent="." instance=ExtResource("4_ljqtt")]
 visible = false
 builder_gems = 0
+metadata/_edit_vertical_guides_ = [168.0, 224.0]
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -123,6 +124,7 @@ one_shot = true
 
 [node name="KeyboardTutorial" type="Panel" parent="."]
 visible = false
+z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 458.0
@@ -175,6 +177,7 @@ informative_text = "To LOOK AROUND, click and drag MOUSEWHEEL left and right"
 
 [node name="GamepadTutorial" type="Panel" parent="."]
 visible = false
+z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 458.0
@@ -227,6 +230,7 @@ informative_text = "LOOK AROUND by moving the R-stick left and right"
 
 [node name="KeyboardTutuorialGameplay" type="Panel" parent="."]
 visible = false
+z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 456.0
@@ -268,8 +272,18 @@ offset_bottom = 152.0
 text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
 informative_text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
 
+[node name="CheckCancel" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 435.0
+offset_bottom = 184.0
+text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
+informative_text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
+
 [node name="GamepadTutorialGameplay" type="Panel" parent="."]
 visible = false
+z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 456.0
@@ -303,6 +317,7 @@ text = "OPEN the BUILD MENU by pressing B - (Nintendo: A)"
 informative_text = "Press B (Nintendo: A) next to a tree to OPEN MENU"
 
 [node name="CheckSubmenu" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 132.0
 offset_right = 435.0
@@ -310,31 +325,21 @@ offset_bottom = 152.0
 text = "Point at a TOWER TYPE and press B to open SUBMENU"
 informative_text = "Point at a TOWER TYPE and press B to open SUBMENU"
 
+[node name="CheckCancel" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 435.0
+offset_bottom = 184.0
+text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
+informative_text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
+
 [node name="ExplanationText" parent="." instance=ExtResource("16_xtmyw")]
+z_index = 5
 
 [node name="Body" parent="ExplanationText" index="1"]
 text = "Goblins vs. Fishfolk is a \"Tower Defense\" game inspired by Pixeljunk's Monsters 2.
 
 The goal of a \"tower defense\" is to protect your base by building towers.  In this game you will be converting trees into towers to protect  babies.
-"
-
-[node name="ExplanationText2" parent="." instance=ExtResource("16_xtmyw")]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 3
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -466.0
-offset_top = -248.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_vertical = 0
-fading = true
-
-[node name="Title" parent="ExplanationText2" index="0"]
-text = "Converting Trees into Towers"
-
-[node name="Body" parent="ExplanationText2" index="1"]
-text = "To convert trees into defensive towers you need BUILDER GEMS
 "
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
@@ -346,4 +351,3 @@ text = "To convert trees into defensive towers you need BUILDER GEMS
 [editable path="terrain"]
 [editable path="CameraPivot"]
 [editable path="ExplanationText"]
-[editable path="ExplanationText2"]

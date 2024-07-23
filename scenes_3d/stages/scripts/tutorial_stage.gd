@@ -35,7 +35,7 @@ var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
 
 const ONE_SECOND = 60
 const POINTING_AT_TIME = ONE_SECOND * 3
-const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND * 5
+const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND * 3
 
 var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
@@ -53,6 +53,7 @@ var show_goblin_arrow_frames = POINTING_AT_TIME
 var show_babies_arrow_frames = POINTING_AT_TIME
 var show_monster_spawn_arrow_frames = POINTING_AT_TIME
 var show_trees_arrow_frames = POINTING_AT_TIME
+var show_gem_arrow_frames = POINTING_AT_TIME
 var hide_gameplay_intro_frames = ONE_SECOND * 2
 
 # Gameplay checklist
@@ -216,7 +217,7 @@ func _handle_gameplay_introduction():
 				$ExplanationText.position + Vector2(5, 190),
 				CameraUtil.get_label_position(
 						$"palm-tree6".position,
-						Vector3(0, 3, 0)
+						Vector3(0, 1, 0)
 				)
 		)
 		range_ring.radius = 5
@@ -243,6 +244,7 @@ func _handle_gameplay_introduction():
 		current_checklist.show()
 	else:
 		check_gameplay_intro = false
+		waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
 
 
 func _process(_delta):
@@ -271,7 +273,35 @@ func _process(_delta):
 				show_gameplay_explainer_delay -= 1
 			elif show_gameplay_explainer_delay == 0:
 				show_gameplay_explainer_delay = -1
-				waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
+				show_trees_arrow_frames = POINTING_AT_TIME
+				$ExplanationText.fading = false
+				$ExplanationText/Title.text = "Converting Trees into Towers"
+				$ExplanationText/Body.text = "Let's create some defenses here.\n"
+				_destroy_arrow()
+				_mk_arrow(
+					$ExplanationText.position + Vector2(5, 72),
+					CameraUtil.get_label_position(
+							$"palm-tree6".position,
+							Vector3(0, 1, 0)
+					)
+				)
+			elif show_trees_arrow_frames > 0:
+					show_trees_arrow_frames -= 1
+					_update_arrow_to(CameraUtil.get_label_position(
+							$"palm-tree6".position,
+							Vector3(0, 1, 0)
+					))
+			elif show_trees_arrow_frames == 0:
+				_destroy_arrow()
+				show_trees_arrow_frames = -1
+			elif show_gem_arrow_frames > 0:
+				show_gem_arrow_frames -= 1
+				_update_arrow_to(CameraUtil.get_label_position(
+						Vector3(10, 0, 10)
+				))
+			elif show_gem_arrow_frames == 0:
+				show_gem_arrow_frames = -1
+				_destroy_arrow()
 
 		if check_tree_hugging:
 			if goblin_map[main_player_cid].find_child("TreeContextMenu").visible:
@@ -291,39 +321,27 @@ func _process(_delta):
 			):
 				check_submenu = false
 				_check_checkbox("CheckSubmenu")
-				$ExplanationText2.fading = false
+				$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS"
 				$GemPouch.show()
 				$GemPouch/Cribs.hide()
 				$GemPouch/MagicalGems.hide()
-	#elif (
-			#check_menu_open and
-			#goblin_map[main_player_cid].find_child("TreeContextMenu").is_open
-	#):
-		#check_menu_open = false
-		#_mk_toast(message_suite[mode][5], 10.0, true)
-	#elif check_submenu:
-		#if (
-			#goblin_map[main_player_cid].find_child("TreeContextMenu").is_open and
-			#not (
-				#goblin_map[main_player_cid].find_child("TreeContextMenu")
-						#.current_menu == TreeContextMenu.MAIN_MENU_NAME
-			#)
-		#):
-			#check_submenu = false
-			#_mk_toast(message_suite[mode][6], 10.0, true)
-	#elif check_cancel:
-		#if (
-			#goblin_map[main_player_cid].find_child("TreeContextMenu").is_open and
-			#(
-				#goblin_map[main_player_cid].find_child("TreeContextMenu")
-						#.current_menu == TreeContextMenu.MAIN_MENU_NAME
-			#)
-		#):
-			#check_cancel = false
-			#gem_pouch.show()
-			#for _x in range(10):
-				#gem_pouch.collect_builder_gem()
-			#_mk_toast(message_suite[mode][7], 10.0, true)
+				for _i in range(10):
+					_on_drop_builder_gem(Vector3(10, 1, 10))
+				_destroy_arrow()
+				_mk_arrow(
+					$ExplanationText.position + Vector2(5, 108),
+					CameraUtil.get_label_position(Vector3(10, 0, 10))
+				)
+				range_ring.position = Vector3(10, 0, 10)
+				range_ring.radius = 2
+				TerrainShaderParams.range_rings_changed.emit()
+
+		if check_cancel:
+			if not check_submenu and not goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
+				check_cancel = false
+				_check_checkbox("CheckCancel")
+
+
 	#elif check_build:
 		#if not (
 			#get_tree()
