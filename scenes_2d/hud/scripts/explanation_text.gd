@@ -1,6 +1,6 @@
 extends Panel
 
-var fading = false
+@export var fading = false
 
 func _ready():
 	modulate.a = 0.0

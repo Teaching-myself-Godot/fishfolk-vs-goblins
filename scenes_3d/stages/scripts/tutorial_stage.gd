@@ -34,7 +34,7 @@ var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
 #}
 
 const ONE_SECOND = 60
-const POINTING_AT_TIME = ONE_SECOND * 5
+const POINTING_AT_TIME = ONE_SECOND * 3
 const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND * 5
 
 var mode : TutorialMode
@@ -103,12 +103,23 @@ func _show_extra_hint():
 			break
 
 
-func _handle_learning_controls_frame():
+func _handle_extra_hint_timer():
 	if waiting_for_checkbox > 0:
 		waiting_for_checkbox -= 1
 	elif waiting_for_checkbox == 0:
 		waiting_for_checkbox = -1
 		_show_extra_hint()
+
+
+func _check_checkbox(name : String):
+	if is_instance_valid(current_checklist):
+		waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
+		_hide_help_message()
+		current_checklist.find_child(name).set_checked(true)
+
+
+func _handle_learning_controls_frame():
+	_handle_extra_hint_timer()
 
 	if false in [check_running, check_jumping, check_zooming, check_looking]:
 		$ExplanationText.fading = true
@@ -120,32 +131,19 @@ func _handle_learning_controls_frame():
 		)
 		if pos.distance_to(_init_pos) > 3.0:
 			check_running = false
-			waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
-			_hide_help_message()
-			$KeyboardTutorial/CheckRunning.set_checked(true)
-			$GamepadTutorial/CheckRunning.set_checked(true)
+			_check_checkbox("CheckRunning")
 	if check_jumping and _cooldown_pause == 0:
 		if InputUtil.is_just_released("jump"):
 			check_jumping = false
-			waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
-			_hide_help_message()
-			$GamepadTutorial/CheckJumping.set_checked(true)
-			$KeyboardTutorial/CheckJumping.set_checked(true)
+			_check_checkbox("CheckJumping")
 	if check_zooming:
 		if abs(CameraUtil.get_cam().zoom - _init_zoom) > 5.0:
 			check_zooming = false
-			waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
-			_hide_help_message()
-			_init_rot = CameraUtil.get_cam_pivot().rotation.y
-			$GamepadTutorial/CheckZooming.set_checked(true)
-			$KeyboardTutorial/CheckZooming.set_checked(true)
+			_check_checkbox("CheckZooming")
 	if check_looking:
 		if abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.2:
 			check_looking = false
-			waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
-			_hide_help_message()
-			$GamepadTutorial/CheckLooking.set_checked(true)
-			$KeyboardTutorial/CheckLooking.set_checked(true)
+			_check_checkbox("CheckLooking")
 
 
 func _handle_gameplay_introduction():
@@ -260,6 +258,7 @@ func _process(_delta):
 	if _learning_controls():
 		_handle_learning_controls_frame()
 	elif _learning_gameplay():
+		_handle_extra_hint_timer()
 		if check_gameplay_intro:
 			_handle_gameplay_introduction()
 		else:
@@ -271,14 +270,31 @@ func _process(_delta):
 			elif show_gameplay_explainer_delay > 0:
 				show_gameplay_explainer_delay -= 1
 			elif show_gameplay_explainer_delay == 0:
-				$ExplanationText.fading = false
-				$ExplanationText/Title.text = "Converting Trees into Towers"
-				$ExplanationText/Body.text = "You need BUILDER GEMS to convert trees into towers"
+				show_gameplay_explainer_delay = -1
+				waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
+
+		if check_tree_hugging:
+			if goblin_map[main_player_cid].find_child("TreeContextMenu").visible:
+				check_tree_hugging = false
+				_check_checkbox("CheckTreeHugging")
+		if check_menu_open:
+			if goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
+				check_menu_open = false
+				_check_checkbox("CheckMenuOpen")
+		if check_submenu:
+			if (
+				goblin_map[main_player_cid].find_child("TreeContextMenu").is_open
+				and not (
+					goblin_map[main_player_cid].find_child("TreeContextMenu")
+							.current_menu == TreeContextMenu.MAIN_MENU_NAME
+				)
+			):
+				check_submenu = false
+				_check_checkbox("CheckSubmenu")
+				$ExplanationText2.fading = false
 				$GemPouch.show()
 				$GemPouch/Cribs.hide()
 				$GemPouch/MagicalGems.hide()
-
-
 	#elif (
 			#check_menu_open and
 			#goblin_map[main_player_cid].find_child("TreeContextMenu").is_open

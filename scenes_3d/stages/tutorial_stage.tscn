@@ -241,23 +241,32 @@ offset_bottom = 43.0
 text = "Gameplay"
 label_settings = SubResource("LabelSettings_8vmqk")
 
-[node name="StandNextToTreeCheck" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+[node name="CheckTreeHugging" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 69.0
 offset_right = 435.0
 offset_bottom = 89.0
 text = "Stand close to a TREE to highlight it"
-informative_text = "You can stand next to a TREE and your will be offered an OPEN MENU button"
+informative_text = "Stand close to a TREE so you can open a OPEN MENU"
 
-[node name="OpenBuildMenuCheck" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+[node name="CheckMenuOpen" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 100.0
 offset_right = 435.0
 offset_bottom = 120.0
 text = "OPEN the BUILD MENU by clicking LEFT MOUSE button"
-informative_text = "When standing next to a tree you can OPEN the BUILD MENU by clicking the LEFT MOUSE button"
+informative_text = "Click LEFT MOUSE button next to a tree to OPEN MENU"
+
+[node name="CheckSubmenu" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 435.0
+offset_bottom = 152.0
+text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
+informative_text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
 
 [node name="GamepadTutorialGameplay" type="Panel" parent="."]
 visible = false
@@ -275,23 +284,31 @@ offset_bottom = 43.0
 text = "Gameplay"
 label_settings = SubResource("LabelSettings_8vmqk")
 
-[node name="StandNextToTreeCheck" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+[node name="CheckTreeHugging" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 69.0
 offset_right = 435.0
 offset_bottom = 89.0
 text = "Stand close to a TREE to highlight it"
-informative_text = "You can stand next to a TREE and your will be offered an OPEN MENU button"
+informative_text = "Stand close to a TREE so you can open a OPEN MENU"
 
-[node name="OpenBuildMenuCheck" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+[node name="CheckMenuOpen" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 100.0
 offset_right = 435.0
 offset_bottom = 120.0
 text = "OPEN the BUILD MENU by pressing B - (Nintendo: A)"
-informative_text = "When standing next to a tree you can OPEN the BUILD MENU by pressing B - (Nintendo: A)"
+informative_text = "Press B (Nintendo: A) next to a tree to OPEN MENU"
+
+[node name="CheckSubmenu" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 435.0
+offset_bottom = 152.0
+text = "Point at a TOWER TYPE and press B to open SUBMENU"
+informative_text = "Point at a TOWER TYPE and press B to open SUBMENU"
 
 [node name="ExplanationText" parent="." instance=ExtResource("16_xtmyw")]
 
@@ -299,6 +316,25 @@ informative_text = "When standing next to a tree you can OPEN the BUILD MENU by 
 text = "Goblins vs. Fishfolk is a \"Tower Defense\" game inspired by Pixeljunk's Monsters 2.
 
 The goal of a \"tower defense\" is to protect your base by building towers.  In this game you will be converting trees into towers to protect  babies.
+"
+
+[node name="ExplanationText2" parent="." instance=ExtResource("16_xtmyw")]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 3
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -466.0
+offset_top = -248.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_vertical = 0
+fading = true
+
+[node name="Title" parent="ExplanationText2" index="0"]
+text = "Converting Trees into Towers"
+
+[node name="Body" parent="ExplanationText2" index="1"]
+text = "To convert trees into defensive towers you need BUILDER GEMS
 "
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
@@ -310,3 +346,4 @@ The goal of a \"tower defense\" is to protect your base by building towers.  In 
 [editable path="terrain"]
 [editable path="CameraPivot"]
 [editable path="ExplanationText"]
+[editable path="ExplanationText2"]
