@@ -8,31 +8,6 @@ enum TutorialMode { KEYBOARD, GAMEPAD }
 
 var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
 
-#var message_suite = {
-	#TutorialMode.KEYBOARD: [
-		#"To RUN, use arrow-buttons or 'w', 'a', 's', 'd'",
-		#"To JUMP, press SPACEBAR",
-		#"To ZOOM, click and drag MOUSEWHEEL up and down",
-		#"To LOOK AROUND, click and drag MOUSEWHEEL left and right",
-		#"To BUILD, LEFT-click MOUSE or press SHIFT next to a tree",
-		#"To PICK a type, LEFT-click MOUSE or press SHIFT",
-		#"To CANCEL, RIGHT-click MOUSE or press ESC",
-		#"Now build an ARROW-TOWER with your new BUILDER GEMS",
-		#"Fish Folk will soon come to try and take your baby"
-	#],
-	#TutorialMode.GAMEPAD: [
-		#"To RUN, use L-stick",
-		#"To JUMP, press A (Nintendo B)",
-		#"To ZOOM, move R-stick up and down",
-		#"TO LOOK AROUND, move R-stick left and right",
-		#"To BUILD, press B (Nintendo A) next to a tree",
-		#"To PICK a type, press B (Nintendo A), point with L-stick",
-		#"To CANCEL, press A (Nintendo B)",
-		#"Now build an ARROW-TOWER with your new BUILDER GEMS",
-		#"Fish Folk will soon come to try and take your baby"
-	#]
-#}
-
 const ONE_SECOND = 60
 const POINTING_AT_TIME = ONE_SECOND * 3
 const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND
@@ -68,7 +43,7 @@ var check_build = true
 var check_upgrade = true
 #var check_done = true
 
-var current_checklist : Control = null
+var current_checklist : FadingPanel = null
 var waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
 
 var _init_pos = Vector2.ZERO
@@ -143,7 +118,7 @@ func _handle_learning_controls_frame():
 			check_jumping = false
 			_check_checkbox("CheckJumping")
 	if check_zooming:
-		if abs(CameraUtil.get_cam().zoom - _init_zoom) > 5.0:
+		if abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0:
 			check_zooming = false
 			_check_checkbox("CheckZooming")
 	if check_looking:
@@ -166,11 +141,7 @@ func _handle_gameplay_introduction():
 		range_ring.position = goblin_map[main_player_cid].position
 	elif show_goblin_arrow_frames > 0:
 		show_goblin_arrow_frames -= 1
-		if (
-				show_goblin_arrow_frames < POINTING_AT_TIME - ONE_SECOND and
-				current_checklist.modulate.a > 0
-		):
-			current_checklist.modulate.a -= 0.025
+		current_checklist.fading = true
 		_update_arrow_to(_get_goblin_pointer_pos())
 		range_ring.position = goblin_map[main_player_cid].position
 		TerrainShaderParams.range_rings_changed.emit()
@@ -245,7 +216,7 @@ func _handle_gameplay_introduction():
 			Constants.GROUP_NAME_TREES_AND_FELLED_TREES
 		):
 			tree.add_to_group(Constants.GROUP_NAME_TREES)
-		current_checklist.show()
+		current_checklist.fading = false
 	else:
 		check_gameplay_intro = false
 		waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
@@ -272,7 +243,7 @@ func _handle_gameplay_checklist():
 				show_trees_arrow_frames = 0
 			check_submenu = false
 			_check_checkbox("CheckSubmenu")
-			$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS"
+			$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS\n"
 			$GemPouch.show()
 			$GemPouch/Cribs.hide()
 			$GemPouch/MagicalGems.hide()
@@ -293,15 +264,18 @@ func _handle_gameplay_checklist():
 		if not check_submenu and not goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
 			check_cancel = false
 			_check_checkbox("CheckCancel")
-	#elif check_build:
-		#if not (
-			#get_tree()
-				#.get_nodes_in_group(Constants.GROUP_NAME_TOWERS)
-				#.is_empty()
-		#):
-			#check_build = false
-			#_mk_toast(message_suite[mode][8], 10.0, true)
-			#_start_wave(2)
+	if check_build:
+		if not (
+			get_tree()
+				.get_nodes_in_group(Constants.GROUP_NAME_TOWERS)
+				.is_empty()
+		):
+			check_build = false
+			_check_checkbox("CheckBuild")
+			_start_wave(2)
+			_mk_toast("Wave 1 / 1")
+			$ExplanationText/Body.text += "\nFish Folk drop BUILDER GEMS and MAGICAL CRYSTALS"
+
 
 func _handle_gameplay_tutorial():
 	if hide_gameplay_intro_frames > 0:
@@ -342,17 +316,29 @@ func _handle_gameplay_tutorial():
 		_destroy_arrow()
 
 
-func _on_gem_pouch_change(gems : int, _crystals : int):
+func _on_gem_pouch_change(gems : int, crystals : int):
 	if gems > 0 and not $GemPouch/BuilderGems.visible:
 		show_gem_arrow_frames = 0
 		range_ring.radius = 5
 		range_ring.position = $"palm-tree6".position
 		TerrainShaderParams.range_rings_changed.emit()
 		$GemPouch/BuilderGems.show()
+
+	if gems >= 100:
 		check_collect_gems = true
 		_check_checkbox("CheckCollectGems")
-		$ExplanationText/Body.text += "\nYou can see your BUILDER GEMS here"
-		_show_help_message("TODO: point at GemPouch")
+		$ExplanationText/Body.text += "\nNow go and convert a TREE into an ARROW TOWER\n"
+		show_trees_arrow_frames = POINTING_AT_TIME * 2
+		_mk_arrow(
+			$ExplanationText.position + Vector2(5, 164),
+			CameraUtil.get_label_position(
+					$"palm-tree6".position,
+					Vector3(0, 1, 0)
+			)
+		)
+	if crystals > 0:
+		_show_help_message("TODO: Upgrading tutorial")
+
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -392,7 +378,7 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
 		else:
 			mode = TutorialMode.GAMEPAD
 			current_checklist = $GamepadTutorial
-		current_checklist.show()
+		current_checklist.fading = false
 		_mk_arrow(
 				$ExplanationText.position + Vector2(5, $ExplanationText.size.y - 24),
 				current_checklist.position + Vector2(

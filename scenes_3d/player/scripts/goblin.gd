@@ -131,8 +131,6 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 			my_tower = null
 
 func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
-	if confirm_cooldown > 0:
-		return
 	var input_dir = _get_input_vector()
 	var force = Vector2.ZERO.distance_to(input_dir)
 
@@ -165,11 +163,10 @@ func _handle_context_menus():
 		# open the context menu if requested and valid,
 		# else handle any open context menu
 		if _my_button_just_pressed("confirm") and context_menu.visible and not context_menu.is_open:
-			confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 			context_menu.open()
 			if player_num == 0:
 				confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES * 2
-				Input.warp_mouse(context_menu.position - Vector2(0, 1))
+				Input.warp_mouse(context_menu.position - Vector2(0, 20))
 		elif context_menu.is_open:
 			_handle_context_menu_arrow_input(context_menu)
 			_handle_context_menu_confirm(context_menu)

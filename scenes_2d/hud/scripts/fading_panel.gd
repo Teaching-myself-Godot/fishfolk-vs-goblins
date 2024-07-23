@@ -1,3 +1,5 @@
+class_name FadingPanel
+
 extends Panel
 
 @export var fading = false
@@ -7,7 +9,9 @@ func _ready():
 
 
 func _process(_delta):
+	if not fading and not visible:
+		show()
 	if fading and modulate.a > 0.0:
-		modulate.a -= 0.05
+		modulate.a -= 0.025
 	elif modulate.a < 1.0:
 		modulate.a += 0.025

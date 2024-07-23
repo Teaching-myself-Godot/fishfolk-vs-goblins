@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bte6pgtr0jyke"]
+[gd_scene load_steps=23 format=3 uid="uid://bte6pgtr0jyke"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_stage.gd" id="1_2wut6"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_n0qyl"]
@@ -7,15 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="4_ljqtt"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="5_5did4"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="6_g7m6h"]
-[ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="8_mhn8w"]
 [ext_resource type="PackedScene" uid="uid://bsmsv2m50sjob" path="res://scenes_3d/monster_spawner/monster_spawner.tscn" id="9_6s5h6"]
 [ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="10_ue4va"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_4urpg"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_7umqb"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/end_tutorial_confirmation_dialog.gd" id="13_mip6f"]
+[ext_resource type="Script" path="res://scenes_2d/hud/scripts/fading_panel.gd" id="13_pwemn"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_3bqw1"]
 [ext_resource type="PackedScene" uid="uid://s6gmto1dt28h" path="res://scenes_2d/checklist/ChecklistItem.tscn" id="14_pn5o8"]
-[ext_resource type="PackedScene" uid="uid://cp46skoyrt7a0" path="res://scenes_2d/hud/explanation_text.tscn" id="16_xtmyw"]
+[ext_resource type="PackedScene" uid="uid://cp46skoyrt7a0" path="res://scenes_2d/hud/fading_panel.tscn" id="15_7dyje"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +35,9 @@ resource_local_to_scene = true
 [sub_resource type="LabelSettings" id="LabelSettings_8vmqk"]
 font = ExtResource("14_3bqw1")
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_av37n"]
+font = ExtResource("14_3bqw1")
 
 [node name="TutorialStage" type="Node"]
 script = ExtResource("1_2wut6")
@@ -82,11 +85,6 @@ transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609,
 [node name="palm-tree3" parent="." instance=ExtResource("3_bu10x")]
 transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156252, -0.276462)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_mhn8w")
-volume_db = -20.0
-autoplay = true
-
 [node name="MonsterSpawner" parent="." instance=ExtResource("9_6s5h6")]
 
 [node name="MonsterPath" parent="MonsterSpawner" instance=ExtResource("10_ue4va")]
@@ -128,6 +126,8 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 458.0
 offset_bottom = 212.0
+script = ExtResource("13_pwemn")
+fading = true
 
 [node name="Label" type="Label" parent="KeyboardTutorial"]
 layout_mode = 0
@@ -181,6 +181,8 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 458.0
 offset_bottom = 212.0
+script = ExtResource("13_pwemn")
+fading = true
 
 [node name="Label" type="Label" parent="GamepadTutorial"]
 layout_mode = 0
@@ -206,8 +208,8 @@ offset_left = 12.0
 offset_top = 100.0
 offset_right = 443.0
 offset_bottom = 120.0
-text = "JUMP by pressing A - (B on the Pro Controller)"
-informative_text = "JUMP by pressing A - (B on the Pro Controller)"
+text = "JUMP by pressing A on your game controller"
+informative_text = "JUMP by pressing A on your game controller"
 
 [node name="CheckZooming" parent="GamepadTutorial" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -233,7 +235,9 @@ z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 456.0
-offset_bottom = 240.0
+offset_bottom = 272.0
+script = ExtResource("13_pwemn")
+fading = true
 
 [node name="Title" type="Label" parent="KeyboardTutuorialGameplay"]
 layout_mode = 0
@@ -286,8 +290,16 @@ offset_left = 12.0
 offset_top = 196.0
 offset_right = 440.0
 offset_bottom = 216.0
-text = "Collect some BUILDER GEMS"
+text = "Collect 100 BUILDER GEMS"
 informative_text = "You can collect GEMS by running near them"
+
+[node name="CheckBuild" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+offset_left = 12.0
+offset_top = 228.0
+offset_right = 440.0
+offset_bottom = 248.0
+text = "Convert a TREE into an ARROW TOWER"
+informative_text = "Use your BUILDER GEMS to build an ARROW TOWER"
 
 [node name="GamepadTutorialGameplay" type="Panel" parent="."]
 visible = false
@@ -295,7 +307,9 @@ z_index = 5
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 456.0
-offset_bottom = 240.0
+offset_bottom = 272.0
+script = ExtResource("13_pwemn")
+fading = true
 
 [node name="Title" type="Label" parent="GamepadTutorialGameplay"]
 layout_mode = 0
@@ -321,8 +335,8 @@ offset_left = 12.0
 offset_top = 100.0
 offset_right = 435.0
 offset_bottom = 120.0
-text = "OPEN the BUILD MENU by pressing B - (Nintendo: A)"
-informative_text = "Press B (Nintendo: A) next to a tree to OPEN MENU"
+text = "OPEN the BUILD MENU by pressing B"
+informative_text = "Press B next to a tree to OPEN MENU"
 
 [node name="CheckSubmenu" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -339,8 +353,8 @@ offset_left = 12.0
 offset_top = 164.0
 offset_right = 435.0
 offset_bottom = 184.0
-text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
-informative_text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
+text = "Press A to close MENUS + SUBMENUS"
+informative_text = "Press A to close MENUS + SUBMENUS"
 
 [node name="CheckCollectGems" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -348,17 +362,45 @@ offset_left = 12.0
 offset_top = 196.0
 offset_right = 440.0
 offset_bottom = 216.0
-text = "Collect some BUILDER GEMS"
+text = "Collect 100 BUILDER GEMS"
 informative_text = "You can collect GEMS by running near them"
 
-[node name="ExplanationText" parent="." instance=ExtResource("16_xtmyw")]
+[node name="CheckBuild" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 228.0
+offset_right = 440.0
+offset_bottom = 248.0
+text = "Convert a TREE into an ARROW TOWER"
+informative_text = "Use your BUILDER GEMS to build an ARROW TOWER"
+
+[node name="ExplanationText" parent="." instance=ExtResource("15_7dyje")]
+visible = false
 z_index = 5
 
-[node name="Body" parent="ExplanationText" index="1"]
+[node name="Title" type="Label" parent="ExplanationText"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 109.0
+offset_bottom = 43.0
+text = "Welcome to Goblins vs. Fishfolk"
+label_settings = SubResource("LabelSettings_8vmqk")
+
+[node name="Body" type="Label" parent="ExplanationText"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 52.0
+offset_right = 432.0
+offset_bottom = 217.0
 text = "Goblins vs. Fishfolk is a \"Tower Defense\" game inspired by Pixeljunk's Monsters 2.
 
-The goal of a \"tower defense\" is to protect your base by building towers.  In this game you will be converting trees into towers to protect  babies.
+The goal is to protect your base by building towers.
+
+In this game you will be converting trees into towers.
 "
+label_settings = SubResource("LabelSettings_av37n")
+autowrap_mode = 2
 
 [connection signal="gameover" from="." to="." method="_on_gameover"]
 [connection signal="open_pause_menu" from="." to="." method="_open_confirmation_dialog"]
