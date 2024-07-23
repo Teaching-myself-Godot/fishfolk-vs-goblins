@@ -354,7 +354,6 @@ func _process(_delta):
 			_handle_gameplay_tutorial()
 
 
-
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
 	super._add_goblin_to_scene(num, start_pos)
 

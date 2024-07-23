@@ -191,9 +191,10 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [x] implement the checklists for the controls tutorial
 - [x] use dynamically drawn arrows to point from things --> at things
 - [x] explain more details by using these arrows and a top-right text box
-- [ ] implement the checklists for gameplay
-- [ ] explain more about the gameplay in explanation box
-- [ ] replace confirm modals with 2D scene
+- [x] implement the checklists for tower building
+- [x] explain more about tower building in the explanation box
+- [ ] implement checklists for upgrades
+- [ ] explain about upgrades in the explanation box
 - [ ] show a thumbnail label to indicate monster outside viewport
 
 ### Milestone 20 - Monster wave modes
@@ -201,12 +202,16 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [ ] add A dedicated EndlessMonsterWave
 - [ ] add CountdownMonsterWave showing countdown time on label
 - [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
+- [ ] Make a start with turning "Stage 1-1" into "Story" mode (mostly numbered waves)
+- [ ] Rename "Stage 1-2" to "Endurance" mode (all endless waves)
+- [ ] Make a start with turning "Stage 1-3" to "Survival" (all time-out based waves)
 
 ## Future ideas...
-- Enrich [the back story](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- replace confirm modals with 2D scene
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
+- Enrich [the back story](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - Make camera look behind player more when zoomed in (only single player)
 - Control a single tower via extra 3D viewport
 - Re-add leave game option to pause menu
