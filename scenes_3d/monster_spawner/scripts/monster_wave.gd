@@ -35,6 +35,7 @@ func _on_poll_wave_cleared_timer_timeout():
 		if monsters_left == 0:
 			queue_free()
 
+
 func _on_timeout():
 	if not infinite_wave and monsters_spawned >= monster_count:
 		return

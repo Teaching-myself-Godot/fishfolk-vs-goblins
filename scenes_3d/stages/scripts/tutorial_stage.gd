@@ -271,10 +271,10 @@ func _handle_gameplay_checklist():
 				.is_empty()
 		):
 			check_build = false
+			_destroy_arrow()
 			_check_checkbox("CheckBuild")
 			_start_wave(2)
-			_mk_toast("Wave 1 / 1")
-			$ExplanationText/Body.text += "\nFish Folk drop BUILDER GEMS and MAGICAL CRYSTALS"
+			_mk_toast("Wave 1 / 2")
 
 
 func _handle_gameplay_tutorial():
@@ -318,24 +318,17 @@ func _handle_gameplay_tutorial():
 
 func _on_gem_pouch_change(gems : int, crystals : int):
 	if gems > 0 and not $GemPouch/BuilderGems.visible:
-		show_gem_arrow_frames = 0
-		range_ring.radius = 5
-		range_ring.position = $"palm-tree6".position
+		show_gem_arrow_frames = -1
+		_destroy_arrow()
+		TerrainShaderParams.drop_range_ring(range_ring)
 		TerrainShaderParams.range_rings_changed.emit()
 		$GemPouch/BuilderGems.show()
-
+		$ExplanationText/Body.text += "\nYou can see your collected BUILDER GEMS here\n"
+		_mk_arrow($ExplanationText.position + Vector2(5, 164), $GemPouch.position + Vector2(224, -168))
 	if gems >= 100:
 		check_collect_gems = true
 		_check_checkbox("CheckCollectGems")
 		$ExplanationText/Body.text += "\nNow go and convert a TREE into an ARROW TOWER\n"
-		show_trees_arrow_frames = POINTING_AT_TIME * 2
-		_mk_arrow(
-			$ExplanationText.position + Vector2(5, 164),
-			CameraUtil.get_label_position(
-					$"palm-tree6".position,
-					Vector3(0, 1, 0)
-			)
-		)
 	if crystals > 0:
 		_show_help_message("TODO: Upgrading tutorial")
 

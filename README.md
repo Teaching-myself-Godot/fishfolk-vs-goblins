@@ -194,6 +194,7 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - [ ] implement the checklists for gameplay
 - [ ] explain more about the gameplay in explanation box
 - [ ] replace confirm modals with 2D scene
+- [ ] show a thumbnail label to indicate monster outside viewport
 
 ### Milestone 20 - Monster wave modes
 - [ ] remove infinite boolean from MonsterWave

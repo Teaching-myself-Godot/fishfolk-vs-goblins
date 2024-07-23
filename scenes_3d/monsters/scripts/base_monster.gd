@@ -37,10 +37,13 @@ func handle_update(delta, frame):
 		kill_your_darling.emit(crib_under_attack)
 		queue_free()
 
-	$HPBar.position = (
-		CameraUtil.get_label_position(position, Vector3(0, 2.2, 0)) -
-			Vector2(abs($HPBar.max_hp * 0.5), 14)
-	)
+	var pos_2d = CameraUtil.get_label_position(position, Vector3(0, 2.2, 0))
+	$HPBar.position = pos_2d - Vector2(abs($HPBar.max_hp * 0.5), 14)
+	# if not get_viewport().get_visible_rect().has_point(pos_2d):
+		# TODO: show a thumbnail label to indicate monster outside viewport
+	# else:
+		# TODO: hide the thumbnail label to indicate monster outside viewport
+
 	position += velocity * delta
 
 
