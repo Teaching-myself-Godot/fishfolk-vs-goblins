@@ -30,6 +30,8 @@ var show_babies_arrow_frames = POINTING_AT_TIME
 var show_monster_spawn_arrow_frames = POINTING_AT_TIME
 var show_trees_arrow_frames = POINTING_AT_TIME
 var show_gem_arrow_frames = -1
+var show_collected_gem_arrow_frames = POINTING_AT_TIME * 2
+var show_trees_arrow_frames_again = POINTING_AT_TIME * 2
 var hide_gameplay_intro_frames = ONE_SECOND * 2
 
 # Gameplay checklist
@@ -40,8 +42,12 @@ var check_submenu = true
 var check_cancel = true
 var check_collect_gems = true
 var check_build = true
+
+
+# Upgrade tutorial
+var awaiting_monster_wave_1 = true
+var awaiting_upgrade_tutorial = true
 var check_upgrade = true
-#var check_done = true
 
 var current_checklist : FadingPanel = null
 var waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
@@ -52,6 +58,22 @@ var _init_rot = 0.0
 var _cooldown_pause = 20
 
 
+func _on_gem_pouch_change(gems : int, crystals : int):
+	if gems > 0 and not $GemPouch/BuilderGems.visible:
+		show_gem_arrow_frames = -1
+		_destroy_arrow()
+		TerrainShaderParams.drop_range_ring(range_ring)
+		TerrainShaderParams.range_rings_changed.emit()
+		$GemPouch/BuilderGems.show()
+		$ExplanationText/Body.text += "\nYou can see your collected BUILDER GEMS here\n"
+		_mk_arrow($ExplanationText.position + Vector2(5, 164), $GemPouch.position + Vector2(224, -168))
+		show_collected_gem_arrow_frames = POINTING_AT_TIME
+	if gems >= 100:
+		check_collect_gems = false
+		_check_checkbox("CheckCollectGems")
+		$ExplanationText/Body.text += "\nNow go and convert a TREE into an ARROW TOWER\n"
+
+
 func _learning_controls() -> bool:
 	return check_jumping or check_running or check_zooming or check_looking
 
@@ -59,8 +81,12 @@ func _learning_controls() -> bool:
 func _learning_gameplay() -> bool:
 	return (
 		check_menu_open or check_submenu or check_cancel or
-		check_build or check_upgrade or check_collect_gems
+		check_build or check_collect_gems or check_tree_hugging
 	)
+
+
+func _learning_upgrades() -> bool:
+	return check_upgrade
 
 
 func _get_goblin_pointer_pos() -> Vector2:
@@ -243,7 +269,12 @@ func _handle_gameplay_checklist():
 				show_trees_arrow_frames = 0
 			check_submenu = false
 			_check_checkbox("CheckSubmenu")
-			$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS\n"
+			$ExplanationText.fading = false
+			$ExplanationText/Title.text = "Converting Trees into Towers"
+			$ExplanationText/Body.text = """
+				To convert trees into defensive towers you need BUILDER GEMS
+
+			"""
 			$GemPouch.show()
 			$GemPouch/Cribs.hide()
 			$GemPouch/MagicalGems.hide()
@@ -264,6 +295,7 @@ func _handle_gameplay_checklist():
 		if not check_submenu and not goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
 			check_cancel = false
 			_check_checkbox("CheckCancel")
+
 	if check_build:
 		if not (
 			get_tree()
@@ -276,6 +308,23 @@ func _handle_gameplay_checklist():
 			_start_wave(2)
 			_mk_toast("Wave 1 / 2")
 
+			# FIXME: make this bit more cinematic
+			$ExplanationText/Title.text = "A Fish Folk Attack!"
+			$ExplanationText/Body.text = """Fish folk attack in waves:
+				- Numbered waves
+				- Endless waves
+
+				You have LOST the game when you lose all your babies.
+
+				When you have defeated all Fish Folk in all waves, you have WON.
+			"""
+			$GemPouch/Cribs.show()
+			_mk_arrow(
+					$ExplanationText.position + Vector2(5, 152),
+					$GemPouch.position + Vector2(224, -250)
+			)
+			current_checklist.fading = true
+
 
 func _handle_gameplay_tutorial():
 	if hide_gameplay_intro_frames > 0:
@@ -283,55 +332,46 @@ func _handle_gameplay_tutorial():
 	elif hide_gameplay_intro_frames == 0:
 		hide_gameplay_intro_frames = -1
 		$ExplanationText.fading = true
-	elif show_gameplay_explainer_delay > 0:
-		show_gameplay_explainer_delay -= 1
-	elif show_gameplay_explainer_delay == 0:
-		show_gameplay_explainer_delay = -1
-		show_trees_arrow_frames = POINTING_AT_TIME
-		$ExplanationText.fading = false
-		$ExplanationText/Title.text = "Converting Trees into Towers"
-		$ExplanationText/Body.text = "Let's create some defenses here.\n"
 		_destroy_arrow()
-		_mk_arrow(
-			$ExplanationText.position + Vector2(5, 72),
-			CameraUtil.get_label_position(
-					$"palm-tree6".position,
-					Vector3(0, 1, 0)
-			)
-		)
-	elif show_trees_arrow_frames > 0:
-			show_trees_arrow_frames -= 1
-			_update_arrow_to(CameraUtil.get_label_position(
-					$"palm-tree6".position,
-					Vector3(0, 1, 0)
-			))
-	elif show_trees_arrow_frames == 0:
-		_destroy_arrow()
-		show_trees_arrow_frames = -1
 	elif show_gem_arrow_frames > 0:
 		show_gem_arrow_frames -= 1
 		_update_arrow_to(CameraUtil.get_label_position(GEM_SPAWN))
 	elif show_gem_arrow_frames == 0:
 		show_gem_arrow_frames = -1
 		_destroy_arrow()
-
-
-func _on_gem_pouch_change(gems : int, crystals : int):
-	if gems > 0 and not $GemPouch/BuilderGems.visible:
-		show_gem_arrow_frames = -1
+	elif show_collected_gem_arrow_frames > 0:
+		if not check_collect_gems:
+			show_collected_gem_arrow_frames -= 1
+	elif show_collected_gem_arrow_frames == 0:
+		show_collected_gem_arrow_frames = -1
 		_destroy_arrow()
-		TerrainShaderParams.drop_range_ring(range_ring)
-		TerrainShaderParams.range_rings_changed.emit()
-		$GemPouch/BuilderGems.show()
-		$ExplanationText/Body.text += "\nYou can see your collected BUILDER GEMS here\n"
-		_mk_arrow($ExplanationText.position + Vector2(5, 164), $GemPouch.position + Vector2(224, -168))
-	if gems >= 100:
-		check_collect_gems = true
-		_check_checkbox("CheckCollectGems")
-		$ExplanationText/Body.text += "\nNow go and convert a TREE into an ARROW TOWER\n"
-	if crystals > 0:
-		_show_help_message("TODO: Upgrading tutorial")
+		_mk_arrow(
+				$ExplanationText.position + Vector2(5, $ExplanationText.size.y - 24),
+				CameraUtil.get_label_position(
+						$"palm-tree6".position,
+						Vector3(0, 1, 0)
+				)
+		)
+	elif show_trees_arrow_frames_again > 0:
+		show_trees_arrow_frames_again -= 1
+		_update_arrow_to(CameraUtil.get_label_position(
+				$"palm-tree6".position,
+				Vector3(0, 1, 0)
+		))
+	elif show_trees_arrow_frames_again == 0:
+		_destroy_arrow()
+		show_trees_arrow_frames_again = -1
 
+
+func _handle_upgrades_tutorial():
+	if awaiting_upgrade_tutorial:
+		current_checklist = $UpgradeTutorial
+		current_checklist.fading = false
+		$ExplanationText/Title.text = "Upgrading a tower"
+		$ExplanationText/Body.text = "..."
+		$ExplanationText.fading = false
+		_destroy_arrow()
+		awaiting_upgrade_tutorial = false
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -352,6 +392,12 @@ func _process(_delta):
 		else:
 			_handle_gameplay_checklist()
 			_handle_gameplay_tutorial()
+	elif _learning_upgrades():
+		if awaiting_monster_wave_1:
+			if not is_instance_valid($MonsterSpawner/MonsterWave):
+				awaiting_monster_wave_1 = false
+		else:
+			_handle_upgrades_tutorial()
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):

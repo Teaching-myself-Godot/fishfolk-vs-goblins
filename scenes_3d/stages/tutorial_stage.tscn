@@ -50,6 +50,7 @@ metadata/_edit_vertical_guides_ = [20.0]
 surface_material_override/0 = ExtResource("3_ruc26")
 
 [node name="GemPouch" parent="." instance=ExtResource("4_ljqtt")]
+visible = false
 builder_gems = 0
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
@@ -76,13 +77,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492465, 1.01403, -3.01857)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90456, 0.404646, 1.60974)
 
 [node name="palm-tree6" parent="." instance=ExtResource("3_bu10x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04664, 0.000112029, -2.07571)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04664, 0.000112216, -2.07571)
 
 [node name="palm-tree11" parent="." instance=ExtResource("3_bu10x")]
-transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609, 0.0228954, -5.25948)
+transform = Transform3D(0.616413, 0, 0, 0, 0.616413, 0, 0, 0, 0.616413, 7.34609, 0.0228963, -5.25948)
 
 [node name="palm-tree3" parent="." instance=ExtResource("3_bu10x")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156252, -0.276462)
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 10.6344, 0.00156294, -0.276462)
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("9_6s5h6")]
 
@@ -104,6 +105,7 @@ wave_number = 2
 monster_count = 2
 monster_speed = 2.0
 monster_hp = 5
+gems_per_monster = 0
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 process_mode = 2
@@ -262,7 +264,7 @@ offset_left = 12.0
 offset_top = 100.0
 offset_right = 435.0
 offset_bottom = 120.0
-text = "OPEN the BUILD MENU by clicking LEFT MOUSE button"
+text = "Open the TREE MENU with LEFT CLICK"
 informative_text = "Click LEFT MOUSE button next to a tree to OPEN MENU"
 
 [node name="CheckSubmenu" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
@@ -271,8 +273,8 @@ offset_left = 12.0
 offset_top = 132.0
 offset_right = 435.0
 offset_bottom = 152.0
-text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
-informative_text = "Click on a TOWER TYPE to open the TOWER SUBMENU"
+text = "Open the BUILD MENU"
+informative_text = "Click one of the ICONS to choose a TOWER TYPE"
 
 [node name="CheckCancel" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -280,7 +282,7 @@ offset_left = 12.0
 offset_top = 164.0
 offset_right = 435.0
 offset_bottom = 184.0
-text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
+text = "Close the BUILD MENU and TREE MENU with RIGHT CLICK"
 informative_text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
 
 [node name="CheckCollectGems" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
@@ -335,7 +337,7 @@ offset_left = 12.0
 offset_top = 100.0
 offset_right = 435.0
 offset_bottom = 120.0
-text = "OPEN the BUILD MENU by pressing B"
+text = "Open the TREE MENU with B"
 informative_text = "Press B next to a tree to OPEN MENU"
 
 [node name="CheckSubmenu" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
@@ -344,8 +346,8 @@ offset_left = 12.0
 offset_top = 132.0
 offset_right = 435.0
 offset_bottom = 152.0
-text = "Point at a TOWER TYPE and press B to open SUBMENU"
-informative_text = "Point at a TOWER TYPE and press B to open SUBMENU"
+text = "Open the BUILD MENU"
+informative_text = "Point at an ICON and press B to choose a TOWER TYPE"
 
 [node name="CheckCancel" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -353,7 +355,7 @@ offset_left = 12.0
 offset_top = 164.0
 offset_right = 435.0
 offset_bottom = 184.0
-text = "Press A to close MENUS + SUBMENUS"
+text = "Close the BUILD MENU and TREE MENU with A"
 informative_text = "Press A to close MENUS + SUBMENUS"
 
 [node name="CheckCollectGems" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
@@ -373,6 +375,36 @@ offset_right = 440.0
 offset_bottom = 248.0
 text = "Convert a TREE into an ARROW TOWER"
 informative_text = "Use your BUILDER GEMS to build an ARROW TOWER"
+
+[node name="UpgradeTutorial" parent="." instance=ExtResource("15_7dyje")]
+visible = false
+offset_left = -1272.0
+offset_right = -822.0
+fading = true
+
+[node name="Title" type="Label" parent="UpgradeTutorial"]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 109.0
+offset_bottom = 43.0
+text = "Tower Management"
+label_settings = SubResource("LabelSettings_8vmqk")
+
+[node name="CheckCollectCrystal" parent="UpgradeTutorial" instance=ExtResource("14_pn5o8")]
+offset_left = 12.0
+offset_top = 69.0
+offset_right = 435.0
+offset_bottom = 89.0
+text = "Collect a MAGICAL CRYSTAL"
+informative_text = "Run next to the MAGICAL CRYSTAL to collect it"
+
+[node name="CheckMenuOpen" parent="UpgradeTutorial" instance=ExtResource("14_pn5o8")]
+offset_left = 12.0
+offset_top = 100.0
+offset_right = 435.0
+offset_bottom = 120.0
+text = "Open the TOWER MENU of the arrow tower"
+informative_text = "Click next to the arrow tower to OPEN MENU"
 
 [node name="ExplanationText" parent="." instance=ExtResource("15_7dyje")]
 visible = false
