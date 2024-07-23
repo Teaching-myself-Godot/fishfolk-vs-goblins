@@ -35,7 +35,8 @@ var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
 
 const ONE_SECOND = 60
 const POINTING_AT_TIME = ONE_SECOND * 3
-const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND * 3
+const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND
+const GEM_SPAWN = Vector3(0, 0, 0)
 
 var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
@@ -53,7 +54,7 @@ var show_goblin_arrow_frames = POINTING_AT_TIME
 var show_babies_arrow_frames = POINTING_AT_TIME
 var show_monster_spawn_arrow_frames = POINTING_AT_TIME
 var show_trees_arrow_frames = POINTING_AT_TIME
-var show_gem_arrow_frames = POINTING_AT_TIME
+var show_gem_arrow_frames = -1
 var hide_gameplay_intro_frames = ONE_SECOND * 2
 
 # Gameplay checklist
@@ -62,6 +63,7 @@ var check_tree_hugging = true
 var check_menu_open = true
 var check_submenu = true
 var check_cancel = true
+var check_collect_gems = true
 var check_build = true
 var check_upgrade = true
 #var check_done = true
@@ -80,7 +82,10 @@ func _learning_controls() -> bool:
 
 
 func _learning_gameplay() -> bool:
-	return check_menu_open or check_submenu or check_cancel or check_build or check_upgrade
+	return (
+		check_menu_open or check_submenu or check_cancel or
+		check_build or check_upgrade or check_collect_gems
+	)
 
 
 func _get_goblin_pointer_pos() -> Vector2:
@@ -142,7 +147,7 @@ func _handle_learning_controls_frame():
 			check_zooming = false
 			_check_checkbox("CheckZooming")
 	if check_looking:
-		if abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.2:
+		if abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1:
 			check_looking = false
 			_check_checkbox("CheckLooking")
 
@@ -232,7 +237,6 @@ func _handle_gameplay_introduction():
 	elif show_trees_arrow_frames == 0:
 		_destroy_arrow()
 		show_trees_arrow_frames = -1
-		$ExplanationText/Body.text += "Let's prepare!"
 		current_checklist = (
 			$KeyboardTutuorialGameplay if mode == TutorialMode.KEYBOARD else
 			$GamepadTutorialGameplay
@@ -246,6 +250,109 @@ func _handle_gameplay_introduction():
 		check_gameplay_intro = false
 		waiting_for_checkbox = MAX_CHECKBOX_WAIT_TIME
 
+
+func _handle_gameplay_checklist():
+	if check_tree_hugging:
+		if goblin_map[main_player_cid].find_child("TreeContextMenu").visible:
+			check_tree_hugging = false
+			_check_checkbox("CheckTreeHugging")
+	if check_menu_open:
+		if goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
+			check_menu_open = false
+			_check_checkbox("CheckMenuOpen")
+	if check_submenu:
+		if (
+			goblin_map[main_player_cid].find_child("TreeContextMenu").is_open
+			and not (
+				goblin_map[main_player_cid].find_child("TreeContextMenu")
+						.current_menu == TreeContextMenu.MAIN_MENU_NAME
+			)
+		):
+			if show_trees_arrow_frames > 0:
+				show_trees_arrow_frames = 0
+			check_submenu = false
+			_check_checkbox("CheckSubmenu")
+			$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS"
+			$GemPouch.show()
+			$GemPouch/Cribs.hide()
+			$GemPouch/MagicalGems.hide()
+			$GemPouch/BuilderGems.hide()
+			for _i in range(10):
+				_on_drop_builder_gem(GEM_SPAWN)
+			_destroy_arrow()
+			_mk_arrow(
+				$ExplanationText.position + Vector2(5, 108),
+				CameraUtil.get_label_position(Vector3(10, 0, 2))
+			)
+			show_gem_arrow_frames = POINTING_AT_TIME * 10
+			$GemPouch.liquidity_change.connect(_on_gem_pouch_change)
+			range_ring.position = GEM_SPAWN
+			range_ring.radius = 2
+			TerrainShaderParams.range_rings_changed.emit()
+	if check_cancel:
+		if not check_submenu and not goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
+			check_cancel = false
+			_check_checkbox("CheckCancel")
+	#elif check_build:
+		#if not (
+			#get_tree()
+				#.get_nodes_in_group(Constants.GROUP_NAME_TOWERS)
+				#.is_empty()
+		#):
+			#check_build = false
+			#_mk_toast(message_suite[mode][8], 10.0, true)
+			#_start_wave(2)
+
+func _handle_gameplay_tutorial():
+	if hide_gameplay_intro_frames > 0:
+		hide_gameplay_intro_frames -= 1
+	elif hide_gameplay_intro_frames == 0:
+		hide_gameplay_intro_frames = -1
+		$ExplanationText.fading = true
+	elif show_gameplay_explainer_delay > 0:
+		show_gameplay_explainer_delay -= 1
+	elif show_gameplay_explainer_delay == 0:
+		show_gameplay_explainer_delay = -1
+		show_trees_arrow_frames = POINTING_AT_TIME
+		$ExplanationText.fading = false
+		$ExplanationText/Title.text = "Converting Trees into Towers"
+		$ExplanationText/Body.text = "Let's create some defenses here.\n"
+		_destroy_arrow()
+		_mk_arrow(
+			$ExplanationText.position + Vector2(5, 72),
+			CameraUtil.get_label_position(
+					$"palm-tree6".position,
+					Vector3(0, 1, 0)
+			)
+		)
+	elif show_trees_arrow_frames > 0:
+			show_trees_arrow_frames -= 1
+			_update_arrow_to(CameraUtil.get_label_position(
+					$"palm-tree6".position,
+					Vector3(0, 1, 0)
+			))
+	elif show_trees_arrow_frames == 0:
+		_destroy_arrow()
+		show_trees_arrow_frames = -1
+	elif show_gem_arrow_frames > 0:
+		show_gem_arrow_frames -= 1
+		_update_arrow_to(CameraUtil.get_label_position(GEM_SPAWN))
+	elif show_gem_arrow_frames == 0:
+		show_gem_arrow_frames = -1
+		_destroy_arrow()
+
+
+func _on_gem_pouch_change(gems : int, _crystals : int):
+	if gems > 0 and not $GemPouch/BuilderGems.visible:
+		show_gem_arrow_frames = 0
+		range_ring.radius = 5
+		range_ring.position = $"palm-tree6".position
+		TerrainShaderParams.range_rings_changed.emit()
+		$GemPouch/BuilderGems.show()
+		check_collect_gems = true
+		_check_checkbox("CheckCollectGems")
+		$ExplanationText/Body.text += "\nYou can see your BUILDER GEMS here"
+		_show_help_message("TODO: point at GemPouch")
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -264,98 +371,9 @@ func _process(_delta):
 		if check_gameplay_intro:
 			_handle_gameplay_introduction()
 		else:
-			if hide_gameplay_intro_frames > 0:
-				hide_gameplay_intro_frames -= 1
-			elif hide_gameplay_intro_frames == 0:
-				hide_gameplay_intro_frames = -1
-				$ExplanationText.fading = true
-			elif show_gameplay_explainer_delay > 0:
-				show_gameplay_explainer_delay -= 1
-			elif show_gameplay_explainer_delay == 0:
-				show_gameplay_explainer_delay = -1
-				show_trees_arrow_frames = POINTING_AT_TIME
-				$ExplanationText.fading = false
-				$ExplanationText/Title.text = "Converting Trees into Towers"
-				$ExplanationText/Body.text = "Let's create some defenses here.\n"
-				_destroy_arrow()
-				_mk_arrow(
-					$ExplanationText.position + Vector2(5, 72),
-					CameraUtil.get_label_position(
-							$"palm-tree6".position,
-							Vector3(0, 1, 0)
-					)
-				)
-			elif show_trees_arrow_frames > 0:
-					show_trees_arrow_frames -= 1
-					_update_arrow_to(CameraUtil.get_label_position(
-							$"palm-tree6".position,
-							Vector3(0, 1, 0)
-					))
-			elif show_trees_arrow_frames == 0:
-				_destroy_arrow()
-				show_trees_arrow_frames = -1
-			elif show_gem_arrow_frames > 0:
-				show_gem_arrow_frames -= 1
-				_update_arrow_to(CameraUtil.get_label_position(
-						Vector3(10, 0, 10)
-				))
-			elif show_gem_arrow_frames == 0:
-				show_gem_arrow_frames = -1
-				_destroy_arrow()
+			_handle_gameplay_checklist()
+			_handle_gameplay_tutorial()
 
-		if check_tree_hugging:
-			if goblin_map[main_player_cid].find_child("TreeContextMenu").visible:
-				check_tree_hugging = false
-				_check_checkbox("CheckTreeHugging")
-		if check_menu_open:
-			if goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
-				check_menu_open = false
-				_check_checkbox("CheckMenuOpen")
-		if check_submenu:
-			if (
-				goblin_map[main_player_cid].find_child("TreeContextMenu").is_open
-				and not (
-					goblin_map[main_player_cid].find_child("TreeContextMenu")
-							.current_menu == TreeContextMenu.MAIN_MENU_NAME
-				)
-			):
-				check_submenu = false
-				_check_checkbox("CheckSubmenu")
-				$ExplanationText/Body.text += "\nTo convert trees into defensive towers you need BUILDER GEMS"
-				$GemPouch.show()
-				$GemPouch/Cribs.hide()
-				$GemPouch/MagicalGems.hide()
-				for _i in range(10):
-					_on_drop_builder_gem(Vector3(10, 1, 10))
-				_destroy_arrow()
-				_mk_arrow(
-					$ExplanationText.position + Vector2(5, 108),
-					CameraUtil.get_label_position(Vector3(10, 0, 10))
-				)
-				range_ring.position = Vector3(10, 0, 10)
-				range_ring.radius = 2
-				TerrainShaderParams.range_rings_changed.emit()
-
-		if check_cancel:
-			if not check_submenu and not goblin_map[main_player_cid].find_child("TreeContextMenu").is_open:
-				check_cancel = false
-				_check_checkbox("CheckCancel")
-
-
-	#elif check_build:
-		#if not (
-			#get_tree()
-				#.get_nodes_in_group(Constants.GROUP_NAME_TOWERS)
-				#.is_empty()
-		#):
-			#check_build = false
-			#_mk_toast(message_suite[mode][8], 10.0, true)
-			#_start_wave(2)
-	#elif check_done:
-		#if find_children("*", "MonsterWave").size() == 0:
-			#check_done = false
-			#_mk_toast("Thank you for playing the tutorial!", 3, true)
-			#$EndTutorialDelay.start()
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):

@@ -184,8 +184,8 @@ func _on_drop_builder_gem(pos : Vector3):
 	var new_gem : BuilderGem  = BuilderGemScene.instantiate()
 	new_gem.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_gem.velocity.y = 20
-	new_gem.velocity.x = -3 + randf() * 3
-	new_gem.velocity.z = -3 + randf() * 3
+	new_gem.velocity.x = -3 + randf() * 6
+	new_gem.velocity.z = -3 + randf() * 6
 	new_gem.collect_builder_gem.connect(gem_pouch.collect_builder_gem)
 	add_child.call_deferred(new_gem)
 

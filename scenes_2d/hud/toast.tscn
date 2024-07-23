@@ -17,6 +17,7 @@ font = ExtResource("2_ftk2u")
 font_size = 24
 
 [node name="Toast" type="Control" groups=["toasts"]]
+z_index = 6
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5

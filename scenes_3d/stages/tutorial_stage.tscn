@@ -49,7 +49,6 @@ surface_material_override/0 = ExtResource("3_ruc26")
 [node name="GemPouch" parent="." instance=ExtResource("4_ljqtt")]
 visible = false
 builder_gems = 0
-metadata/_edit_vertical_guides_ = [168.0, 224.0]
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -164,7 +163,7 @@ offset_top = 132.0
 offset_right = 435.0
 offset_bottom = 152.0
 text = "ZOOM in and out by using the MOUSEWHEEL"
-informative_text = "To ZOOM,  click and drag MOUSEWHEEL up and down (or scroll)"
+informative_text = "To ZOOM, click and drag MOUSEWHEEL up and down (or scroll)"
 
 [node name="CheckLooking" parent="KeyboardTutorial" instance=ExtResource("14_pn5o8")]
 layout_mode = 0
@@ -281,6 +280,15 @@ offset_bottom = 184.0
 text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
 informative_text = "Click RIGHT MOUSE button to close MENUS + SUBMENUS"
 
+[node name="CheckCollectGems" parent="KeyboardTutuorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 196.0
+offset_right = 440.0
+offset_bottom = 216.0
+text = "Collect some BUILDER GEMS"
+informative_text = "You can collect GEMS by running near them"
+
 [node name="GamepadTutorialGameplay" type="Panel" parent="."]
 visible = false
 z_index = 5
@@ -326,12 +334,22 @@ text = "Point at a TOWER TYPE and press B to open SUBMENU"
 informative_text = "Point at a TOWER TYPE and press B to open SUBMENU"
 
 [node name="CheckCancel" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 164.0
 offset_right = 435.0
 offset_bottom = 184.0
 text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
 informative_text = "Press A to close MENUS + SUBMENUS - (Nintendo: B)"
+
+[node name="CheckCollectGems" parent="GamepadTutorialGameplay" instance=ExtResource("14_pn5o8")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 196.0
+offset_right = 440.0
+offset_bottom = 216.0
+text = "Collect some BUILDER GEMS"
+informative_text = "You can collect GEMS by running near them"
 
 [node name="ExplanationText" parent="." instance=ExtResource("16_xtmyw")]
 z_index = 5
