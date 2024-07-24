@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/fading_panel.gd" id="13_pwemn"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_3bqw1"]
 [ext_resource type="PackedScene" uid="uid://s6gmto1dt28h" path="res://scenes_2d/checklist/ChecklistItem.tscn" id="14_pn5o8"]
-[ext_resource type="PackedScene" path="res://scenes_2d/fading_panel.tscn" id="16_fi6dx"]
+[ext_resource type="PackedScene" uid="uid://cp46skoyrt7a0" path="res://scenes_2d/fading_panel.tscn" id="16_fi6dx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyhy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

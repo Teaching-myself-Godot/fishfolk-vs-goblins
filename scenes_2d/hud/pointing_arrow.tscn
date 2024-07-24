@@ -15,8 +15,7 @@ width = 1
 
 [node name="PointingArrow" type="Node2D" groups=["arrow-2d"]]
 script = ExtResource("1_e8rd1")
-from = Vector2(10, 200)
-to = Vector2(132, 570)
+to = Vector2(150, 941)
 color = Color(0.823529, 1, 0, 1)
 outline_color = Color(0, 0.184314, 0.0117647, 0.219608)
 metadata/_edit_vertical_guides_ = [100.0]

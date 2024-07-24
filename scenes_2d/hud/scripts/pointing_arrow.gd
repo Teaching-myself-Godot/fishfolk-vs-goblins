@@ -11,7 +11,9 @@ const ARROW_POINT_WIDTH = 50
 var fading = false
 
 func _process(_delta):
-	var size = from.distance_to(to)
+	var bounded_to = CameraUtil.keep_in_viewport(to)
+
+	var size = from.distance_to(bounded_to)
 	if size < ARROW_POINT_WIDTH + 10:
 		size = ARROW_POINT_WIDTH + 10
 
@@ -24,7 +26,7 @@ func _process(_delta):
 	$LineFill.scale.x = size - ARROW_POINT_WIDTH + 2
 
 	position = from
-	rotation = from.angle_to_point(to)
+	rotation = from.angle_to_point(bounded_to)
 	$PointFill.modulate = color
 	$LineFill.modulate = color
 	$Outline.default_color = outline_color
