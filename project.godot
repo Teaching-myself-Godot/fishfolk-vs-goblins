@@ -27,10 +27,6 @@ TerrainShaderParams="*res://scenes_3d/terrains/scripts/terrain_shader_params.gd"
 CameraUtil="*res://scenes_3d/camera/scripts/camera_util.gd"
 InputUtil="*res://scripts/input_util.gd"
 
-[display]
-
-window/stretch/aspect="ignore"
-
 [editor]
 
 movie_writer/movie_file="C:/Users/rvand/gamedev/godot-recording.avi"

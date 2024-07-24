@@ -480,5 +480,3 @@ func _on_confirmation_dialog_canceled():
 
 func _on_confirmation_dialog_confirmed():
 	get_tree().call_deferred("change_scene_to_packed", MainGame)
-
-

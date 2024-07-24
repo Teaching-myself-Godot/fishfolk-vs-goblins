@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/pointing_arrow.gd" id="1_e8rd1"]
 [ext_resource type="Texture2D" uid="uid://7cnq3g8lxu6y" path="res://icons/arrow-point.svg" id="2_t6n7c"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgvqn"]
+
 [sub_resource type="Gradient" id="Gradient_p1uat"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
@@ -11,32 +13,32 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_p1uat")
 width = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgvqn"]
-
 [node name="PointingArrow" type="Node2D" groups=["arrow-2d"]]
 script = ExtResource("1_e8rd1")
-to = Vector2(150, 941)
+to = Vector2(150, 110)
 color = Color(0.823529, 1, 0, 1)
 outline_color = Color(0, 0.184314, 0.0117647, 0.219608)
 metadata/_edit_vertical_guides_ = [100.0]
 
-[node name="LineFill" type="Sprite2D" parent="."]
-scale = Vector2(52, 6)
-texture = SubResource("GradientTexture1D_g0qxg")
-centered = false
-offset = Vector2(0, -0.5)
+[node name="Outline" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_rgvqn")
+points = PackedVector2Array(0, -3, 52, -3, 51, -12, 100, 0, 50, 12, 52, 3, 0, 3, -1, 0)
+closed = true
+width = 3.0
+default_color = Color(0, 0.184314, 0.0117647, 0.219608)
+joint_mode = 2
+metadata/_edit_vertical_guides_ = [100.0]
 
 [node name="PointFill" type="Sprite2D" parent="."]
+modulate = Color(0.823529, 1, 0, 1)
 scale = Vector2(1, 0.6)
 texture = ExtResource("2_t6n7c")
 centered = false
 offset = Vector2(50, -20)
 
-[node name="Outline" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_rgvqn")
-points = PackedVector2Array(0, -3, 52, -3, 51, -12, 100, 0, 50, 12, 52, 4, 0, 4)
-closed = true
-width = 3.0
-default_color = Color(1, 0.235294, 1, 1)
-joint_mode = 2
-metadata/_edit_vertical_guides_ = [100.0]
+[node name="LineFill" type="Sprite2D" parent="."]
+modulate = Color(0.823529, 1, 0, 1)
+scale = Vector2(54, 6)
+texture = SubResource("GradientTexture1D_g0qxg")
+centered = false
+offset = Vector2(0, -0.5)

@@ -3,7 +3,7 @@ class_name MyCamera
 extends Camera3D
 
 const MIN_ZOOM = 0.0
-const MAX_ZOOM = 100.0
+const MAX_ZOOM = 50.0
 
 var zoom = 9.0
 
