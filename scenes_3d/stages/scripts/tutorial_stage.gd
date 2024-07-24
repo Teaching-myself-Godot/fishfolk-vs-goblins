@@ -9,7 +9,7 @@ enum TutorialMode { KEYBOARD, GAMEPAD }
 var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
 
 const ONE_SECOND = 60
-const POINTING_AT_TIME = ONE_SECOND * 3
+const POINTING_AT_TIME = ONE_SECOND * 5
 const MAX_CHECKBOX_WAIT_TIME = ONE_SECOND
 const GEM_SPAWN = Vector3(0, 0, 0)
 
@@ -42,7 +42,7 @@ var check_submenu = true
 var check_cancel = true
 var check_collect_gems = true
 var check_build = true
-
+var first_wave : MonsterWave = null
 
 # Upgrade tutorial
 var awaiting_monster_wave_1 = true
@@ -394,7 +394,7 @@ func _process(_delta):
 			_handle_gameplay_tutorial()
 	elif _learning_upgrades():
 		if awaiting_monster_wave_1:
-			if not is_instance_valid($MonsterSpawner/MonsterWave):
+			if not is_instance_valid(first_wave):
 				awaiting_monster_wave_1 = false
 		else:
 			_handle_upgrades_tutorial()
@@ -447,6 +447,7 @@ func _show_help_message(text : String):
 func _ready():
 	super._ready()
 	_show_help_message("To JOIN, press either gamepad START or keyboard SPACEBAR")
+	first_wave = $MonsterSpawner/MonsterWave
 
 
 func _mk_arrow(from : Vector2, to : Vector2) -> void:
