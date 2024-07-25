@@ -85,7 +85,7 @@ func _ready():
 	current_range = Constants.ARROW_TOWER_BASE_RANGE
 	current_damage = Constants.ARROW_TOWER_BASE_DAMAGE
 	current_reload_time = Constants.ARROW_TOWER_BASE_RELOAD_TIME
-	$ReloadTimer.wait_time = current_reload_time
+	$ReloadTimer.wait_time = current_reload_time - 1
 	drop_gem_amount = 7
 	_load_new_arrow()
 

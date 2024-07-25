@@ -2,10 +2,14 @@ class_name TitleScreen
 extends Sprite2D
 
 
+signal select_stage(stage : PackedScene)
+signal confirm_stage()
+
+
 func _ready():
 	get_tree().get_root().size_changed.connect(_on_resize)
 	_on_resize()
-	$"StageSelectMenu/StageSelectMenuOptions/Stage 1-1".call_deferred("grab_focus")
+	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".call_deferred("grab_focus")
 
 
 func _unhandled_input(_event):
@@ -18,7 +22,7 @@ func _unhandled_input(_event):
 func open_title_screen():
 	InputUtil.player_map = {}
 	show()
-	$"StageSelectMenu/StageSelectMenuOptions/Stage 1-1".grab_focus()
+	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".grab_focus()
 
 
 func _on_resize():
@@ -37,3 +41,11 @@ func _on_next_button_up():
 	var focused = get_viewport().gui_get_focus_owner()
 	if is_instance_valid(focused) and focused is StageSelectOption:
 		(focused as StageSelectOption).find_next_valid_focus().grab_focus()
+
+
+func _on_select_stage(my_stage: PackedScene) -> void:
+	select_stage.emit(my_stage)
+
+
+func _on_stage_confirmed() -> void:
+	confirm_stage.emit()

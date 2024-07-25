@@ -58,7 +58,7 @@ var _init_rot = 0.0
 var _cooldown_pause = 20
 
 
-func _on_gem_pouch_change(gems : int, crystals : int):
+func _on_gem_pouch_change(gems : int, _crystals : int):
 	if gems > 0 and not $GemPouch/BuilderGems.visible:
 		show_gem_arrow_frames = -1
 		_destroy_arrow()

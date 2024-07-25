@@ -28,4 +28,6 @@ func _on_duration_timer_timeout():
 
 
 func scale_up():
-	$overlay.scale.x += .15
+	var x_before = $Panel.size.x
+	$Panel.size.x *= 2.5
+	$Panel.position.x -= ($Panel.size.x - x_before) * 0.5

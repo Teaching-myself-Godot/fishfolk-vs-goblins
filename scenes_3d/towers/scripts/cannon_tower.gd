@@ -83,7 +83,7 @@ func _ready():
 	current_damage = Constants.CANNON_TOWER_BASE_DAMAGE
 	current_reload_time = Constants.CANNON_TOWER_BASE_RELOAD_TIME
 	drop_gem_amount = 8
-	$ReloadTimer.wait_time = current_reload_time
+	$ReloadTimer.wait_time = current_reload_time - 1
 	$ShootTimer.start()
 
 
