@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://4fvm1nd1md1s"]
+[gd_scene load_steps=9 format=3 uid="uid://4fvm1nd1md1s"]
 
 [ext_resource type="PackedScene" uid="uid://cp46skoyrt7a0" path="res://scenes_2d/hud/fading_panel.tscn" id="1_ceryn"]
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/indicator.gd" id="1_h0m37"]
@@ -7,6 +7,15 @@
 [sub_resource type="Theme" id="Theme_xp2ym"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j6dr4"]
+
+[sub_resource type="Gradient" id="Gradient_khx73"]
+offsets = PackedFloat32Array(0.454277, 0.477876, 0.489676)
+colors = PackedColorArray(0.823529, 1, 0, 1, 0, 0.184314, 0.0117647, 0.219608, 0.823529, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljj2t"]
+gradient = SubResource("Gradient_khx73")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dyq3"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -19,6 +28,8 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+shadow_color = Color(0, 0.184314, 0.0117647, 0.219608)
+shadow_size = 2
 
 [node name="Indicator" type="PanelContainer"]
 anchors_preset = 5
@@ -32,12 +43,15 @@ grow_horizontal = 2
 theme = SubResource("Theme_xp2ym")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j6dr4")
 script = ExtResource("1_h0m37")
-fading = false
 
 [node name="PointingArrow" parent="." instance=ExtResource("2_fwk3r")]
-position = Vector2(224, 96)
+position = Vector2(220, 94)
 rotation = 1.57079
 to = Vector2(0, 0)
+
+[node name="Circle" type="Sprite2D" parent="."]
+position = Vector2(220, 93)
+texture = SubResource("GradientTexture2D_ljj2t")
 
 [node name="Panel" parent="." instance=ExtResource("1_ceryn")]
 layout_mode = 2

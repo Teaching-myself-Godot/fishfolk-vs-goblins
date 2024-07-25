@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://rbn2l232oav1"]
+[gd_scene load_steps=25 format=3 uid="uid://rbn2l232oav1"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial.gd" id="1_yusd6"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="2_6ef74"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_7ylue"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_nssor"]
 [ext_resource type="PackedScene" uid="uid://4fvm1nd1md1s" path="res://scenes_2d/hud/indicator.tscn" id="13_8nnp5"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_playbook.gd" id="13_58ory"]
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="14_iborq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_wfjcc"]
 
@@ -406,13 +407,36 @@ transform = Transform3D(1, 0, 0, 0, 0.648837, 0.760927, 0, -0.760927, 0.648837, 
 current = true
 
 [node name="TutorialPlaybook" type="Node" parent="."]
+script = ExtResource("13_58ory")
 
-[node name="Indicator2" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+[node name="GoblinIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+visible = false
+offset_left = -208.0
+offset_top = 20.0
+offset_right = 242.0
+offset_bottom = 116.0
+
+[node name="Label" type="Label" parent="TutorialPlaybook/GoblinIndicator"]
+layout_mode = 2
+text = "
+This is you,
+A Humble Goblin
+
+"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
+[node name="BabyIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
+offset_left = -208.0
+offset_top = 20.0
+offset_right = 242.0
+offset_bottom = 116.0
 target = NodePath("../../terrain2/crib")
 
-[node name="Label" type="Label" parent="TutorialPlaybook/Indicator2"]
+[node name="Label" type="Label" parent="TutorialPlaybook/BabyIndicator"]
 layout_mode = 2
-text = "These are your babies"
+text = "And overthere are your babies"
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 

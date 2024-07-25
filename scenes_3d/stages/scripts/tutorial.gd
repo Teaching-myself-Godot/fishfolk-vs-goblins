@@ -5,15 +5,22 @@ extends Stage
 var MainGame = preload("res://goblins_vs_fishfolk.tscn")
 enum TutorialMode { KEYBOARD, GAMEPAD }
 
-var range_ring : RangeRing = RangeRing.new(Vector3.ZERO, 2)
-
 var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
 var first_wave : MonsterWave
 
+
+var _awaiting_goblin = true
+var _goblin : Goblin = null
+
 func _process(_delta):
 	if not main_player_cid in goblin_map:
 		return
+
+	if _awaiting_goblin:
+		_goblin = goblin_map[main_player_cid]
+		_awaiting_goblin = false
+		$TutorialPlaybook.show_next_indicator_3d(_goblin, 2.2)
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
 	super._add_goblin_to_scene(num, start_pos)
