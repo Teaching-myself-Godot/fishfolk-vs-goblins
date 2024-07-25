@@ -187,14 +187,12 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 ### Milestone 19 - Better tutorial
 - [x] create 2D arrow scene
 - [x] create a ChecklistItem scene
-- [x] use checklist items scene to keep track of lessons
-- [x] implement the checklists for the controls tutorial
 - [x] use dynamically drawn arrows to point from things --> at things
-- [x] explain more details by using these arrows and a top-right text box
-- [x] implement the checklists for tower building
-- [x] explain more about tower building in the explanation box
-- [ ] implement checklists for upgrades
-- [ ] explain about upgrades in the explanation box
+- [x] more details by using an indicator box with these arrow
+- [x] make keyboard and mouse SVG drawings
+- [ ] make controller SVG drawings
+- [ ] explain controls visually with SVG drawings
+- [ ] use checklist items scene to keep track of lessons
 - [ ] show a thumbnail label to indicate monster outside viewport
 
 ### Milestone 20 - Monster wave modes
