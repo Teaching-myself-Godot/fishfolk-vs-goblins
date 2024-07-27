@@ -19,7 +19,7 @@ func _process(_delta):
 	if _awaiting_goblin:
 		_goblin = goblin_map[main_player_cid]
 		_awaiting_goblin = false
-		$TutorialPlaybook.show_next_indicator_3d(_goblin, 2.2)
+		$TutorialPlaybook.show_next_indicator_3d(_goblin, 2.2, 1)
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
@@ -57,6 +57,7 @@ func _ready():
 	super._ready()
 	first_wave = $MonsterSpawner/ChibiWave1
 	$GemPouch.remove_from_group(Constants.GROUP_NAME_HUD_ITEM)
+
 
 func _destroy_arrow() -> void:
 	for arrow in get_tree().get_nodes_in_group(Constants.GROUP_NAME_ARROW_2D):

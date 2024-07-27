@@ -57,3 +57,10 @@ texture = SubResource("GradientTexture2D_ljj2t")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6dyq3")
 script = null
+
+[node name="FadeoutTimeoutTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="FadeoutTimeoutTimer" to="." method="_on_fadeout_timeout_timer_timeout"]
