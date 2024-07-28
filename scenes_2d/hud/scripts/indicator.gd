@@ -4,7 +4,12 @@ extends Control
 
 signal done()
 
+enum ArrowPosition {
+	BOTTOM, TOP, LEFT, RIGHT
+}
+
 @export var target : Node3D
+@export var arrow_position : ArrowPosition = ArrowPosition.BOTTOM
 @export var height_3d : float = 0.0
 @export var fading : bool = true
 @export var target_2d : Vector2 = Vector2.ZERO
@@ -17,11 +22,22 @@ func _ready():
 	$PointingArrow.to = target_2d
 
 
+func _get_arrow_from_pos() -> Vector2:
+	match arrow_position:
+		ArrowPosition.RIGHT:
+			return Vector2(size.x - 2, size.y * 0.5)
+		ArrowPosition.LEFT:
+			return Vector2(2, size.y * 0.5)
+		ArrowPosition.TOP:
+			return Vector2(size.x * 0.5, 3)
+		ArrowPosition.BOTTOM:
+			return Vector2(size.x * 0.5, size.y - 3)
+		_:
+			return Vector2(size.x * 0.5, size.y - 3)
+
+
 func _process(_delta: float) -> void:
-	var global_from = position + Vector2(
-		size.x * 0.5,
-		size.y - 3
-	)
+	var global_from = position + _get_arrow_from_pos()
 	var global_to = (
 		CameraUtil.keep_in_viewport(
 				CameraUtil.get_label_position(target.position, Vector3.UP * height_3d)

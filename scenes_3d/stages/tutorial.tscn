@@ -425,11 +425,19 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="BabyIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
-offset_left = -208.0
-offset_top = 20.0
-offset_right = 242.0
-offset_bottom = 116.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -48.0
+offset_right = -38.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
 target = NodePath("../../TreesAndCribsAndSuch/crib6")
+arrow_position = 1
 radius_3d = 8.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/BabyIndicator"]
@@ -439,11 +447,12 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FishfolkArrivalIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
-offset_left = 112.0
+offset_left = -228.0
 offset_top = 20.0
-offset_right = 562.0
-offset_bottom = 116.0
+offset_right = 222.0
+offset_bottom = 137.0
 target = NodePath("../../MonsterSpawner/MonsterPath/Anchor10")
+arrow_position = 2
 
 [node name="Label" type="Label" parent="TutorialPlaybook/FishfolkArrivalIndicator"]
 layout_mode = 2
