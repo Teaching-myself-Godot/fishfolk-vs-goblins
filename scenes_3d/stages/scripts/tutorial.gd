@@ -12,6 +12,7 @@ var first_wave : MonsterWave
 var _awaiting_goblin = true
 var _goblin : Goblin = null
 
+
 func _process(_delta):
 	if not main_player_cid in goblin_map:
 		return
@@ -22,7 +23,7 @@ func _process(_delta):
 		$TutorialPlaybook.show_next_indicator_3d(_goblin, 2.2, 1)
 
 
-func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 2)):
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 6)):
 	super._add_goblin_to_scene(num, start_pos)
 
 	if InputUtil.player_map.size() == 1:
@@ -62,3 +63,7 @@ func _ready():
 func _destroy_arrow() -> void:
 	for arrow in get_tree().get_nodes_in_group(Constants.GROUP_NAME_ARROW_2D):
 		arrow.fading = true
+
+
+func _on_goblin_indicator_done() -> void:
+	$TutorialPlaybook.show_next_indicator_3d($TreesAndCribsAndSuch/crib6, 0, 8)

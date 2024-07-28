@@ -2,6 +2,8 @@ class_name Indicator
 
 extends Control
 
+signal done()
+
 @export var target : Node3D
 @export var height_3d : float = 0.0
 @export var fading : bool = true
@@ -56,3 +58,4 @@ func start(duration : float = -1):
 func _on_fadeout_timeout_timer_timeout() -> void:
 	fading = true
 	TerrainShaderParams.drop_range_ring(_range_ring)
+	done.emit()

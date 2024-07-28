@@ -409,6 +409,7 @@ current = true
 script = ExtResource("13_58ory")
 
 [node name="GoblinIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+visible = false
 offset_left = -564.0
 offset_top = 16.0
 offset_right = -114.0
@@ -425,7 +426,6 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="BabyIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
-visible = false
 offset_left = -208.0
 offset_top = 20.0
 offset_right = 242.0
@@ -436,6 +436,8 @@ layout_mode = 2
 text = "And overthere are your babies"
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
+
+[connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]
