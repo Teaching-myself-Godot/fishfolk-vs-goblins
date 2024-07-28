@@ -22,31 +22,35 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Left-click" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("2_snm4v")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="Right-click" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("3_68x2n")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="Wheel-click" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("4_ef6w6")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="Wheel-hold-and-rotate" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("5_a78jg")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="Wheel-hold-and-zoom" type="TextureRect" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("6_6636k")
 expand_mode = 1

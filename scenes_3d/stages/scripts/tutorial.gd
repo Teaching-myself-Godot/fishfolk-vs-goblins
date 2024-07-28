@@ -70,4 +70,4 @@ func _on_baby_indicator_done() -> void:
 
 
 func _on_show_keyboard_hints_timer_timeout() -> void:
-	$TutorialPlaybook/KeyboardHints.show()
+	$TutorialPlaybook/KeyboardHints.fading = false

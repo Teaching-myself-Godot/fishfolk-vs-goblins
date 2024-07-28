@@ -473,10 +473,8 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="MouseHints" parent="TutorialPlaybook" instance=ExtResource("14_h5xya")]
-visible = false
 
 [node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
-visible = false
 
 [node name="ShowKeyboardHintsTimer" type="Timer" parent="TutorialPlaybook"]
 wait_time = 3.0
