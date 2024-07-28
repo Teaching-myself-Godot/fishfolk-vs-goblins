@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://btnmaj7swjpk1"]
+
+[ext_resource type="Texture2D" uid="uid://5aid1vdyjxij" path="res://icons/mouse/mouse-base.svg" id="1_d5rxc"]
+[ext_resource type="Texture2D" uid="uid://cwetdlgkcpk4e" path="res://icons/mouse/left-click.svg" id="2_snm4v"]
+[ext_resource type="Texture2D" uid="uid://31nfr76khi1" path="res://icons/mouse/right-click.svg" id="3_68x2n"]
+[ext_resource type="Texture2D" uid="uid://vkktf000ydrh" path="res://icons/mouse/wheel-click.svg" id="4_ef6w6"]
+[ext_resource type="Texture2D" uid="uid://biqinoxjqqjvc" path="res://icons/mouse/wheel-hold-and-rotate.svg" id="5_a78jg"]
+[ext_resource type="Texture2D" uid="uid://bdb6vbre1mxkf" path="res://icons/mouse/wheel-hold-and-zoom.svg" id="6_6636k"]
+
+[node name="MouseHints" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.9
+size_flags_horizontal = 0
+
+[node name="MouseBase" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_d5rxc")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Left-click" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_snm4v")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Right-click" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_68x2n")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Wheel-click" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("4_ef6w6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Wheel-hold-and-rotate" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("5_a78jg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Wheel-hold-and-zoom" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6636k")
+expand_mode = 1
+stretch_mode = 4

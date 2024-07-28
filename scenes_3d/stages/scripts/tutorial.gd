@@ -22,9 +22,9 @@ func _process(_delta):
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
 		$TutorialPlaybook/GoblinIndicator.start()
+		$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
-
-func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 6)):
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(-15, 5, 11)):
 	super._add_goblin_to_scene(num, start_pos)
 
 	if InputUtil.player_map.size() == 1:
@@ -67,3 +67,7 @@ func _on_goblin_indicator_done() -> void:
 
 func _on_baby_indicator_done() -> void:
 	$TutorialPlaybook/FishfolkArrivalIndicator.start()
+
+
+func _on_show_keyboard_hints_timer_timeout() -> void:
+	$TutorialPlaybook/KeyboardHints.show()

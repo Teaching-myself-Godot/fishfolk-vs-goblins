@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cigwhcn8pypbv"]
+
+[ext_resource type="Texture2D" uid="uid://c780sbvt3jt2a" path="res://icons/keyboard/keyboard-base.svg" id="1_tv2yw"]
+[ext_resource type="Texture2D" uid="uid://dnrae3qlr4fwx" path="res://icons/keyboard/s-down.svg" id="2_bk6bw"]
+[ext_resource type="Texture2D" uid="uid://d1r8iorun28pe" path="res://icons/keyboard/a-down.svg" id="3_kdha3"]
+[ext_resource type="Texture2D" uid="uid://sxjyq7rol36n" path="res://icons/keyboard/d-down.svg" id="4_sxr2o"]
+[ext_resource type="Texture2D" uid="uid://c75srbp13lvn8" path="res://icons/keyboard/w-down.svg" id="5_c6gmi"]
+[ext_resource type="Texture2D" uid="uid://cbfni4vrkllpc" path="res://icons/keyboard/shift-down.svg" id="6_02if2"]
+[ext_resource type="Texture2D" uid="uid://cnwwdamvunbed" path="res://icons/keyboard/space-down.svg" id="7_qtsdv"]
+
+[node name="KeyboardHints" type="MarginContainer"]
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = -20.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Keyboard-base" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_tv2yw")
+
+[node name="S-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_bk6bw")
+
+[node name="A-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_kdha3")
+
+[node name="D-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("4_sxr2o")
+
+[node name="W-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("5_c6gmi")
+
+[node name="Shift-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("6_02if2")
+
+[node name="Space-down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("7_qtsdv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://rbn2l232oav1"]
+[gd_scene load_steps=27 format=3 uid="uid://rbn2l232oav1"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial.gd" id="1_yusd6"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="2_6ef74"]
@@ -11,9 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="10_euscd"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_7ylue"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_nssor"]
+[ext_resource type="PackedScene" uid="uid://cigwhcn8pypbv" path="res://scenes_2d/keyboard_hints.tscn" id="13_8ic6q"]
 [ext_resource type="PackedScene" uid="uid://4fvm1nd1md1s" path="res://scenes_2d/hud/indicator.tscn" id="13_8nnp5"]
+[ext_resource type="PackedScene" uid="uid://btnmaj7swjpk1" path="res://scenes_2d/mouse_hints.tscn" id="14_h5xya"]
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="14_iborq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_wfjcc"]
+[ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="17_ch3s3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ds02"]
 size = Vector3(238.098, 36.044, 1)
@@ -404,13 +407,16 @@ gems_per_monster = 2
 transform = Transform3D(1, 0, 0, 0, 0.648837, 0.760927, 0, -0.760927, 0.648837, -10.7404, 32.8976, 32.6308)
 current = true
 
+[node name="GoblinSpawnPoint" parent="." instance=ExtResource("17_ch3s3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 11)
+
 [node name="TutorialPlaybook" type="Node" parent="."]
 
 [node name="GoblinIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
-offset_left = -564.0
-offset_top = 20.0
-offset_right = -114.0
-offset_bottom = 137.0
+offset_left = -424.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 133.0
 height_3d = 2.3
 radius_3d = 1.0
 
@@ -430,14 +436,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -488.0
-offset_top = -48.0
-offset_right = -38.0
-offset_bottom = 48.0
+offset_left = -916.0
+offset_top = -308.0
+offset_right = -466.0
+offset_bottom = -212.0
 grow_horizontal = 0
 grow_vertical = 2
 target = NodePath("../../TreesAndCribsAndSuch/crib6")
-arrow_position = 1
+arrow_position = 3
 radius_3d = 8.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/BabyIndicator"]
@@ -447,12 +453,14 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FishfolkArrivalIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
-offset_left = -228.0
-offset_top = 20.0
-offset_right = 222.0
-offset_bottom = 137.0
-target = NodePath("../../MonsterSpawner/MonsterPath/Anchor10")
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 306.0
+offset_bottom = 133.0
+target = NodePath("../../MonsterSpawner/MonsterPath/Anchor12")
 arrow_position = 2
+height_3d = -1.5
+radius_3d = 2.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/FishfolkArrivalIndicator"]
 layout_mode = 2
@@ -464,8 +472,19 @@ from the sea to attack them!
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
+[node name="MouseHints" parent="TutorialPlaybook" instance=ExtResource("14_h5xya")]
+visible = false
+
+[node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
+visible = false
+
+[node name="ShowKeyboardHintsTimer" type="Timer" parent="TutorialPlaybook"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/BabyIndicator" to="." method="_on_baby_indicator_done"]
+[connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]
