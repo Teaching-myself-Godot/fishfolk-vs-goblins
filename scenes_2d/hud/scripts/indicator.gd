@@ -59,3 +59,9 @@ func _on_fadeout_timeout_timer_timeout() -> void:
 	fading = true
 	TerrainShaderParams.drop_range_ring(_range_ring)
 	done.emit()
+
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if not fading and Input.is_action_just_released("open_debug"):
+		$FadeoutTimeoutTimer.stop()
+		_on_fadeout_timeout_timer_timeout()
