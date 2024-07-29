@@ -11,14 +11,15 @@ var first_wave : MonsterWave
 
 var _awaiting_goblin = true
 var _goblin : Goblin = null
-var _keyboard_hints = [
-	KeyboardHints.KeyboardHint.W,
-	KeyboardHints.KeyboardHint.A,
+var _keyboard_run_hints = [
 	KeyboardHints.KeyboardHint.S,
-	KeyboardHints.KeyboardHint.D,
-	KeyboardHints.KeyboardHint.SPACE
+	KeyboardHints.KeyboardHint.A,
+	KeyboardHints.KeyboardHint.W,
+	KeyboardHints.KeyboardHint.D
 ]
 var _next_hint_timer_running = false
+var _awaiting_jump_hint = true
+var _awaiting_jump = false
 
 
 func _process(_delta):
@@ -33,19 +34,31 @@ func _process(_delta):
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
-	if (
-		mode == TutorialMode.KEYBOARD and
-		not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE)
-	):
-		if (
+	if mode == TutorialMode.KEYBOARD:
+		if not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE) and (
 			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.W, KEY_W) or
 			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.A, KEY_A) or
 			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.S, KEY_S) or
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.D, KEY_D) or
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.SPACE, KEY_SPACE)
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.D, KEY_D)
 		):
 			_next_hint_timer_running = true
 			$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
+
+		if _awaiting_jump_hint and Input.get_vector("a", "d", "w", "s") and not _goblin.velocity:
+			_awaiting_jump = true
+			_awaiting_jump_hint = false
+			$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
+		if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
+			_awaiting_jump = false
+			$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
+			$TutorialPlaybook/KeyboardHints.fading = true
+
+	if (
+		not $TutorialPlaybook/BabyIndicator.fading
+		and _goblin.position.distance_to($TutorialPlaybook/BabyIndicator.target.position) <
+				$TutorialPlaybook/BabyIndicator.radius_3d
+	):
+		$TutorialPlaybook/BabyIndicator.finish()
 
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
@@ -58,8 +71,8 @@ func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
 	return $TutorialPlaybook/KeyboardHints.current_hint == k
 
 
-func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(-15, 5, 11)):
-	super._add_goblin_to_scene(num, start_pos)
+func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
+	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
 
 	if InputUtil.player_map.size() == 1:
 		main_player_cid = num as InputUtil.ControllerID
@@ -74,12 +87,10 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(-15, 5, 11)):
 
 func _show_next_keyboard_hint():
 	_next_hint_timer_running = false
-	if _keyboard_hints.is_empty():
+	if _keyboard_run_hints.is_empty():
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
-		$TutorialPlaybook/KeyboardHints.fading = true
 	else:
-		$TutorialPlaybook/KeyboardHints.current_hint = _keyboard_hints.pop_front()
-		#$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
+		$TutorialPlaybook/KeyboardHints.current_hint = _keyboard_run_hints.pop_front()
 
 
 func _ready():

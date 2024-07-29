@@ -195,7 +195,42 @@ transform = Transform3D(0.754715, 0, -1.11304, 0, 1.34478, 0, 1.11304, 0, 0.7547
 transform = Transform3D(0.754715, 0, -1.11304, 0, 1.34478, 0, 1.11304, 0, 0.754715, -34.4717, 0.844739, 17.329)
 
 [node name="palm-tree47" parent="TreesAndCribsAndSuch" instance=ExtResource("4_34307")]
-transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.476672, -1.33934, 1.34774, 18.5474)
+transform = Transform3D(-1.29177, 1.19472, -1.32059, 1.58598, 0.0298146, -1.5244, -0.809936, -1.84709, -0.878782, -0.428158, 0.23873, 19.6407)
+script = null
+
+[node name="Outline" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D/Cylinder_004/Cylinder_004" index="0"]
+transform = Transform3D(1, 2.98023e-08, -4.47035e-08, 0, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="Outline" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D/Cylinder_003/Cylinder_003" index="0"]
+visible = false
+
+[node name="Outline" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D/Cylinder_002/Cylinder_002" index="0"]
+visible = false
+
+[node name="Outline" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D/Cylinder_001/Cylinder_001" index="0"]
+visible = false
+
+[node name="Outline" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D/Cylinder/Cylinder" index="0"]
+visible = false
+
+[node name="Cylinder_005" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="Cylinder_006" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="6"]
+visible = false
+
+[node name="Cylinder_007" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="7"]
+visible = false
+
+[node name="Cylinder_008" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="8"]
+visible = false
+
+[node name="Cylinder_009" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="9"]
+visible = false
+
+[node name="Cylinder_010" parent="TreesAndCribsAndSuch/palm-tree47/Armature/Skeleton3D" index="10"]
+visible = false
 
 [node name="palm-tree48" parent="TreesAndCribsAndSuch" instance=ExtResource("4_34307")]
 transform = Transform3D(-0.476672, 0, -1.08045, 0, 1.18092, 0, 1.08045, 0, -0.476672, -5.19166, 1.49154, 15.7631)
@@ -436,19 +471,19 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -916.0
-offset_top = -308.0
-offset_right = -466.0
-offset_bottom = -212.0
+offset_left = -470.0
+offset_top = -48.0
+offset_right = -20.0
+offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 2
 target = NodePath("../../TreesAndCribsAndSuch/crib6")
-arrow_position = 3
-radius_3d = 8.0
+arrow_position = 1
+radius_3d = 5.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/BabyIndicator"]
 layout_mode = 2
-text = "And overthere are your babies"
+text = "And here are your babies"
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
@@ -465,7 +500,7 @@ radius_3d = 2.0
 [node name="Label" type="Label" parent="TutorialPlaybook/FishfolkArrivalIndicator"]
 layout_mode = 2
 text = "
-Soon, the Fishfolk will come
+Soon, angry Fishfolk will come
 from the sea to attack them!
 
 "
@@ -478,7 +513,6 @@ visible = false
 [node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
 
 [node name="ShowKeyboardHintsTimer" type="Timer" parent="TutorialPlaybook"]
-wait_time = 0.75
 one_shot = true
 
 [node name="ShowNextKeyboardHintTimer" type="Timer" parent="TutorialPlaybook"]
@@ -490,5 +524,6 @@ one_shot = true
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
 
+[editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]

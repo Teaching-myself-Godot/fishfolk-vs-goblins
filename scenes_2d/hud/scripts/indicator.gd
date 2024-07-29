@@ -71,10 +71,14 @@ func start(duration : float = -1):
 		TerrainShaderParams.add_range_ring(_range_ring)
 
 
-func _on_fadeout_timeout_timer_timeout() -> void:
+func finish():
 	fading = true
 	TerrainShaderParams.drop_range_ring(_range_ring)
 	done.emit()
+
+
+func _on_fadeout_timeout_timer_timeout() -> void:
+	finish()
 
 
 func _unhandled_input(_event: InputEvent) -> void:
