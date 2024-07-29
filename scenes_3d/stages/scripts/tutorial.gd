@@ -11,6 +11,14 @@ var first_wave : MonsterWave
 
 var _awaiting_goblin = true
 var _goblin : Goblin = null
+var _keyboard_hints = [
+	KeyboardHints.KeyboardHint.W,
+	KeyboardHints.KeyboardHint.A,
+	KeyboardHints.KeyboardHint.S,
+	KeyboardHints.KeyboardHint.D,
+	KeyboardHints.KeyboardHint.SPACE
+]
+var _next_hint_timer_running = false
 
 
 func _process(_delta):
@@ -22,13 +30,38 @@ func _process(_delta):
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
 		$TutorialPlaybook/GoblinIndicator.start()
-		$TutorialPlaybook/ShowKeyboardHintsTimer.start()
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
+
+	if (
+		mode == TutorialMode.KEYBOARD and
+		not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE)
+	):
+		if (
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.W, KEY_W) or
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.A, KEY_A) or
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.S, KEY_S) or
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.D, KEY_D) or
+			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.SPACE, KEY_SPACE)
+		):
+			_next_hint_timer_running = true
+			$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
+
+
+func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
+	if _next_hint_timer_running:
+		return false
+	return Input.is_key_pressed(kp) and _is_current_keyboard_hint(kh)
+
+
+func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
+	return $TutorialPlaybook/KeyboardHints.current_hint == k
+
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(-15, 5, 11)):
 	super._add_goblin_to_scene(num, start_pos)
 
 	if InputUtil.player_map.size() == 1:
-		_hide_help_message()
 		main_player_cid = num as InputUtil.ControllerID
 		if num == InputUtil.ControllerID.KEYBOARD:
 			mode = TutorialMode.KEYBOARD
@@ -39,20 +72,14 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(-15, 5, 11)):
 			tree.remove_from_group(Constants.GROUP_NAME_TREES)
 
 
-func _hide_help_message():
-	for toasted : Toast in (
-			get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOASTS)
-	):
-		toasted.fading = true
-
-
-func _show_help_message(text : String):
-	var toast : Toast = _mk_toast(
-			text,
-			100,
-			true
-	)
-	toast.set_anchors_preset(Control.PRESET_CENTER)
+func _show_next_keyboard_hint():
+	_next_hint_timer_running = false
+	if _keyboard_hints.is_empty():
+		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
+		$TutorialPlaybook/KeyboardHints.fading = true
+	else:
+		$TutorialPlaybook/KeyboardHints.current_hint = _keyboard_hints.pop_front()
+		#$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
 
 
 func _ready():
@@ -71,3 +98,4 @@ func _on_baby_indicator_done() -> void:
 
 func _on_show_keyboard_hints_timer_timeout() -> void:
 	$TutorialPlaybook/KeyboardHints.fading = false
+	$TutorialPlaybook/ShowNextKeyboardHintTimer.start()

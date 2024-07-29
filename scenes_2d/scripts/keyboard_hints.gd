@@ -7,7 +7,6 @@ enum KeyboardHint {
 
 @export var fading : bool = true
 @export var current_hint : KeyboardHint = KeyboardHint.NONE
-var _last_hint : KeyboardHint = KeyboardHint.NONE
 
 
 func _get_hint_icon(for_hint : KeyboardHint) -> Control:
@@ -37,10 +36,10 @@ func _process(_delta: float) -> void:
 
 	for hint in get_children():
 		if hint != current_hint_icon and hint.modulate.a > 0:
-			hint.modulate.a -= 0.25
+			hint.modulate.a -= 0.125
 
 	if current_hint_icon.modulate.a < 1:
-		current_hint_icon.modulate.a += 0.5
+		current_hint_icon.modulate.a += 0.25
 
 	if fading:
 		if modulate.a > 0.0:

@@ -1,20 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cigwhcn8pypbv"]
+[gd_scene load_steps=10 format=3 uid="uid://cigwhcn8pypbv"]
 
 [ext_resource type="Script" path="res://scenes_2d/scripts/keyboard_hints.gd" id="1_33ci1"]
 [ext_resource type="Texture2D" uid="uid://c780sbvt3jt2a" path="res://icons/keyboard/keyboard-base.svg" id="1_tv2yw"]
 [ext_resource type="Texture2D" uid="uid://dnrae3qlr4fwx" path="res://icons/keyboard/s-down.svg" id="2_bk6bw"]
 [ext_resource type="Texture2D" uid="uid://d1r8iorun28pe" path="res://icons/keyboard/a-down.svg" id="3_kdha3"]
-[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="4_6wnk1"]
 [ext_resource type="Texture2D" uid="uid://sxjyq7rol36n" path="res://icons/keyboard/d-down.svg" id="4_sxr2o"]
 [ext_resource type="Texture2D" uid="uid://c75srbp13lvn8" path="res://icons/keyboard/w-down.svg" id="5_c6gmi"]
 [ext_resource type="Texture2D" uid="uid://cbfni4vrkllpc" path="res://icons/keyboard/shift-down.svg" id="6_02if2"]
 [ext_resource type="Texture2D" uid="uid://cnwwdamvunbed" path="res://icons/keyboard/space-down.svg" id="7_qtsdv"]
 [ext_resource type="Texture2D" uid="uid://c6okic1m0tjuq" path="res://icons/keyboard/esc-down.svg" id="9_glns0"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ti0fk"]
-font = ExtResource("4_6wnk1")
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
 
 [node name="KeyboardHints" type="MarginContainer"]
 anchors_preset = -1
@@ -39,89 +33,32 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("2_bk6bw")
 
-[node name="Label" type="Label" parent="S-down"]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Run down"
-label_settings = SubResource("LabelSettings_ti0fk")
-
 [node name="A-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("3_kdha3")
-
-[node name="Label" type="Label" parent="A-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Run left"
-label_settings = SubResource("LabelSettings_ti0fk")
 
 [node name="D-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("4_sxr2o")
 
-[node name="Label" type="Label" parent="D-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Run right"
-label_settings = SubResource("LabelSettings_ti0fk")
-
 [node name="W-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("5_c6gmi")
-
-[node name="Label" type="Label" parent="W-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Run up"
-label_settings = SubResource("LabelSettings_ti0fk")
 
 [node name="Shift-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("6_02if2")
 
-[node name="Label" type="Label" parent="Shift-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Confirm"
-label_settings = SubResource("LabelSettings_ti0fk")
-
 [node name="Space-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("7_qtsdv")
 
-[node name="Label" type="Label" parent="Space-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Jump"
-label_settings = SubResource("LabelSettings_ti0fk")
-
 [node name="Esc-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("9_glns0")
-
-[node name="Label" type="Label" parent="Esc-down"]
-offset_left = 440.0
-offset_top = 52.8
-offset_right = 515.0
-offset_bottom = 75.8
-text = "Pause game"
-label_settings = SubResource("LabelSettings_ti0fk")

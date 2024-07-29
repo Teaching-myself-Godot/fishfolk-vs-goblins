@@ -473,16 +473,22 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="MouseHints" parent="TutorialPlaybook" instance=ExtResource("14_h5xya")]
+visible = false
 
 [node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
 
 [node name="ShowKeyboardHintsTimer" type="Timer" parent="TutorialPlaybook"]
-wait_time = 3.0
+wait_time = 0.75
+one_shot = true
+
+[node name="ShowNextKeyboardHintTimer" type="Timer" parent="TutorialPlaybook"]
+wait_time = 0.7
 one_shot = true
 
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/BabyIndicator" to="." method="_on_baby_indicator_done"]
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
+[connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]
