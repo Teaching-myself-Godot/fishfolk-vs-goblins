@@ -367,6 +367,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 20.5155,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 17.6905, 2.70605, -11.096)
 
 [node name="ChibiWave1" parent="MonsterSpawner" instance=ExtResource("12_nssor")]
+wait_time = 4.0
 wave_number = 2
 monster_count = 2
 monster_speed = 3.0
@@ -448,6 +449,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 11)
 [node name="TutorialPlaybook" type="Node" parent="."]
 
 [node name="GoblinIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+visible = false
 offset_left = -424.0
 offset_top = 16.0
 offset_right = 26.0
@@ -466,6 +468,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="BabyIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -488,6 +491,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FishfolkArrivalIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -512,6 +516,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="TreeIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 offset_left = -556.0
 offset_top = 12.0
 offset_right = -106.0
@@ -531,6 +536,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="BuilderGemIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 offset_left = -100.0
 offset_top = 16.0
 offset_right = 396.0
@@ -538,11 +544,63 @@ offset_bottom = 112.0
 target = NodePath("../../MonsterSpawner/MonsterPath/Anchor10")
 arrow_position = 2
 height_3d = -1.5
-radius_3d = 2.0
+radius_3d = 4.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/BuilderGemIndicator"]
 layout_mode = 2
 text = "You need builder gems to build towers"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
+[node name="ChibiIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+visible = false
+anchors_preset = 4
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -73.5
+offset_right = 470.0
+offset_bottom = 73.5
+grow_horizontal = 1
+grow_vertical = 2
+arrow_position = 1
+radius_3d = 1.0
+
+[node name="Label" type="Label" parent="TutorialPlaybook/ChibiIndicator"]
+layout_mode = 2
+text = "
+Two Chibi Fish have arrived!
+Quickly, build an arrow tower
+to stop them!
+
+"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
+[node name="ArrowTowerIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+visible = false
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 467.0
+offset_bottom = 193.0
+grow_horizontal = 1
+arrow_position = 3
+height_3d = 4.0
+
+[node name="Label" type="Label" parent="TutorialPlaybook/ArrowTowerIndicator"]
+layout_mode = 2
+text = "
+The arrow tower is \"All-Range.\" 
+
+It can target both flying enemies 
+and grounded enemies.
+
+"
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 

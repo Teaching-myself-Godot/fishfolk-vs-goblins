@@ -39,12 +39,14 @@ var _awaiting_goblin_reaches_tree = true
 var _tree_menu : TreeContextMenu = null
 var _awaiting_tree_menu = true
 var _awaiting_tree_sub_menu = false
+var _awaiting_cancel_clicked = false
+var _awaiting_tree_menu_closed = false
 
+var _awaiting_goblin_reaches_gems = true
+var _awaiting_first_wave = true
+var _awaiting_arrow_tower = true
 
-func _process(_delta):
-	if not main_player_cid in goblin_map:
-		return
-
+func _handle_goblin_arrival():
 	if _awaiting_goblin:
 		_goblin = goblin_map[main_player_cid]
 		_tree_menu = _goblin.find_child("TreeContextMenu")
@@ -56,45 +58,60 @@ func _process(_delta):
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
-	if mode == TutorialMode.KEYBOARD:
-		if not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE) and (
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.W, KEY_W) or
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.A, KEY_A) or
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.S, KEY_S) or
-			_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.D, KEY_D)
-		):
-			_next_hint_timer_running = true
-			$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
 
-		if _awaiting_jump_hint and Input.get_vector("a", "d", "w", "s") and not _goblin.velocity:
-			_awaiting_jump = true
-			_awaiting_jump_hint = false
-			$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
-		if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
-			_awaiting_jump = false
-			$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
-			$TutorialPlaybook/KeyboardHints.fading = true
-		if _awaiting_wheel_click and Input.is_action_just_pressed("mousewheel_click"):
-			_awaiting_wheel_click = false
-			_awaiting_wheel_rotate = true
-			_next_hint_timer_running = true
-			$TutorialPlaybook/ShowNextMouseHintTimer.start()
-		if (
-			_awaiting_wheel_rotate and not _next_hint_timer_running and
-			abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1
-		):
-			_awaiting_wheel_rotate = false
-			_awaiting_wheel_zoom = true
-			_init_zoom = CameraUtil.get_cam().zoom
-			_next_hint_timer_running = true
-			$TutorialPlaybook/ShowNextMouseHintTimer.start()
-		if (
-			_awaiting_wheel_zoom and not _next_hint_timer_running and
-			abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0
-		):
-			_awaiting_wheel_zoom = false
-			_next_hint_timer_running = true
-			$TutorialPlaybook/ShowNextMouseHintTimer.start()
+func _handle_keyboard_running_hints():
+	if not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE) and (
+		_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.W, KEY_W) or
+		_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.A, KEY_A) or
+		_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.S, KEY_S) or
+		_should_show_next_keyboard_hint(KeyboardHints.KeyboardHint.D, KEY_D)
+	):
+		_next_hint_timer_running = true
+		$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
+
+	if _awaiting_jump_hint and Input.get_vector("a", "d", "w", "s") and not _goblin.velocity:
+		_awaiting_jump = true
+		_awaiting_jump_hint = false
+		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
+	if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
+		_awaiting_jump = false
+		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
+		$TutorialPlaybook/KeyboardHints.fading = true
+	if _awaiting_wheel_click and Input.is_action_just_pressed("mousewheel_click"):
+		_awaiting_wheel_click = false
+		_awaiting_wheel_rotate = true
+		_next_hint_timer_running = true
+		$TutorialPlaybook/ShowNextMouseHintTimer.start()
+
+
+func _handle_mousewheel_hints():
+	if (
+		_awaiting_wheel_rotate and not _next_hint_timer_running and
+		abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1
+	):
+		_awaiting_wheel_rotate = false
+		_awaiting_wheel_zoom = true
+		_init_zoom = CameraUtil.get_cam().zoom
+		_next_hint_timer_running = true
+		$TutorialPlaybook/ShowNextMouseHintTimer.start()
+	if (
+		_awaiting_wheel_zoom and not _next_hint_timer_running and
+		abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0
+	):
+		_awaiting_wheel_zoom = false
+		_next_hint_timer_running = true
+		$TutorialPlaybook/ShowNextMouseHintTimer.start()
+
+
+
+func _process(_delta):
+	if not main_player_cid in goblin_map:
+		return
+	_handle_goblin_arrival()
+
+	if mode == TutorialMode.KEYBOARD:
+		_handle_keyboard_running_hints()
+		_handle_mousewheel_hints()
 
 	if (
 		not $TutorialPlaybook/BabyIndicator.fading
@@ -125,21 +142,73 @@ func _process(_delta):
 	if _awaiting_tree_menu and _tree_menu.is_open:
 		_awaiting_tree_menu = false
 		_awaiting_tree_sub_menu = true
-		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
-		$TutorialPlaybook/ToggleMouseHintClickTimer.start()
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+			$TutorialPlaybook/ToggleMouseHintClickTimer.start()
 
 	if (
 		_awaiting_tree_sub_menu and _tree_menu.is_open and
 		_tree_menu.current_menu != TreeContextMenu.MAIN_MENU_NAME
 	):
 		_awaiting_tree_sub_menu = false
-		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
-		$TutorialPlaybook/RightMouseClickHintTimer.start()
+		_awaiting_cancel_clicked = true
 		$TutorialPlaybook/BuilderGemIndicator.start(LONG_INDICATOR_TIME)
 		for _i in range(10):
 			_on_drop_builder_gem(
 				$TutorialPlaybook/BuilderGemIndicator.target.position
 			)
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+			$TutorialPlaybook/RightMouseClickHintTimer.start()
+
+	if (
+		_awaiting_cancel_clicked and _tree_menu.is_open and
+		_tree_menu.current_menu == TreeContextMenu.MAIN_MENU_NAME
+	):
+		_awaiting_cancel_clicked = false
+		_awaiting_tree_menu_closed = true
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+			$TutorialPlaybook/RightMouseClickHintTimer.start()
+
+	if (
+		_awaiting_tree_menu_closed and
+		not _tree_menu.is_open
+	):
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+			$TutorialPlaybook/MouseHints.fading = true
+
+	if (
+		_awaiting_goblin_reaches_gems and
+		not $TutorialPlaybook/BuilderGemIndicator.fading
+		and _goblin.position.distance_to($TutorialPlaybook/BuilderGemIndicator.target.position) <
+				$TutorialPlaybook/BuilderGemIndicator.radius_3d
+	):
+		$GemPouch.show()
+		$GemPouch/Cribs.hide()
+		$GemPouch/MagicalGems.hide()
+		$GemPouch.add_to_group(Constants.GROUP_NAME_HUD_ITEM)
+		_start_wave(2)
+		$TutorialPlaybook/BuilderGemIndicator.finish()
+
+	if (
+		_awaiting_first_wave and
+		not get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).is_empty()
+	):
+		_awaiting_first_wave = false
+		$TutorialPlaybook/ChibiIndicator.target = get_tree().get_first_node_in_group(Constants.GROUP_NAME_MONSTERS)
+		$TutorialPlaybook/ChibiIndicator.start(LONG_INDICATOR_TIME)
+		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):
+			tree.add_to_group(Constants.GROUP_NAME_TREES)
+
+	if (
+		_awaiting_arrow_tower and
+		not get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOWERS).is_empty()
+	):
+		$TutorialPlaybook/ChibiIndicator.finish()
+		$TutorialPlaybook/ArrowTowerIndicator.target = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TOWERS)
+		$TutorialPlaybook/ArrowTowerIndicator.start(LONG_INDICATOR_TIME)
 
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
