@@ -30,7 +30,7 @@ var _mouse_hints = [
 var _awaiting_wheel_click = false
 var _awaiting_wheel_rotate = false
 var _awaiting_wheel_zoom = false
-
+var _awaiting_goblin_reaches_tree = true
 var _init_zoom = null
 var _init_rot = 0.0
 
@@ -43,6 +43,8 @@ func _process(_delta):
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
 		$TutorialPlaybook/GoblinIndicator.start(8)
+		_init_zoom = CameraUtil.get_cam().zoom
+		_init_rot = CameraUtil.get_cam_pivot().rotation.y
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
@@ -67,15 +69,23 @@ func _process(_delta):
 		if _awaiting_wheel_click and Input.is_action_just_pressed("mousewheel_click"):
 			_awaiting_wheel_click = false
 			_awaiting_wheel_rotate = true
-			_init_rot = CameraUtil.get_cam_pivot().rotation.y
+			_next_hint_timer_running = true
 			$TutorialPlaybook/ShowNextMouseHintTimer.start()
-		if _awaiting_wheel_rotate and abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1:
+		if (
+			_awaiting_wheel_rotate and not _next_hint_timer_running and
+			abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1
+		):
 			_awaiting_wheel_rotate = false
 			_awaiting_wheel_zoom = true
 			_init_zoom = CameraUtil.get_cam().zoom
+			_next_hint_timer_running = true
 			$TutorialPlaybook/ShowNextMouseHintTimer.start()
-		if _awaiting_wheel_zoom and abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0:
+		if (
+			_awaiting_wheel_zoom and not _next_hint_timer_running and
+			abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0
+		):
 			_awaiting_wheel_zoom = false
+			_next_hint_timer_running = true
 			$TutorialPlaybook/ShowNextMouseHintTimer.start()
 
 	if (
@@ -85,6 +95,24 @@ func _process(_delta):
 	):
 		$TutorialPlaybook/BabyIndicator.finish()
 
+	if (
+		not $TutorialPlaybook/FishfolkArrivalIndicator.fading
+		and _goblin.position.distance_to($TutorialPlaybook/FishfolkArrivalIndicator.target.position) <
+				$TutorialPlaybook/FishfolkArrivalIndicator.radius_3d
+	):
+		$TutorialPlaybook/FishfolkArrivalIndicator.finish()
+
+	if (
+		_awaiting_goblin_reaches_tree and
+		mode == TutorialMode.KEYBOARD and
+		not $TutorialPlaybook/TreeIndicator.fading
+		and _goblin.position.distance_to($TutorialPlaybook/TreeIndicator.target.position) <
+				$TutorialPlaybook/TreeIndicator.radius_3d
+	):
+		_awaiting_goblin_reaches_tree = false
+		$TutorialPlaybook/TreeIndicator.finish()
+		$TutorialPlaybook/ToggleMouseHintClickTimer.start()
+		$TutorialPlaybook/MouseHints.fading = false
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
 	if _next_hint_timer_running:
@@ -147,3 +175,15 @@ func _on_baby_indicator_done() -> void:
 func _on_show_keyboard_hints_timer_timeout() -> void:
 	$TutorialPlaybook/KeyboardHints.fading = false
 	$TutorialPlaybook/ShowNextKeyboardHintTimer.start()
+
+
+func _on_fishfolk_arrival_indicator_done() -> void:
+	$TutorialPlaybook/TreeIndicator.start(20)
+	$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
+	$GemPouch.show()
+
+func _on_toggle_mouse_hint_click_timer_timeout() -> void:
+	$TutorialPlaybook/MouseHints.current_hint = (
+		MouseHints.MouseHint.NONE if $TutorialPlaybook/MouseHints.current_hint == MouseHints.MouseHint.LEFT_CLICK
+		else MouseHints.MouseHint.LEFT_CLICK
+	)

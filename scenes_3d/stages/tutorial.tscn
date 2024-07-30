@@ -511,6 +511,25 @@ from the sea to attack them!
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
+[node name="TreeIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+offset_left = -556.0
+offset_top = 12.0
+offset_right = -106.0
+offset_bottom = 129.0
+target = NodePath("../../TreesAndCribsAndSuch/palm-tree4")
+arrow_position = 3
+radius_3d = 2.5
+
+[node name="Label" type="Label" parent="TutorialPlaybook/TreeIndicator"]
+layout_mode = 2
+text = "
+You can convert trees into
+defensive towers
+
+"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
 [node name="MouseHints" parent="TutorialPlaybook" instance=ExtResource("14_h5xya")]
 
 [node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
@@ -526,11 +545,15 @@ one_shot = true
 wait_time = 0.7
 one_shot = true
 
+[node name="ToggleMouseHintClickTimer" type="Timer" parent="TutorialPlaybook"]
+
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/BabyIndicator" to="." method="_on_baby_indicator_done"]
+[connection signal="done" from="TutorialPlaybook/FishfolkArrivalIndicator" to="." method="_on_fishfolk_arrival_indicator_done"]
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextMouseHintTimer" to="." method="_show_next_mouse_hint"]
+[connection signal="timeout" from="TutorialPlaybook/ToggleMouseHintClickTimer" to="." method="_on_toggle_mouse_hint_click_timer_timeout"]
 
 [editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]
