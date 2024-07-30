@@ -2,6 +2,8 @@ class_name Tutorial
 
 extends Stage
 
+const LONG_INDICATOR_TIME = 100
+
 enum TutorialMode { KEYBOARD, GAMEPAD }
 
 var mode : TutorialMode
@@ -30,9 +32,14 @@ var _mouse_hints = [
 var _awaiting_wheel_click = false
 var _awaiting_wheel_rotate = false
 var _awaiting_wheel_zoom = false
-var _awaiting_goblin_reaches_tree = true
 var _init_zoom = null
 var _init_rot = 0.0
+
+var _awaiting_goblin_reaches_tree = true
+var _tree_menu : TreeContextMenu = null
+var _awaiting_tree_menu = true
+var _awaiting_tree_sub_menu = false
+
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -40,6 +47,7 @@ func _process(_delta):
 
 	if _awaiting_goblin:
 		_goblin = goblin_map[main_player_cid]
+		_tree_menu = _goblin.find_child("TreeContextMenu")
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
 		$TutorialPlaybook/GoblinIndicator.start(8)
@@ -104,15 +112,35 @@ func _process(_delta):
 
 	if (
 		_awaiting_goblin_reaches_tree and
-		mode == TutorialMode.KEYBOARD and
 		not $TutorialPlaybook/TreeIndicator.fading
 		and _goblin.position.distance_to($TutorialPlaybook/TreeIndicator.target.position) <
 				$TutorialPlaybook/TreeIndicator.radius_3d
 	):
 		_awaiting_goblin_reaches_tree = false
 		$TutorialPlaybook/TreeIndicator.finish()
+		if mode == TutorialMode.KEYBOARD:
+			$TutorialPlaybook/ToggleMouseHintClickTimer.start()
+			$TutorialPlaybook/MouseHints.fading = false
+
+	if _awaiting_tree_menu and _tree_menu.is_open:
+		_awaiting_tree_menu = false
+		_awaiting_tree_sub_menu = true
+		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
 		$TutorialPlaybook/ToggleMouseHintClickTimer.start()
-		$TutorialPlaybook/MouseHints.fading = false
+
+	if (
+		_awaiting_tree_sub_menu and _tree_menu.is_open and
+		_tree_menu.current_menu != TreeContextMenu.MAIN_MENU_NAME
+	):
+		_awaiting_tree_sub_menu = false
+		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+		$TutorialPlaybook/RightMouseClickHintTimer.start()
+		$TutorialPlaybook/BuilderGemIndicator.start(LONG_INDICATOR_TIME)
+		for _i in range(10):
+			_on_drop_builder_gem(
+				$TutorialPlaybook/BuilderGemIndicator.target.position
+			)
+
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
 	if _next_hint_timer_running:
@@ -162,11 +190,11 @@ func _ready():
 
 
 func _on_goblin_indicator_done() -> void:
-	$TutorialPlaybook/BabyIndicator.start(20)
+	$TutorialPlaybook/BabyIndicator.start(LONG_INDICATOR_TIME)
 
 
 func _on_baby_indicator_done() -> void:
-	$TutorialPlaybook/FishfolkArrivalIndicator.start(20)
+	$TutorialPlaybook/FishfolkArrivalIndicator.start(LONG_INDICATOR_TIME)
 	$TutorialPlaybook/MouseHints.fading = false
 	$TutorialPlaybook/ShowNextMouseHintTimer.start()
 	_awaiting_wheel_click = true
@@ -178,12 +206,17 @@ func _on_show_keyboard_hints_timer_timeout() -> void:
 
 
 func _on_fishfolk_arrival_indicator_done() -> void:
-	$TutorialPlaybook/TreeIndicator.start(20)
+	$TutorialPlaybook/TreeIndicator.start(LONG_INDICATOR_TIME)
 	$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
-	$GemPouch.show()
+
+
 
 func _on_toggle_mouse_hint_click_timer_timeout() -> void:
 	$TutorialPlaybook/MouseHints.current_hint = (
 		MouseHints.MouseHint.NONE if $TutorialPlaybook/MouseHints.current_hint == MouseHints.MouseHint.LEFT_CLICK
 		else MouseHints.MouseHint.LEFT_CLICK
 	)
+
+
+func _on_right_mouse_click_hint_timer_timeout() -> void:
+	$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.RIGHT_CLICK
