@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://btnmaj7swjpk1"]
+[gd_scene load_steps=8 format=3 uid="uid://btnmaj7swjpk1"]
 
 [ext_resource type="Texture2D" uid="uid://5aid1vdyjxij" path="res://icons/mouse/mouse-base.svg" id="1_d5rxc"]
+[ext_resource type="Script" path="res://scenes_2d/scripts/mouse_hints.gd" id="1_i0pvr"]
 [ext_resource type="Texture2D" uid="uid://cwetdlgkcpk4e" path="res://icons/mouse/left-click.svg" id="2_snm4v"]
 [ext_resource type="Texture2D" uid="uid://31nfr76khi1" path="res://icons/mouse/right-click.svg" id="3_68x2n"]
 [ext_resource type="Texture2D" uid="uid://vkktf000ydrh" path="res://icons/mouse/wheel-click.svg" id="4_ef6w6"]
@@ -13,7 +14,12 @@ anchor_left = 0.75
 anchor_top = 0.4
 anchor_right = 1.0
 anchor_bottom = 0.9
+offset_left = 72.0
+offset_top = 44.8
+offset_right = -72.0
+offset_bottom = -74.2
 size_flags_horizontal = 0
+script = ExtResource("1_i0pvr")
 
 [node name="MouseBase" type="TextureRect" parent="."]
 layout_mode = 2

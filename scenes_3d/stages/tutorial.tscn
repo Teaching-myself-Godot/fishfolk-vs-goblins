@@ -488,14 +488,18 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FishfolkArrivalIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
-offset_left = -144.0
-offset_top = 16.0
-offset_right = 306.0
-offset_bottom = 133.0
-target = NodePath("../../MonsterSpawner/MonsterPath/Anchor12")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -464.0
+offset_top = 20.0
+offset_right = -14.0
+offset_bottom = 137.0
+grow_horizontal = 0
+target = NodePath("../../MonsterSpawner/MonsterPath/Anchor10")
 arrow_position = 2
 height_3d = -1.5
-radius_3d = 2.0
+radius_3d = 10.0
 
 [node name="Label" type="Label" parent="TutorialPlaybook/FishfolkArrivalIndicator"]
 layout_mode = 2
@@ -508,7 +512,6 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="MouseHints" parent="TutorialPlaybook" instance=ExtResource("14_h5xya")]
-visible = false
 
 [node name="KeyboardHints" parent="TutorialPlaybook" instance=ExtResource("13_8ic6q")]
 
@@ -519,10 +522,15 @@ one_shot = true
 wait_time = 0.7
 one_shot = true
 
+[node name="ShowNextMouseHintTimer" type="Timer" parent="TutorialPlaybook"]
+wait_time = 0.7
+one_shot = true
+
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/BabyIndicator" to="." method="_on_baby_indicator_done"]
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
+[connection signal="timeout" from="TutorialPlaybook/ShowNextMouseHintTimer" to="." method="_show_next_mouse_hint"]
 
 [editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]

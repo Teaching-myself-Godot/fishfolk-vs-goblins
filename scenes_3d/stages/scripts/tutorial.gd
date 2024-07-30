@@ -10,6 +10,8 @@ var first_wave : MonsterWave
 
 
 var _awaiting_goblin = true
+var _next_hint_timer_running = false
+
 var _goblin : Goblin = null
 var _keyboard_run_hints = [
 	KeyboardHints.KeyboardHint.S,
@@ -17,10 +19,20 @@ var _keyboard_run_hints = [
 	KeyboardHints.KeyboardHint.W,
 	KeyboardHints.KeyboardHint.D
 ]
-var _next_hint_timer_running = false
 var _awaiting_jump_hint = true
 var _awaiting_jump = false
 
+var _mouse_hints = [
+	MouseHints.MouseHint.WHEEL_CLICK,
+	MouseHints.MouseHint.WHEEL_ROTATE,
+	MouseHints.MouseHint.WHEEL_ZOOM
+]
+var _awaiting_wheel_click = false
+var _awaiting_wheel_rotate = false
+var _awaiting_wheel_zoom = false
+
+var _init_zoom = null
+var _init_rot = 0.0
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -30,7 +42,7 @@ func _process(_delta):
 		_goblin = goblin_map[main_player_cid]
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
-		$TutorialPlaybook/GoblinIndicator.start()
+		$TutorialPlaybook/GoblinIndicator.start(8)
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
@@ -52,6 +64,19 @@ func _process(_delta):
 			_awaiting_jump = false
 			$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 			$TutorialPlaybook/KeyboardHints.fading = true
+		if _awaiting_wheel_click and Input.is_action_just_pressed("mousewheel_click"):
+			_awaiting_wheel_click = false
+			_awaiting_wheel_rotate = true
+			_init_rot = CameraUtil.get_cam_pivot().rotation.y
+			$TutorialPlaybook/ShowNextMouseHintTimer.start()
+		if _awaiting_wheel_rotate and abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1:
+			_awaiting_wheel_rotate = false
+			_awaiting_wheel_zoom = true
+			_init_zoom = CameraUtil.get_cam().zoom
+			$TutorialPlaybook/ShowNextMouseHintTimer.start()
+		if _awaiting_wheel_zoom and abs(CameraUtil.get_cam().zoom - _init_zoom) > 3.0:
+			_awaiting_wheel_zoom = false
+			$TutorialPlaybook/ShowNextMouseHintTimer.start()
 
 	if (
 		not $TutorialPlaybook/BabyIndicator.fading
@@ -93,6 +118,15 @@ func _show_next_keyboard_hint():
 		$TutorialPlaybook/KeyboardHints.current_hint = _keyboard_run_hints.pop_front()
 
 
+func _show_next_mouse_hint():
+	_next_hint_timer_running = false
+	if _mouse_hints.is_empty():
+		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+		$TutorialPlaybook/MouseHints.fading = true
+	else:
+		$TutorialPlaybook/MouseHints.current_hint = _mouse_hints.pop_front()
+
+
 func _ready():
 	super._ready()
 	first_wave = $MonsterSpawner/ChibiWave1
@@ -100,11 +134,14 @@ func _ready():
 
 
 func _on_goblin_indicator_done() -> void:
-	$TutorialPlaybook/BabyIndicator.start()
+	$TutorialPlaybook/BabyIndicator.start(20)
 
 
 func _on_baby_indicator_done() -> void:
-	$TutorialPlaybook/FishfolkArrivalIndicator.start()
+	$TutorialPlaybook/FishfolkArrivalIndicator.start(20)
+	$TutorialPlaybook/MouseHints.fading = false
+	$TutorialPlaybook/ShowNextMouseHintTimer.start()
+	_awaiting_wheel_click = true
 
 
 func _on_show_keyboard_hints_timer_timeout() -> void:

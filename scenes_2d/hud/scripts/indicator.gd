@@ -16,6 +16,8 @@ enum ArrowPosition {
 @export var radius_3d : float = 0.0
 
 var _range_ring : RangeRing = null
+var _already_finished = false
+
 
 func _ready():
 	modulate.a = 0.0
@@ -66,15 +68,17 @@ func _process(_delta: float) -> void:
 func start(duration : float = -1):
 	fading = false
 	$FadeoutTimeoutTimer.start(duration)
-	if radius_3d > 0 and is_instance_valid(target):
+	if radius_3d > 0 and _range_ring == null and is_instance_valid(target):
 		_range_ring = RangeRing.new(target.position, radius_3d)
 		TerrainShaderParams.add_range_ring(_range_ring)
 
 
 func finish():
-	fading = true
-	TerrainShaderParams.drop_range_ring(_range_ring)
-	done.emit()
+	if not _already_finished:
+		_already_finished = true
+		fading = true
+		TerrainShaderParams.drop_range_ring(_range_ring)
+		done.emit()
 
 
 func _on_fadeout_timeout_timer_timeout() -> void:
