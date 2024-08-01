@@ -190,7 +190,7 @@ func _on_drop_builder_gem(pos : Vector3):
 	add_child.call_deferred(new_gem)
 
 
-func _on_drop_magical_crystal(pos : Vector3):
+func _on_drop_magical_crystal(pos : Vector3) -> MagicalCrystal:
 	var new_crystal : MagicalCrystal = MagicalCrystalScene.instantiate()
 	new_crystal.position = Vector3(pos.x, pos.y + 1.0, pos.z)
 	new_crystal.velocity.y = 20
@@ -198,9 +198,12 @@ func _on_drop_magical_crystal(pos : Vector3):
 	new_crystal.velocity.z = -3 + randf() * 3
 	new_crystal.collect_magical_crystal.connect(gem_pouch.collect_magical_crystal)
 	add_child.call_deferred(new_crystal)
+	return new_crystal
+
 
 func _count_monsters():
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
+
 
 func _spawn_monster(path : Path3D, monster : BaseMonster):
 	if _count_monsters() > MAX_MONSTERS:
@@ -229,10 +232,14 @@ func _physics_process(delta):
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		gameover.emit()
 
-	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
+	var wave_emitters_present = find_children("*", "MonsterWaveEmitter")
+	for wave_emitter : MonsterWaveEmitter in wave_emitters_present:
 		if wave_emitter.last_wave_cleared():
 			stage_won.emit()
-	# TODO: if no WaveEmitter is present, stage_won.emit() if all waves were freed
+
+	if wave_emitters_present.is_empty() and find_children("*", "MonsterWave").is_empty():
+		stage_won.emit()
+
 
 
 func _mk_toast(message : String = "toast message", duration : float = 3.0, big : bool = false) -> Toast:
@@ -244,7 +251,7 @@ func _mk_toast(message : String = "toast message", duration : float = 3.0, big :
 	toast.duration = duration
 	if big:
 		toast.scale_up()
-		toast.scale_up()
+
 	add_child.call_deferred(toast)
 	return toast
 

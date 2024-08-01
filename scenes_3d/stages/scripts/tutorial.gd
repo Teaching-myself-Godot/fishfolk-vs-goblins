@@ -3,6 +3,8 @@ class_name Tutorial
 extends Stage
 
 const LONG_INDICATOR_TIME = 100
+const MEDIUM_INDICATOR_TIME = 16
+const SHORT_INDICATOR_TIME = 8
 
 enum TutorialMode { KEYBOARD, GAMEPAD }
 
@@ -45,6 +47,37 @@ var _awaiting_tree_menu_closed = false
 var _awaiting_goblin_reaches_gems = true
 var _awaiting_first_wave = true
 var _awaiting_arrow_tower = true
+var _awaiting_magical_crystal = true
+var _awaiting_crystal_collect = true
+var _awaiting_first_upgrade = false
+
+func _on_gem_pouch_change(_gems : int, crystals : int):
+	if crystals > 0 and _awaiting_crystal_collect:
+		_awaiting_crystal_collect = false
+		$TutorialPlaybook/MagicalCrystalIndicator.finish()
+		_awaiting_first_upgrade = true
+		$TutorialPlaybook/BuyUpgradeIndicator.start(LONG_INDICATOR_TIME)
+	if crystals == 0 and _awaiting_first_upgrade:
+		_awaiting_first_upgrade = false
+		$TutorialPlaybook/BuyUpgradeIndicator.finish()
+		_start_wave(3)
+		_mk_toast("New enemies have arrived!", 5, true)
+		for _i in range(27):
+			$GemPouch.collect_builder_gem()
+		for _i in range(4):
+			$GemPouch.collect_magical_crystal()
+		$TutorialPlaybook/FreePlayIndicator.start(MEDIUM_INDICATOR_TIME)
+		$GemPouch/Cribs.show()
+
+func _on_drop_magical_crystal(pos : Vector3):
+	var new_crystal = super._on_drop_magical_crystal(pos)
+	if _awaiting_magical_crystal:
+		_awaiting_magical_crystal = false
+		$TutorialPlaybook/StatsIndicator.finish()
+		$TutorialPlaybook/MagicalCrystalIndicator.target = new_crystal
+		$TutorialPlaybook/MagicalCrystalIndicator.start(LONG_INDICATOR_TIME)
+		$GemPouch/MagicalGems.show()
+
 
 func _handle_goblin_arrival():
 	if _awaiting_goblin:
@@ -52,7 +85,7 @@ func _handle_goblin_arrival():
 		_tree_menu = _goblin.find_child("TreeContextMenu")
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
-		$TutorialPlaybook/GoblinIndicator.start(8)
+		$TutorialPlaybook/GoblinIndicator.start(SHORT_INDICATOR_TIME)
 		_init_zoom = CameraUtil.get_cam().zoom
 		_init_rot = CameraUtil.get_cam_pivot().rotation.y
 		if mode == TutorialMode.KEYBOARD:
@@ -199,6 +232,7 @@ func _process(_delta):
 		_awaiting_first_wave = false
 		$TutorialPlaybook/ChibiIndicator.target = get_tree().get_first_node_in_group(Constants.GROUP_NAME_MONSTERS)
 		$TutorialPlaybook/ChibiIndicator.start(LONG_INDICATOR_TIME)
+		$TutorialPlaybook/TreeIndicator2.start(LONG_INDICATOR_TIME)
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):
 			tree.add_to_group(Constants.GROUP_NAME_TREES)
 
@@ -206,9 +240,14 @@ func _process(_delta):
 		_awaiting_arrow_tower and
 		not get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOWERS).is_empty()
 	):
+		_awaiting_arrow_tower = false
+		var tower_node = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TOWERS)
 		$TutorialPlaybook/ChibiIndicator.finish()
-		$TutorialPlaybook/ArrowTowerIndicator.target = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TOWERS)
-		$TutorialPlaybook/ArrowTowerIndicator.start(LONG_INDICATOR_TIME)
+		$TutorialPlaybook/TreeIndicator2.finish()
+		$TutorialPlaybook/ArrowTowerIndicator.target = tower_node
+		$TutorialPlaybook/ArrowTowerIndicator.start(SHORT_INDICATOR_TIME)
+		$TutorialPlaybook/StatsIndicator.target = tower_node
+		$TutorialPlaybook/BuyUpgradeIndicator.target = tower_node
 
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
@@ -230,7 +269,7 @@ func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
 			mode = TutorialMode.KEYBOARD
 		else:
 			mode = TutorialMode.GAMEPAD
-
+			_mk_toast("Gamepad tutorial not available in this beta", 10, true)
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 			tree.remove_from_group(Constants.GROUP_NAME_TREES)
 
@@ -256,6 +295,7 @@ func _ready():
 	super._ready()
 	first_wave = $MonsterSpawner/ChibiWave1
 	$GemPouch.remove_from_group(Constants.GROUP_NAME_HUD_ITEM)
+	$GemPouch.liquidity_change.connect(_on_gem_pouch_change)
 
 
 func _on_goblin_indicator_done() -> void:
@@ -279,7 +319,6 @@ func _on_fishfolk_arrival_indicator_done() -> void:
 	$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
 
 
-
 func _on_toggle_mouse_hint_click_timer_timeout() -> void:
 	$TutorialPlaybook/MouseHints.current_hint = (
 		MouseHints.MouseHint.NONE if $TutorialPlaybook/MouseHints.current_hint == MouseHints.MouseHint.LEFT_CLICK
@@ -289,3 +328,29 @@ func _on_toggle_mouse_hint_click_timer_timeout() -> void:
 
 func _on_right_mouse_click_hint_timer_timeout() -> void:
 	$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.RIGHT_CLICK
+
+
+func _on_arrow_tower_indicator_done() -> void:
+	$TutorialPlaybook/StatsIndicator.start(LONG_INDICATOR_TIME)
+
+
+func _on_free_play_indicator_done() -> void:
+	$TutorialPlaybook/CribCountIndicator.start(SHORT_INDICATOR_TIME)
+
+
+func _on_crib_count_indicator_done() -> void:
+	_mk_toast("That rounds up the tutorial!", 3, true)
+	$TutorialPlaybook/KeyboardHints.fading = false
+	$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
+	$TutorialPlaybook/ShowEscHintTimer.start()
+
+
+func _on_show_esc_hint_timer_timeout() -> void:
+	$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.ESC
+	$TutorialPlaybook/PauseButtonIndicator.start(LONG_INDICATOR_TIME)
+
+func _on_goblin_request_pause_menu():
+	super._on_goblin_request_pause_menu()
+	if $TutorialPlaybook/KeyboardHints.current_hint == KeyboardHints.KeyboardHint.ESC:
+		$TutorialPlaybook/KeyboardHints.fading = true
+		$TutorialPlaybook/PauseButtonIndicator.finish()

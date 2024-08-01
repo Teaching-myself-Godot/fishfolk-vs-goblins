@@ -12,8 +12,9 @@ enum ArrowPosition {
 @export var arrow_position : ArrowPosition = ArrowPosition.BOTTOM
 @export var height_3d : float = 0.0
 @export var fading : bool = true
-@export var target_2d : Vector2 = Vector2.ZERO
+@export var target_2d : Node2D
 @export var radius_3d : float = 0.0
+@export var align_2d : Vector2 = Vector2.ZERO
 
 var _range_ring : RangeRing = null
 var _already_finished = false
@@ -21,7 +22,7 @@ var _already_finished = false
 
 func _ready():
 	modulate.a = 0.0
-	$PointingArrow.to = target_2d
+	$PointingArrow.to = Vector2(0, 0)
 
 
 func _get_arrow_from_pos() -> Vector2:
@@ -44,7 +45,8 @@ func _process(_delta: float) -> void:
 		CameraUtil.keep_in_viewport(
 				CameraUtil.get_label_position(target.position, Vector3.UP * height_3d)
 		) if is_instance_valid(target) else (
-				CameraUtil.keep_in_viewport(target_2d)
+				CameraUtil.keep_in_viewport(target_2d.position + align_2d) if is_instance_valid(target_2d)
+				else Vector2(0, 0)
 		)
 	)
 	$Circle.position = global_from - position
