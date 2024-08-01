@@ -51,8 +51,8 @@ font_size = 24
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_yusd6")
-metadata/_edit_horizontal_guides_ = [1320.0, 348.0]
-metadata/_edit_vertical_guides_ = [2000.0, 124.0]
+metadata/_edit_horizontal_guides_ = [1320.0, 348.0, 544.0]
+metadata/_edit_vertical_guides_ = [2000.0, 124.0, 872.0]
 
 [node name="TreesAndCribsAndSuch" type="Node" parent="."]
 
@@ -447,6 +447,10 @@ monster_speed = 2.0
 monster_hp = 15
 gems_per_monster = 2
 
+[node name="Control" parent="MonsterSpawner3/FlyingWave3" index="0"]
+offset_top = -160.0
+offset_bottom = -104.0
+
 [node name="PreviewCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.648837, 0.760927, 0, -0.760927, 0.648837, -10.7404, 32.8976, 32.6308)
 current = true
@@ -797,4 +801,5 @@ one_shot = true
 [editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]
+[editable path="MonsterSpawner3/FlyingWave3"]
 [editable path="TutorialPlaybook/PauseButtonIndicator"]
