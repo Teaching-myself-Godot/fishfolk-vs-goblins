@@ -92,4 +92,3 @@ func attack(crib : Crib):
 	else:
 		# player must be game over, no more cribs to attack
 		queue_free()
-

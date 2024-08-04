@@ -84,4 +84,3 @@ func _unhandled_input(_event):
 		InputUtil.is_just_released("cancel")
 	):
 		_start_main_game()
-
