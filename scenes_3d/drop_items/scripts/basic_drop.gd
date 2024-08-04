@@ -10,8 +10,6 @@ func _process(_delta):
 		$GemMesh.scale.x += 0.01
 		$GemMesh.scale.y += 0.01
 		$GemMesh.scale.z += 0.01
-		$GemMesh.get_surface_override_material(0).emission_energy_multiplier += 0.025
-		$GemMesh.transparency += 0.025 if $GemMesh.transparency < 1.0 else 0.0
 		if is_instance_valid(touched_by_goblin):
 			position = lerp(position, touched_by_goblin.position, 0.01)
 	else:
@@ -41,7 +39,5 @@ func _on_body_entered(body):
 	if not touched_by_goblin and is_instance_valid(body) and body.is_in_group(Constants.GROUP_NAME_GOBLINS):
 		_collect()
 		touched_by_goblin = body
-		$GemMesh.get_surface_override_material(0).emission_enabled = true
-		$GemMesh.get_surface_override_material(0).transparency = 1
 		$GemMesh/Outline.hide()
 		$AudioStreamPlayer3D.play()

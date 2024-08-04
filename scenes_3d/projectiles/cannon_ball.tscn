@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo7b1i4cjlwju"]
+[gd_scene load_steps=5 format=3 uid="uid://bo7b1i4cjlwju"]
 
 [ext_resource type="Script" path="res://scenes_3d/projectiles/scripts/cannon_ball.gd" id="1_bxwho"]
-[ext_resource type="PackedScene" uid="uid://cnadf28scr1by" path="res://scenes_3d/effects/smoke_particles.tscn" id="2_8b2vt"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3gg76"]
 
@@ -23,9 +22,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_o6g3b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tjmdc")
-
-[node name="SmokeParticles" parent="." instance=ExtResource("2_8b2vt")]
-transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0, 0, 0)
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 0.064

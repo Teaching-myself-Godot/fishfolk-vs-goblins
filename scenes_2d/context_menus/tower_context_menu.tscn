@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=36 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://drl3j0hytlsw1" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
@@ -29,10 +29,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.7, 0.95)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgxa7"]
-shader = ExtResource("2_1p6ou")
-shader_parameter/blink = false
-
 [sub_resource type="LabelSettings" id="LabelSettings_p1agf"]
 resource_local_to_scene = true
 line_spacing = 0.0
@@ -56,14 +52,6 @@ outline_color = Color(1, 0.556863, 1, 1)
 shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jheev"]
-shader = ExtResource("2_1p6ou")
-shader_parameter/blink = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja11l"]
-shader = ExtResource("2_1p6ou")
-shader_parameter/blink = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_gpjv3"]
 resource_local_to_scene = true
@@ -89,10 +77,6 @@ shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_786b8"]
-shader = ExtResource("2_1p6ou")
-shader_parameter/blink = false
-
 [sub_resource type="LabelSettings" id="LabelSettings_2orxw"]
 resource_local_to_scene = true
 line_spacing = 0.0
@@ -104,10 +88,6 @@ outline_color = Color(1, 0.556863, 1, 1)
 shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0l1f"]
-shader = ExtResource("2_1p6ou")
-shader_parameter/blink = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_844mx"]
 resource_local_to_scene = true
@@ -210,7 +190,6 @@ texture = SubResource("GradientTexture2D_85k8y")
 visible = false
 
 [node name="Dismantle-option" type="Sprite2D" parent="MainMenu"]
-material = SubResource("ShaderMaterial_rgxa7")
 position = Vector2(0, 120)
 texture = ExtResource("1_g0gxm")
 
@@ -227,28 +206,23 @@ offset_bottom = 19.2814
 text = "20"
 label_settings = SubResource("LabelSettings_p1agf")
 
-[node name="BuilderGemSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
-offset_left = 73.2085
-offset_top = 37.3176
-offset_right = 113.208
-offset_bottom = 77.3176
-
-[node name="MagicalCrystalPrice" parent="MainMenu/Dismantle-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
 visible = false
 label_settings = SubResource("LabelSettings_1cbjt")
 
-[node name="MagicalCrystalSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
+[node name="MagicalCrystalThumbnail" parent="MainMenu/Dismantle-option/PriceTag" index="3"]
 visible = false
 
+[node name="BuilderGemThumbnail" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
+position = Vector2(142.836, 41.7575)
+
 [node name="Upgrade-option" type="Sprite2D" parent="MainMenu"]
-material = SubResource("ShaderMaterial_jheev")
 position = Vector2(0, -120)
 texture = ExtResource("6_hfrc3")
 
 [node name="UpgradeMenu" type="Node2D" parent="."]
 
 [node name="Range-option" type="Sprite2D" parent="UpgradeMenu"]
-material = SubResource("ShaderMaterial_ja11l")
 position = Vector2(0, -120)
 texture = ExtResource("5_avqmm")
 
@@ -264,10 +238,7 @@ builder_gem_price = 0
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
-visible = false
-
-[node name="MagicalCrystalPrice" parent="UpgradeMenu/Range-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
 offset_top = -17.0
 offset_right = 62.9999
 offset_bottom = 20.0
@@ -275,14 +246,13 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_g5tih")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
-offset_left = 70.2923
-offset_top = -25.0471
-offset_right = 110.292
-offset_bottom = 14.9529
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Range-option/PriceTag" index="3"]
+position = Vector2(142.387, 47.3781)
+
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
+visible = false
 
 [node name="Reload Time-option" type="Sprite2D" parent="UpgradeMenu"]
-material = SubResource("ShaderMaterial_786b8")
 position = Vector2(133, -1)
 texture = ExtResource("7_gxbnm")
 
@@ -298,10 +268,7 @@ builder_gem_price = 0
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
-visible = false
-
-[node name="MagicalCrystalPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
 offset_top = -17.0
 offset_right = 62.9999
 offset_bottom = 20.0
@@ -309,14 +276,13 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_2orxw")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
-offset_left = 70.2923
-offset_top = -25.0471
-offset_right = 110.292
-offset_bottom = 14.9529
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Reload Time-option/PriceTag" index="3"]
+position = Vector2(138.593, 46.0002)
+
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
+visible = false
 
 [node name="Damage-option" type="Sprite2D" parent="UpgradeMenu"]
-material = SubResource("ShaderMaterial_f0l1f")
 position = Vector2(-120, 0)
 texture = ExtResource("8_3w215")
 
@@ -341,18 +307,11 @@ offset_bottom = 37.0
 scale = Vector2(-1, -1)
 label_settings = SubResource("LabelSettings_844mx")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
-visible = false
-anchor_left = -0.159959
-anchor_top = 0.148064
-anchor_right = -0.159959
-anchor_bottom = 0.148064
-
-[node name="MagicalCrystalPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="3"]
-anchor_left = 1.50796
-anchor_top = 0.64261
-anchor_right = 1.50796
-anchor_bottom = 0.642612
+[node name="MagicalCrystalPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
+anchor_left = 1.43607
+anchor_top = 0.620787
+anchor_right = 1.43607
+anchor_bottom = 0.620789
 offset_top = 8.34224
 offset_bottom = 45.3423
 scale = Vector2(-1, -1)
@@ -360,13 +319,11 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_fbxu3")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
-anchor_left = -0.0576202
-anchor_top = 0.301409
-anchor_right = -0.0576201
-anchor_bottom = 0.301409
-offset_top = -2.64491
-offset_bottom = 37.3551
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Damage-option/PriceTag" index="3"]
+position = Vector2(149.907, 46.0007)
+
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
+visible = false
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 visible = false

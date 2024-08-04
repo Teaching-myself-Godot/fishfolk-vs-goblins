@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch8vnddnmmpfx"]
+[gd_scene load_steps=7 format=3 uid="uid://ch8vnddnmmpfx"]
 
-[ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_mdi6r"]
+[ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen_web_demo.gd" id="1_6rcu5"]
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="2_3dh21"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_qmt7h"]
-[ext_resource type="PackedScene" uid="uid://cf2ha5qruwm47" path="res://scenes_2d/main_menus/stage_select_option.tscn" id="4_5cuu5"]
-[ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="5_euw5b"]
 
 [sub_resource type="Gradient" id="Gradient_n5eq8"]
 offsets = PackedFloat32Array(0)
@@ -25,7 +23,15 @@ shadow_color = Color(1, 1, 1, 0.52549)
 process_mode = 2
 texture = SubResource("GradientTexture2D_gdc3l")
 centered = false
-script = ExtResource("1_mdi6r")
+script = ExtResource("1_6rcu5")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
 
 [node name="Splash" type="Sprite2D" parent="."]
 position = Vector2(578, 336)
@@ -37,33 +43,8 @@ region_rect = Rect2(0, 0, 1150, 500)
 offset_left = -94.0
 offset_right = 77.0
 offset_bottom = 27.0
-text = "- Press Spacebar -"
+text = "- Click to start -"
 label_settings = SubResource("LabelSettings_y1jkn")
 horizontal_alignment = 1
 
-[node name="StageSelectMenu" type="ScrollContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -180.0
-offset_right = 124.0
-offset_bottom = -145.0
-grow_horizontal = 2
-grow_vertical = 2
-follow_focus = true
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
-
-[node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu"]
-layout_mode = 2
-
-[node name="Tutorial" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_5cuu5")]
-layout_mode = 2
-text = "Play Web Demo"
-my_stage = ExtResource("5_euw5b")
-
-[connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

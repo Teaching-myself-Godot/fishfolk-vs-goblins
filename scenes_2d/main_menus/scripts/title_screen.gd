@@ -9,7 +9,6 @@ signal confirm_stage()
 func _ready():
 	get_tree().get_root().size_changed.connect(_on_resize)
 	_on_resize()
-	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".call_deferred("grab_focus")
 
 
 func _unhandled_input(_event):

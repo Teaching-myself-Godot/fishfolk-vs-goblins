@@ -34,7 +34,6 @@ panorama = SubResource("GradientTexture2D_3mfpc")
 sky_material = SubResource("PanoramaSkyMaterial_b0v6g")
 
 [sub_resource type="Environment" id="Environment_pybf5"]
-background_mode = 2
 sky = SubResource("Sky_20ib3")
 sky_rotation = Vector3(0, 0, 1.5708)
 tonemap_mode = 2
@@ -377,7 +376,7 @@ metadata/_edit_vertical_guides_ = [1072.0]
 
 [node name="ChibiWave2" parent="MonsterSpawner" instance=ExtResource("12_nssor")]
 wave_number = 3
-monster_count = 20
+monster_count = 5
 monster_speed = 3.0
 monster_hp = 3
 gems_per_monster = 2
@@ -442,7 +441,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 17.6905,
 wait_time = 5.0
 Monster = ExtResource("14_iborq")
 wave_number = 3
-monster_count = 1
+monster_count = 2
 monster_speed = 2.0
 monster_hp = 15
 gems_per_monster = 2

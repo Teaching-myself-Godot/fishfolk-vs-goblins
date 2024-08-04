@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=21 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tree_context_menu.gd" id="1_3a72v"]
-[ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_axdaj"]
 [ext_resource type="Texture2D" uid="uid://cc5udt7ex2nao" path="res://icons/all-range-option.svg" id="3_mdpy0"]
 [ext_resource type="Texture2D" uid="uid://bgirh5q6tte4p" path="res://icons/ground-option.svg" id="4_52g0q"]
 [ext_resource type="Texture2D" uid="uid://ce4hru2lfh7vc" path="res://icons/air-option.svg" id="5_kdvc8"]
@@ -27,26 +26,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.7, 0.95)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu51s"]
-resource_local_to_scene = true
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vdx"]
-resource_local_to_scene = true
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2gb0"]
-resource_local_to_scene = true
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtesy"]
-resource_local_to_scene = true
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
-
 [sub_resource type="LabelSettings" id="LabelSettings_sb1pj"]
 resource_local_to_scene = true
 line_spacing = 0.0
@@ -70,10 +49,6 @@ outline_color = Color(1, 0.556863, 1, 1)
 shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_74v5n"]
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_nbapt"]
 resource_local_to_scene = true
@@ -99,10 +74,6 @@ shadow_size = 7
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vng7"]
-shader = ExtResource("2_axdaj")
-shader_parameter/blink = false
-
 [sub_resource type="LabelSettings" id="LabelSettings_xw20b"]
 font = ExtResource("15_oatya")
 font_size = 24
@@ -122,17 +93,14 @@ texture = SubResource("GradientTexture2D_85k8y")
 [node name="MainMenu" type="Node2D" parent="."]
 
 [node name="All-Range-option" type="Sprite2D" parent="MainMenu"]
-material = SubResource("ShaderMaterial_bu51s")
 position = Vector2(0, -120)
 texture = ExtResource("3_mdpy0")
 
 [node name="Ground-option" type="Sprite2D" parent="MainMenu"]
-material = SubResource("ShaderMaterial_p3vdx")
 position = Vector2(-120, 0)
 texture = ExtResource("4_52g0q")
 
 [node name="Air-option" type="Sprite2D" parent="MainMenu"]
-material = SubResource("ShaderMaterial_a2gb0")
 position = Vector2(120, 0)
 texture = ExtResource("5_kdvc8")
 
@@ -140,7 +108,6 @@ texture = ExtResource("5_kdvc8")
 visible = false
 
 [node name="Arrow-option" type="Sprite2D" parent="All-RangeMenu"]
-material = SubResource("ShaderMaterial_wtesy")
 position = Vector2(0, -120)
 texture = ExtResource("6_58r0c")
 
@@ -164,28 +131,20 @@ offset_right = 104.706
 offset_bottom = -0.117367
 label_settings = SubResource("LabelSettings_sb1pj")
 
-[node name="BuilderGemSubViewport" parent="All-RangeMenu/Arrow-option/PriceTag" index="2"]
-anchor_left = 0.283137
-anchor_top = 0.164204
-anchor_right = 0.283137
-anchor_bottom = 0.164204
-offset_left = 80.8667
-offset_top = 15.55
-offset_right = 120.866
-offset_bottom = 55.55
-
-[node name="MagicalCrystalPrice" parent="All-RangeMenu/Arrow-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="All-RangeMenu/Arrow-option/PriceTag" index="2"]
 visible = false
 label_settings = SubResource("LabelSettings_3fot3")
 
-[node name="MagicalCrystalSubViewport" parent="All-RangeMenu/Arrow-option/PriceTag" index="4"]
+[node name="MagicalCrystalThumbnail" parent="All-RangeMenu/Arrow-option/PriceTag" index="3"]
 visible = false
+
+[node name="BuilderGemThumbnail" parent="All-RangeMenu/Arrow-option/PriceTag" index="4"]
+position = Vector2(158.153, 46.7944)
 
 [node name="GroundMenu" type="Node2D" parent="."]
 visible = false
 
 [node name="Cannon-option" type="Sprite2D" parent="GroundMenu"]
-material = SubResource("ShaderMaterial_74v5n")
 position = Vector2(-120, 0)
 texture = ExtResource("9_2gm1x")
 
@@ -199,10 +158,10 @@ builder_gem_price = 120
 magical_crystal_price = 0
 
 [node name="BuilderGemPrice" parent="GroundMenu/Cannon-option/PriceTag" index="1"]
-anchor_left = 1.21456
-anchor_top = 0.779868
-anchor_right = 1.21456
-anchor_bottom = 0.779868
+anchor_left = 1.08562
+anchor_top = 0.723619
+anchor_right = 1.08562
+anchor_bottom = 0.723619
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 108.0
@@ -210,13 +169,7 @@ offset_bottom = 37.0
 scale = Vector2(-1, -1)
 label_settings = SubResource("LabelSettings_nbapt")
 
-[node name="BuilderGemSubViewport" parent="GroundMenu/Cannon-option/PriceTag" index="2"]
-anchor_left = -0.159959
-anchor_top = 0.148064
-anchor_right = -0.159959
-anchor_bottom = 0.148064
-
-[node name="MagicalCrystalPrice" parent="GroundMenu/Cannon-option/PriceTag" index="3"]
+[node name="MagicalCrystalPrice" parent="GroundMenu/Cannon-option/PriceTag" index="2"]
 visible = false
 anchor_left = 1.43607
 anchor_top = 0.58702
@@ -225,18 +178,16 @@ anchor_bottom = 0.587021
 scale = Vector2(-1, -1)
 label_settings = SubResource("LabelSettings_yih28")
 
-[node name="MagicalCrystalSubViewport" parent="GroundMenu/Cannon-option/PriceTag" index="4"]
+[node name="MagicalCrystalThumbnail" parent="GroundMenu/Cannon-option/PriceTag" index="3"]
 visible = false
-anchor_left = -0.129512
-anchor_top = 0.211874
-anchor_right = -0.129512
-anchor_bottom = 0.211874
+
+[node name="BuilderGemThumbnail" parent="GroundMenu/Cannon-option/PriceTag" index="4"]
+position = Vector2(147.078, 46.0007)
 
 [node name="AirMenu" type="Node2D" parent="."]
 visible = false
 
 [node name="Anti-Air-option" type="Sprite2D" parent="AirMenu"]
-material = SubResource("ShaderMaterial_1vng7")
 position = Vector2(120, 0)
 texture = ExtResource("10_c84p5")
 

@@ -7,10 +7,7 @@ func _ready():
 
 func _process(_delta):
 	$debugtext.text = (
-		"monsters = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()) + " " +
-		"trees = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES).size()) + " " +
-		"towers = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOWERS).size()) + " " +
-		"fps = " + str(Engine.get_frames_per_second())
+		"The Web Demo is _not_ optimized for the web! You can download the .exe or linux binary here for free! (fps: " + str(Engine.get_frames_per_second()) + ")"
 	)
 
 

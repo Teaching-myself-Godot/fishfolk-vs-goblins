@@ -128,17 +128,18 @@ func _on_cannon_tower_fire_cannon_ball(cannon_ball : CannonBall):
 
 
 func _on_missile_spawn_explosion(pos : Vector3):
-	var explosion = ExplosionScene.instantiate()
-	explosion.duration = 0.25
-	explosion.size = 3.0
-	explosion.position = pos
-	add_child.call_deferred(explosion)
+	pass
+	#var explosion = ExplosionScene.instantiate()
+	#explosion.duration = 0.25
+	#explosion.size = 3.0
+	#explosion.position = pos
+	#add_child.call_deferred(explosion)
 
 
 func _on_cannon_ball_spawn_explosion(pos : Vector3):
-	var explosion = ExplosionScene.instantiate()
-	explosion.position = pos
-	add_child.call_deferred(explosion)
+	#var explosion = ExplosionScene.instantiate()
+	#explosion.position = pos
+	#add_child.call_deferred(explosion)
 
 	for i in range(3):
 		TerrainShaderParams.add_landscape_coloration(
@@ -165,9 +166,9 @@ func _on_spawn_turtle_flipper_dust_particles(pos : Vector3):
 
 
 func _on_spawn_dust_particle(pos : Vector3):
-	var particles = DustParticlesScene.instantiate()
-	particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
-	add_child.call_deferred(particles)
+	#var particles = DustParticlesScene.instantiate()
+	#particles.position = Vector3(pos.x, pos.y + 0.5, pos.z)
+	#add_child.call_deferred(particles)
 	TerrainShaderParams.add_landscape_coloration(
 		LandscapeColoration.new(0.5, Color(0.169, 0.106, 0), pos, 0.005)
 	)

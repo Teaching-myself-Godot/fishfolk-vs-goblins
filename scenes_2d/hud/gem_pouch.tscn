@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://doyct1xu46gwj"]
 
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/gem_pouch.gd" id="1_m4ymf"]
-[ext_resource type="PackedScene" uid="uid://csx1uijyonu7p" path="res://scenes_2d/hud/builder_gem_sub_viewport.tscn" id="2_b46by"]
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="3_itbpt"]
-[ext_resource type="PackedScene" uid="uid://d0k2s7wbhxafk" path="res://scenes_2d/hud/magical_crystal_sub_viewport.tscn" id="4_ry171"]
-[ext_resource type="PackedScene" uid="uid://cbvirctbtdw2" path="res://scenes_2d/hud/crib_sub_viewport.tscn" id="5_bg12f"]
+[ext_resource type="Texture2D" uid="uid://ddp3f8s6hsbjf" path="res://scenes_2d/hud/builder_gem_thumbnail.png" id="3_set7b"]
+[ext_resource type="Texture2D" uid="uid://cj8wykllwpe1h" path="res://scenes_2d/hud/magical_crystal_thumbnail.png" id="4_qfua4"]
+[ext_resource type="Texture2D" uid="uid://duco6riqnmhdx" path="res://scenes_2d/hud/crib_thumbnail.png" id="5_31514"]
 
 [sub_resource type="Gradient" id="Gradient_ti78j"]
 offsets = PackedFloat32Array(0)
@@ -68,14 +68,6 @@ position = Vector2(96, -12)
 scale = Vector2(0.1, 1.5)
 texture = SubResource("GradientTexture2D_02qcp")
 
-[node name="BuilderGemSubViewport" parent="BuilderGems" instance=ExtResource("2_b46by")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.30769
-anchor_top = -1.0
-anchor_right = 1.30769
-anchor_bottom = -1.0
-
 [node name="Label" type="Label" parent="BuilderGems"]
 layout_mode = 0
 offset_left = 16.0
@@ -86,6 +78,12 @@ text = "1500"
 label_settings = SubResource("LabelSettings_mjoah")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="BuilderGemThumbnail" type="Sprite2D" parent="BuilderGems"]
+position = Vector2(160, -8)
+rotation = 0.261799
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_set7b")
 
 [node name="MagicalGems" type="Control" parent="."]
 layout_mode = 3
@@ -101,18 +99,6 @@ position = Vector2(48, 24)
 scale = Vector2(0.1, 1.5)
 texture = SubResource("GradientTexture2D_02qcp")
 
-[node name="MagicalGemSubViewport" parent="MagicalGems" instance=ExtResource("4_ry171")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.826923
-anchor_top = -0.225
-anchor_right = 0.826923
-anchor_bottom = -0.225
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 66.0
-offset_bottom = 55.0
-
 [node name="Label" type="Label" parent="MagicalGems"]
 layout_mode = 0
 offset_left = -32.0
@@ -122,6 +108,12 @@ text = "1500"
 label_settings = SubResource("LabelSettings_vdcxt")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="MagicalCrystalThumbnail" type="Sprite2D" parent="MagicalGems"]
+position = Vector2(112, 16)
+rotation = 0.261799
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_qfua4")
 
 [node name="Cribs" type="Control" parent="."]
 layout_mode = 3
@@ -137,17 +129,6 @@ position = Vector2(48, 24)
 scale = Vector2(0.1, 1.5)
 texture = SubResource("GradientTexture2D_02qcp")
 
-[node name="CribSubViewport" parent="Cribs" instance=ExtResource("5_bg12f")]
-layout_mode = 1
-anchor_left = 0.846154
-anchor_top = -0.2
-anchor_right = 0.846154
-anchor_bottom = -0.2
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 66.0
-offset_bottom = 55.0
-
 [node name="Label" type="Label" parent="Cribs"]
 layout_mode = 1
 anchors_preset = -1
@@ -161,3 +142,8 @@ text = "5
 label_settings = SubResource("LabelSettings_5laau")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="CribThumbnail" type="Sprite2D" parent="Cribs"]
+position = Vector2(112, 24)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_31514")

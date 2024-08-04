@@ -56,7 +56,7 @@ func _process(_delta):
 		var mouse_pos = get_viewport().get_mouse_position()
 		var delta = mouse_pos.y - drag_start_y
 		drag_start_y = mouse_pos.y
-		change_zoom(delta * 0.1, max_d)
+		change_zoom(delta * 0.5, max_d)
 		var viewport_bottom = get_viewport().size.y - 5
 		if mouse_pos.y < 5:
 			Input.warp_mouse(Vector2(mouse_pos.x, viewport_bottom))

@@ -11,7 +11,7 @@ var my_range_ring : RangeRing = null
 func _ready():
 	add_to_group(Constants.GROUP_NAME_TREES)
 	add_to_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES)
-	$AnimationPlayer.play("idle")
+	#$AnimationPlayer.play("idle")
 	outlines = find_children("*Outline")
 	toggle_highlight(false)
 	original_rotation = rotation_degrees

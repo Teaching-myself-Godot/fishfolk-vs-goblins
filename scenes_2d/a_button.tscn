@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl5dwiiyf0jvd"]
+[gd_scene load_steps=6 format=3 uid="uid://cl5dwiiyf0jvd"]
 
-[ext_resource type="Shader" path="res://shaders/menu_highlight_circle.gdshader" id="1_g3dac"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/highlight_circle.gd" id="2_xhh1t"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_habc4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrh6v"]
-shader = ExtResource("1_g3dac")
 
 [sub_resource type="Gradient" id="Gradient_ugl05"]
 offsets = PackedFloat32Array(0, 0.658065, 0.690323)
@@ -25,7 +21,6 @@ shadow_color = Color(0, 0, 0, 0.52549)
 [node name="AButton" type="Node2D"]
 
 [node name="HighlightCircle" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_mrh6v")
 script = ExtResource("2_xhh1t")
 
 [node name="GreenCiricle" type="Sprite2D" parent="."]
