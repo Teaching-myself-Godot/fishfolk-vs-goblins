@@ -26,4 +26,3 @@ func _on_resize():
 	texture.width = get_viewport().size.x
 	texture.height = get_viewport().size.y
 	$Label.size = get_viewport().size
-

@@ -274,4 +274,3 @@ func _ready():
 		spawner.spawn_monster.connect(_spawn_monster)
 
 	_start_wave(1)
-

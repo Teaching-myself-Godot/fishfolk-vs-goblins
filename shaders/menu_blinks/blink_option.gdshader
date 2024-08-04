@@ -9,4 +9,3 @@ void fragment() {
 		COLOR.a = COLOR.a * (1. + sin(TIME * 4.) * .4);
 	}
 }
-

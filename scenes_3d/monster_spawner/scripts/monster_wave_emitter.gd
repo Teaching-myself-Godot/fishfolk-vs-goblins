@@ -50,4 +50,3 @@ func _start_next_wave_when_waves_are_cleared():
 
 	if current_waves_are_cleared():
 		start_next_wave()
-

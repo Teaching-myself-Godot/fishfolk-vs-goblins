@@ -79,4 +79,3 @@ func _process(_delta):
 func _on_resize():
 	if position.y != get_viewport().size.y:
 		position.y = get_viewport().size.y
-

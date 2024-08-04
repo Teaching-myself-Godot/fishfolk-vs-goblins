@@ -260,8 +260,8 @@ func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
 	return $TutorialPlaybook/KeyboardHints.current_hint == k
 
 
-func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
-	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
+	super._add_goblin_to_scene(num, start_pos)
 
 	if InputUtil.player_map.size() == 1:
 		main_player_cid = num as InputUtil.ControllerID

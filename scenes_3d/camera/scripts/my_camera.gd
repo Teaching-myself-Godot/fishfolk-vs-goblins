@@ -71,4 +71,3 @@ func _process(_delta):
 		Input.warp_mouse(get_viewport().size / 2)
 
 	position.y = 9 + max_y + max(zoom, max_d)
-
