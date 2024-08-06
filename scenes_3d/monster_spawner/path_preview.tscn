@@ -7,7 +7,7 @@ loop = false
 script = ExtResource("1_ikale")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.4
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

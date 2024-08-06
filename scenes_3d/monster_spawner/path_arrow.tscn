@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dihpmgnsc7dpr"]
+[gd_scene load_steps=4 format=3 uid="uid://dihpmgnsc7dpr"]
 
 [ext_resource type="PackedScene" uid="uid://r3ih46rt100g" path="res://models/path-arrow.blend" id="1_1tyri"]
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/path_arrow.gd" id="1_n63xa"]
 [ext_resource type="Material" uid="uid://bfvp707f6pw50" path="res://materials/emerald_shine.material" id="2_k0lv4"]
 
 [node name="PathArrow" type="Node3D"]
+script = ExtResource("1_n63xa")
 
 [node name="path-arrow" parent="." instance=ExtResource("1_1tyri")]
 
 [node name="Cube_001" parent="path-arrow" index="0"]
 transform = Transform3D(0.343215, 0, 0, 0, 0.29078, 0, 0, 0, 0.629339, 0, 0, -0.895078)
 surface_material_override/0 = ExtResource("2_k0lv4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="path-arrow"]

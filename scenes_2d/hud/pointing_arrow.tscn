@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqhbgk3sotcs8"]
 
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/pointing_arrow.gd" id="1_e8rd1"]
-[ext_resource type="Texture2D" uid="uid://7cnq3g8lxu6y" path="res://icons/arrow-point.svg" id="2_t6n7c"]
+[ext_resource type="Texture2D" uid="uid://cid5xu1ggfx3c" path="res://icons/arrow-point.svg" id="2_t6n7c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rgvqn"]
 

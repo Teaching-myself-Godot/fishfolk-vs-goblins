@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4t4ltvrw8c38"]
+
+[ext_resource type="Texture2D" uid="uid://c8lo08ayeeu1i" path="res://scenes_3d/monsters/thumbnails/fish_chibi.png" id="1_nvxmf"]
+[ext_resource type="Texture2D" uid="uid://cid5xu1ggfx3c" path="res://icons/arrow-point.svg" id="2_l4y1i"]
+
+[node name="MonsterIndicator" type="Node2D"]
+
+[node name="Thumbnail" type="Sprite2D" parent="."]
+texture = ExtResource("1_nvxmf")
+
+[node name="Arrow-point" type="Sprite2D" parent="."]
+modulate = Color(0, 0.823529, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l4y1i")
+offset = Vector2(75, 0)
