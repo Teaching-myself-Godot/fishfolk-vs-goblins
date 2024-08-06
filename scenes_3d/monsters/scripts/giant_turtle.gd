@@ -20,7 +20,7 @@ func _apply_motion(delta):
 			velocity.y = lerp(velocity.y, direction.y * speed, 0.1)
 		else:
 			velocity.y -= delta * gravity * 3
-		rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z) + 0.5 * PI, 0.05) 
+		rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z) + 0.5 * PI, 0.05)
 	else:
 		velocity = Vector3(0.0, velocity.y, 0.0)
 
@@ -62,7 +62,7 @@ func _on_body_entered(body):
 		if $HPBar.hp > 0:
 			velocity.y = 0
 		target.progress = (target.get_parent() as Path3D).curve.get_closest_offset(position) + speed * 2
-	
+
 	if body.is_in_group(Constants.GROUP_NAME_GOBLINS):
 		(body as Goblin).my_riding_monster = self
 

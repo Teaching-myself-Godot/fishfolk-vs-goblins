@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1pr8e463kt3c"]
+[gd_scene load_steps=14 format=3 uid="uid://b1pr8e463kt3c"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n3t1f"]
 [ext_resource type="PackedScene" uid="uid://dqiv18176rqoa" path="res://models/goblin2.blend" id="2_6l0an"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b6jvy6v71hqrg" path="res://models/fish-chibi.blend" id="6_5d4lb"]
 [ext_resource type="PackedScene" uid="uid://cl4ywefxwm4el" path="res://models/flying-fish.blend" id="7_di4qi"]
 [ext_resource type="AudioStream" uid="uid://7lq5i2pw2qml" path="res://music/Intro.wav" id="8_ssocd"]
-[ext_resource type="Script" path="res://scripts/play_tutorial_dialog.gd" id="10_d23cv"]
 
 [sub_resource type="Gradient" id="Gradient_458dc"]
 offsets = PackedFloat32Array(0)
@@ -225,20 +224,8 @@ autostart = true
 stream = ExtResource("8_ssocd")
 volume_db = -20.0
 
-[node name="PlayTutorialDialog" type="AcceptDialog" parent="."]
-title = "Play tutorial"
-initial_position = 1
-size = Vector2i(269, 100)
-ok_button_text = "Yes"
-dialog_text = "Do you want to play the tutorial?"
-dialog_close_on_escape = false
-script = ExtResource("10_d23cv")
-
 [connection signal="timeout" from="SentenceTimer" to="." method="_show_next_sentence"]
 [connection signal="timeout" from="GoblinFadeInDelay" to="." method="_on_goblin_fade_in_delay_timeout"]
 [connection signal="timeout" from="GoblinZoomOutDelay" to="." method="_on_goblin_zoom_out_delay_timeout"]
 [connection signal="timeout" from="GoblinFadeOutDelay" to="." method="_on_goblin_fade_out_delay_timeout"]
 [connection signal="timeout" from="StartMainGameDelay" to="." method="_start_main_game"]
-[connection signal="canceled" from="PlayTutorialDialog" to="." method="_on_play_tutorial_dialog_canceled"]
-[connection signal="confirmed" from="PlayTutorialDialog" to="." method="_on_play_tutorial_dialog_confirmed"]
-[connection signal="custom_action" from="PlayTutorialDialog" to="." method="_on_play_tutorial_dialog_custom_action"]

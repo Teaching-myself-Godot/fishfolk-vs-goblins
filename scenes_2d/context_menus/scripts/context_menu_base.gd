@@ -98,6 +98,7 @@ func open():
 	$MainMenu.show()
 
 
+
 func close():
 	is_open = false
 	$AButton.hide()

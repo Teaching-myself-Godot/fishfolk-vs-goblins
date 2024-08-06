@@ -32,15 +32,18 @@ func _apply_damage_motion(_from_direction : Vector3, _force : float = 1.0):
 func handle_update(delta, frame):
 	if frame == my_frame_cycle or not limit_frames:
 		_apply_motion(delta)
-	
+
 	if attacking and position.distance_to(attack_target) < 1.0:
 		kill_your_darling.emit(crib_under_attack)
 		queue_free()
 
-	$HPBar.position = (
-		CameraUtil.get_label_position(position, Vector3(0, 2.2, 0)) -
-			Vector2(abs($HPBar.max_hp * 0.5), 14)
-	)
+	var pos_2d = CameraUtil.get_label_position(position, Vector3(0, 2.2, 0))
+	$HPBar.position = pos_2d - Vector2(abs($HPBar.max_hp * 0.5), 14)
+	# if not get_viewport().get_visible_rect().has_point(pos_2d):
+		# TODO: show a thumbnail label to indicate monster outside viewport
+	# else:
+		# TODO: hide the thumbnail label to indicate monster outside viewport
+
 	position += velocity * delta
 
 
@@ -63,7 +66,7 @@ func get_hp():
 
 func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
 	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
-	$HPBar.hp -= actual_damage 
+	$HPBar.hp -= actual_damage
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	_apply_damage_motion(from_direction, force)
@@ -89,4 +92,3 @@ func attack(crib : Crib):
 	else:
 		# player must be game over, no more cribs to attack
 		queue_free()
-

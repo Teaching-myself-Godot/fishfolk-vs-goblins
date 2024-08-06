@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf2ha5qruwm47"]
+[gd_scene load_steps=5 format=3 uid="uid://cf2ha5qruwm47"]
 
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_hdhap"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/stage_select_option.gd" id="2_tuiau"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kl0ot"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0ni0"]
+bg_color = Color(0, 0, 0, 0.196078)
+
 [node name="StageSelectOption" type="Button"]
+custom_minimum_size = Vector2(164, 0)
+offset_right = 107.0
+offset_bottom = 27.0
+size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_hdhap")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kl0ot")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p0ni0")
 text = "Stage 1-1"
 script = ExtResource("2_tuiau")
 

@@ -27,8 +27,8 @@ func _shoot():
 		$ShootTimer.start()
 
 func  _is_valid_target(potential_target) -> bool:
-	return ( 
-		super._is_valid_target(potential_target) and 
+	return (
+		super._is_valid_target(potential_target) and
 		potential_target.is_in_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)
 	)
 
@@ -42,8 +42,8 @@ func _point_at(pos : Vector3, target_height : float, interpolate : bool = true):
 		Vector2(0, position.y + launcher_y)
 				.angle_to_point(Vector2(Vector2(position.x, position.z)
 				.distance_to(Vector2(pos.x, pos.z)), pos.y + target_height))
-	) 
-	
+	)
+
 	x_angle = 0.0 if x_angle <= 0.0 else x_angle
 
 	$Launcher.rotation.y = (

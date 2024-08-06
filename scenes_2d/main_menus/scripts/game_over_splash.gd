@@ -15,8 +15,8 @@ func _unhandled_input(_event):
 		return
 
 	if (
-		InputUtil.is_just_released("start") or 
-		InputUtil.is_just_released("confirm") or 
+		InputUtil.is_just_released("start") or
+		InputUtil.is_just_released("confirm") or
 		InputUtil.is_just_released("cancel")
 	):
 		close_gameover_splash.emit()
@@ -26,4 +26,3 @@ func _on_resize():
 	texture.width = get_viewport().size.x
 	texture.height = get_viewport().size.y
 	$Label.size = get_viewport().size
-

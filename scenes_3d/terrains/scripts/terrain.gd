@@ -21,7 +21,7 @@ func _process(_delta):
 	var landscape_coloration_radiuses : Array[float] = []
 	var landscape_coloration_fades : Array[float] = []
 	var landscape_coloration_colors : Array[Color] = []
-	
+
 	var marked_for_removal = []
 	for landscape_coloration : LandscapeColoration in TerrainShaderParams.landscape_colorations:
 		landscape_coloration.fade += landscape_coloration.fade_progression

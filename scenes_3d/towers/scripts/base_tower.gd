@@ -84,8 +84,8 @@ func _point_at_first_monster_within_range():
 
 func _is_valid_target(potential_target) -> bool:
 	return  (
-			potential_target and 
-			is_instance_valid(potential_target) and 
+			potential_target and
+			is_instance_valid(potential_target) and
 			potential_target.get_hp() > 0 and
 			_is_within_range(potential_target.position)
 	)

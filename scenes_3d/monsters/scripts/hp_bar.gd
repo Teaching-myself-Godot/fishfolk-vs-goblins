@@ -47,4 +47,3 @@ func _process(_delta):
 		$Control/DamageLabel.position = Vector2.ZERO
 		dmg_sum = 0
 	queue_redraw()
-

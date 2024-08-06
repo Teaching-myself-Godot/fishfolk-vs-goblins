@@ -3,7 +3,6 @@ extends Sprite2D
 @export var sentences : Array[String] = []
 
 var MainGame = preload("res://goblins_vs_fishfolk.tscn")
-var TutorialScene = preload("res://scenes_3d/stages/tutorial_stage.tscn")
 var ToastScene = preload("res://scenes_2d/hud/toast.tscn")
 
 var goblin_fading_in = false
@@ -39,7 +38,7 @@ func _on_resize():
 func _process(_delta):
 	if goblin_fading_in:
 		if $SubViewportContainer.modulate.a < 1.0:
-			$SubViewportContainer.modulate.a += 0.002 
+			$SubViewportContainer.modulate.a += 0.002
 		if $Splash.modulate.a > 0.0:
 			$Splash.modulate.a -= 0.01
 
@@ -48,8 +47,6 @@ func _process(_delta):
 		cam_z_velocity += 0.000025
 
 	if goblin_fading_out:
-		if not $PlayTutorialDialog.visible:
-			$PlayTutorialDialog.show()
 		if $SubViewportContainer.modulate.a > 0.0:
 			$SubViewportContainer.modulate.a -= 0.01
 		if $Splash.modulate.a < 1.0:
@@ -62,7 +59,6 @@ func _ready():
 	_show_next_sentence()
 	cam = $SubViewportContainer/SubViewport/Camera3D
 	$AudioStreamPlayer.play()
-	$PlayTutorialDialog.add_button("No", true, "denied")
 
 
 func _on_goblin_fade_in_delay_timeout():
@@ -81,29 +77,10 @@ func _start_main_game():
 	get_tree().call_deferred("change_scene_to_packed", MainGame)
 
 
-func _start_tutorial():
-	get_tree().call_deferred("change_scene_to_packed", TutorialScene)
-
-
 func _unhandled_input(_event):
 	if (
-		InputUtil.is_just_released("start") or 
-		InputUtil.is_just_released("confirm") or 
+		InputUtil.is_just_released("start") or
+		InputUtil.is_just_released("confirm") or
 		InputUtil.is_just_released("cancel")
 	):
-		$PlayTutorialDialog.show()
-
-
-func _on_play_tutorial_dialog_canceled():
-	$PlayTutorialDialog.hide()
-
-
-func _on_play_tutorial_dialog_confirmed():
-	_start_tutorial()
-
-
-func _on_play_tutorial_dialog_custom_action(action):
-	$PlayTutorialDialog.hide()
-	if action == "denied":
 		_start_main_game()
-

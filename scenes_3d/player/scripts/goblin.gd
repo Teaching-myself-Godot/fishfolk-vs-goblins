@@ -163,8 +163,10 @@ func _handle_context_menus():
 		# open the context menu if requested and valid,
 		# else handle any open context menu
 		if _my_button_just_pressed("confirm") and context_menu.visible and not context_menu.is_open:
-			confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 			context_menu.open()
+			if player_num == 0:
+				confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES * 2
+				Input.warp_mouse(context_menu.position - Vector2(0, 20))
 		elif context_menu.is_open:
 			_handle_context_menu_arrow_input(context_menu)
 			_handle_context_menu_confirm(context_menu)

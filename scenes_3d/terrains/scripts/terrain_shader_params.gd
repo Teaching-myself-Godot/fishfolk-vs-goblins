@@ -34,4 +34,3 @@ func add_landscape_coloration(lc : LandscapeColoration):
 
 func drop_landscape_coloration(lc : LandscapeColoration):
 	landscape_colorations.erase(lc)
-
