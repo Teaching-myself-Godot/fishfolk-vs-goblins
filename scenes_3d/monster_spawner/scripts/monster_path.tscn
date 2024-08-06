@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78vb4eh3m7iq"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_path.gd" id="1_b4qyq"]
+
+[sub_resource type="Curve3D" id="Curve3D_h7rh1"]
+resource_local_to_scene = true
+
+[node name="MonsterPath" type="Path3D"]
+curve = SubResource("Curve3D_h7rh1")
+script = ExtResource("1_b4qyq")
