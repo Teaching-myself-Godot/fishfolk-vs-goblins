@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://cigwhcn8pypbv"]
 
 [ext_resource type="Script" path="res://scenes_2d/scripts/keyboard_hints.gd" id="1_33ci1"]
-[ext_resource type="Texture2D" uid="uid://c780sbvt3jt2a" path="res://icons/keyboard/keyboard-base.svg" id="1_tv2yw"]
-[ext_resource type="Texture2D" uid="uid://dnrae3qlr4fwx" path="res://icons/keyboard/s-down.svg" id="2_bk6bw"]
-[ext_resource type="Texture2D" uid="uid://d1r8iorun28pe" path="res://icons/keyboard/a-down.svg" id="3_kdha3"]
-[ext_resource type="Texture2D" uid="uid://sxjyq7rol36n" path="res://icons/keyboard/d-down.svg" id="4_sxr2o"]
-[ext_resource type="Texture2D" uid="uid://c75srbp13lvn8" path="res://icons/keyboard/w-down.svg" id="5_c6gmi"]
-[ext_resource type="Texture2D" uid="uid://cbfni4vrkllpc" path="res://icons/keyboard/shift-down.svg" id="6_02if2"]
-[ext_resource type="Texture2D" uid="uid://cnwwdamvunbed" path="res://icons/keyboard/space-down.svg" id="7_qtsdv"]
-[ext_resource type="Texture2D" uid="uid://c6okic1m0tjuq" path="res://icons/keyboard/esc-down.svg" id="9_glns0"]
+[ext_resource type="Texture2D" uid="uid://dxh0t67y8udeq" path="res://icons/keyboard/keyboard-base.png" id="2_xjlqj"]
+[ext_resource type="Texture2D" uid="uid://d3q0ug0c8jvlp" path="res://icons/keyboard/s-down.png" id="3_5tkbq"]
+[ext_resource type="Texture2D" uid="uid://4hihvmwqp2y1" path="res://icons/keyboard/a-down.png" id="4_c4e6q"]
+[ext_resource type="Texture2D" uid="uid://d30b83cbifbt6" path="res://icons/keyboard/d-down.png" id="5_ptxnp"]
+[ext_resource type="Texture2D" uid="uid://cylbu7t52ggtd" path="res://icons/keyboard/w-down.png" id="6_e5cfg"]
+[ext_resource type="Texture2D" uid="uid://dt13l1p4lsotd" path="res://icons/keyboard/shift-down.png" id="7_t0pjc"]
+[ext_resource type="Texture2D" uid="uid://cnx50wolcwxge" path="res://icons/keyboard/space-down.png" id="8_e0yc8"]
+[ext_resource type="Texture2D" uid="uid://c2pqiqwq5cc4o" path="res://icons/keyboard/esc-down.svg" id="9_glns0"]
 
 [node name="KeyboardHints" type="MarginContainer"]
 anchors_preset = -1
@@ -26,37 +26,37 @@ script = ExtResource("1_33ci1")
 
 [node name="Keyboard-base" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_tv2yw")
+texture = ExtResource("2_xjlqj")
 
 [node name="S-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("2_bk6bw")
+texture = ExtResource("3_5tkbq")
 
 [node name="A-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("3_kdha3")
+texture = ExtResource("4_c4e6q")
 
 [node name="D-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("4_sxr2o")
+texture = ExtResource("5_ptxnp")
 
 [node name="W-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("5_c6gmi")
+texture = ExtResource("6_e5cfg")
 
 [node name="Shift-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("6_02if2")
+texture = ExtResource("7_t0pjc")
 
 [node name="Space-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("7_qtsdv")
+texture = ExtResource("8_e0yc8")
 
 [node name="Esc-down" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
