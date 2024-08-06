@@ -184,35 +184,46 @@ Next up is a listing of the milestones I tagged (except milestone 0 of course).
 - implement upgrade stats on tower
 - increase prices in tower menu options per tower
 
-### Milestone 19 - Better tutorial
-- [x] create 2D arrow scene
-- [x] create a ChecklistItem scene
-- [x] use dynamically drawn arrows to point from things --> at things
-- [x] more details by using an indicator box with these arrow
-- [x] make keyboard and mouse SVG drawings
-- [ ] make controller SVG drawings
-- [ ] explain controls visually with SVG drawings
-- [ ] use checklist items scene to keep track of lessons
-- [ ] show a thumbnail label to indicate monster outside viewport
+### Milestone 19 - Better tutorial for Keyboard and Mouse
+- create 2D arrow scene
+- use dynamically drawn arrows to point from things --> at things
+- more details by using an indicator box with these arrow
+- make keyboard and mouse SVG drawings
+- explain controls visually with SVG drawings
+- [ ] reorder README, Milestones new to old
 
-### Milestone 20 - Monster wave modes
-- [ ] remove infinite boolean from MonsterWave
-- [ ] add A dedicated EndlessMonsterWave
-- [ ] add CountdownMonsterWave showing countdown time on label
-- [ ] MonsterWave shows amount of monsters in wave minus amount defeated as total
-- [ ] Make a start with turning "Stage 1-1" into "Story" mode (mostly numbered waves)
-- [ ] Rename "Stage 1-2" to "Endurance" mode (all endless waves)
-- [ ] Make a start with turning "Stage 1-3" to "Survival" (all time-out based waves)
+### Milestone 20 - Add gamepad mode to tutorial (up next)
+
+This milestone will also include fixes inspired by the feedback I got in: [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
+
+- [ ] Bugfix: spawn monsters after building 1st tower (fixes sequence)
+- [ ] Improvement: drop the sequence about opening a pause menu with Esc
+- [ ] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
+- [ ] --> design a new sequence to teach about closing menus (just a short hint, optional)
+- [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
+- [ ] make gamepad svg's
+- [ ] replace keyboard and mouse hints with gamepad hints
+- [ ] add a start button for gamepad in web demo
+
+
+## Short to Middle term Wishlist
+- work on balance in current story mode
+- show a thumbnail label to indicate monster outside viewport
+- show path of the wave
+- Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
+- Re-add leave game option to pause menu and using "select / -"
+- Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
+- Add survival time to survival mode
+- Drop 3rd stage
+
 
 ## Future ideas...
-- replace confirm modals with 2D scene
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
-- Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-- Enrich [the back story](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
-- Make camera look behind player more when zoomed in (only single player)
 - Control a single tower via extra 3D viewport
-- Re-add leave game option to pause menu
+- Create a high-scores server and a submit button
+- Make camera look behind player more when zoomed in (only single player)
 - add blunt (=area) and piercing damage types
 - add elemental damage maybe?
 - create a cute goblin village (model a small house, 3 of which makes a village)
