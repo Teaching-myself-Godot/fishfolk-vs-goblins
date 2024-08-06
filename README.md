@@ -57,7 +57,7 @@ This milestone will also include fixes inspired by the feedback I got in: [Impro
 
 ## Milestones in the creative process
 
-### [Milestone 19](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-19) - Better tutorial for Keyboard and Mouse
+### [Milestone 19](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-19) - Better tutorial for Keyboard and Mouse (August 6th 2024)
 
 - create 2D arrow scene
 - use dynamically drawn arrows to point from things --> at things
