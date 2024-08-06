@@ -37,12 +37,25 @@ func handle_update(delta, frame):
 		kill_your_darling.emit(crib_under_attack)
 		queue_free()
 
-	var pos_2d = CameraUtil.get_label_position(position, Vector3(0, 2.2, 0))
-	$HPBar.position = pos_2d - Vector2(abs($HPBar.max_hp * 0.5), 14)
-	# if not get_viewport().get_visible_rect().has_point(pos_2d):
-		# TODO: show a thumbnail label to indicate monster outside viewport
-	# else:
-		# TODO: hide the thumbnail label to indicate monster outside viewport
+	$HPBar.position = (
+		CameraUtil.get_label_position(position, Vector3(0, 2.2, 0)) -
+		Vector2(abs($HPBar.max_hp * 0.5), 14)
+	)
+
+	var pos_2d = CameraUtil.get_label_position(position)
+	if not get_viewport().get_visible_rect().has_point(pos_2d):
+		if CameraUtil.is_behind_camera(position):
+			var vp = get_viewport().get_visible_rect().size
+			$MonsterIndicator.position = Vector2(vp.x * 0.5, vp.y - 50)
+			$"MonsterIndicator/Arrow-point".rotation_degrees = 90
+		else:
+			var edge_pos = CameraUtil.keep_in_viewport(pos_2d)
+			var ang = edge_pos.angle_to_point(pos_2d)
+			$"MonsterIndicator/Arrow-point".rotation = ang
+			$MonsterIndicator.position = edge_pos - Vector2.RIGHT.rotated(ang) * 50
+		$MonsterIndicator.show()
+	else:
+		$MonsterIndicator.hide()
 
 	position += velocity * delta
 

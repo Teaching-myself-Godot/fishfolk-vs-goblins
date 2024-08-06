@@ -28,3 +28,4 @@ func start_wave(wave_number : int):
 		if is_instance_valid(wave) and wave.wave_number == wave_number:
 			wave.start()
 			wave.show()
+			$MonsterPath.display()

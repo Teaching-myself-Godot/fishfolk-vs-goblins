@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmb35ovaohgqr"]
+
+[ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/path_preview.gd" id="1_ikale"]
+
+[node name="PathPreview" type="PathFollow3D"]
+loop = false
+script = ExtResource("1_ikale")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

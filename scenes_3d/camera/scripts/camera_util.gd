@@ -9,11 +9,17 @@ func get_cam() -> MyCamera:
 	return get_cam_pivot().get_child(0)
 
 
-func get_label_position(pos : Vector3, trans : Vector3 = Vector3(0, 0, 0)):
-	return get_cam().unproject_position(
-			pos + trans.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y)
+func is_behind_camera(pos : Vector3) -> bool:
+	return get_cam().is_position_behind(pos)
+
+
+func get_label_position(pos_in : Vector3, trans : Vector3 = Vector3.ZERO):
+	var pos = (
+		pos_in + trans.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y) if trans else
+		pos_in
 	)
 
+	return get_cam().unproject_position(pos)
 
 func keep_in_viewport(pos : Vector2) -> Vector2:
 	var bounded_to = pos

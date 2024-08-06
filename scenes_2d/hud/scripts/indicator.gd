@@ -38,17 +38,23 @@ func _get_arrow_from_pos() -> Vector2:
 		_:
 			return Vector2(size.x * 0.5, size.y - 3)
 
+func _get_global_to():
+	if is_instance_valid(target):
+		if CameraUtil.is_behind_camera(target.position):
+			var vp = get_viewport().get_visible_rect().size
+			return Vector2(vp.x * 0.5, vp.y)
+		else:
+			return CameraUtil.keep_in_viewport(
+				CameraUtil.get_label_position(target.position, Vector3.UP * height_3d)
+			)
+	elif is_instance_valid(target_2d):
+		return CameraUtil.keep_in_viewport(target_2d.position + align_2d)
+	else:
+		return Vector2(0, 0)
 
 func _process(_delta: float) -> void:
 	var global_from = position + _get_arrow_from_pos()
-	var global_to = (
-		CameraUtil.keep_in_viewport(
-				CameraUtil.get_label_position(target.position, Vector3.UP * height_3d)
-		) if is_instance_valid(target) else (
-				CameraUtil.keep_in_viewport(target_2d.position + align_2d) if is_instance_valid(target_2d)
-				else Vector2(0, 0)
-		)
-	)
+	var global_to = _get_global_to()
 	$Circle.position = global_from - position
 	$PointingArrow.to = global_to - position
 	$PointingArrow.from = global_from - position
