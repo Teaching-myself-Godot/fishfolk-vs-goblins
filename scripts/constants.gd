@@ -1,6 +1,5 @@
 extends Node
 
-const GROUP_NAME_ARROW_2D = "arrow-2d"
 const GROUP_NAME_MONSTERS = "monsters"
 const GROUP_NAME_GOBLINS = "goblins"
 const GROUP_NAME_TREES = "trees"
