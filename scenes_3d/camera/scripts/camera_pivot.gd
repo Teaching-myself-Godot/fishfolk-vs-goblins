@@ -34,7 +34,7 @@ func _process(_delta):
 		var mouse_pos = get_viewport().get_mouse_position()
 		var delta = drag_start_x - mouse_pos.x
 		drag_start_x = mouse_pos.x
-		rotate(Vector3.UP, delta / get_viewport().size.x)
+		rotate(Vector3.UP, delta * 0.005)
 
 		var viewport_right = get_viewport().size.x - 5
 		if mouse_pos.x < 5:
