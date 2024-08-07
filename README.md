@@ -26,7 +26,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - _sounds_: tower sinking back into the ground rumble
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
-- Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 - Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
 - Add survival time to survival mode
 - Drop 3rd stage
