@@ -19,7 +19,10 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist
-- work on balance in current story mode
+- _sounds_: confirm a build item from context menu / upgrade item
+- _sounds_: spending gems
+- _sounds_: tower rising from ground rumble
+- _sounds_: tower sinking back into the ground rumble
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
@@ -44,9 +47,9 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 This milestone will also include fixes inspired by the feedback I got in: [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
 
 - [x] Improvement: drop the sequence about opening a pause menu with Esc
-- [ ] Bugfix: spawn monsters after building 1st tower (fixes sequence)
-- [ ] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
-- [ ] --> design a new sequence to teach about closing menus (just a short hint, optional)
+- [x] Bugfix: spawn monsters after building 1st tower (fixes sequence)
+- [x] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
+- [ ] add dismantle + refund hint
 - [ ] make gamepad svg's
 - [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
 - [ ] replace keyboard and mouse hints with gamepad hints

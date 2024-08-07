@@ -41,7 +41,6 @@ var _awaiting_goblin_reaches_tree = true
 var _tree_menu : TreeContextMenu = null
 var _awaiting_tree_menu = true
 var _awaiting_tree_sub_menu = false
-var _awaiting_cancel_clicked = false
 var _awaiting_tree_menu_closed = false
 
 var _awaiting_goblin_reaches_gems = true
@@ -68,6 +67,7 @@ func _on_gem_pouch_change(_gems : int, crystals : int):
 			$GemPouch.collect_magical_crystal()
 		$TutorialPlaybook/FreePlayIndicator.start(MEDIUM_INDICATOR_TIME)
 		$GemPouch/Cribs.show()
+
 
 func _on_drop_magical_crystal(pos : Vector3):
 	var new_crystal = super._on_drop_magical_crystal(pos)
@@ -136,6 +136,12 @@ func _handle_mousewheel_hints():
 		$TutorialPlaybook/ShowNextMouseHintTimer.start()
 
 
+func _spawn_builder_gems():
+	for _i in range(10):
+		_on_drop_builder_gem(
+			$TutorialPlaybook/BuilderGemIndicator.target.position
+		)
+
 
 func _process(_delta):
 	if not main_player_cid in goblin_map:
@@ -184,25 +190,9 @@ func _process(_delta):
 		_tree_menu.current_menu != TreeContextMenu.MAIN_MENU_NAME
 	):
 		_awaiting_tree_sub_menu = false
-		_awaiting_cancel_clicked = true
-		$TutorialPlaybook/BuilderGemIndicator.start(LONG_INDICATOR_TIME)
-		for _i in range(10):
-			_on_drop_builder_gem(
-				$TutorialPlaybook/BuilderGemIndicator.target.position
-			)
-		if mode == TutorialMode.KEYBOARD:
-			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
-			$TutorialPlaybook/RightMouseClickHintTimer.start()
-
-	if (
-		_awaiting_cancel_clicked and _tree_menu.is_open and
-		_tree_menu.current_menu == TreeContextMenu.MAIN_MENU_NAME
-	):
-		_awaiting_cancel_clicked = false
-		_awaiting_tree_menu_closed = true
-		if mode == TutorialMode.KEYBOARD:
-			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
-			$TutorialPlaybook/RightMouseClickHintTimer.start()
+		$TutorialPlaybook/ToggleMouseHintClickTimer.stop()
+		$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
+		$TutorialPlaybook/MouseHints.fading = true
 
 	if (
 		_awaiting_tree_menu_closed and
@@ -214,27 +204,27 @@ func _process(_delta):
 
 	if (
 		_awaiting_goblin_reaches_gems and
-		not $TutorialPlaybook/BuilderGemIndicator.fading
-		and _goblin.position.distance_to($TutorialPlaybook/BuilderGemIndicator.target.position) <
+		_goblin.position.distance_to($TutorialPlaybook/BuilderGemIndicator.target.position) <
 				$TutorialPlaybook/BuilderGemIndicator.radius_3d
 	):
 		$GemPouch.show()
 		$GemPouch/Cribs.hide()
 		$GemPouch/MagicalGems.hide()
 		$GemPouch.add_to_group(Constants.GROUP_NAME_HUD_ITEM)
-		_start_wave(2)
 		$TutorialPlaybook/BuilderGemIndicator.finish()
+		$TutorialPlaybook/TreeIndicator.start(LONG_INDICATOR_TIME)
+		$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
+		_awaiting_tree_menu = true
 
 	if (
 		_awaiting_first_wave and
 		not get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).is_empty()
 	):
 		_awaiting_first_wave = false
-		$TutorialPlaybook/ChibiIndicator.target = get_tree().get_first_node_in_group(Constants.GROUP_NAME_MONSTERS)
-		$TutorialPlaybook/ChibiIndicator.start(LONG_INDICATOR_TIME)
-		$TutorialPlaybook/TreeIndicator2.start(LONG_INDICATOR_TIME)
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):
 			tree.add_to_group(Constants.GROUP_NAME_TREES)
+		_mk_toast("Two Chibi fish have arrived!", 3, true)
+		$TutorialPlaybook/ArrowTowerIndicatorTimer.start()
 
 	if (
 		_awaiting_arrow_tower and
@@ -242,12 +232,17 @@ func _process(_delta):
 	):
 		_awaiting_arrow_tower = false
 		var tower_node = get_tree().get_first_node_in_group(Constants.GROUP_NAME_TOWERS)
-		$TutorialPlaybook/ChibiIndicator.finish()
-		$TutorialPlaybook/TreeIndicator2.finish()
 		$TutorialPlaybook/ArrowTowerIndicator.target = tower_node
-		$TutorialPlaybook/ArrowTowerIndicator.start(SHORT_INDICATOR_TIME)
 		$TutorialPlaybook/StatsIndicator.target = tower_node
 		$TutorialPlaybook/BuyUpgradeIndicator.target = tower_node
+		_start_wave(2)
+
+	if (
+		not $TutorialPlaybook/FreePlayIndicator.fading
+		and _goblin.position.distance_to($TutorialPlaybook/FreePlayIndicator.target.position) <
+				$TutorialPlaybook/FreePlayIndicator.radius_3d
+	):
+		$TutorialPlaybook/FreePlayIndicator.finish()
 
 
 func _should_show_next_keyboard_hint(kh : KeyboardHints.KeyboardHint, kp : int) -> bool:
@@ -262,7 +257,6 @@ func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
 
 func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
 	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
-
 	if InputUtil.player_map.size() == 1:
 		main_player_cid = num as InputUtil.ControllerID
 		if num == InputUtil.ControllerID.KEYBOARD:
@@ -315,8 +309,9 @@ func _on_show_keyboard_hints_timer_timeout() -> void:
 
 
 func _on_fishfolk_arrival_indicator_done() -> void:
-	$TutorialPlaybook/TreeIndicator.start(LONG_INDICATOR_TIME)
-	$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
+	$TutorialPlaybook/BuilderGemIndicator.start(LONG_INDICATOR_TIME)
+	_spawn_builder_gems()
+
 
 
 func _on_toggle_mouse_hint_click_timer_timeout() -> void:
@@ -324,10 +319,6 @@ func _on_toggle_mouse_hint_click_timer_timeout() -> void:
 		MouseHints.MouseHint.NONE if $TutorialPlaybook/MouseHints.current_hint == MouseHints.MouseHint.LEFT_CLICK
 		else MouseHints.MouseHint.LEFT_CLICK
 	)
-
-
-func _on_right_mouse_click_hint_timer_timeout() -> void:
-	$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.RIGHT_CLICK
 
 
 func _on_arrow_tower_indicator_done() -> void:
@@ -340,3 +331,7 @@ func _on_free_play_indicator_done() -> void:
 
 func _on_crib_count_indicator_done() -> void:
 	_mk_toast("That rounds up the tutorial!", 3, true)
+
+
+func _on_arrow_tower_indicator_timer_timeout() -> void:
+	$TutorialPlaybook/ArrowTowerIndicator.start(SHORT_INDICATOR_TIME)
