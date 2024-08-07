@@ -340,17 +340,3 @@ func _on_free_play_indicator_done() -> void:
 
 func _on_crib_count_indicator_done() -> void:
 	_mk_toast("That rounds up the tutorial!", 3, true)
-	$TutorialPlaybook/KeyboardHints.fading = false
-	$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
-	$TutorialPlaybook/ShowEscHintTimer.start()
-
-
-func _on_show_esc_hint_timer_timeout() -> void:
-	$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.ESC
-	$TutorialPlaybook/PauseButtonIndicator.start(LONG_INDICATOR_TIME)
-
-func _on_goblin_request_pause_menu():
-	super._on_goblin_request_pause_menu()
-	if $TutorialPlaybook/KeyboardHints.current_hint == KeyboardHints.KeyboardHint.ESC:
-		$TutorialPlaybook/KeyboardHints.fading = true
-		$TutorialPlaybook/PauseButtonIndicator.finish()

@@ -43,16 +43,16 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 This milestone will also include fixes inspired by the feedback I got in: [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
 
+- [x] Improvement: drop the sequence about opening a pause menu with Esc
 - [ ] Bugfix: spawn monsters after building 1st tower (fixes sequence)
-- [ ] Improvement: drop the sequence about opening a pause menu with Esc
 - [ ] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
 - [ ] --> design a new sequence to teach about closing menus (just a short hint, optional)
-- [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
 - [ ] make gamepad svg's
+- [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
 - [ ] replace keyboard and mouse hints with gamepad hints
 - [ ] rebuild the web demo, optimize with simple overrides in separate files
 - [ ] add a start button for gamepad in web demo
-
+- [ ] write a new devlog with screen recording
 
 ## Milestones in the creative process
 
