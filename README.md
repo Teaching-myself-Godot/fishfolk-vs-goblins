@@ -19,7 +19,11 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist
-- work on balance in current story mode
+- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
+- _sounds_: confirm a build item from context menu / upgrade item
+- _sounds_: spending gems
+- _sounds_: tower rising from ground rumble
+- _sounds_: tower sinking back into the ground rumble
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leb0hp0/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
@@ -39,22 +43,22 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - create a cute goblin village (model a small house, 3 of which makes a village)
 - 3D cutscenes with more back story?
 
-## Up next - Add gamepad mode to tutorial (up next)
-
-This milestone will also include fixes inspired by the feedback I got in: [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
-
-- [ ] Bugfix: spawn monsters after building 1st tower (fixes sequence)
-- [ ] Improvement: drop the sequence about opening a pause menu with Esc
-- [ ] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
-- [ ] --> design a new sequence to teach about closing menus (just a short hint, optional)
-- [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- [ ] make gamepad svg's
-- [ ] replace keyboard and mouse hints with gamepad hints
-- [ ] rebuild the web demo, optimize with simple overrides in separate files
-- [ ] add a start button for gamepad in web demo
-
-
 ## Milestones in the creative process
+
+### Up next - Gamepad tutorial / Integrated web build
+- [ ] make gamepad svg's
+- [ ] copy keyboard and mouse hints and turn into gamepad hints
+- [ ] rebuild the web demo, optimize with simple overrides in separate files (not separate branch)
+- [ ] add a start button for gamepad in web demo
+- [ ] write a new devlog with screen recording (about my first jam leading to many improvements)
+
+
+### [Milestone 21](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-21) - Tutorial sequence feedback from [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 8th 2024)
+
+- Improvement: drop the sequence about opening a pause menu with Esc
+- Bugfix: spawn monsters after building 1st tower (fixes sequence)
+- Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
+- add dismantle + refund hint
 
 ### [Milestone 20](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-20) - Be fair! [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 7th 2024)
 

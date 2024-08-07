@@ -30,7 +30,7 @@ InputUtil="*res://scripts/input_util.gd"
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=768
+window/size/viewport_height=720
 
 [editor]
 

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="6_covta"]
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="7_ehshq"]
 [ext_resource type="PackedScene" uid="uid://bsmsv2m50sjob" path="res://scenes_3d/monster_spawner/monster_spawner.tscn" id="9_j5mdb"]
-[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="10_euscd"]
+[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/scripts/monster_path.tscn" id="10_euscd"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="11_7ylue"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_nssor"]
 [ext_resource type="PackedScene" uid="uid://cigwhcn8pypbv" path="res://scenes_2d/keyboard_hints.tscn" id="13_8ic6q"]
@@ -564,44 +564,6 @@ text = "You need builder gems to build towers"
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
-[node name="TreeIndicator2" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -468.0
-offset_top = 16.0
-offset_right = -18.0
-offset_bottom = 112.0
-grow_horizontal = 0
-target = NodePath("../../TreesAndCribsAndSuch/palm-tree4")
-radius_3d = 2.5
-
-[node name="Label" type="Label" parent="TutorialPlaybook/TreeIndicator2"]
-layout_mode = 2
-text = "
-Build an arrow tower to stop them
-
-"
-label_settings = SubResource("LabelSettings_6popn")
-horizontal_alignment = 1
-
-[node name="ChibiIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 466.0
-offset_bottom = 112.0
-grow_horizontal = 1
-radius_3d = 1.0
-
-[node name="Label" type="Label" parent="TutorialPlaybook/ChibiIndicator"]
-layout_mode = 2
-text = "Two Chibi Fish have arrived!"
-label_settings = SubResource("LabelSettings_6popn")
-horizontal_alignment = 1
-
 [node name="ArrowTowerIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
 visible = false
 anchors_preset = 0
@@ -688,6 +650,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FreePlayIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -715,42 +678,50 @@ and upgrading them
 label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
-[node name="PauseButtonIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
-
-[node name="PointingArrow" parent="TutorialPlaybook/PauseButtonIndicator" index="0"]
-visible = false
-
-[node name="Circle" parent="TutorialPlaybook/PauseButtonIndicator" index="1"]
-visible = false
-
-[node name="Label" type="Label" parent="TutorialPlaybook/PauseButtonIndicator"]
-layout_mode = 2
-text = "You can continue, or exit 
-the stage with the pause button.
-"
-label_settings = SubResource("LabelSettings_6popn")
-horizontal_alignment = 1
-
 [node name="CribCountIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target_2d") instance=ExtResource("13_8nnp5")]
-anchors_preset = 4
-anchor_left = 0.0
+visible = false
+anchors_preset = 8
 anchor_top = 0.5
-anchor_right = 0.0
 anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -84.0
-offset_right = 470.0
-offset_bottom = 33.0
-grow_horizontal = 1
+offset_left = -216.0
+offset_top = 44.0
+offset_right = 234.0
+offset_bottom = 161.0
 grow_vertical = 2
+arrow_position = 2
 target_2d = NodePath("../../GemPouch")
-align_2d = Vector2(124, -300)
+align_2d = Vector2(222, -263)
 
 [node name="Label" type="Label" parent="TutorialPlaybook/CribCountIndicator"]
 layout_mode = 2
 text = "
 ... Because if this crib counter
 reaches zero, all is lost!
+
+"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
+[node name="DismantleIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 467.0
+offset_bottom = 193.0
+grow_horizontal = 1
+arrow_position = 3
+height_3d = 4.0
+radius_3d = 3.0
+
+[node name="Label" type="Label" parent="TutorialPlaybook/DismantleIndicator"]
+layout_mode = 2
+text = "
+Short on funds?
+
+You can dismantle a tower for a
+small refund using the tower menu!
 
 "
 label_settings = SubResource("LabelSettings_6popn")
@@ -777,11 +748,7 @@ one_shot = true
 wait_time = 0.7
 one_shot = true
 
-[node name="RightMouseClickHintTimer" type="Timer" parent="TutorialPlaybook"]
-wait_time = 0.7
-one_shot = true
-
-[node name="ShowEscHintTimer" type="Timer" parent="TutorialPlaybook"]
+[node name="ArrowTowerIndicatorTimer" type="Timer" parent="TutorialPlaybook"]
 wait_time = 3.0
 one_shot = true
 
@@ -791,15 +758,14 @@ one_shot = true
 [connection signal="done" from="TutorialPlaybook/ArrowTowerIndicator" to="." method="_on_arrow_tower_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/FreePlayIndicator" to="." method="_on_free_play_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/CribCountIndicator" to="." method="_on_crib_count_indicator_done"]
+[connection signal="done" from="TutorialPlaybook/DismantleIndicator" to="." method="_on_dismantle_indicator_done"]
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextMouseHintTimer" to="." method="_show_next_mouse_hint"]
 [connection signal="timeout" from="TutorialPlaybook/ToggleMouseHintClickTimer" to="." method="_on_toggle_mouse_hint_click_timer_timeout"]
-[connection signal="timeout" from="TutorialPlaybook/RightMouseClickHintTimer" to="." method="_on_right_mouse_click_hint_timer_timeout"]
-[connection signal="timeout" from="TutorialPlaybook/ShowEscHintTimer" to="." method="_on_show_esc_hint_timer_timeout"]
+[connection signal="timeout" from="TutorialPlaybook/ArrowTowerIndicatorTimer" to="." method="_on_arrow_tower_indicator_timer_timeout"]
 
 [editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/ChibiWave1"]
 [editable path="MonsterSpawner3/FlyingWave3"]
-[editable path="TutorialPlaybook/PauseButtonIndicator"]
