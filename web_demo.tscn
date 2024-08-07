@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://ekqx2g2sid3h"]
+
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/web_demo.gd" id="1_fmj5s"]
+[ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://scenes_2d/hud/debugbar.tscn" id="2_betl8"]
+[ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="2_kff0h"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_webdemo.gd" id="3_0esvg"]
+[ext_resource type="PackedScene" uid="uid://d1f05t2rwtgo1" path="res://scenes_3d/monsters/fish_chibi_low_poly.scn" id="4_t8lfq"]
+[ext_resource type="PackedScene" uid="uid://bcv2x4vqvwskc" path="res://scenes_3d/monsters/giant_turtle.scn" id="6_amhp8"]
+[ext_resource type="Script" path="res://scenes_2d/hud/debugbar_webdemo.gd" id="8_up5m3"]
+[ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="9_14doo"]
+[ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="11_b532c"]
+[ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_q35mt"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="16_uu3m5"]
+
+[sub_resource type="Curve3D" id="Curve3D_6om3x"]
+resource_local_to_scene = true
+
+[sub_resource type="Curve3D" id="Curve3D_2dwet"]
+resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_rhwaa"]
+font = ExtResource("16_uu3m5")
+font_size = 24
+
+[node name="WebDemo" type="Node"]
+script = ExtResource("1_fmj5s")
+
+[node name="Tutorial" parent="." instance=ExtResource("2_kff0h")]
+script = ExtResource("3_0esvg")
+
+[node name="MonsterPath" parent="Tutorial/MonsterSpawner" index="0"]
+curve = SubResource("Curve3D_6om3x")
+
+[node name="ChibiWave1" parent="Tutorial/MonsterSpawner" index="1"]
+Monster = ExtResource("4_t8lfq")
+
+[node name="ChibiWave2" parent="Tutorial/MonsterSpawner" index="2"]
+Monster = ExtResource("4_t8lfq")
+
+[node name="TurtleWave2" parent="Tutorial/MonsterSpawner" index="3" instance=ExtResource("12_q35mt")]
+Monster = ExtResource("6_amhp8")
+wave_number = 3
+monster_count = 1
+monster_speed = 2.0
+monster_hp = 30
+
+[node name="Control" parent="Tutorial/MonsterSpawner/TurtleWave2" index="0"]
+offset_top = -160.0
+offset_bottom = -104.0
+
+[node name="MonsterSpawner3" parent="Tutorial" index="6"]
+visible = false
+
+[node name="MonsterPath" parent="Tutorial/MonsterSpawner3" index="0"]
+visible = false
+curve = SubResource("Curve3D_2dwet")
+
+[node name="FlyingWave3" parent="Tutorial/MonsterSpawner3" index="1"]
+monster_count = 0
+
+[node name="DirectionalLight3D" parent="Tutorial/SunAndSky" index="1"]
+light_color = Color(1, 0.756863, 0.752941, 1)
+
+[node name="TuneNo1Player" type="AudioStreamPlayer" parent="Tutorial"]
+stream = ExtResource("11_b532c")
+volume_db = -20.0
+
+[node name="debugbar" parent="." instance=ExtResource("2_betl8")]
+script = ExtResource("8_up5m3")
+
+[node name="CenterContainer" type="CenterContainer" parent="." groups=["web_splash_screen"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title-screen" type="TextureRect" parent="CenterContainer"]
+modulate = Color(1, 1, 1, 0.866667)
+layout_mode = 2
+texture = ExtResource("9_14doo")
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "- Click to start -
+
+
+
+"
+label_settings = SubResource("LabelSettings_rhwaa")
+
+[editable path="Tutorial"]
+[editable path="Tutorial/TreesAndCribsAndSuch/palm-tree47"]
+[editable path="Tutorial/CameraPivot"]
+[editable path="Tutorial/MonsterSpawner/ChibiWave1"]
+[editable path="Tutorial/MonsterSpawner/TurtleWave2"]
+[editable path="Tutorial/MonsterSpawner3/FlyingWave3"]
+[editable path="Tutorial/SunAndSky"]
