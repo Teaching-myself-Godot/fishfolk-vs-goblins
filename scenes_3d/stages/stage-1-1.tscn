@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1ltd4sm1gwbt"]
+[gd_scene load_steps=22 format=3 uid="uid://d1ltd4sm1gwbt"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_edj0y"]
 [ext_resource type="PackedScene" uid="uid://clojhwy2lw5t1" path="res://scenes_3d/terrains/terrain_2.scn" id="1_l2pjn"]
@@ -15,27 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="14_qi5gb"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="15_hib4k"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="15_k2g0q"]
+[ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="16_07pq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kb4ff"]
 size = Vector3(238.098, 36.044, 1)
-
-[sub_resource type="Gradient" id="Gradient_rimod"]
-colors = PackedColorArray(0, 0.639216, 1, 1, 1, 0.86, 0.44, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ywl2d"]
-gradient = SubResource("Gradient_rimod")
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rgk7"]
-panorama = SubResource("GradientTexture2D_ywl2d")
-
-[sub_resource type="Sky" id="Sky_wfr3x"]
-sky_material = SubResource("PanoramaSkyMaterial_5rgk7")
-
-[sub_resource type="Environment" id="Environment_hhdo6"]
-background_mode = 2
-sky = SubResource("Sky_wfr3x")
-sky_rotation = Vector3(0, 0, 1.5708)
-tonemap_mode = 2
 
 [sub_resource type="Curve3D" id="Curve3D_6om3x"]
 resource_local_to_scene = true
@@ -278,14 +261,6 @@ transform = Transform3D(0.0706966, 0, -0.997498, 0, 1, 0, 0.997498, 0, 0.0706966
 
 [node name="crib6" parent="TreesAndCribsAndSuch" instance=ExtResource("15_k2g0q")]
 transform = Transform3D(0.979516, 0, 0.201369, 0, 1, 0, -0.201369, 0, 0.979516, 16.3804, 1.06678, -13.6214)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hhdo6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
-light_energy = 2.0
-shadow_enabled = true
 
 [node name="CameraPivot" parent="." instance=ExtResource("4_hekoh")]
 
@@ -635,6 +610,8 @@ current = true
 
 [node name="GoblinSpawnPoint" parent="." instance=ExtResource("15_hib4k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.6081, 5.14029, -30.1773)
+
+[node name="SunAndSky" parent="." instance=ExtResource("16_07pq5")]
 
 [connection signal="next_wave" from="MonsterWaveEmitter" to="." method="_start_wave"]
 

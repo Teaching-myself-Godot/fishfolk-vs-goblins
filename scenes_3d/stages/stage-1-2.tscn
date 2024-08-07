@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=20 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://i1a30b5te2tx" path="res://scenes_3d/terrains/terrain.scn" id="2_fae0n"]
@@ -13,18 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="11_vkp3i"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_i0bmu"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/hp_increase_timer.gd" id="13_4xsoo"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u800l"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_ylqb4"]
-sky_material = SubResource("ProceduralSkyMaterial_u800l")
-
-[sub_resource type="Environment" id="Environment_pybf5"]
-background_mode = 2
-sky = SubResource("Sky_ylqb4")
-tonemap_mode = 2
+[ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="14_ym3b6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2fgoe"]
 size = Vector3(238.098, 36.044, 1)
@@ -113,14 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4228, 2.87114, -7.31752)
 builder_gems = 600
 magical_crystals = 1
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pybf5")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
-light_energy = 2.0
-shadow_enabled = true
 
 [node name="CameraPivot" parent="." instance=ExtResource("5_p0xbc")]
 
@@ -347,6 +328,8 @@ wait_time = 60.0
 autostart = true
 script = ExtResource("13_4xsoo")
 increase_by = 2
+
+[node name="SunAndSky" parent="." instance=ExtResource("14_ym3b6")]
 
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
 

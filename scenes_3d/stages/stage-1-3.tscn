@@ -1,11 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bts8ph0eqjf8n"]
+[gd_scene load_steps=15 format=3 uid="uid://bts8ph0eqjf8n"]
 
 [ext_resource type="PackedScene" uid="uid://210ju06uls8u" path="res://scenes_3d/terrains/canyons.scn" id="1_3i35c"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_greq8"]
+[ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="2_8rlb4"]
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="2_frsg3"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="3_gpyhy"]
 [ext_resource type="PackedScene" uid="uid://bsmsv2m50sjob" path="res://scenes_3d/monster_spawner/monster_spawner.tscn" id="5_dr542"]
-[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/monster_path.tscn" id="6_oai8k"]
+[ext_resource type="PackedScene" uid="uid://c78vb4eh3m7iq" path="res://scenes_3d/monster_spawner/scripts/monster_path.tscn" id="6_oai8k"]
 [ext_resource type="PackedScene" uid="uid://odupfjlid8iv" path="res://scenes_3d/monster_spawner/anchor.tscn" id="7_hvop7"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="8_4ed8c"]
 [ext_resource type="PackedScene" uid="uid://i8r0qsyem1qb" path="res://scenes_3d/monster_spawner/monster_target_zone.tscn" id="10_eedg3"]
@@ -13,31 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="12_w1b8s"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="13_vhxb0"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sehu"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_ylqb4"]
-sky_material = SubResource("ProceduralSkyMaterial_0sehu")
-
-[sub_resource type="Environment" id="Environment_xbqbc"]
-background_mode = 2
-sky = SubResource("Sky_ylqb4")
-tonemap_mode = 2
-
 [sub_resource type="Curve3D" id="Curve3D_c4uko"]
 resource_local_to_scene = true
 
 [node name="Stage-1-3" type="Node3D"]
 script = ExtResource("1_greq8")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xbqbc")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 13.7142, 4.51649, -21.5665)
-light_energy = 2.0
-shadow_enabled = true
+[node name="SunAndSky" parent="." instance=ExtResource("2_8rlb4")]
 
 [node name="canyons" parent="." instance=ExtResource("1_3i35c")]
 transform = Transform3D(0.938191, 0, -0.346117, 0, 1, 0, 0.346117, 0, 0.938191, -31.286, 0, -2.28033)

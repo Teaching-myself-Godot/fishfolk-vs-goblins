@@ -227,17 +227,14 @@ offset_bottom = 19.2814
 text = "20"
 label_settings = SubResource("LabelSettings_p1agf")
 
-[node name="BuilderGemSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
-offset_left = 73.2085
-offset_top = 37.3176
-offset_right = 113.208
-offset_bottom = 77.3176
+[node name="BuilderGemThumbnail" parent="MainMenu/Dismantle-option/PriceTag" index="2"]
+position = Vector2(137.179, 47.4144)
 
 [node name="MagicalCrystalPrice" parent="MainMenu/Dismantle-option/PriceTag" index="3"]
 visible = false
 label_settings = SubResource("LabelSettings_1cbjt")
 
-[node name="MagicalCrystalSubViewport" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
+[node name="MagicalCrystalThumbnail" parent="MainMenu/Dismantle-option/PriceTag" index="4"]
 visible = false
 
 [node name="Upgrade-option" type="Sprite2D" parent="MainMenu"]
@@ -246,6 +243,7 @@ position = Vector2(0, -120)
 texture = ExtResource("6_hfrc3")
 
 [node name="UpgradeMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Range-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_ja11l")
@@ -264,7 +262,7 @@ builder_gem_price = 0
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Range-option/PriceTag" index="2"]
 visible = false
 
 [node name="MagicalCrystalPrice" parent="UpgradeMenu/Range-option/PriceTag" index="3"]
@@ -275,11 +273,8 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_g5tih")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
-offset_left = 70.2923
-offset_top = -25.0471
-offset_right = 110.292
-offset_bottom = 14.9529
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Range-option/PriceTag" index="4"]
+position = Vector2(142.387, 47.3781)
 
 [node name="Reload Time-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_786b8")
@@ -298,7 +293,7 @@ builder_gem_price = 0
 visible = false
 label_settings = SubResource("LabelSettings_gpjv3")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Reload Time-option/PriceTag" index="2"]
 visible = false
 
 [node name="MagicalCrystalPrice" parent="UpgradeMenu/Reload Time-option/PriceTag" index="3"]
@@ -309,11 +304,8 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_2orxw")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
-offset_left = 70.2923
-offset_top = -25.0471
-offset_right = 110.292
-offset_bottom = 14.9529
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Reload Time-option/PriceTag" index="4"]
+position = Vector2(138.593, 46.0002)
 
 [node name="Damage-option" type="Sprite2D" parent="UpgradeMenu"]
 material = SubResource("ShaderMaterial_f0l1f")
@@ -341,18 +333,14 @@ offset_bottom = 37.0
 scale = Vector2(-1, -1)
 label_settings = SubResource("LabelSettings_844mx")
 
-[node name="BuilderGemSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
+[node name="BuilderGemThumbnail" parent="UpgradeMenu/Damage-option/PriceTag" index="2"]
 visible = false
-anchor_left = -0.159959
-anchor_top = 0.148064
-anchor_right = -0.159959
-anchor_bottom = 0.148064
 
 [node name="MagicalCrystalPrice" parent="UpgradeMenu/Damage-option/PriceTag" index="3"]
-anchor_left = 1.50796
-anchor_top = 0.64261
-anchor_right = 1.50796
-anchor_bottom = 0.642612
+anchor_left = 1.34872
+anchor_top = 0.660963
+anchor_right = 1.34872
+anchor_bottom = 0.660965
 offset_top = 8.34224
 offset_bottom = 45.3423
 scale = Vector2(-1, -1)
@@ -360,13 +348,8 @@ text = "1
 "
 label_settings = SubResource("LabelSettings_fbxu3")
 
-[node name="MagicalCrystalSubViewport" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
-anchor_left = -0.0576202
-anchor_top = 0.301409
-anchor_right = -0.0576201
-anchor_bottom = 0.301409
-offset_top = -2.64491
-offset_bottom = 37.3551
+[node name="MagicalCrystalThumbnail" parent="UpgradeMenu/Damage-option/PriceTag" index="4"]
+position = Vector2(138.593, 46.0006)
 
 [node name="MenuArrow" type="Sprite2D" parent="."]
 visible = false
