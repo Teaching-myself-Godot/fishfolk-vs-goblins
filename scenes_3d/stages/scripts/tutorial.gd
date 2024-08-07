@@ -223,7 +223,7 @@ func _process(_delta):
 		_awaiting_first_wave = false
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES_AND_FELLED_TREES):
 			tree.add_to_group(Constants.GROUP_NAME_TREES)
-		_mk_toast("Two Chibi fish have arrived!", 3, true)
+		_mk_toast("Two Chibi Fish have arrived!", 3, true)
 		$TutorialPlaybook/ArrowTowerIndicatorTimer.start()
 
 	if (
@@ -235,6 +235,7 @@ func _process(_delta):
 		$TutorialPlaybook/ArrowTowerIndicator.target = tower_node
 		$TutorialPlaybook/StatsIndicator.target = tower_node
 		$TutorialPlaybook/BuyUpgradeIndicator.target = tower_node
+		$TutorialPlaybook/DismantleIndicator.target = tower_node
 		_start_wave(2)
 
 	if (
@@ -313,7 +314,6 @@ func _on_fishfolk_arrival_indicator_done() -> void:
 	_spawn_builder_gems()
 
 
-
 func _on_toggle_mouse_hint_click_timer_timeout() -> void:
 	$TutorialPlaybook/MouseHints.current_hint = (
 		MouseHints.MouseHint.NONE if $TutorialPlaybook/MouseHints.current_hint == MouseHints.MouseHint.LEFT_CLICK
@@ -330,6 +330,10 @@ func _on_free_play_indicator_done() -> void:
 
 
 func _on_crib_count_indicator_done() -> void:
+	$TutorialPlaybook/DismantleIndicator.start(SHORT_INDICATOR_TIME)
+
+
+func _on_dismantle_indicator_done() -> void:
 	_mk_toast("That rounds up the tutorial!", 3, true)
 
 

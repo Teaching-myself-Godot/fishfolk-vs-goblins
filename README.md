@@ -19,6 +19,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist
+- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
 - _sounds_: confirm a build item from context menu / upgrade item
 - _sounds_: spending gems
 - _sounds_: tower rising from ground rumble
@@ -42,22 +43,22 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - create a cute goblin village (model a small house, 3 of which makes a village)
 - 3D cutscenes with more back story?
 
-## Up next - Add gamepad mode to tutorial (up next)
-
-This milestone will also include fixes inspired by the feedback I got in: [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
-
-- [x] Improvement: drop the sequence about opening a pause menu with Esc
-- [x] Bugfix: spawn monsters after building 1st tower (fixes sequence)
-- [x] Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
-- [ ] add dismantle + refund hint
-- [ ] make gamepad svg's
-- [ ] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- [ ] replace keyboard and mouse hints with gamepad hints
-- [ ] rebuild the web demo, optimize with simple overrides in separate files
-- [ ] add a start button for gamepad in web demo
-- [ ] write a new devlog with screen recording
-
 ## Milestones in the creative process
+
+### Up next - Gamepad tutorial / Integrated web build
+- [ ] make gamepad svg's
+- [ ] copy keyboard and mouse hints and turn into gamepad hints
+- [ ] rebuild the web demo, optimize with simple overrides in separate files (not separate branch)
+- [ ] add a start button for gamepad in web demo
+- [ ] write a new devlog with screen recording (about my first jam leading to many improvements)
+
+
+### [Milestone 21](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-21) - Tutorial sequence feedback from [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 8th 2024)
+
+- Improvement: drop the sequence about opening a pause menu with Esc
+- Bugfix: spawn monsters after building 1st tower (fixes sequence)
+- Improvement: drop the sequence which teaches you how to close menus by not giving you currency, give currency in advance
+- add dismantle + refund hint
 
 ### [Milestone 20](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-20) - Be fair! [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 7th 2024)
 

@@ -528,6 +528,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="TreeIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 offset_left = -556.0
 offset_top = 12.0
 offset_right = -106.0
@@ -649,6 +650,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="FreePlayIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target") instance=ExtResource("13_8nnp5")]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -677,6 +679,7 @@ label_settings = SubResource("LabelSettings_6popn")
 horizontal_alignment = 1
 
 [node name="CribCountIndicator" parent="TutorialPlaybook" node_paths=PackedStringArray("target_2d") instance=ExtResource("13_8nnp5")]
+visible = false
 anchors_preset = 8
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -694,6 +697,31 @@ layout_mode = 2
 text = "
 ... Because if this crib counter
 reaches zero, all is lost!
+
+"
+label_settings = SubResource("LabelSettings_6popn")
+horizontal_alignment = 1
+
+[node name="DismantleIndicator" parent="TutorialPlaybook" instance=ExtResource("13_8nnp5")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 467.0
+offset_bottom = 193.0
+grow_horizontal = 1
+arrow_position = 3
+height_3d = 4.0
+radius_3d = 3.0
+
+[node name="Label" type="Label" parent="TutorialPlaybook/DismantleIndicator"]
+layout_mode = 2
+text = "
+Short on funds?
+
+You can dismantle a tower for a
+small refund using the tower menu!
 
 "
 label_settings = SubResource("LabelSettings_6popn")
@@ -730,6 +758,7 @@ one_shot = true
 [connection signal="done" from="TutorialPlaybook/ArrowTowerIndicator" to="." method="_on_arrow_tower_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/FreePlayIndicator" to="." method="_on_free_play_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/CribCountIndicator" to="." method="_on_crib_count_indicator_done"]
+[connection signal="done" from="TutorialPlaybook/DismantleIndicator" to="." method="_on_dismantle_indicator_done"]
 [connection signal="timeout" from="TutorialPlaybook/ShowKeyboardHintsTimer" to="." method="_on_show_keyboard_hints_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextKeyboardHintTimer" to="." method="_show_next_keyboard_hint"]
 [connection signal="timeout" from="TutorialPlaybook/ShowNextMouseHintTimer" to="." method="_show_next_mouse_hint"]
