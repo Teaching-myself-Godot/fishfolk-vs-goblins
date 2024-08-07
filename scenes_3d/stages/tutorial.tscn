@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rbn2l232oav1"]
+[gd_scene load_steps=23 format=3 uid="uid://rbn2l232oav1"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial.gd" id="1_yusd6"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="2_6ef74"]
@@ -17,27 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="14_iborq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_wfjcc"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="17_ch3s3"]
+[ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="18_uas2f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ds02"]
 size = Vector3(238.098, 36.044, 1)
-
-[sub_resource type="Gradient" id="Gradient_bxo25"]
-colors = PackedColorArray(0, 0.639216, 1, 1, 1, 0.86, 0.44, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3mfpc"]
-gradient = SubResource("Gradient_bxo25")
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b0v6g"]
-panorama = SubResource("GradientTexture2D_3mfpc")
-
-[sub_resource type="Sky" id="Sky_20ib3"]
-sky_material = SubResource("PanoramaSkyMaterial_b0v6g")
-
-[sub_resource type="Environment" id="Environment_pybf5"]
-background_mode = 2
-sky = SubResource("Sky_20ib3")
-sky_rotation = Vector3(0, 0, 1.5708)
-tonemap_mode = 2
 
 [sub_resource type="Curve3D" id="Curve3D_6om3x"]
 resource_local_to_scene = true
@@ -286,14 +269,6 @@ transform = Transform3D(0.0706966, 0, -0.997498, 0, 1, 0, 0.997498, 0, 0.0706966
 
 [node name="crib6" parent="TreesAndCribsAndSuch" instance=ExtResource("5_auy11")]
 transform = Transform3D(0.979516, 0, 0.201369, 0, 1, 0, -0.201369, 0, 0.979516, 16.3804, 1.06678, -13.6214)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pybf5")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0365426, -0.969723, -0.241457, 0.035221, -0.240218, 0.97008, -0.998711, -0.0439535, 0.0253764, 13.7142, 4.51649, -21.5665)
-light_energy = 2.0
-shadow_enabled = true
 
 [node name="CameraPivot" parent="." instance=ExtResource("2_6ef74")]
 
@@ -751,6 +726,8 @@ one_shot = true
 [node name="ArrowTowerIndicatorTimer" type="Timer" parent="TutorialPlaybook"]
 wait_time = 3.0
 one_shot = true
+
+[node name="SunAndSky" parent="." instance=ExtResource("18_uas2f")]
 
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
 [connection signal="done" from="TutorialPlaybook/BabyIndicator" to="." method="_on_baby_indicator_done"]

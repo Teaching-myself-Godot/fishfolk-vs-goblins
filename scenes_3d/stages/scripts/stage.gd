@@ -52,7 +52,7 @@ func _is_in_game(num : int):
 	return false
 
 
-func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
+func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
 	CameraUtil.get_cam().current = true
 	if num not in InputUtil.player_map:
 		InputUtil.player_map[num] = InputUtil.player_map.size() + 1
@@ -60,7 +60,12 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3(0, 4, 0)):
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
 	new_goblin.player_num = num
-	new_goblin.position = start_pos
+	if start_pos:
+		new_goblin.position = start_pos
+	elif find_child("GoblinSpawnPoint"):
+		new_goblin.position = find_child("GoblinSpawnPoint").position
+	else:
+		new_goblin.position = Vector3(0, 4, 0)
 
 	var goblin_already_in_stage = get_tree().get_first_node_in_group(Constants.GROUP_NAME_GOBLINS)
 	if is_instance_valid(goblin_already_in_stage):
