@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://capy7b4w2gvpo"]
+[gd_scene load_steps=9 format=4 uid="uid://capy7b4w2gvpo"]
 
 [ext_resource type="Script" path="res://scenes_3d/drop_items/scripts/builder_gem.gd" id="1_nbjsj"]
-[ext_resource type="Material" uid="uid://cisno0pmc23qp" path="res://materials/highlight-white.material" id="2_6c4dx"]
 [ext_resource type="Material" uid="uid://bfvp707f6pw50" path="res://materials/emerald_shine.material" id="2_gsyv8"]
 [ext_resource type="AudioStream" uid="uid://c6eqprquy818q" path="res://sounds/bell_02.ogg" id="3_2tp0u"]
 
@@ -43,19 +42,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yvww6")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_jl5in"]
-_surfaces = [{
-"aabb": AABB(-0.78933, -0.131469, -0.787476, 1.57866, 4.09012, 1.57587),
-"attribute_data": PackedByteArray("oP8fPwD//z6g/x8/AP//PqD/Hz8A//8+oP8fPwD//z7A/r8+AP1/PsD+vz7A/z8/wP6/PgD//z7A/r8+AACAP6D/Hz8A/X8+oP8fPwD9fz6g/x8/AP1/PqD/Hz8A/X8+oP8fP8D/Pz+g/x8/wP8/P6D/Hz/A/z8/oP8fP8D/Pz+g/x8/AAAAAKD/Hz8AAAAAoP8fPwAAgD+g/x8/AACAP6D/Hz8AAAAAoP8fPwD//z6g/x8/AP1/PqD/Hz/A/z8/"),
-"format": 34359742487,
-"index_count": 24,
-"index_data": PackedByteArray("AAAMABUABAAJABEABwATAA8ABgADAAsABQANAAEAEAAIABQADgASABcACgACABYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("pxBKP5TA9D8KmEm/pxBKP5TA9D8KmEm/pxBKP5TA9D8KmEm/pxBKP5TA9D8KmEm/cO6GPMSfBr71tDm8cO6GPMSfBr71tDm8cO6GPMSfBr71tDm8cO6GPMSfBr71tDm8Tm1JP6Ko8z8M1Ek/Tm1JP6Ko8z8M1Ek/Tm1JP6Ko8z8M1Ek/Tm1JP6Ko8z8M1Ek/gRFKv5TA9D8KmEm/gRFKv5TA9D8KmEm/gRFKv5TA9D8KmEm/gRFKv5TA9D8KmEm/KG5Jv6Ko8z8M1Ek/KG5Jv6Ko8z8M1Ek/KG5Jv6Ko8z8M1Ek/KG5Jv6Ko8z8M1Ek/f+JQPJFafUAJo548f+JQPJFafUAJo548f+JQPJFafUAJo548f+JQPJFafUAJo548BCP+//7//7/83AIAAUk+8lm0pMsI3UKZ+tz+XPu2QPL/f/xcfpuA5PzcAgABST7y+tz+XPu2QPIBI/xcgmSA5P9/AaP+//+//3/8XH6bgORZtKTLCN1Cmfrc/lz7tkDyBCP+//7//7/83AIAAUk+8qdLpsuFsnnRASP8XIJkgOT/fwGj/v//v/9//Fx+m4Dkp0umy4WyedEBI/xcgmSA5P9/AaP+//+/BCP+//7//79ZtKTLCN1CmadLpsuFsnnR")
-}]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jju7g"]
 height = 1.6808
 
@@ -70,10 +56,6 @@ transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, 0, 0.0413288, 0)
 mesh = SubResource("ArrayMesh_w5n11")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_gsyv8")
-
-[node name="Outline" type="MeshInstance3D" parent="GemMesh"]
-mesh = SubResource("ArrayMesh_jl5in")
-surface_material_override/0 = ExtResource("2_6c4dx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.601531, 0, 0, 0, 0.601531, 0, 0, 0, 0.601531, 0, 0.513681, 0)

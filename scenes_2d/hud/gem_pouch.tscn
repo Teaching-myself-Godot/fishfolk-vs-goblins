@@ -79,11 +79,6 @@ rotation = 0.261799
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("3_opju0")
 
-[node name="CribThumbnail" type="Sprite2D" parent="BuilderGems"]
-position = Vector2(160, -96)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_ud2b7")
-
 [node name="MagicalGems" type="Node2D" parent="."]
 position = Vector2(80, -104)
 metadata/_edit_use_anchors_ = true
@@ -129,3 +124,8 @@ text = "5
 label_settings = SubResource("LabelSettings_5laau")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="CribThumbnail" type="Sprite2D" parent="Cribs"]
+position = Vector2(112, 24)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_ud2b7")

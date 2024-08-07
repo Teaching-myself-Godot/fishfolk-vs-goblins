@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Goblins-vs-fishfolk"
-run/main_scene="res://intro.tscn"
+run/main_scene="res://web_demo.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.380392, 0.305882, 1, 1)
 boot_splash/image="res://title-screen.png"
@@ -35,6 +35,10 @@ window/size/viewport_height=720
 [editor]
 
 movie_writer/movie_file="C:/Users/rvand/gamedev/godot-recording.avi"
+
+[global_group]
+
+web_splash_screen=""
 
 [input]
 

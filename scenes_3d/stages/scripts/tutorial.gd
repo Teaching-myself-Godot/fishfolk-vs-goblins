@@ -138,7 +138,7 @@ func _handle_mousewheel_hints():
 
 func _spawn_builder_gems():
 	for _i in range(10):
-		_on_drop_builder_gem(
+		_on_drop_builder_gem.call_deferred(
 			$TutorialPlaybook/BuilderGemIndicator.target.position
 		)
 
@@ -215,6 +215,7 @@ func _process(_delta):
 		$TutorialPlaybook/TreeIndicator.start(LONG_INDICATOR_TIME)
 		$TutorialPlaybook/TreeIndicator.target.add_to_group(Constants.GROUP_NAME_TREES)
 		_awaiting_tree_menu = true
+		_awaiting_goblin_reaches_gems = false
 
 	if (
 		_awaiting_first_wave and

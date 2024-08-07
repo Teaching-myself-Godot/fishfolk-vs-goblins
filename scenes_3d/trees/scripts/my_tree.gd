@@ -17,6 +17,10 @@ func _ready():
 	original_rotation = rotation_degrees
 
 
+func stop_animation():
+	$AnimationPlayer.queue_free()
+
+
 func _physics_process(delta):
 	if felled and visible:
 		fall_velocity += gravity * delta
