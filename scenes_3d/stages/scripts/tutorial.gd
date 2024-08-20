@@ -50,6 +50,19 @@ var _awaiting_magical_crystal = true
 var _awaiting_crystal_collect = true
 var _awaiting_first_upgrade = false
 
+var _awaiting_initial_gamepad_hints = true
+
+var _gamepad_run_hints = [
+	GamepadHints.GamepadIcons.L_STICK_DOWN,
+	GamepadHints.GamepadIcons.L_STICK_LEFT,
+	GamepadHints.GamepadIcons.L_STICK_UP,
+	GamepadHints.GamepadIcons.L_STICK_RIGHT,
+	GamepadHints.GamepadIcons.L_STICK_DOWN,
+	GamepadHints.GamepadIcons.L_STICK_LEFT,
+	GamepadHints.GamepadIcons.L_STICK_UP,
+	GamepadHints.GamepadIcons.L_STICK_RIGHT
+]
+
 func _on_gem_pouch_change(_gems : int, crystals : int):
 	if crystals > 0 and _awaiting_crystal_collect:
 		_awaiting_crystal_collect = false
@@ -91,6 +104,22 @@ func _handle_goblin_arrival():
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/ShowKeyboardHintsTimer.start()
 
+func _handle_gamepad_running_hints():
+	if _awaiting_initial_gamepad_hints:
+		_awaiting_initial_gamepad_hints = false
+		$TutorialPlaybook/ShowInitialGamepadTimer.start()
+
+	if _gamepad_run_hints.is_empty() and _awaiting_jump_hint and Vector2(
+		Input.get_joy_axis(main_player_cid - 1, JOY_AXIS_LEFT_X),
+		Input.get_joy_axis(main_player_cid - 1, JOY_AXIS_LEFT_Y)
+	) and not _goblin.velocity:
+		_awaiting_jump = true
+		_awaiting_jump_hint = false
+		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.A_PRESSED
+	if _awaiting_jump and InputUtil.is_just_released("jump"):
+		_awaiting_jump = false
+		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.NONE
+		$TutorialPlaybook/GamepadHints.fading = true
 
 func _handle_keyboard_running_hints():
 	if not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE) and (
@@ -151,6 +180,8 @@ func _process(_delta):
 	if mode == TutorialMode.KEYBOARD:
 		_handle_keyboard_running_hints()
 		_handle_mousewheel_hints()
+	elif mode == TutorialMode.GAMEPAD:
+		_handle_gamepad_running_hints()
 
 	if (
 		not $TutorialPlaybook/BabyIndicator.fading
@@ -265,7 +296,7 @@ func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
 			mode = TutorialMode.KEYBOARD
 		else:
 			mode = TutorialMode.GAMEPAD
-			_mk_toast("Gamepad tutorial not available in this beta", 10, true)
+
 		for tree in get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES):
 			tree.remove_from_group(Constants.GROUP_NAME_TREES)
 
@@ -340,3 +371,16 @@ func _on_dismantle_indicator_done() -> void:
 
 func _on_arrow_tower_indicator_timer_timeout() -> void:
 	$TutorialPlaybook/ArrowTowerIndicator.start(SHORT_INDICATOR_TIME)
+
+
+func _on_show_initial_gamepad_timer_timeout() -> void:
+	$TutorialPlaybook/GamepadHints.fading = false
+	$TutorialPlaybook/ShowNextGamepadHintTimer.start()
+
+
+func _on_show_next_gamepad_hint_timer_timeout() -> void:
+	if _gamepad_run_hints.is_empty():
+		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.NONE
+	else:
+		$TutorialPlaybook/GamepadHints.current_icon = _gamepad_run_hints.pop_front()
+		$TutorialPlaybook/ShowNextGamepadHintTimer.start()

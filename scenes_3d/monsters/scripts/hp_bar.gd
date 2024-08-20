@@ -32,10 +32,12 @@ func draw_damage(dmg : int):
 
 	$Control/DamageLabel.modulate.a = 1.0
 
+
 func _ready():
 	$Control/DamageLabel.modulate.a = 0.0
 	$Control/DamageLabel.scale = Vector2.ONE
 	$Control/DamageLabel.position = Vector2.ZERO
+
 
 func _process(_delta):
 	if $Control/DamageLabel.modulate.a > 0.0:

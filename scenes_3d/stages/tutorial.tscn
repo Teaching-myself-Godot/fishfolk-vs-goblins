@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rbn2l232oav1"]
+[gd_scene load_steps=24 format=3 uid="uid://rbn2l232oav1"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial.gd" id="1_yusd6"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="2_6ef74"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="14_iborq"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_wfjcc"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="17_ch3s3"]
+[ext_resource type="PackedScene" uid="uid://crshtkavdsmef" path="res://scenes_2d/gamepad_hints.tscn" id="18_6qy2w"]
 [ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="18_uas2f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ds02"]
@@ -727,6 +728,15 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="GamepadHints" parent="TutorialPlaybook" instance=ExtResource("18_6qy2w")]
+
+[node name="ShowInitialGamepadTimer" type="Timer" parent="TutorialPlaybook"]
+one_shot = true
+
+[node name="ShowNextGamepadHintTimer" type="Timer" parent="TutorialPlaybook"]
+wait_time = 0.5
+one_shot = true
+
 [node name="SunAndSky" parent="." instance=ExtResource("18_uas2f")]
 
 [connection signal="done" from="TutorialPlaybook/GoblinIndicator" to="." method="_on_goblin_indicator_done"]
@@ -741,6 +751,8 @@ one_shot = true
 [connection signal="timeout" from="TutorialPlaybook/ShowNextMouseHintTimer" to="." method="_show_next_mouse_hint"]
 [connection signal="timeout" from="TutorialPlaybook/ToggleMouseHintClickTimer" to="." method="_on_toggle_mouse_hint_click_timer_timeout"]
 [connection signal="timeout" from="TutorialPlaybook/ArrowTowerIndicatorTimer" to="." method="_on_arrow_tower_indicator_timer_timeout"]
+[connection signal="timeout" from="TutorialPlaybook/ShowInitialGamepadTimer" to="." method="_on_show_initial_gamepad_timer_timeout"]
+[connection signal="timeout" from="TutorialPlaybook/ShowNextGamepadHintTimer" to="." method="_on_show_next_gamepad_hint_timer_timeout"]
 
 [editable path="TreesAndCribsAndSuch/palm-tree47"]
 [editable path="CameraPivot"]

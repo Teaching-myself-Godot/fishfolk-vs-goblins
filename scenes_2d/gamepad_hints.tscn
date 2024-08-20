@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://crshtkavdsmef"]
+
+[ext_resource type="Script" path="res://scenes_2d/scripts/gamepad_hints.gd" id="1_4qahp"]
+[ext_resource type="Texture2D" uid="uid://tg3p73msaa4b" path="res://icons/gamepad/gamepad-base.svg" id="2_n77gv"]
+[ext_resource type="Texture2D" uid="uid://decld3kja2qfs" path="res://icons/gamepad/gamepad-L-stick-down.svg" id="3_oh5do"]
+[ext_resource type="Texture2D" uid="uid://dthudul2f6ilx" path="res://icons/gamepad/gamepad-L-stick-left.svg" id="4_dn4rf"]
+[ext_resource type="Texture2D" uid="uid://bp2kynq5ic5tg" path="res://icons/gamepad/gamepad-L-stick-up.svg" id="5_gyf7s"]
+[ext_resource type="Texture2D" uid="uid://b27py1raxqbqk" path="res://icons/gamepad/gamepad-L-stick-right.svg" id="6_f4fo0"]
+[ext_resource type="Texture2D" uid="uid://bbq74dkej5sri" path="res://icons/gamepad/gamepad-A-pressed.svg" id="7_nfk7i"]
+
+[node name="GamepadHints" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.6
+anchor_right = 0.98
+anchor_bottom = 0.98
+script = ExtResource("1_4qahp")
+
+[node name="Gamepad-base" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_n77gv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="LStickDown" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_oh5do")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="LStickLeft" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("4_dn4rf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="LStickUp" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("5_gyf7s")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="LStickRight" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("6_f4fo0")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="APressed" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("7_nfk7i")
+expand_mode = 2
+stretch_mode = 4
