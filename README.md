@@ -18,9 +18,9 @@ Many thanks go out to my creative manager, son, and author of the musical scores
 Also my wife and colleagues who were so kind to playtest this game on different machines and platforms
 
 
-## Short to Middle term Wishlist
+## Short to Middle term Wishlist (Thanks to all the feedback)
 - Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- _sounds_: confirm a build item from context menu / upgrade item
+- _sounds_: confirm a build item from context menu / upgrade item (also add rumble)
 - _sounds_: spending gems
 - _sounds_: tower rising from ground rumble
 - _sounds_: tower sinking back into the ground rumble
@@ -45,7 +45,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Up next - Gamepad tutorial / Integrated web build
+### Milestone 22 - Gamepad tutorial / Integrated web build
 - [x] make gamepad svg's
 - [x] copy keyboard and mouse hints and turn into gamepad hints
 - [x] rebuild the web demo, optimize with simple overrides in separate files (not separate branch)

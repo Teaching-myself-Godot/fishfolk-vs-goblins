@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Goblins-vs-fishfolk"
-run/main_scene="res://goblins_vs_fishfolk.tscn"
+run/main_scene="res://intro.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.380392, 0.305882, 1, 1)
 boot_splash/image="res://title-screen.png"
@@ -31,6 +31,7 @@ InputUtil="*res://scripts/input_util.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=4
 
 [editor]
 

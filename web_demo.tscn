@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://ekqx2g2sid3h"]
+[gd_scene load_steps=16 format=3 uid="uid://ekqx2g2sid3h"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/web_demo.gd" id="1_fmj5s"]
-[ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://scenes_2d/hud/debugbar.tscn" id="2_betl8"]
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="2_kff0h"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/tutorial_webdemo.gd" id="3_0esvg"]
 [ext_resource type="PackedScene" uid="uid://d1f05t2rwtgo1" path="res://scenes_3d/monsters/fish_chibi_low_poly.scn" id="4_t8lfq"]
 [ext_resource type="PackedScene" uid="uid://bcv2x4vqvwskc" path="res://scenes_3d/monsters/giant_turtle.scn" id="6_amhp8"]
-[ext_resource type="Script" path="res://scenes_2d/hud/debugbar_webdemo.gd" id="8_up5m3"]
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="9_14doo"]
+[ext_resource type="Script" path="res://scripts/debugbar_webdemo.gd" id="10_igogl"]
+[ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="11_7nw5b"]
 [ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="11_b532c"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_q35mt"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="16_uu3m5"]
@@ -21,6 +21,13 @@ resource_local_to_scene = true
 [sub_resource type="LabelSettings" id="LabelSettings_rhwaa"]
 font = ExtResource("16_uu3m5")
 font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slsex"]
+bg_color = Color(0.105882, 0.333333, 0.105882, 0.713726)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [node name="WebDemo" type="Node"]
 script = ExtResource("1_fmj5s")
@@ -65,9 +72,6 @@ light_color = Color(1, 0.756863, 0.752941, 1)
 stream = ExtResource("11_b532c")
 volume_db = -20.0
 
-[node name="debugbar" parent="." instance=ExtResource("2_betl8")]
-script = ExtResource("8_up5m3")
-
 [node name="CenterContainer" type="CenterContainer" parent="." groups=["web_splash_screen"]]
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,14 +84,85 @@ modulate = Color(1, 1, 1, 0.866667)
 layout_mode = 2
 texture = ExtResource("9_14doo")
 
-[node name="Label" type="Label" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-text = "- Click to start -
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+- Click to start -
+
 
 
 
 "
 label_settings = SubResource("LabelSettings_rhwaa")
+horizontal_alignment = 1
+
+[node name="PlayWithGamepadButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_uu3m5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_slsex")
+text = " - Play with Gamepad - "
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "This is just a web demo. You can"
+
+[node name="LinkButton" type="LinkButton" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "download the real deal here on Itch"
+uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
+
+[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "for free!"
+
+[node name="DebugTextLabel" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 10
+text = "(currently running on 60 fps)"
+horizontal_alignment = 2
+script = ExtResource("10_igogl")
+
+[node name="GameOverSplash" parent="." instance=ExtResource("11_7nw5b")]
+visible = false
+
+[node name="Label" parent="GameOverSplash" index="0"]
+text = " Thank you for playing the webdemo! "
+
+[node name="LinkButton" type="LinkButton" parent="GameOverSplash"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -40.0
+offset_right = 283.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("16_uu3m5")
+theme_override_font_sizes/font_size = 24
+text = "Download Goblins vs. Fishfolks right here on Itch"
+uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
+
+[connection signal="gameover" from="Tutorial" to="." method="_on_tutorial_gameover"]
+[connection signal="stage_won" from="Tutorial" to="." method="_on_tutorial_stage_won"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayWithGamepadButton" to="Tutorial" method="_on_play_with_gamepad_button_pressed"]
 
 [editable path="Tutorial"]
 [editable path="Tutorial/TreesAndCribsAndSuch/palm-tree47"]
@@ -96,3 +171,4 @@ label_settings = SubResource("LabelSettings_rhwaa")
 [editable path="Tutorial/MonsterSpawner/TurtleWave2"]
 [editable path="Tutorial/MonsterSpawner3/FlyingWave3"]
 [editable path="Tutorial/SunAndSky"]
+[editable path="GameOverSplash"]
