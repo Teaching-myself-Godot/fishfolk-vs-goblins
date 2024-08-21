@@ -63,6 +63,15 @@ var _gamepad_run_hints = [
 	GamepadHints.GamepadIcons.L_STICK_RIGHT
 ]
 
+var _gamepad_jump_hints = [
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.A_PRESSED,
+	GamepadHints.GamepadIcons.A_PRESSED,
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.A_PRESSED,
+	GamepadHints.GamepadIcons.A_PRESSED
+]
+
 var _gamepad_zoom_hints = [
 	GamepadHints.GamepadIcons.R_STICK_UP,
 	GamepadHints.GamepadIcons.R_STICK_DOWN,
@@ -74,6 +83,16 @@ var _gamepad_zoom_hints = [
 	GamepadHints.GamepadIcons.R_STICK_LEFT,
 	GamepadHints.GamepadIcons.R_STICK_RIGHT,
 	GamepadHints.GamepadIcons.R_STICK_LEFT
+]
+
+
+var _gamepad_menu_hints = [
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.B_PRESSED,
+	GamepadHints.GamepadIcons.B_PRESSED,
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.B_PRESSED,
+	GamepadHints.GamepadIcons.B_PRESSED
 ]
 
 var _current_gamepad_hints = _gamepad_run_hints.duplicate()
@@ -131,12 +150,10 @@ func _handle_gamepad_running_hints():
 	) and not _goblin.velocity:
 		_awaiting_jump = true
 		_awaiting_jump_hint = false
+		_current_gamepad_hints = _gamepad_jump_hints.duplicate()
+		$TutorialPlaybook/ShowInitialGamepadTimer.start()
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.A_PRESSED
 		$TutorialPlaybook/GamepadHints.fading = false
-	if _awaiting_jump and InputUtil.is_just_released("jump"):
-		_awaiting_jump = false
-		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.NONE
-		$TutorialPlaybook/GamepadHints.fading = true
 
 
 func _handle_keyboard_running_hints():
@@ -157,10 +174,6 @@ func _handle_keyboard_running_hints():
 		_awaiting_jump = false
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 		$TutorialPlaybook/KeyboardHints.fading = true
-
-
-func _handle_gamepad_camera_hints():
-	pass
 
 
 func _handle_mousewheel_hints():
@@ -204,7 +217,6 @@ func _process(_delta):
 		_handle_mousewheel_hints()
 	elif mode == TutorialMode.GAMEPAD:
 		_handle_gamepad_running_hints()
-		_handle_gamepad_camera_hints()
 
 	if (
 		not $TutorialPlaybook/BabyIndicator.fading
@@ -238,6 +250,11 @@ func _process(_delta):
 		if mode == TutorialMode.KEYBOARD:
 			$TutorialPlaybook/MouseHints.current_hint = MouseHints.MouseHint.NONE
 			$TutorialPlaybook/ToggleMouseHintClickTimer.start()
+		else:
+			$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.B_PRESSED
+			$TutorialPlaybook/GamepadHints.fading = false
+			_current_gamepad_hints = _gamepad_menu_hints.duplicate()
+			$TutorialPlaybook/ShowNextGamepadHintTimer.start()
 
 	if (
 		_awaiting_tree_sub_menu and _tree_menu.is_open and

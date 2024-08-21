@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crshtkavdsmef"]
+[gd_scene load_steps=13 format=3 uid="uid://crshtkavdsmef"]
 
 [ext_resource type="Script" path="res://scenes_2d/scripts/gamepad_hints.gd" id="1_4qahp"]
 [ext_resource type="Texture2D" uid="uid://tg3p73msaa4b" path="res://icons/gamepad/gamepad-base.svg" id="2_n77gv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://db8eebqw61wlv" path="res://icons/gamepad/gamepad-R-stick-left.svg" id="8_pscpo"]
 [ext_resource type="Texture2D" uid="uid://dx1t02x0jiwtt" path="res://icons/gamepad/gamepad-R-stick-up.svg" id="9_xnbho"]
 [ext_resource type="Texture2D" uid="uid://bpa12q0o7c3mh" path="res://icons/gamepad/gamepad-R-stick-right.svg" id="10_j6kdq"]
+[ext_resource type="Texture2D" uid="uid://bto2bfnk0exm1" path="res://icons/gamepad/gamepad-B-pressed.svg" id="12_fsoqx"]
 
 [node name="GamepadHints" type="MarginContainer"]
 anchors_preset = -1
@@ -86,5 +87,11 @@ stretch_mode = 4
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("7_nfk7i")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="BPressed" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("12_fsoqx")
 expand_mode = 2
 stretch_mode = 4
