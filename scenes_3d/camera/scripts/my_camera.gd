@@ -35,13 +35,13 @@ func _process(_delta):
 	var p3_axis = Input.get_joy_axis(2, JOY_AXIS_RIGHT_Y)
 	var p4_axis = Input.get_joy_axis(3, JOY_AXIS_RIGHT_Y)
 	if abs(p1_axis) > 0.2:
-		change_zoom(p1_axis, max_d)
+		change_zoom(p1_axis * 4, max_d)
 	elif abs(p2_axis) > 0.2:
-		change_zoom(p2_axis, max_d)
+		change_zoom(p2_axis * 4, max_d)
 	elif abs(p3_axis) > 0.2:
-		change_zoom(p3_axis, max_d)
+		change_zoom(p3_axis * 4, max_d)
 	elif abs(p4_axis) > 0.2:
-		change_zoom(p4_axis, max_d)
+		change_zoom(p4_axis * 4, max_d)
 
 	if Input.is_action_just_pressed("mousewheel_up"):
 		change_zoom(-6.0, max_d)

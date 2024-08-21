@@ -63,6 +63,22 @@ var _gamepad_run_hints = [
 	GamepadHints.GamepadIcons.L_STICK_RIGHT
 ]
 
+var _gamepad_zoom_hints = [
+	GamepadHints.GamepadIcons.R_STICK_UP,
+	GamepadHints.GamepadIcons.R_STICK_DOWN,
+	GamepadHints.GamepadIcons.R_STICK_UP,
+	GamepadHints.GamepadIcons.R_STICK_DOWN,
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.NONE,
+	GamepadHints.GamepadIcons.R_STICK_RIGHT,
+	GamepadHints.GamepadIcons.R_STICK_LEFT,
+	GamepadHints.GamepadIcons.R_STICK_RIGHT,
+	GamepadHints.GamepadIcons.R_STICK_LEFT
+]
+
+var _current_gamepad_hints = _gamepad_run_hints.duplicate()
+
+
 func _on_gem_pouch_change(_gems : int, crystals : int):
 	if crystals > 0 and _awaiting_crystal_collect:
 		_awaiting_crystal_collect = false
@@ -109,17 +125,19 @@ func _handle_gamepad_running_hints():
 		_awaiting_initial_gamepad_hints = false
 		$TutorialPlaybook/ShowInitialGamepadTimer.start()
 
-	if _gamepad_run_hints.is_empty() and _awaiting_jump_hint and Vector2(
+	if _current_gamepad_hints.is_empty() and _awaiting_jump_hint and Vector2(
 		Input.get_joy_axis(main_player_cid - 1, JOY_AXIS_LEFT_X),
 		Input.get_joy_axis(main_player_cid - 1, JOY_AXIS_LEFT_Y)
 	) and not _goblin.velocity:
 		_awaiting_jump = true
 		_awaiting_jump_hint = false
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.A_PRESSED
+		$TutorialPlaybook/GamepadHints.fading = false
 	if _awaiting_jump and InputUtil.is_just_released("jump"):
 		_awaiting_jump = false
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.NONE
 		$TutorialPlaybook/GamepadHints.fading = true
+
 
 func _handle_keyboard_running_hints():
 	if not _is_current_keyboard_hint(KeyboardHints.KeyboardHint.NONE) and (
@@ -139,14 +157,18 @@ func _handle_keyboard_running_hints():
 		_awaiting_jump = false
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 		$TutorialPlaybook/KeyboardHints.fading = true
+
+
+func _handle_gamepad_camera_hints():
+	pass
+
+
+func _handle_mousewheel_hints():
 	if _awaiting_wheel_click and Input.is_action_just_pressed("mousewheel_click"):
 		_awaiting_wheel_click = false
 		_awaiting_wheel_rotate = true
 		_next_hint_timer_running = true
 		$TutorialPlaybook/ShowNextMouseHintTimer.start()
-
-
-func _handle_mousewheel_hints():
 	if (
 		_awaiting_wheel_rotate and not _next_hint_timer_running and
 		abs(_init_rot - CameraUtil.get_cam_pivot().rotation.y) > 0.1
@@ -182,6 +204,7 @@ func _process(_delta):
 		_handle_mousewheel_hints()
 	elif mode == TutorialMode.GAMEPAD:
 		_handle_gamepad_running_hints()
+		_handle_gamepad_camera_hints()
 
 	if (
 		not $TutorialPlaybook/BabyIndicator.fading
@@ -331,9 +354,14 @@ func _on_goblin_indicator_done() -> void:
 
 func _on_baby_indicator_done() -> void:
 	$TutorialPlaybook/FishfolkArrivalIndicator.start(LONG_INDICATOR_TIME)
-	$TutorialPlaybook/MouseHints.fading = false
-	$TutorialPlaybook/ShowNextMouseHintTimer.start()
-	_awaiting_wheel_click = true
+	if mode == TutorialMode.KEYBOARD:
+		$TutorialPlaybook/MouseHints.fading = false
+		$TutorialPlaybook/ShowNextMouseHintTimer.start()
+		_awaiting_wheel_click = true
+	else:
+		$TutorialPlaybook/GamepadHints.fading = false
+		_current_gamepad_hints = _gamepad_zoom_hints.duplicate()
+		$TutorialPlaybook/ShowNextGamepadHintTimer.start()
 
 
 func _on_show_keyboard_hints_timer_timeout() -> void:
@@ -379,8 +407,9 @@ func _on_show_initial_gamepad_timer_timeout() -> void:
 
 
 func _on_show_next_gamepad_hint_timer_timeout() -> void:
-	if _gamepad_run_hints.is_empty():
+	if _current_gamepad_hints.is_empty():
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.NONE
+		$TutorialPlaybook/GamepadHints.fading = true
 	else:
-		$TutorialPlaybook/GamepadHints.current_icon = _gamepad_run_hints.pop_front()
+		$TutorialPlaybook/GamepadHints.current_icon = _current_gamepad_hints.pop_front()
 		$TutorialPlaybook/ShowNextGamepadHintTimer.start()

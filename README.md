@@ -46,9 +46,9 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 ## Milestones in the creative process
 
 ### Up next - Gamepad tutorial / Integrated web build
-- [ ] make gamepad svg's
-- [ ] copy keyboard and mouse hints and turn into gamepad hints
-- [ ] rebuild the web demo, optimize with simple overrides in separate files (not separate branch)
+- [x] make gamepad svg's
+- [x] copy keyboard and mouse hints and turn into gamepad hints
+- [x] rebuild the web demo, optimize with simple overrides in separate files (not separate branch)
 - [ ] add a start button for gamepad in web demo
 - [ ] write a new devlog with screen recording (about my first jam leading to many improvements)
 
