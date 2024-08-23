@@ -48,10 +48,14 @@ func _get_targeted_option():
 
 
 func _handle_arrow_rotation():
+	if not visible:
+		return
 	var option_pointed_at = _get_targeted_option()
 	if option_pointed_at and is_instance_valid(option_pointed_at):
 		_toggle_option_blink(option_pointed_at, true)
 		$Label.text = menu_labels[current_menu][option_pointed_at.name]
+		if targeted_option != menu_labels[current_menu][option_pointed_at.name]:
+			_play_option_change_sound()
 		targeted_option = menu_labels[current_menu][option_pointed_at.name]
 
 
@@ -133,6 +137,7 @@ func select_targeted_option() -> String:
 			_play_confirm_sound()
 			return choice
 		else:
+			$OnCantAfford.play()
 			return ""
 
 func close_submenu():
@@ -157,3 +162,9 @@ func _play_confirm_sound():
 	$OnConfirmAudioStreamPlayer.play()
 	await get_tree().create_timer(0.1).timeout
 	$OnConfirmAudioStreamPlayer.stop()
+
+
+func _play_option_change_sound():
+	$OnSelectAudioStreamPlayer.play()
+	await get_tree().create_timer(0.1).timeout
+	$OnSelectAudioStreamPlayer.stop()
