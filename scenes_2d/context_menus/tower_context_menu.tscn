@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://nb0vibtqx5cw"]
+[gd_scene load_steps=43 format=3 uid="uid://nb0vibtqx5cw"]
 
 [ext_resource type="Texture2D" uid="uid://duk4mirwg21rk" path="res://icons/dismantle-option.svg" id="1_g0gxm"]
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tower_context_menu.gd" id="1_n8180"]
@@ -16,6 +16,8 @@
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="14_f8xx1"]
 [ext_resource type="Texture2D" uid="uid://c81nfqtnr1hos" path="res://icons/range-stat.svg" id="15_nladh"]
 [ext_resource type="Texture2D" uid="uid://dslbduu8es3b8" path="res://icons/rate-of-fire-stat.svg" id="16_s8w3c"]
+[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="17_ft2pi"]
+[ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="18_3q6fe"]
 
 [sub_resource type="Gradient" id="Gradient_4vl0e"]
 offsets = PackedFloat32Array(0.99, 1)
@@ -471,6 +473,12 @@ text = "1.25"
 label_settings = SubResource("LabelSettings_eqbfv")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_ft2pi")
+
+[node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_3q6fe")
 
 [editable path="MainMenu/Dismantle-option/PriceTag"]
 [editable path="UpgradeMenu/Range-option/PriceTag"]

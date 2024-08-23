@@ -115,6 +115,7 @@ func select_targeted_option() -> String:
 			current_menu = targeted_option
 			menu.show()
 			$MainMenu.hide()
+			_play_confirm_sound()
 		return ""
 	else:
 		var choice = targeted_option
@@ -129,6 +130,7 @@ func select_targeted_option() -> String:
 					price_tag.builder_gem_price,
 					price_tag.magical_crystal_price
 			)
+			_play_confirm_sound()
 			return choice
 		else:
 			return ""
@@ -149,3 +151,9 @@ func rotate_arrow(angle : float):
 
 func _on_gem_pouch_contents_changed(_gems : int, _crystals : int):
 	printerr("_on_gem_pouch_contents_changed must be overridden")
+
+
+func _play_confirm_sound():
+	$OnConfirmAudioStreamPlayer.play()
+	await get_tree().create_timer(0.1).timeout
+	$OnConfirmAudioStreamPlayer.stop()

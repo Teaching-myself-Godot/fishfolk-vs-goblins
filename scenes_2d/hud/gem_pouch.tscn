@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://doyct1xu46gwj"]
+[gd_scene load_steps=12 format=3 uid="uid://doyct1xu46gwj"]
 
 [ext_resource type="Script" path="res://scenes_2d/hud/scripts/gem_pouch.gd" id="1_m4ymf"]
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="3_itbpt"]
 [ext_resource type="Texture2D" uid="uid://ddp3f8s6hsbjf" path="res://scenes_2d/hud/builder_gem_thumbnail.png" id="3_opju0"]
 [ext_resource type="Texture2D" uid="uid://duco6riqnmhdx" path="res://scenes_2d/hud/crib_thumbnail.png" id="4_ud2b7"]
 [ext_resource type="Texture2D" uid="uid://cj8wykllwpe1h" path="res://scenes_2d/hud/magical_crystal_thumbnail.png" id="5_3e4km"]
+[ext_resource type="AudioStream" uid="uid://c6eqprquy818q" path="res://sounds/bell_02.ogg" id="6_70qdk"]
 
 [sub_resource type="Gradient" id="Gradient_ti78j"]
 offsets = PackedFloat32Array(0)
@@ -129,3 +130,13 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(112, 24)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_ud2b7")
+
+[node name="Bell02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_70qdk")
+pitch_scale = 1.25
+
+[node name="SpendSoundTimer" type="Timer" parent="."]
+wait_time = 0.075
+autostart = true
+
+[connection signal="timeout" from="SpendSoundTimer" to="." method="_on_spend_sound_timer_timeout"]
