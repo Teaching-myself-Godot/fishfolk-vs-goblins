@@ -75,13 +75,13 @@ func _on_title_screen_confirm_stage():
 
 func _on_pause_menu_restart_stage():
 	_select_stage(current_stage_scene)
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	_start_stage()
 
 
 func _on_pause_menu_open_stage_select():
 	get_tree().paused = true
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	$TitleScreen.open_title_screen()
@@ -101,7 +101,7 @@ func _on_quit_pressed():
 
 func _on_continue_pressed():
 	get_tree().paused = false
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
 

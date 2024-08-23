@@ -1,9 +1,11 @@
 class_name TitleScreen
 extends Sprite2D
 
-
 signal select_stage(stage : PackedScene)
 signal confirm_stage()
+
+
+var _muted := false
 
 
 func _ready():
@@ -22,6 +24,8 @@ func _unhandled_input(_event):
 func open_title_screen():
 	InputUtil.player_map = {}
 	show()
+	_muted = true
+	$UnmuteTimer.start()
 	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".grab_focus()
 
 
@@ -45,7 +49,15 @@ func _on_next_button_up():
 
 func _on_select_stage(my_stage: PackedScene) -> void:
 	select_stage.emit(my_stage)
+	if not _muted:
+		$OnSelectAudioStreamPlayer.play()
+		await get_tree().create_timer(0.1).timeout
+		$OnSelectAudioStreamPlayer.stop()
 
 
 func _on_stage_confirmed() -> void:
 	confirm_stage.emit()
+
+
+func _on_unmute_timer_timeout() -> void:
+	_muted = false

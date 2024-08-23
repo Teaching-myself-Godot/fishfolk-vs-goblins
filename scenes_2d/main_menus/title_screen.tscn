@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=14 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://doy7owgxttfij" path="res://scenes_3d/stages/stage-1-2.tscn" id="6_flai6"]
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="6_pa17n"]
 [ext_resource type="PackedScene" uid="uid://bts8ph0eqjf8n" path="res://scenes_3d/stages/stage-1-3.tscn" id="7_eld54"]
+[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/JDSherbert - Ultimate UI SFX Pack - Cursor - 3.wav" id="10_tny07"]
 
 [sub_resource type="Gradient" id="Gradient_n5eq8"]
 offsets = PackedFloat32Array(0)
@@ -142,6 +143,12 @@ focus_mode = 0
 theme = ExtResource("4_l4jgl")
 text = ">"
 
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_tny07")
+
+[node name="UnmuteTimer" type="Timer" parent="."]
+wait_time = 0.25
+
 [connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
@@ -152,3 +159,4 @@ text = ">"
 [connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_select_stage"]
 [connection signal="button_up" from="Prev" to="." method="_on_prev_button_up"]
 [connection signal="button_up" from="Next" to="." method="_on_next_button_up"]
+[connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]
