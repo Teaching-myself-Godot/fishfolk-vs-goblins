@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_2hc6a"]
 [ext_resource type="PackedScene" uid="uid://ddpbkvarml5rb" path="res://scenes_2d/b_button.tscn" id="2_urdxs"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/menu_option.gd" id="2_uxpyv"]
-[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/JDSherbert - Ultimate UI SFX Pack - Cursor - 3.wav" id="4_v8uf4"]
+[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="4_v8uf4"]
 
 [node name="MenuOption" type="Button"]
 modulate = Color(1, 1, 1, 0.396078)
