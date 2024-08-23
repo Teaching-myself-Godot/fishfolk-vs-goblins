@@ -57,6 +57,9 @@ func _on_select_stage(my_stage: PackedScene) -> void:
 
 func _on_stage_confirmed() -> void:
 	confirm_stage.emit()
+	$OnConfirmAudioStreamPlayer.play()
+	await get_tree().create_timer(0.1).timeout
+	$OnConfirmAudioStreamPlayer.stop()
 
 
 func _on_unmute_timer_timeout() -> void:
