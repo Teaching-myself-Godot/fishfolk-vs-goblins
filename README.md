@@ -20,11 +20,6 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
 - Write a new devlog with screen recording (about my first jam leading to many improvements)
-- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- _sounds_: confirm a build item from context menu / upgrade item (also add rumble)
-- _sounds_: spending gems
-- _sounds_: tower rising from ground rumble
-- _sounds_: tower sinking back into the ground rumble
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
@@ -45,6 +40,16 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - 3D cutscenes with more back story?
 
 ## Milestones in the creative process
+
+### Milestone 23 - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 8th 2024)
+
+- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
+- _sounds_: confirm a build item from context menu / upgrade item (also add rumble)
+- _sounds_: spending gems
+- _sounds_: tower rising from ground rumble
+- _sounds_: tower sinking back into the ground rumble
+- Add attributions: [JDSherbert](https://jdsherbert.itch.io/)
+
 
 ### [Milestone 22](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-22) - Gamepad tutorial / Integrated web build (August 22nd 2024)
 - make gamepad svg's
