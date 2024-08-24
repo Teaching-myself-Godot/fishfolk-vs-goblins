@@ -114,6 +114,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2p8xe")
 text = " Credits"
 
 [node name="Credits" parent="CenterContainer" instance=ExtResource("10_tb0fd")]
+visible = false
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -175,6 +176,7 @@ uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
 [connection signal="stage_won" from="Tutorial" to="." method="_on_tutorial_stage_won"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayWithGamepadButton" to="Tutorial" method="_on_play_with_gamepad_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="close_credits" from="CenterContainer/Credits" to="." method="_on_close_credits_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Credits/CenterContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
 
 [editable path="Tutorial"]

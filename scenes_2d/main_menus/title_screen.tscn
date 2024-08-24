@@ -73,6 +73,7 @@ theme_override_fonts/font = ExtResource("3_ibf3y")
 text = "Credits and attributions"
 
 [node name="Credits" parent="StageSelectMenu" instance=ExtResource("8_3mpk5")]
+visible = false
 layout_mode = 2
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -91,4 +92,5 @@ stream = ExtResource("11_ufrbn")
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="close_credits" from="StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
 [connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]

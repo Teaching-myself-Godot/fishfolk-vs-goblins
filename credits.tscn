@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c36xdno8384jq"]
+[gd_scene load_steps=6 format=3 uid="uid://c36xdno8384jq"]
 
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_7bouy"]
+[ext_resource type="Script" path="res://scenes_2d/scripts/credits.gd" id="1_t5ilu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8njw6"]
 bg_color = Color(0, 0.12549, 0.0156863, 0.933333)
@@ -17,9 +18,9 @@ font_size = 24
 font = ExtResource("1_7bouy")
 
 [node name="Credits" type="PanelContainer"]
-visible = false
-custom_minimum_size = Vector2(750, 600)
+custom_minimum_size = Vector2(750, 620)
 theme_override_styles/panel = SubResource("StyleBoxFlat_8njw6")
+script = ExtResource("1_t5ilu")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -28,7 +29,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(580, 460)
+custom_minimum_size = Vector2(580, 520)
 layout_mode = 2
 columns = 2
 
@@ -167,9 +168,25 @@ theme_override_font_sizes/font_size = 32
 text = "zygy"
 uri = "https://www.inaturalist.org/users/13405"
 
+[node name="Label8" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Big THANK YOU to all
+the reviewers!"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton7" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "Reviews in #imgj34"
+uri = "https://itch.io/jam/imgj34/rate/2810521"
+
 [node name="CloseCreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_7bouy")
 text = "Back"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
