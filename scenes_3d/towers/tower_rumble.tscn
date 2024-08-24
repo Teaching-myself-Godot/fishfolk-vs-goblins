@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfkrtrgmvtegr"]
+
+[ext_resource type="AudioStream" uid="uid://7bauegptec3x" path="res://sounds/tower_rumble2.wav" id="1_7fin6"]
+[ext_resource type="Script" path="res://scenes_3d/towers/scripts/tower_rumble.gd" id="2_6yfsr"]
+
+[node name="TowerRumble" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_7fin6")
+script = ExtResource("2_6yfsr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

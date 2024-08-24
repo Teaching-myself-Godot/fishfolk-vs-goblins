@@ -24,10 +24,18 @@ func _ready():
 	$AudioStreamPlayer.play()
 
 
+func close_menu():
+	hide()
+	for opt : MenuOption in find_children("*", "MenuOption"):
+		opt.muted = true
+
+
 func open_menu():
 	show()
 	$Continue.grab_focus()
 	$AudioStreamPlayer.play(0.0)
+	for opt : MenuOption in find_children("*", "MenuOption"):
+		opt.muted = false
 
 
 func _on_audio_stream_player_finished():

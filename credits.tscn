@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=3 uid="uid://c36xdno8384jq"]
+
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="1_7bouy"]
+[ext_resource type="Script" path="res://scenes_2d/scripts/credits.gd" id="1_t5ilu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8njw6"]
+bg_color = Color(0, 0.12549, 0.0156863, 0.933333)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ov7m5"]
+font = ExtResource("1_7bouy")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_c78rm"]
+font = ExtResource("1_7bouy")
+
+[node name="Credits" type="PanelContainer"]
+custom_minimum_size = Vector2(750, 620)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8njw6")
+script = ExtResource("1_t5ilu")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(580, 520)
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Programming:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "René van der Ark"
+uri = "https://renevanderark.itch.io"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Music and Logo:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton2" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "Moon"
+uri = "https://www.bandlab.com/moonlightgetsentient"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "UI sounds:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton3" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "JDSherbert"
+uri = "https://jdsherbert.itch.io/"
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "3D Art:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton4" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "René van der Ark"
+uri = "https://renevanderark.itch.io"
+
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Fonts:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton5" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "GGBotnet"
+uri = "https://ggbot.itch.io/"
+
+[node name="Label6" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Range ring shader:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton6" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "thepathgame"
+uri = "https://godotshaders.com/author/thepathgame/"
+
+[node name="Label7" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+text = "Sea turtle textures:"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton7" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "turtle shell"
+uri = "https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "by"
+label_settings = SubResource("LabelSettings_c78rm")
+vertical_alignment = 2
+
+[node name="LinkButton8" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "James St. John"
+uri = "https://www.flickr.com/people/47445767@N05"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton7" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "flippers"
+uri = "https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "by"
+label_settings = SubResource("LabelSettings_c78rm")
+vertical_alignment = 2
+
+[node name="LinkButton8" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "zygy"
+uri = "https://www.inaturalist.org/users/13405"
+
+[node name="Label8" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+text = "Big THANK YOU to all
+the reviewers!"
+label_settings = SubResource("LabelSettings_ov7m5")
+
+[node name="LinkButton7" type="LinkButton" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bouy")
+theme_override_font_sizes/font_size = 32
+text = "Reviews in #imgj34"
+uri = "https://itch.io/jam/imgj34/rate/2810521"
+
+[node name="CloseCreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_7bouy")
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]

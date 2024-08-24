@@ -10,6 +10,7 @@ func _ready():
 
 
 func _toggle_fullscreen():
+	_play_confirm_sound()
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
@@ -62,6 +63,8 @@ func _start_stage():
 		hud_item.show()
 
 	var start_pos = _get_goblin_spawn_point()
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(InputUtil.ControllerID.KEYBOARD)
 	for cid in InputUtil.cids_registered:
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
@@ -74,14 +77,16 @@ func _on_title_screen_confirm_stage():
 
 
 func _on_pause_menu_restart_stage():
+	_play_confirm_sound()
 	_select_stage(current_stage_scene)
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	_start_stage()
 
 
 func _on_pause_menu_open_stage_select():
+	_play_confirm_sound()
 	get_tree().paused = true
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()
 	$TitleScreen.open_title_screen()
@@ -96,16 +101,23 @@ func _on_game_over_splash_close_gameover_splash():
 
 
 func _on_quit_pressed():
+	_play_confirm_sound()
 	get_tree().quit()
 
 
 func _on_continue_pressed():
 	get_tree().paused = false
-	$PauseMenu.hide()
+	$PauseMenu.close_menu()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.show()
-
+	_play_confirm_sound()
 
 func _on_tune_no_1_player_finished():
 	if not get_tree().paused:
 		$TuneNo1Player.play()
+
+
+func _play_confirm_sound():
+	$OnSelectAudioStreamPlayer.play()
+	await get_tree().create_timer(0.1).timeout
+	$OnSelectAudioStreamPlayer.stop()
