@@ -13,7 +13,7 @@ var magical_crystals_showing : int = 0
 var builder_gem_count_label : Label
 var magical_crystal_count_label : Label
 var crib_count_label : Label
-
+var _spend_sounds_left := 0
 
 func _ready():
 	builder_gems_showing = builder_gems
@@ -54,6 +54,9 @@ func spend_gems(gems : int, crystals : int):
 	builder_gems = 0 if builder_gems < 0 else builder_gems
 	magical_crystals = 0 if magical_crystals < 0 else magical_crystals
 	liquidity_change.emit(builder_gems, magical_crystals)
+	for _i in range(0, gems, 20):
+		_spend_sounds_left += 1
+	_spend_sounds_left += crystals
 
 
 func _process(_delta):
@@ -79,3 +82,9 @@ func _process(_delta):
 func _on_resize():
 	if position.y != get_viewport().size.y:
 		position.y = get_viewport().size.y
+
+
+func _on_spend_sound_timer_timeout() -> void:
+	if _spend_sounds_left > 0:
+		_spend_sounds_left -= 1
+		$Bell02.play()

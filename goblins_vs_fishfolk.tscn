@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://vmvsjailhjjs"]
+[gd_scene load_steps=8 format=3 uid="uid://vmvsjailhjjs"]
 
 [ext_resource type="Script" path="res://scripts/goblins_vs_fishfolk.gd" id="1_yg1jx"]
 [ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="2_y6vnr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmlpewrex4i8b" path="res://scenes_2d/hud/debugbar.tscn" id="5_o58og"]
 [ext_resource type="PackedScene" uid="uid://dhw0txm3hlokt" path="res://scenes_2d/main_menus/title_screen.tscn" id="6_1aefp"]
 [ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="6_sllsd"]
+[ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="7_t3x2p"]
 
 [node name="GoblinsVsFishfolk" type="Node"]
 script = ExtResource("1_yg1jx")
@@ -35,6 +36,9 @@ visible = false
 text = "Stage Won!
 
 - press any button to continue -"
+
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_t3x2p")
 
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]

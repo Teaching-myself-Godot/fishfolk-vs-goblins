@@ -1,154 +1,96 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=11 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_ibf3y"]
 [ext_resource type="PackedScene" uid="uid://cf2ha5qruwm47" path="res://scenes_2d/main_menus/stage_select_option.tscn" id="4_kqyji"]
-[ext_resource type="Theme" uid="uid://yjvrxhj6jvpp" path="res://scenes_2d/main_menus/themes/unfocusable_label_button_theme.tres" id="4_l4jgl"]
 [ext_resource type="PackedScene" uid="uid://d1ltd4sm1gwbt" path="res://scenes_3d/stages/stage-1-1.tscn" id="5_scabv"]
 [ext_resource type="PackedScene" uid="uid://doy7owgxttfij" path="res://scenes_3d/stages/stage-1-2.tscn" id="6_flai6"]
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="6_pa17n"]
-[ext_resource type="PackedScene" uid="uid://bts8ph0eqjf8n" path="res://scenes_3d/stages/stage-1-3.tscn" id="7_eld54"]
+[ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="8_3mpk5"]
+[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="10_tny07"]
+[ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
 
-[sub_resource type="Gradient" id="Gradient_n5eq8"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.501961)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdc3l"]
-gradient = SubResource("Gradient_n5eq8")
-width = 1152
-height = 648
-
-[sub_resource type="LabelSettings" id="LabelSettings_y1jkn"]
-font = ExtResource("3_ibf3y")
-font_size = 20
-font_color = Color(0.756863, 1, 0, 1)
-shadow_color = Color(1, 1, 1, 0.52549)
-
-[node name="TitleScreen" type="Sprite2D"]
+[node name="TitleScreen" type="PanelContainer"]
 process_mode = 2
-texture = SubResource("GradientTexture2D_gdc3l")
-centered = false
-script = ExtResource("1_o1xv6")
-
-[node name="Splash" type="Sprite2D" parent="."]
-position = Vector2(578, 336)
-texture = ExtResource("1_053dn")
-offset = Vector2(0, 75)
-region_rect = Rect2(0, 0, 1150, 500)
-
-[node name="Label" type="Label" parent="Splash"]
-offset_left = -98.0
-offset_top = -17.0
-offset_right = 69.0
-offset_bottom = 10.0
-text = "- Press Start -"
-label_settings = SubResource("LabelSettings_y1jkn")
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Splash"]
-offset_left = -14.0
-offset_top = 170.0
-offset_right = 157.0
-offset_bottom = 197.0
-text = "- Or Spacebar -"
-label_settings = SubResource("LabelSettings_y1jkn")
-horizontal_alignment = 1
-
-[node name="StageSelectMenu" type="ScrollContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -177.0
-offset_right = 116.0
-offset_bottom = -148.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-follow_focus = true
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
+script = ExtResource("1_o1xv6")
 
-[node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu"]
+[node name="StageSelectMenu" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StageSelectMenu"]
 layout_mode = 2
 
-[node name="Tutorial" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Splash" type="TextureRect" parent="StageSelectMenu/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Stage 1-3")
+texture = ExtResource("1_053dn")
+
+[node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Tutorial" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
 focus_neighbor_right = NodePath("../Stage 1-1")
+focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
 focus_next = NodePath("../Stage 1-1")
-focus_previous = NodePath("../Stage 1-3")
-text = "Tutorial"
+text = "Tutorial  "
 my_stage = ExtResource("6_pa17n")
 
-[node name="Stage 1-1" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Tutorial")
 focus_neighbor_right = NodePath("../Stage 1-2")
+focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
 focus_next = NodePath("../Stage 1-2")
 focus_previous = NodePath("../Tutorial")
-text = "Story"
+text = "Story  "
 my_stage = ExtResource("5_scabv")
 
-[node name="Stage 1-2" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Stage 1-2" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Stage 1-1")
-focus_neighbor_right = NodePath("../Stage 1-3")
-focus_next = NodePath("../Stage 1-3")
+focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
 focus_previous = NodePath("../Stage 1-1")
-text = "Endurance"
+text = "Endless!  "
 my_stage = ExtResource("6_flai6")
 
-[node name="Stage 1-3" parent="StageSelectMenu/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="CenterContainer" type="CenterContainer" parent="StageSelectMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-focus_neighbor_left = NodePath("../Stage 1-2")
-focus_neighbor_right = NodePath("../Tutorial")
-focus_next = NodePath("../Tutorial")
-focus_previous = NodePath("../Stage 1-2")
-text = "Survival?"
-my_stage = ExtResource("7_eld54")
 
-[node name="Prev" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -180.0
-offset_right = -29.0
-offset_bottom = -145.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-theme = ExtResource("4_l4jgl")
-text = "<"
+[node name="CreditsButton" type="Button" parent="StageSelectMenu/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../StageSelectMenuOptions/Stage 1-1")
+theme_override_fonts/font = ExtResource("3_ibf3y")
+text = "Credits and attributions"
 
-[node name="Next" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 96.0
-offset_top = -180.0
-offset_right = 107.0
-offset_bottom = -145.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-theme = ExtResource("4_l4jgl")
-text = ">"
+[node name="Credits" parent="StageSelectMenu" instance=ExtResource("8_3mpk5")]
+visible = false
+layout_mode = 2
 
-[connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/StageSelectMenuOptions/Stage 1-3" to="." method="_on_select_stage"]
-[connection signal="button_up" from="Prev" to="." method="_on_prev_button_up"]
-[connection signal="button_up" from="Next" to="." method="_on_next_button_up"]
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_tny07")
+
+[node name="UnmuteTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ufrbn")
+
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="close_credits" from="StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
+[connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]

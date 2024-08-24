@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bubns2tywueht"]
+[gd_scene load_steps=31 format=3 uid="uid://bubns2tywueht"]
 
 [ext_resource type="Script" path="res://scenes_2d/context_menus/scripts/tree_context_menu.gd" id="1_3a72v"]
 [ext_resource type="Shader" path="res://shaders/menu_blinks/blink_option.gdshader" id="2_axdaj"]
@@ -13,7 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://c4qe1usvce8bm" path="res://icons/menu-arrow.svg" id="11_duxam"]
 [ext_resource type="PackedScene" uid="uid://cl5dwiiyf0jvd" path="res://scenes_2d/a_button.tscn" id="12_yut17"]
 [ext_resource type="PackedScene" uid="uid://ddpbkvarml5rb" path="res://scenes_2d/b_button.tscn" id="13_jte13"]
+[ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="15_blgqc"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="15_oatya"]
+[ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="16_btram"]
+[ext_resource type="AudioStream" uid="uid://cqqhq0mdihguc" path="res://sounds/ui/on_cant_afford.wav" id="17_q54v3"]
 
 [sub_resource type="Gradient" id="Gradient_4vl0e"]
 offsets = PackedFloat32Array(0.99, 1)
@@ -251,6 +254,15 @@ text = "All-Range
 "
 label_settings = SubResource("LabelSettings_xw20b")
 horizontal_alignment = 1
+
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_blgqc")
+
+[node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_btram")
+
+[node name="OnCantAfford" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_q54v3")
 
 [editable path="All-RangeMenu/Arrow-option/PriceTag"]
 [editable path="GroundMenu/Cannon-option/PriceTag"]

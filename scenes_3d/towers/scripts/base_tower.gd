@@ -4,6 +4,8 @@ extends Node3D
 
 signal drop_builder_gem(pos : Vector3)
 
+@onready var rumble_sound : TowerRumble = $TowerRumble
+
 var my_general_area = 2.5
 var my_range_ring : RangeRing = null
 var rise_target_position : Vector3 = Vector3.ZERO
@@ -101,6 +103,7 @@ func _ready():
 	outlines = find_children("*Outline")
 	toggle_highlight(false)
 	original_y_position = position.y
+	rumble_sound.play_long(2.2)
 
 
 func _process(delta):
@@ -135,6 +138,7 @@ func toggle_highlight(flag : bool):
 
 
 func dismantle():
+	rumble_sound.play_long(2)
 	remove_from_group(Constants.GROUP_NAME_TOWERS)
 	for tree : MyTree in felled_trees:
 		tree.restore_if_have_room()

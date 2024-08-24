@@ -13,24 +13,19 @@ My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
 ## A Word of Gratitude
 
-Many thanks go out to my creative manager, son, and author of the musical scores: [くコ:彡Amna at bandlab](https://www.bandlab.com/yoia_). Without him, there would have been no HP bars, no damage indicators shouting "Overkill", no sound and no music in this game.
+Many thanks go out to my creative manager, son, and author of the musical scores: [Moon at bandlab](https://www.bandlab.com/moonlightgetsentient). Without him, there would have been no HP bars, no damage indicators shouting "Overkill", no sound and no music in this game.
 
 Also my wife and colleagues who were so kind to playtest this game on different machines and platforms
 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
 - Write a new devlog with screen recording (about my first jam leading to many improvements)
-- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- _sounds_: confirm a build item from context menu / upgrade item (also add rumble)
-- _sounds_: spending gems
-- _sounds_: tower rising from ground rumble
-- _sounds_: tower sinking back into the ground rumble
+- Add a settings menu to control audio for sfx and music
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 - Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
 - Add survival time to survival mode
-- Drop 3rd stage
 
 
 ## Future ideas...
@@ -45,6 +40,19 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - 3D cutscenes with more back story?
 
 ## Milestones in the creative process
+
+### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
+- _sounds_: tower rising from ground
+- _sounds_: tower sinking back into the ground
+- _sounds_: confirm a build item from context menu / upgrade item
+- _sounds_: spending gems
+- Drop 3rd stage for now
+- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
+- Add attributions in a new credits section: [JDSherbert](https://jdsherbert.itch.io/)
+- ... and [Moon at bandlab](https://www.bandlab.com/moonlightgetsentient)
+- ... and [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) for turtle shell
+- ... and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head by [zygy](https://www.inaturalist.org/users/13405)
+
 
 ### [Milestone 22](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-22) - Gamepad tutorial / Integrated web build (August 22nd 2024)
 - make gamepad svg's
@@ -158,7 +166,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 - create a turtle model
 - use a [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) as texture
-- and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head <-- did not go as planned
+- and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head by [zygy](https://www.inaturalist.org/users/13405)
 - animate the model, dragging over the sand
 - use tattooed-shader for dragging coloration on terrain
 - use dust to hide flipper-clipping
