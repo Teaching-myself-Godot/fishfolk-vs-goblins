@@ -53,7 +53,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [ ] give endless mode the center stage
 
 
-### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
+### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 24th 2024)
 - Write a new devlog with screen recording (about my first jam leading to many improvements)
 - _sounds_: tower rising from ground
 - _sounds_: tower sinking back into the ground
