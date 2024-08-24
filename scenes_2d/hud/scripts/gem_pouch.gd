@@ -54,7 +54,9 @@ func spend_gems(gems : int, crystals : int):
 	builder_gems = 0 if builder_gems < 0 else builder_gems
 	magical_crystals = 0 if magical_crystals < 0 else magical_crystals
 	liquidity_change.emit(builder_gems, magical_crystals)
-	_spend_sounds_left += floor(gems / 20) + crystals
+	for _i in range(0, gems, 20):
+		_spend_sounds_left += 1
+	_spend_sounds_left += crystals
 
 
 func _process(_delta):

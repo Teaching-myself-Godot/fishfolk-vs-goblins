@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ekqx2g2sid3h"]
+[gd_scene load_steps=17 format=3 uid="uid://ekqx2g2sid3h"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/web_demo.gd" id="1_fmj5s"]
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="2_kff0h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bcv2x4vqvwskc" path="res://scenes_3d/monsters/giant_turtle.scn" id="6_amhp8"]
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="9_14doo"]
 [ext_resource type="Script" path="res://scripts/debugbar_webdemo.gd" id="10_igogl"]
+[ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="10_tb0fd"]
 [ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="11_7nw5b"]
 [ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="11_b532c"]
 [ext_resource type="PackedScene" uid="uid://crjgde67usrmn" path="res://scenes_3d/monster_spawner/monster_wave.tscn" id="12_q35mt"]
@@ -22,12 +23,13 @@ resource_local_to_scene = true
 font = ExtResource("16_uu3m5")
 font_size = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slsex"]
-bg_color = Color(0.105882, 0.333333, 0.105882, 0.713726)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2p8xe"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="WebDemo" type="Node"]
 script = ExtResource("1_fmj5s")
@@ -102,8 +104,17 @@ horizontal_alignment = 1
 [node name="PlayWithGamepadButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_uu3m5")
-theme_override_styles/normal = SubResource("StyleBoxFlat_slsex")
-text = " - Play with Gamepad - "
+theme_override_styles/normal = SubResource("StyleBoxFlat_2p8xe")
+text = "  Play with Gamepad "
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_uu3m5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2p8xe")
+text = " Credits"
+
+[node name="Credits" parent="CenterContainer" instance=ExtResource("10_tb0fd")]
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 12
@@ -163,6 +174,8 @@ uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
 [connection signal="gameover" from="Tutorial" to="." method="_on_tutorial_gameover"]
 [connection signal="stage_won" from="Tutorial" to="." method="_on_tutorial_stage_won"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayWithGamepadButton" to="Tutorial" method="_on_play_with_gamepad_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/Credits/CenterContainer/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
 
 [editable path="Tutorial"]
 [editable path="Tutorial/TreesAndCribsAndSuch/palm-tree47"]
@@ -171,4 +184,5 @@ uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
 [editable path="Tutorial/MonsterSpawner/TurtleWave2"]
 [editable path="Tutorial/MonsterSpawner3/FlyingWave3"]
 [editable path="Tutorial/SunAndSky"]
+[editable path="CenterContainer/Credits"]
 [editable path="GameOverSplash"]

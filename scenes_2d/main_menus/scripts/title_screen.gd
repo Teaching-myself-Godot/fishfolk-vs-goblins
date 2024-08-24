@@ -1,17 +1,18 @@
 class_name TitleScreen
-extends Sprite2D
+extends PanelContainer
 
 signal select_stage(stage : PackedScene)
 signal confirm_stage()
-
+@onready var stage_select_options = (
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions"
+			.find_children("*", "StageSelectOption", false)
+)
 
 var _muted := false
 
 
 func _ready():
-	get_tree().get_root().size_changed.connect(_on_resize)
-	_on_resize()
-	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".call_deferred("grab_focus")
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial".call_deferred("grab_focus")
 
 
 func _unhandled_input(_event):
@@ -26,25 +27,7 @@ func open_title_screen():
 	show()
 	_muted = true
 	$UnmuteTimer.start()
-	$"StageSelectMenu/StageSelectMenuOptions/Tutorial".grab_focus()
-
-
-func _on_resize():
-	texture.width = get_viewport().size.x
-	texture.height = get_viewport().size.y
-	$Splash.position = get_viewport().size / 2
-
-
-func _on_prev_button_up():
-	var focused = get_viewport().gui_get_focus_owner()
-	if is_instance_valid(focused) and focused is StageSelectOption:
-		(focused as StageSelectOption).find_prev_valid_focus().grab_focus()
-
-
-func _on_next_button_up():
-	var focused = get_viewport().gui_get_focus_owner()
-	if is_instance_valid(focused) and focused is StageSelectOption:
-		(focused as StageSelectOption).find_next_valid_focus().grab_focus()
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1".grab_focus()
 
 
 func _on_select_stage(my_stage: PackedScene) -> void:
@@ -64,3 +47,17 @@ func _on_stage_confirmed() -> void:
 
 func _on_unmute_timer_timeout() -> void:
 	_muted = false
+
+
+func _on_credits_button_pressed() -> void:
+	for stage_select_option : StageSelectOption in  stage_select_options:
+		stage_select_option.focus_mode = FocusMode.FOCUS_NONE
+	$StageSelectMenu/Credits.show()
+	$StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton.grab_focus()
+
+
+func _on_close_credits_button_pressed() -> void:
+	for stage_select_option : StageSelectOption in stage_select_options:
+		stage_select_option.focus_mode = FocusMode.FOCUS_ALL
+	$StageSelectMenu/Credits.hide()
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1".grab_focus()

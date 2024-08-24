@@ -17,3 +17,12 @@ func _on_tutorial_stage_won() -> void:
 	get_tree().paused = true
 	$PanelContainer.hide()
 	$GameOverSplash.show()
+
+
+func _on_close_credits_button_pressed() -> void:
+	$CenterContainer/Credits.hide()
+
+
+func _on_credits_pressed() -> void:
+	$CenterContainer/Credits.show()
+	$CenterContainer/Credits/CenterContainer/VBoxContainer/CloseCreditsButton.grab_focus()
