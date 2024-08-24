@@ -107,3 +107,7 @@ func dismantle():
 func upgrade_reload_time():
 	super.upgrade_reload_time()
 	$ReloadTimer.wait_time = current_reload_time
+
+func upgrade_damage():
+	super.upgrade_damage()
+	current_damage += 1

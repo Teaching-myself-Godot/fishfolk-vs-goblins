@@ -11,19 +11,31 @@ signal spawn_monster(monster : BaseMonster)
 @export var gems_per_monster : int = 1
 @export var crystals_per_wave : int = 1
 @export var infinite_wave : bool = false
+@export var crystal_chance := 0.1
+@export var gem_chance := 0.25
 
 var monsters_spawned = 0
 var my_monsters : Array = []
 
 func _calculate_crystal_drop() -> bool:
 	if infinite_wave:
-		return randf() < 0.1
+		return randf() < crystal_chance
 
 	var remaining = monster_count - monsters_spawned
 	if crystals_per_wave == remaining:
 		crystals_per_wave -= 1
 		return true
 	return false
+
+
+func _calculate_gem_drop():
+	if infinite_wave:
+		var gems = 0
+		for _i in range(0, gems_per_monster):
+			gems += 1 if randf() < gem_chance else 0
+		return gems
+	
+	return gems_per_monster
 
 
 func _on_poll_wave_cleared_timer_timeout():
@@ -44,7 +56,7 @@ func _on_timeout():
 	(monster as BaseMonster).speed = monster_speed
 	(monster as BaseMonster).hp = monster_hp
 	(monster as BaseMonster).drop_crystal = _calculate_crystal_drop()
-	(monster as BaseMonster).gems = gems_per_monster
+	(monster as BaseMonster).gems = _calculate_gem_drop()
 	spawn_monster.emit(monster)
 	if not infinite_wave:
 		my_monsters.append(monster)

@@ -14,7 +14,9 @@ background_mode = 2
 sky = SubResource("Sky_ylqb4")
 tonemap_mode = 2
 fog_height = 5.0
-volumetric_fog_length = 65.15
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_length = 225.78
 
 [node name="SunAndSky" type="Node"]
 
