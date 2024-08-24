@@ -19,13 +19,9 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
-- Write a new devlog with screen recording (about my first jam leading to many improvements)
 - Add a settings menu to control audio for sfx and music
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
-- Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
-- Show player scores (towers built, gems picked up, damage dealt, kills, gems spent, crystals picked up, etc.)
-- Add survival time to survival mode
 
 
 ## Future ideas...
@@ -41,7 +37,24 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
+### Milestone 24 - Vamping up the endless mode, playability
+- [ ] Add ocean to endless mode
+- [ ] Add survival time to endless mode
+- [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
+- [ ] Add (surprise) turtle wave to endless mode (using a different path)
+- [ ] Add short explainers to each mode to the title screen
+- [ ] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
+- [ ] Add leave game option to pause menu and using "select / -"
+- [ ] Add a confirmation message 'Player N' has joined / left the game
+- [ ] Add horizontally scrolling score cards to endless mode
+- [ ] _team scores_: towers built (add thumbnails), upgrades bought per type per tower x crystal cost
+- [ ] _team scores_: gems earned, crystals earned, gems spent, crystals spent
+- [ ] _team scores_: damage dealt and kills per enemy type
+- [ ] give endless mode the center stage
+
+
 ### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
+- Write a new devlog with screen recording (about my first jam leading to many improvements)
 - _sounds_: tower rising from ground
 - _sounds_: tower sinking back into the ground
 - _sounds_: confirm a build item from context menu / upgrade item
