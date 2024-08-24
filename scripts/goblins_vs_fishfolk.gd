@@ -63,6 +63,8 @@ func _start_stage():
 		hud_item.show()
 
 	var start_pos = _get_goblin_spawn_point()
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(InputUtil.ControllerID.KEYBOARD)
 	for cid in InputUtil.cids_registered:
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
