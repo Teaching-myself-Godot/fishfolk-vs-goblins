@@ -20,6 +20,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
 - Write a new devlog with screen recording (about my first jam leading to many improvements)
+- Add a settings menu to control audio for sfx and music
 - Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
 - Re-add leave game option to pause menu and using "select / -"
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
@@ -40,19 +41,17 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Milestone 23 - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
-
-
-- [x]  _sounds_: confirm a build item from context menu / upgrade item
-- [x] _sounds_: spending gems
-- [x] Drop 3rd stage for now
-- [x] Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
-- [x] Add attributions in a new credits section: [JDSherbert](https://jdsherbert.itch.io/)
-- [x] and [Moon at bandlab](https://www.bandlab.com/moonlightgetsentient)
-- [x] and [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) for turtle shell
-- [x] and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head by [zygy](https://www.inaturalist.org/users/13405)
-- [ ] _sounds_: tower rising from ground
-- [ ] _sounds_: tower sinking back into the ground
+### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521)
+- _sounds_: tower rising from ground
+- _sounds_: tower sinking back into the ground
+- _sounds_: confirm a build item from context menu / upgrade item
+- _sounds_: spending gems
+- Drop 3rd stage for now
+- Improvement: Fix the obscure Main Menu / Title screen: just place the modes in 1 visible box (I will _never_ manage to make as many stages as Tikiman has beaten!)
+- Add attributions in a new credits section: [JDSherbert](https://jdsherbert.itch.io/)
+- ... and [Moon at bandlab](https://www.bandlab.com/moonlightgetsentient)
+- ... and [photo](https://commons.wikimedia.org/wiki/Image:Chelonia_mydas_(green_sea_turtle)_(San_Salvador_Island,_Bahamas)_4_(16158070626).jpg?uselang=nl) by [photographer](https://www.flickr.com/people/47445767@N05) for turtle shell
+- ... and another [photo](https://commons.wikimedia.org/wiki/File:Chelonia_mydas_176500422.jpg) for the flippers and head by [zygy](https://www.inaturalist.org/users/13405)
 
 
 ### [Milestone 22](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-22) - Gamepad tutorial / Integrated web build (August 22nd 2024)

@@ -24,3 +24,8 @@ func _on_play_with_gamepad_button_pressed() -> void:
 		_add_goblin_to_scene(1)
 		get_tree().get_first_node_in_group("web_splash_screen").hide()
 		$TuneNo1Player.play()
+
+
+func _on_tune_no_1_player_finished() -> void:
+	if _started:
+		$TuneNo1Player.play()

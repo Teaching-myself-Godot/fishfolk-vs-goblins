@@ -174,6 +174,7 @@ uri = "https://renevanderark.itch.io/goblins-vs-fishfolk#download"
 
 [connection signal="gameover" from="Tutorial" to="." method="_on_tutorial_gameover"]
 [connection signal="stage_won" from="Tutorial" to="." method="_on_tutorial_stage_won"]
+[connection signal="finished" from="Tutorial/TuneNo1Player" to="Tutorial" method="_on_tune_no_1_player_finished"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayWithGamepadButton" to="Tutorial" method="_on_play_with_gamepad_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="close_credits" from="CenterContainer/Credits" to="." method="_on_close_credits_button_pressed"]
