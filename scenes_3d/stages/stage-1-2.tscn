@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=32 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c2ceouj0cj648" path="res://scenes_3d/terrains/new_endless_terrain.scn" id="14_i50cg"]
 [ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="14_ym3b6"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="15_rurm0"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/scores.gd" id="17_n305w"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="18_4lgaa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2fgoe"]
 size = Vector3(238.098, 36.044, 1)
@@ -44,6 +46,25 @@ noise = SubResource("FastNoiseLite_w7mjc")
 density = 0.05
 emission = Color(0.676103, 0.785109, 1, 1)
 density_texture = SubResource("NoiseTexture3D_rpnb7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwdkt"]
+bg_color = Color(0, 0, 0, 0.376471)
+border_width_top = 3
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4q3bf"]
+bg_color = Color(0, 0, 0, 0.376471)
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aj1fq"]
+font = ExtResource("18_4lgaa")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_xcty0"]
+font = ExtResource("18_4lgaa")
+font_size = 24
 
 [node name="Stage-1-2" type="Node3D"]
 script = ExtResource("1_6mnvp")
@@ -425,6 +446,54 @@ material = SubResource("FogMaterial_kyfdo")
 
 [node name="GoblinSpawnPoint" parent="." instance=ExtResource("15_rurm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70781, 2.37749, 13.6907)
+
+[node name="Scores" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -432.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 288.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwdkt")
+script = ExtResource("17_n305w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scores"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4q3bf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Scores" type="Label" parent="Scores/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = " Scores "
+label_settings = SubResource("LabelSettings_aj1fq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SurvivalTime" type="Label" parent="Scores/VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Survival time: 00:03:14 "
+label_settings = SubResource("LabelSettings_xcty0")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scores/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="TimeElapsedTimer" type="Timer" parent="Scores"]
+wait_time = 0.05
+autostart = true
 
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
 
