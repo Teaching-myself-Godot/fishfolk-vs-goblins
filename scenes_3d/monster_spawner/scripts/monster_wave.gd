@@ -69,7 +69,7 @@ func _on_timeout():
 
 func _update_label(text : String = ""):
 	if infinite_wave:
-		label.text = "∞ "
+		label.text = str(monster_hp) + " HP "
 	else:
 		label.text = str(monsters_spawned) + " / " + str(monster_count)
 
