@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=31 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
@@ -57,10 +57,6 @@ border_color = Color(0.823529, 1, 0, 1)
 bg_color = Color(0, 0, 0, 0.376471)
 border_width_bottom = 1
 border_color = Color(0.823529, 1, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_aj1fq"]
-font = ExtResource("18_4lgaa")
-font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_xcty0"]
 font = ExtResource("18_4lgaa")
@@ -451,7 +447,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70781, 2.37749, 13.6907)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -432.0
+offset_left = -264.0
 offset_top = 32.0
 offset_right = -32.0
 offset_bottom = 288.0
@@ -466,21 +462,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4q3bf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="SurvivalTime" type="Label" parent="Scores/VBoxContainer/PanelContainer"]
 layout_mode = 2
-
-[node name="Scores" type="Label" parent="Scores/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-text = " Scores "
-label_settings = SubResource("LabelSettings_aj1fq")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SurvivalTime" type="Label" parent="Scores/VBoxContainer/PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-text = "Survival time: 00:03:14 "
+text = " Survival time: 00:00:00.0 "
 label_settings = SubResource("LabelSettings_xcty0")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -496,6 +480,7 @@ wait_time = 0.05
 autostart = true
 
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
+[connection signal="timeout" from="Scores/TimeElapsedTimer" to="Scores" method="_on_time_elapsed_timer_timeout"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/MonsterWave"]
