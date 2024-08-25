@@ -39,9 +39,9 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ### Milestone 24 - Vamping up the endless mode, playability
 - [x] Add ocean to endless mode
+- [x] Add turtle wave to endless mode
 - [ ] Add survival time to endless mode
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
-- [x] Add turtle wave to endless mode
 - [ ] Add short explainers to each mode to the title screen
 - [ ] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
 - [ ] Add leave game option to pause menu and using "select / -"
