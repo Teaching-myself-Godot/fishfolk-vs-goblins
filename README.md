@@ -43,14 +43,18 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Add survival time to endless mode
 - [x] Make gem and crystal drops deterministic
 - [x] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
+- [x] Add ScrollContainer with score cards to endless mode
+- [ ] Make ScrollContainer slide between score cards
+- [ ] Reorder players based most on damage / collected
+- [ ] Only show players that joined the game
+- [x] _team scores_: damage dealt and kills per enemy type
+- [x] _team scores_: damage dealt and kills per player
+- [ ] _team scores_: gems earned, crystals earned, gems spent, crystals spent per player
+- [ ] _team scores_: towers built (add thumbnails?) and upgrades bought per tower type
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
 - [ ] Add short explainers to each mode to the title screen
 - [ ] Add leave game option to pause menu and using "select / -"
 - [ ] Add a confirmation message 'Player N' has joined / left the game
-- [ ] Add horizontally scrolling score cards to endless mode
-- [ ] _team scores_: towers built (add thumbnails), upgrades bought per type per tower x crystal cost
-- [ ] _team scores_: gems earned, crystals earned, gems spent, crystals spent
-- [ ] _team scores_: damage dealt and kills per enemy type
 - [ ] give endless mode the center stage
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=42 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://c2ceouj0cj648" path="res://scenes_3d/terrains/new_endless_terrain.scn" id="14_i50cg"]
 [ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="14_ym3b6"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="15_rurm0"]
+[ext_resource type="Texture2D" uid="uid://c8lo08ayeeu1i" path="res://scenes_3d/monsters/thumbnails/fish_chibi.png" id="17_e30ev"]
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/scores.gd" id="17_n305w"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="18_4lgaa"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2fgoe"]
-size = Vector3(238.098, 36.044, 1)
+[ext_resource type="Texture2D" uid="uid://ckudj1tr3olfy" path="res://scenes_3d/monsters/thumbnails/flying_fish.png" id="18_odke1"]
+[ext_resource type="Texture2D" uid="uid://cf3sqc60f5ibq" path="res://scenes_3d/monsters/thumbnails/giant_turtle.png" id="19_ucck7"]
 
 [sub_resource type="Curve3D" id="Curve3D_hdhbw"]
 resource_local_to_scene = true
@@ -37,16 +37,6 @@ resource_local_to_scene = true
 [sub_resource type="Curve3D" id="Curve3D_di7hl"]
 resource_local_to_scene = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7mjc"]
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_rpnb7"]
-noise = SubResource("FastNoiseLite_w7mjc")
-
-[sub_resource type="FogMaterial" id="FogMaterial_kyfdo"]
-density = 0.05
-emission = Color(0.676103, 0.785109, 1, 1)
-density_texture = SubResource("NoiseTexture3D_rpnb7")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwdkt"]
 bg_color = Color(0, 0, 0, 0.376471)
 border_width_top = 3
@@ -62,6 +52,60 @@ border_color = Color(0.823529, 1, 0, 1)
 font = ExtResource("18_4lgaa")
 font_size = 24
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecj4y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwlcd"]
+font = ExtResource("18_4lgaa")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vrvhd"]
+color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5sq5l"]
+color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwvnt"]
+font = ExtResource("18_4lgaa")
+font_size = 20
+font_color = Color(0, 0.65098, 0.184314, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjb30"]
+font = ExtResource("18_4lgaa")
+font_size = 20
+font_color = Color(1, 0.184314, 0, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ox4oa"]
+font = ExtResource("18_4lgaa")
+font_size = 20
+font_color = Color(0, 0.184314, 1, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_62jki"]
+font = ExtResource("18_4lgaa")
+font_size = 20
+font_color = Color(0.184314, 0.501961, 0.501961, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_hev6y"]
+font = ExtResource("18_4lgaa")
+font_size = 20
+font_color = Color(0.501961, 0.501961, 0.184314, 1)
+outline_size = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7mjc"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_rpnb7"]
+noise = SubResource("FastNoiseLite_w7mjc")
+
+[sub_resource type="FogMaterial" id="FogMaterial_kyfdo"]
+density = 0.05
+emission = Color(0.676103, 0.785109, 1, 1)
+density_texture = SubResource("NoiseTexture3D_rpnb7")
+
 [node name="Stage-1-2" type="Node3D"]
 script = ExtResource("1_6mnvp")
 
@@ -74,36 +118,8 @@ metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 [node name="MyCamera" parent="CameraPivot" index="0"]
 current = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.3147)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
-shape = SubResource("BoxShape3D_2fgoe")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.6624)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
-shape = SubResource("BoxShape3D_2fgoe")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 38.0916, -51.9888, 15.0126)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
-shape = SubResource("BoxShape3D_2fgoe")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43.4179, 0, 15.8826)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8434, 6.19002, 0)
-shape = SubResource("BoxShape3D_2fgoe")
-
 [node name="MonsterTargetZone" parent="." instance=ExtResource("6_tr06p")]
-transform = Transform3D(4.57015, 0, 0, 0, 4.57015, 0, 0, 0, 4.57015, 27.6014, 0, 7.88393)
+transform = Transform3D(3.7442, 0, 0, 0, 3.7442, 0, 0, 0, 3.7442, 26.9796, -0.824187, 6.59029)
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("7_gfa2d")]
 
@@ -279,31 +295,31 @@ offset_bottom = -152.0
 curve = SubResource("Curve3D_di7hl")
 
 [node name="Anchor" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.44963, -2.20059, 46.5923)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.44963, -2.20196, 46.5923)
 
 [node name="Anchor8" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.74558, 1.13972, 21.4877)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.74558, 0.948435, 21.4877)
 
 [node name="Anchor2" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -5.74558, 1.13972, 3.48769)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.74558, 1.13242, 3.48769)
 
 [node name="Anchor3" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -1.45446, 1.21171, -7.01816)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.45446, 1.16074, -7.01816)
 
 [node name="Anchor4" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 2.09682, 1.12959, -9.08974)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.09682, 1.12978, -9.08974)
 
 [node name="Anchor5" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 8.45952, 1.16589, -4.20674)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.45952, 1.13237, -4.20674)
 
 [node name="Anchor6" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 15.4141, 1.21644, 2.59987)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.4141, 1.17195, 2.59987)
 
 [node name="Anchor7" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 30.4141, 1.12941, 7.59987)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.4141, 1.12941, 7.59987)
 
 [node name="MonsterWave" parent="MonsterSpawner5" instance=ExtResource("10_npwai")]
-wait_time = 60.0
+wait_time = 40.0
 Monster = ExtResource("10_2elaq")
 monster_speed = 2.0
 monster_hp = 20
@@ -321,19 +337,6 @@ offset_bottom = -280.0
 [node name="Label" parent="MonsterSpawner5/MonsterWave/Control/HBoxContainer" index="0"]
 text = "120 HP"
 
-[node name="crib" parent="." instance=ExtResource("12_i0bmu")]
-transform = Transform3D(-0.322745, 0, -0.946486, 0, 1, 0, 0.946486, 0, -0.322745, 26.427, 1.10756, 10.0586)
-
-[node name="crib2" parent="." instance=ExtResource("12_i0bmu")]
-transform = Transform3D(-0.652323, 0, -0.757941, 0, 1, 0, 0.757941, 0, -0.652323, 29.3078, 1.10756, 8.98878)
-
-[node name="crib3" parent="." instance=ExtResource("12_i0bmu")]
-transform = Transform3D(0.837204, 0, -0.546891, 0, 1, 0, 0.546891, 0, 0.837204, 26.4856, 1.10756, 7.60592)
-
-[node name="PreviewCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.793406, 0.608692, 0, -0.608692, 0.793406, 9.28021, 12.4452, 46.376)
-current = true
-
 [node name="HPIncreaseTimer" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
@@ -342,79 +345,12 @@ increase_by = [1, 1, 2, 1, 5]
 
 [node name="SunAndSky" parent="." instance=ExtResource("14_ym3b6")]
 
-[node name="palm-tree" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, 1.40401, 5.34113)
-
-[node name="palm-tree2" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.99388, -0.110463, 0, 0.110463, 0.99388, 0, 0, 0, 1, 15.1894, 0.816159, 6.9265)
-
-[node name="palm-tree3" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 3.6678, 1.1122, -1.6927)
-
-[node name="palm-tree19" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 0.143606, 1.80085, -2.36108)
-
-[node name="palm-tree20" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 1.54113, 1.42309, -4.8827)
-
-[node name="palm-tree4" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.82145, -0.261156, -0.327142, 0.171118, 0.867077, -0.262501, 0.382024, 0.173168, 0.821019, 10.8259, 3.85097, -9.61605)
-
-[node name="palm-tree5" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0541, 3.92744, -0.491264)
-
-[node name="palm-tree6" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08007, 1.56455, -3.49195)
-
-[node name="palm-tree9" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.828355, -0.108971, -0.549503, 0.0908074, 0.994045, -0.0602386, 0.552795, 0, 0.833317, 19.5267, 0.53139, 10.0353)
-
-[node name="palm-tree15" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99335, 0.807923, -12.9996)
-
-[node name="palm-tree21" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27141, 1.33864, -0.263169)
-
-[node name="palm-tree16" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.537252, 0, -1.16325, 0, 1.28133, 0, 1.16325, 0, 0.537252, -7.69798, 1.03278, -11.2069)
-
-[node name="palm-tree17" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.999955, 0.00949445, 0, -0.00944694, 0.994952, 0.0999102, 0.000948592, -0.0999057, 0.994996, -1.01751, 0.83147, -13.6341)
-
-[node name="palm-tree18" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.998767, 0.0496516, 0, -0.0496516, 0.998767, 0, 0, 0, 1, 13.1618, 2.04513, -3.36109)
-
-[node name="palm-tree22" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -2.07254, 0.891409, 11.7284)
-
-[node name="palm-tree23" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -12.7422, 0.618285, 9.74531)
-
-[node name="palm-tree25" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -14.1876, 0.873223, 18.1852)
-
-[node name="palm-tree29" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.858656, 0.227399, -0.459346, -0.200511, 0.973802, 0.107265, 0.471704, 0, 0.881757, 0.289123, 0.612153, 14.9022)
-
-[node name="palm-tree28" parent="." instance=ExtResource("3_ra3wo")]
-transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -3.02002, 0.791114, 6.7327)
-
 [node name="new_endless_terrain" parent="." instance=ExtResource("14_i50cg")]
-
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01737, 2.01812, 91.5992)
-size = Vector3(123.266, 14.188, 96.857)
-material = SubResource("FogMaterial_kyfdo")
-
-[node name="FogVolume2" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825116, 4.72569, 32.0036)
-size = Vector3(58.1898, 14.188, 22.9069)
-material = SubResource("FogMaterial_kyfdo")
 
 [node name="GoblinSpawnPoint" parent="." instance=ExtResource("15_rurm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46945, 2.37749, 16.9882)
 
-[node name="Scores" type="PanelContainer" parent="."]
+[node name="Scores" type="PanelContainer" parent="." groups=["hud_items"]]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -442,13 +378,544 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Scores/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+scroll_horizontal = 291
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DamageAndKillsPerType" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 4
+
+[node name="TypeHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Type"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="DamageHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Damage"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="KilledHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Killed"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="OverkillHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Overkill"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="TypeChibiFish" type="TextureRect" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("17_e30ev")
+
+[node name="DamageChibiFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledChibiFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillChibiFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeFlyingFish" type="TextureRect" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("18_odke1")
+
+[node name="DamageFlyingFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledFlyingFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillFlyingFish" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeGiantTurtle" type="TextureRect" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("19_ucck7")
+
+[node name="DamageGiantTurtle" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledGiantTurtle" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillGiantTurtle" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
+text = "Total:"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="DamageTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="KilledTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="OverkillTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+
+[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 4
+
+[node name="PlayerHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Player
+"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="DamageHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Damage"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="KilledHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Killed"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="OverkillHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Overkill"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="Player1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1p"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerDamage1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerKilled1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerOverkill1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="Player2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "2p"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerDamage2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerKilled2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerOverkill2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="Player3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "3p"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerDamage3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerKilled3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerOverkill3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="Player4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "4p"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerDamage4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerKilled4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerOverkill4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="Player5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5p"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerDamage5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerKilled5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerOverkill5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="TypeTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
+text = "Total:"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="DamageTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="KilledTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="OverkillTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
 layout_mode = 2
 
 [node name="TimeElapsedTimer" type="Timer" parent="Scores"]
 wait_time = 0.05
 autostart = true
+
+[node name="TreesNCribs" type="Node" parent="."]
+
+[node name="crib" parent="TreesNCribs" instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.322745, 0, -0.946486, 0, 1, 0, 0.946486, 0, -0.322745, 26.427, 1.10756, 10.0586)
+
+[node name="crib2" parent="TreesNCribs" instance=ExtResource("12_i0bmu")]
+transform = Transform3D(-0.652323, 0, -0.757941, 0, 1, 0, 0.757941, 0, -0.652323, 29.3078, 1.10756, 8.98878)
+
+[node name="crib3" parent="TreesNCribs" instance=ExtResource("12_i0bmu")]
+transform = Transform3D(0.837204, 0, -0.546891, 0, 1, 0, 0.546891, 0, 0.837204, 26.4856, 1.10756, 7.60592)
+
+[node name="PreviewCam" type="Camera3D" parent="TreesNCribs"]
+transform = Transform3D(1, 0, 0, 0, 0.793406, 0.608692, 0, -0.608692, 0.793406, 9.28021, 12.4452, 46.376)
+current = true
+
+[node name="palm-tree" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1317, 1.40401, 5.34113)
+
+[node name="palm-tree2" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.99388, -0.110463, 0, 0.110463, 0.99388, 0, 0, 0, 1, 15.1894, 0.816159, 6.9265)
+
+[node name="palm-tree3" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 5.0859, 1.1122, -0.301206)
+
+[node name="palm-tree19" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, -0.998001, 1.80085, 2.74124)
+
+[node name="palm-tree46" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, -8.21518, 1.80085, -4.26303)
+
+[node name="palm-tree20" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 1.48695, 1.30235, -14.8952)
+
+[node name="palm-tree45" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 4.51113, 1.66855, -14.4626)
+
+[node name="palm-tree47" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.555821, 0, -0.23099, 0, 0.601908, 0, 0.23099, 0, 0.555821, 5.8869, 1.66855, -12.2679)
+
+[node name="palm-tree4" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.82145, -0.261156, -0.327142, 0.171118, 0.867077, -0.262501, 0.382024, 0.173168, 0.821019, 10.8259, 3.85097, -9.61605)
+
+[node name="palm-tree5" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0541, 3.92744, -0.491264)
+
+[node name="palm-tree6" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18262, 1.56455, -2.52166)
+
+[node name="palm-tree9" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.828355, -0.108971, -0.549503, 0.0908074, 0.994045, -0.0602386, 0.552795, 0, 0.833317, 19.5267, 0.53139, 10.0353)
+
+[node name="palm-tree7" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.665699, 0, -0.74622, 0, 1, 0, 0.74622, 0, 0.665699, 32.84, 1.15159, -8.81148)
+
+[node name="palm-tree8" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.661625, -0.0735352, -0.74622, 0.110463, 0.99388, 0, 0.741653, -0.0824297, 0.665699, 35.0238, 1.16807, -3.98195)
+
+[node name="palm-tree10" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.138929, -0.0725419, -0.987642, 0.0908074, 0.994045, -0.0602386, 0.98613, -0.0813163, 0.144688, 35.5913, 1.18307, 1.32416)
+
+[node name="palm-tree14" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.994524, 0, 0.104511, 0, 1, 0, -0.104511, 0, 0.994524, 33.0675, 1.16974, -8.95789)
+
+[node name="palm-tree24" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.988437, -0.109858, 0.104511, 0.110463, 0.99388, -4.95985e-09, -0.103872, 0.0115446, 0.994524, 38.2632, 1.28344, -7.90979)
+
+[node name="palm-tree26" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.881592, -0.108374, -0.459403, 0.0908074, 0.994045, -0.0602386, 0.463195, 0.0113887, 0.886183, 42.9017, 1.18274, -5.27131)
+
+[node name="palm-tree27" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.994524, 0, 0.104511, 0, 1, 0, -0.104511, 0, 0.994524, 18.245, 1.22964, -12.7685)
+
+[node name="palm-tree30" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.988437, -0.109858, 0.104511, 0.110463, 0.99388, -4.95985e-09, -0.103872, 0.0115446, 0.994524, 23.4407, 1.34271, -11.7204)
+
+[node name="palm-tree31" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.881592, -0.108374, -0.459403, 0.0908074, 0.994045, -0.0602386, 0.463195, 0.0113887, 0.886183, 28.0792, 1.35433, -9.08188)
+
+[node name="palm-tree32" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.882603, 0, -0.470119, 0, 1, 0, 0.470119, 0, 0.882603, 20.2165, 1.22964, -20.2051)
+
+[node name="palm-tree33" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.877202, -0.097495, -0.470119, 0.110463, 0.99388, -6.99347e-09, 0.467242, -0.0519307, 0.882603, 23.9351, 1.3427, -16.4282)
+
+[node name="palm-tree34" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.47123, -0.0961781, -0.876751, 0.0908074, 0.994045, -0.0602386, 0.877324, -0.0512293, 0.477157, 26.3017, 1.21096, -11.6453)
+
+[node name="palm-tree35" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.91385, 0, -0.406051, 0, 1, 0, 0.406051, 0, 0.91385, -5.06937, 1.12941, -20.2146)
+
+[node name="palm-tree36" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.863343, 0, 0.504618, 0, 1, 0, -0.504618, 0, 0.863343, -10.3563, 1.12945, -23.7101)
+
+[node name="palm-tree37" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.863343, 0, 0.504618, 0, 1, 0, -0.504618, 0, 0.863343, -27.6551, 1.33017, -22.6544)
+
+[node name="palm-tree38" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.858059, -0.0953674, 0.504618, 0.110463, 0.99388, -6.99347e-09, -0.50153, 0.0557416, 0.863343, -16.4097, 1.16807, -16.3232)
+
+[node name="palm-tree39" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.994105, -0.0940793, -0.0539026, 0.0908074, 0.994045, -0.0602386, 0.0592486, 0.0549887, 0.996727, -10.0498, 1.18227, -17.2643)
+
+[node name="palm-tree40" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.997876, 0, -0.0651419, 0, 1, 0, 0.0651419, 0, 0.997876, -23.7512, 2.55581, -25.1715)
+
+[node name="palm-tree41" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.991769, -0.110228, -0.0651419, 0.110463, 0.99388, -3.90838e-09, 0.0647432, -0.00719576, 0.997876, -18.8075, 1.81102, -23.2601)
+
+[node name="palm-tree42" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.790585, -0.10874, -0.60262, 0.0908074, 0.994045, -0.0602386, 0.605581, -0.00709858, 0.795751, -14.6819, 1.18227, -19.8753)
+
+[node name="palm-tree11" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(-0.67898, 0, -0.734157, 0, 1, 0, 0.734157, 0, -0.67898, 34.9707, 1.16614, 10.239)
+
+[node name="palm-tree12" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(-0.674825, 0.0750022, -0.734157, 0.110463, 0.99388, -4.95985e-09, 0.729664, -0.0810972, -0.67898, 30.3727, 1.16807, 12.8757)
+
+[node name="palm-tree13" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(-0.807865, 0.194816, -0.0560826, 0.19788, 0.807861, -0.044146, 0.0440703, -0.0561423, -0.829849, 27.4153, 1.18227, 14.0017)
+
+[node name="palm-tree15" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99335, 0.807923, -12.9996)
+
+[node name="palm-tree21" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27141, 1.33864, -0.263169)
+
+[node name="palm-tree16" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.537252, 0, -1.16325, 0, 1.28133, 0, 1.16325, 0, 0.537252, -7.69798, 1.03278, -11.2069)
+
+[node name="palm-tree17" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.999955, 0.00949445, 0, -0.00944694, 0.994952, 0.0999102, 0.000948592, -0.0999057, 0.994996, -1.01751, 0.83147, -13.6341)
+
+[node name="palm-tree18" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.998767, 0.0496516, 0, -0.0496516, 0.998767, 0, 0, 0, 1, 13.1618, 2.04513, -3.36109)
+
+[node name="palm-tree22" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -2.07254, 0.891409, 11.7284)
+
+[node name="palm-tree23" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -12.7422, 0.618285, 9.74531)
+
+[node name="palm-tree43" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -16.4883, 0.618281, 13.4335)
+
+[node name="palm-tree25" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -14.1876, 0.873223, 18.1852)
+
+[node name="palm-tree29" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.858656, 0.227399, -0.459346, -0.200511, 0.973802, 0.107265, 0.471704, 0, 0.881757, 0.289123, 0.612153, 14.9022)
+
+[node name="palm-tree28" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -3.02002, 0.791114, 6.7327)
+
+[node name="palm-tree44" parent="TreesNCribs" instance=ExtResource("3_ra3wo")]
+transform = Transform3D(0.631028, 0, -0.77576, 0, 1, 0, 0.77576, 0, 0.631028, -10.2589, 3.22959, 0.600969)
+
+[node name="FogVolume" type="FogVolume" parent="TreesNCribs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01737, 2.01812, 91.5992)
+size = Vector3(123.266, 14.188, 96.857)
+material = SubResource("FogMaterial_kyfdo")
+
+[node name="FogVolume2" type="FogVolume" parent="TreesNCribs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825116, 4.72569, 32.0036)
+size = Vector3(58.1898, 14.188, 22.9069)
+material = SubResource("FogMaterial_kyfdo")
 
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
 [connection signal="timeout" from="Scores/TimeElapsedTimer" to="Scores" method="_on_time_elapsed_timer_timeout"]

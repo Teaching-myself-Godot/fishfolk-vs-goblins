@@ -37,7 +37,7 @@ func _deal_damage():
 			is_instance_valid(monster) and
 			position.distance_to(monster.position) < explosion_range
 		):
-			monster.take_damage(damage, position.direction_to(monster.position))
+			monster.take_damage(damage, owned_by_player, position.direction_to(monster.position))
 
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN) or body.is_in_group(Constants.GROUP_NAME_MONSTER_COLLISION):

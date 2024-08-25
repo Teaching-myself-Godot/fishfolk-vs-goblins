@@ -42,6 +42,7 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 
 func _ready():
 	super._ready()
+	type = Constants.MonsterType.FISH_CHIBI
 	limit_frames = true
 	speed = 2.0 if speed == 0.0 else speed
 	chest_height = 1.0

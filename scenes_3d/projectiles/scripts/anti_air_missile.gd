@@ -41,6 +41,6 @@ func _on_body_entered(body : Node3D):
 
 func _on_area_entered(area):
 	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
-		area.take_damage(damage, global_transform.basis.x.normalized(), 0.5)
+		area.take_damage(damage, owned_by_player, global_transform.basis.x.normalized(), 0.5)
 		spawn_explosion.emit(position)
 		queue_free()

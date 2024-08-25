@@ -35,7 +35,7 @@ func _do_damage():
 
 	if fired and target and is_instance_valid(target):
 		doing_damage = true
-		target.take_damage(damage, global_transform.basis.x.normalized())
+		target.take_damage(damage, owned_by_player, global_transform.basis.x.normalized())
 		$Cylinder.hide()
 		fired = false
 		$ImpactStreamPlayer.pitch_scale = 1.0 + -(0.25 + randf() * 0.5)
