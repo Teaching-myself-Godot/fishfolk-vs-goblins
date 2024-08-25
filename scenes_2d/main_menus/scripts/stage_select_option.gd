@@ -13,3 +13,7 @@ func _on_focus_entered():
 
 func _on_focus_exited() -> void:
 	$BButton.hide()
+
+
+func _on_mouse_entered() -> void:
+	grab_focus()

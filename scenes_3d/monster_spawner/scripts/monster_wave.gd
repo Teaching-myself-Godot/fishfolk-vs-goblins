@@ -14,6 +14,9 @@ signal spawn_monster(monster : BaseMonster)
 @export var crystal_chance := 0.1
 @export var gem_chance := 0.25
 
+@onready var label := $Control/HBoxContainer/Label
+@onready var thumbnail_texture := $Control/HBoxContainer/TextureRect
+
 var monsters_spawned = 0
 var my_monsters : Array = []
 
@@ -64,16 +67,16 @@ func _on_timeout():
 	_update_label()
 
 
-func _update_label():
+func _update_label(text : String = ""):
 	if infinite_wave:
-		$Control/Label.text = "Endless"
+		label.text = "∞ "
 	else:
-		$Control/Label.text = str(monsters_spawned) + " / " + str(monster_count)
+		label.text = str(monsters_spawned) + " / " + str(monster_count)
 
 
 func _ready():
 	var monster : BaseMonster = Monster.instantiate()
-	$Control/Sprite2D.texture = monster.thumbnail
+	thumbnail_texture.texture = monster.thumbnail
 	_update_label()
 	monster.queue_free()
 

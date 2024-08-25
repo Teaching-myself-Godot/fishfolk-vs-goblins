@@ -1,21 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://crjgde67usrmn"]
+[gd_scene load_steps=6 format=3 uid="uid://crjgde67usrmn"]
 
 [ext_resource type="Script" path="res://scenes_3d/monster_spawner/scripts/monster_wave.gd" id="1_tiikj"]
 [ext_resource type="PackedScene" uid="uid://bm743wi0xc3vp" path="res://scenes_3d/monsters/fish_chibi.scn" id="2_pl38s"]
 [ext_resource type="FontFile" uid="uid://cdccw3poh5c27" path="res://fonts/AlphaProta-G33Vm.ttf" id="3_y44im"]
-
-[sub_resource type="Gradient" id="Gradient_s2rvs"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.196078)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_d66pf"]
-gradient = SubResource("Gradient_s2rvs")
-width = 250
-height = 59
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r8jh6"]
-width = 47
-height = 47
 
 [sub_resource type="LabelSettings" id="LabelSettings_n682u"]
 line_spacing = 0.0
@@ -28,50 +15,47 @@ shadow_size = 8
 shadow_color = Color(1, 0.933333, 1, 1)
 shadow_offset = Vector2(0, 0)
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r8jh6"]
+width = 47
+height = 47
+
 [node name="MonsterWave" type="Timer" groups=["monster_waves"]]
 script = ExtResource("1_tiikj")
 Monster = ExtResource("2_pl38s")
 metadata/_edit_horizontal_guides_ = [608.0]
 metadata/_edit_vertical_guides_ = [1120.0]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="PanelContainer" parent="."]
 visible = false
-layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -280.0
+offset_left = -192.0
 offset_top = -96.0
-offset_right = -30.0
+offset_right = -32.0
 offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="overlay" type="Sprite2D" parent="Control"]
-scale = Vector2(1, 0.949153)
-texture = SubResource("GradientTexture2D_d66pf")
-centered = false
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(222, 28)
-texture = SubResource("NoiseTexture2D_r8jh6")
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.128
-anchor_top = 0.321429
-anchor_right = 0.476
-anchor_bottom = 0.321429
-offset_left = -32.0
-offset_right = 76.0
-offset_bottom = 37.0
-text = "[Wave text]"
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "∞ "
 label_settings = SubResource("LabelSettings_n682u")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_r8jh6")
+stretch_mode = 2
 
 [node name="PollWaveClearedTimer" type="Timer" parent="."]
 wait_time = 0.25

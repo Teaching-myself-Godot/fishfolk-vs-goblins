@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=26 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
@@ -30,6 +30,9 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 
 [sub_resource type="Curve3D" id="Curve3D_16p1v"]
+resource_local_to_scene = true
+
+[sub_resource type="Curve3D" id="Curve3D_di7hl"]
 resource_local_to_scene = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7mjc"]
@@ -123,6 +126,9 @@ gem_chance = 0.033
 
 [node name="Control" parent="MonsterSpawner/MonsterWave" index="0"]
 visible = true
+offset_left = -128.0
+offset_top = -80.0
+offset_bottom = -24.0
 
 [node name="MonsterSpawner2" parent="." instance=ExtResource("7_gfa2d")]
 
@@ -162,8 +168,10 @@ gem_chance = 0.033
 
 [node name="Control" parent="MonsterSpawner2/MonsterWave" index="0"]
 visible = true
-offset_top = -152.0
-offset_bottom = -96.0
+anchors_preset = -1
+offset_left = -128.0
+offset_top = -144.0
+offset_bottom = -88.0
 metadata/_edit_use_anchors_ = true
 
 [node name="MonsterSpawner4" parent="." instance=ExtResource("7_gfa2d")]
@@ -204,8 +212,9 @@ gem_chance = 0.5
 
 [node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
 visible = true
-offset_top = -264.0
-offset_bottom = -208.0
+offset_left = -128.0
+offset_top = -272.0
+offset_bottom = -216.0
 
 [node name="MonsterSpawner3" parent="." instance=ExtResource("7_gfa2d")]
 
@@ -245,13 +254,14 @@ gem_chance = 0.033
 
 [node name="Control" parent="MonsterSpawner3/MonsterWave" index="0"]
 visible = true
+offset_left = -128.0
 offset_top = -208.0
 offset_bottom = -152.0
 
 [node name="MonsterSpawner5" parent="." instance=ExtResource("7_gfa2d")]
 
 [node name="MonsterPath" parent="MonsterSpawner5" instance=ExtResource("8_agk78")]
-curve = SubResource("Curve3D_16p1v")
+curve = SubResource("Curve3D_di7hl")
 
 [node name="Anchor" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.44963, -2.20059, 46.5923)
@@ -289,8 +299,9 @@ gem_chance = 1.0
 
 [node name="Control" parent="MonsterSpawner5/MonsterWave" index="0"]
 visible = true
-offset_top = -320.0
-offset_bottom = -264.0
+offset_left = -128.0
+offset_top = -336.0
+offset_bottom = -280.0
 
 [node name="crib" parent="." instance=ExtResource("12_i0bmu")]
 transform = Transform3D(-0.322745, 0, -0.946486, 0, 1, 0, 0.946486, 0, -0.322745, 26.427, 1.10756, 10.0586)
