@@ -7,6 +7,7 @@ signal build_anti_air_tower(player_num : int, position : Vector3)
 signal request_pause_menu()
 
 
+const SPRINT_FORCE = 1.5
 const CONTROL_BUTTON_COOLDOWN_FRAMES = 10
 const HUG_RANGE = 3.0
 const MAX_SPEED = 8
@@ -66,6 +67,15 @@ func _my_button_just_pressed(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_pressed(button_key + "-k"):
 		return true
 	elif player_num > 0 and Input.is_action_just_pressed(button_key + "-" + str(player_num - 1)):
+		return true
+
+	return false
+
+
+func _my_button_pressed(button_key : String) -> bool:
+	if player_num == 0 and Input.is_action_pressed(button_key + "-k"):
+		return true
+	elif  player_num > 0 and Input.is_action_pressed(button_key + "-" + str(player_num - 1)):
 		return true
 
 	return false
@@ -321,7 +331,10 @@ func _process(_delta):
 
 func _physics_process(delta):
 	var input_dir = _get_input_vector()
-	var force = Vector2.ZERO.distance_to(input_dir)
+	var force = (
+		SPRINT_FORCE if _my_button_pressed("sprint") and input_dir.length() > 0 else 
+		Vector2.ZERO.distance_to(input_dir)
+	)
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 
 	_handle_falling(delta)

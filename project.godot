@@ -27,6 +27,10 @@ TerrainShaderParams="*res://scenes_3d/terrains/scripts/terrain_shader_params.gd"
 CameraUtil="*res://scenes_3d/camera/scripts/camera_util.gd"
 InputUtil="*res://scripts/input_util.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/size/viewport_width=1280
@@ -192,7 +196,6 @@ confirm-k={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(216, 16),"global_position":Vector2(220, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 confirm-1={
@@ -265,6 +268,31 @@ open_debug={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+sprint-k={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+sprint-0={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+sprint-1={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+sprint-2={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":2,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+sprint-3={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 

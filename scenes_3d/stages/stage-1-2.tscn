@@ -337,7 +337,7 @@ current = true
 wait_time = 60.0
 autostart = true
 script = ExtResource("13_4xsoo")
-increase_by = [1, 1, 2, 1, 3]
+increase_by = [1, 1, 2, 1, 5]
 
 [node name="SunAndSky" parent="." instance=ExtResource("14_ym3b6")]
 
@@ -441,7 +441,7 @@ size = Vector3(58.1898, 14.188, 22.9069)
 material = SubResource("FogMaterial_kyfdo")
 
 [node name="GoblinSpawnPoint" parent="." instance=ExtResource("15_rurm0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70781, 2.37749, 13.6907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46945, 2.37749, 16.9882)
 
 [node name="Scores" type="PanelContainer" parent="."]
 anchors_preset = 1

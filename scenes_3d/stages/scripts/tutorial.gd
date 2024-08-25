@@ -130,6 +130,7 @@ func _on_drop_magical_crystal(pos : Vector3):
 func _handle_goblin_arrival():
 	if _awaiting_goblin:
 		_goblin = goblin_map[main_player_cid]
+		_goblin.floor_max_angle = deg_to_rad(45)
 		_tree_menu = _goblin.find_child("TreeContextMenu")
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
@@ -154,6 +155,8 @@ func _handle_gamepad_running_hints():
 		$TutorialPlaybook/ShowInitialGamepadTimer.start()
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.A_PRESSED
 		$TutorialPlaybook/GamepadHints.fading = false
+		await get_tree().create_timer(1).timeout
+		_goblin.floor_max_angle = deg_to_rad(60)
 
 
 func _handle_keyboard_running_hints():
@@ -172,6 +175,7 @@ func _handle_keyboard_running_hints():
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
 	if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
 		_awaiting_jump = false
+		_goblin.floor_max_angle = deg_to_rad(60)
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 		$TutorialPlaybook/KeyboardHints.fading = true
 
