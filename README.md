@@ -41,6 +41,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Add ocean to endless mode
 - [x] Add turtle wave to endless mode
 - [x] Add survival time to endless mode
+- [x] Make gem and crystal drops deterministic
 - [ ] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
 - [ ] Add short explainers to each mode to the title screen

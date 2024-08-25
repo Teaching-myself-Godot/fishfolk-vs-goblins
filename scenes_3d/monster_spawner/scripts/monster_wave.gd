@@ -11,8 +11,8 @@ signal spawn_monster(monster : BaseMonster)
 @export var gems_per_monster : int = 1
 @export var crystals_per_wave : int = 1
 @export var infinite_wave : bool = false
-@export var crystal_chance := 0.1
-@export var gem_chance := 0.25
+@export var crystal_drop_percentage := 10
+@export var gem_drop_percentage := 25
 
 @onready var label := $Control/HBoxContainer/Label
 @onready var thumbnail_texture := $Control/HBoxContainer/TextureRect
@@ -22,7 +22,7 @@ var my_monsters : Array = []
 
 func _calculate_crystal_drop() -> bool:
 	if infinite_wave:
-		return randf() < crystal_chance
+		return monsters_spawned % roundi(100 / crystal_drop_percentage) == 0
 
 	var remaining = monster_count - monsters_spawned
 	if crystals_per_wave == remaining:
@@ -33,10 +33,10 @@ func _calculate_crystal_drop() -> bool:
 
 func _calculate_gem_drop():
 	if infinite_wave:
-		var gems = 0
-		for _i in range(0, gems_per_monster):
-			gems += 1 if randf() < gem_chance else 0
-		return gems
+		if monsters_spawned % roundi(100 / gem_drop_percentage) == 0:
+			return gems_per_monster
+		else:
+			return 0
 	
 	return gems_per_monster
 

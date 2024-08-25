@@ -39,12 +39,16 @@ func _pause_game():
 
 func _on_gameover():
 	get_tree().paused = true
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
 	$TuneNo1Player.stop()
 	$GameOverSplash.show()
 
 
 func _on_stage_won():
 	get_tree().paused = true
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
 	$TuneNo1Player.stop()
 	$StageWonSplash.show()
 

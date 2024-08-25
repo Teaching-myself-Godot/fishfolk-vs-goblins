@@ -78,6 +78,10 @@ func get_hp():
 
 
 func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
+	if attacking:
+		# Monster is immune now
+		return
+
 	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
 	$HPBar.hp -= actual_damage
 	$HPBar.draw_damage(actual_damage)

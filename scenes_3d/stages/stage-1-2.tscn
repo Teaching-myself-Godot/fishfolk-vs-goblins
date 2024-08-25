@@ -138,8 +138,8 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085,
 monster_speed = 2.0
 monster_hp = 3
 infinite_wave = true
-crystal_chance = 0.01
-gem_chance = 0.033
+crystal_drop_percentage = 1
+gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner/MonsterWave" index="0"]
 visible = true
@@ -180,8 +180,8 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 28.3058,
 monster_speed = 2.0
 monster_hp = 3
 infinite_wave = true
-crystal_chance = 0.05
-gem_chance = 0.033
+crystal_drop_percentage = 1
+gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner2/MonsterWave" index="0"]
 visible = true
@@ -224,8 +224,8 @@ monster_speed = 2.4
 monster_hp = 5
 gems_per_monster = 2
 infinite_wave = true
-crystal_chance = 1.0
-gem_chance = 0.5
+crystal_drop_percentage = 20
+gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
 visible = true
@@ -266,8 +266,8 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 30.4141,
 monster_speed = 2.0
 monster_hp = 3
 infinite_wave = true
-crystal_chance = 0.01
-gem_chance = 0.033
+crystal_drop_percentage = 1
+gem_drop_percentage = 4
 
 [node name="Control" parent="MonsterSpawner3/MonsterWave" index="0"]
 visible = true
@@ -311,8 +311,8 @@ monster_speed = 2.0
 monster_hp = 20
 gems_per_monster = 2
 infinite_wave = true
-crystal_chance = 1.0
-gem_chance = 1.0
+crystal_drop_percentage = 100
+gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner5/MonsterWave" index="0"]
 visible = true
