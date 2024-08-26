@@ -12,7 +12,10 @@ var _damage_per_player := {
 }
 
 var _total_damage = 0
+var _scroll_target : int = 0
 
+@onready var scroll_container := $VBoxContainer/ScrollContainer
+@onready var score_card_container := $VBoxContainer/ScrollContainer/HBoxContainer
 @onready var survival_time_label = $VBoxContainer/PanelContainer/SurvivalTime
 
 @onready var damage_per_player_labels := {
@@ -33,7 +36,11 @@ var _elapsed_time = 0.0
 
 func _process(delta: float) -> void:
 	_elapsed_time += delta
-
+	if scroll_container.scroll_horizontal != _scroll_target:
+		var next = lerp(scroll_container.scroll_horizontal, _scroll_target + _scroll_target / 10, 0.05)
+		if abs(next - _scroll_target) < 2:
+			next = _scroll_target
+		scroll_container.scroll_horizontal = next
 
 func _on_time_elapsed_timer_timeout() -> void:
 	var seconds = _elapsed_time - (floori(_elapsed_time / 60) * 60)
@@ -50,7 +57,6 @@ func _on_time_elapsed_timer_timeout() -> void:
 
 
 func count_damage(player_cid : int, type : Constants.MonsterType, dmg : int) -> void:
-	print(InputUtil.player_map)
 	if player_cid in InputUtil.player_map:
 		var player_num = InputUtil.player_map[player_cid]
 		_damage_per_player[player_num] += dmg
@@ -60,3 +66,9 @@ func count_damage(player_cid : int, type : Constants.MonsterType, dmg : int) -> 
 	_total_damage += dmg
 	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/DamageTotal.text = str(_total_damage)
 	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal.text = str(_total_damage)
+
+
+func _on_sliding_panel_timer_timeout() -> void:
+	_scroll_target += scroll_container.size.x
+	if _scroll_target >= score_card_container.size.x:
+		_scroll_target = 0

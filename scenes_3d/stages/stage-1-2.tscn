@@ -366,6 +366,7 @@ script = ExtResource("17_n305w")
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4q3bf")
 
@@ -373,24 +374,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4q3bf")
 layout_mode = 2
 text = " Survival time: 00:00:00.0 "
 label_settings = SubResource("LabelSettings_xcty0")
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Scores/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal = 291
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="DamageAndKillsPerType" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
+theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 6
 columns = 4
 
@@ -552,10 +553,11 @@ vertical_alignment = 2
 layout_mode = 2
 
 [node name="DamageAndKillsPerPlayer" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 6
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 9
 columns = 4
 
 [node name="PlayerHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
@@ -753,6 +755,10 @@ layout_mode = 2
 wait_time = 0.05
 autostart = true
 
+[node name="SlidingPanelTimer" type="Timer" parent="Scores"]
+wait_time = 5.0
+autostart = true
+
 [node name="TreesNCribs" type="Node" parent="."]
 
 [node name="crib" parent="TreesNCribs" instance=ExtResource("12_i0bmu")]
@@ -921,6 +927,7 @@ material = SubResource("FogMaterial_kyfdo")
 
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
 [connection signal="timeout" from="Scores/TimeElapsedTimer" to="Scores" method="_on_time_elapsed_timer_timeout"]
+[connection signal="timeout" from="Scores/SlidingPanelTimer" to="Scores" method="_on_sliding_panel_timer_timeout"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/MonsterWave"]

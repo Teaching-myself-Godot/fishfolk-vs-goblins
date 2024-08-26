@@ -44,7 +44,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Make gem and crystal drops deterministic
 - [x] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
 - [x] Add ScrollContainer with score cards to endless mode
-- [ ] Make ScrollContainer slide between score cards
+- [x] Make ScrollContainer slide between score cards
 - [ ] Reorder players based on most damage / collected
 - [ ] Only show players that joined the game
 - [ ] _team scores_: damage dealt and kills per enemy type
