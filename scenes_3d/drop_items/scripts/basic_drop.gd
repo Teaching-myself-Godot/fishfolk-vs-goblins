@@ -34,7 +34,7 @@ func _physics_process(delta):
 	position += velocity * delta
 
 
-func _collect(player_cid : InputUtil.ControllerID):
+func _collect(_player_cid : InputUtil.ControllerID):
 	printerr("BasicDrop._collect() must be overridden")
 
 
