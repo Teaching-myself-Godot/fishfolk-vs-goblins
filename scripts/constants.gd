@@ -33,3 +33,18 @@ const ANTI_AIR_TOWER_BASE_RELOAD_TIME = 5.0
 enum MonsterType {
 	UNKNOWN, FISH_CHIBI, FLYING_FISH, GIANT_TURTLE
 }
+
+
+func sum(values : Array) -> Variant:
+	var tot = 0
+	for amt in values:
+		tot += amt
+	return tot
+
+
+func shares(values_per_id : Dictionary) -> Dictionary:
+	var total = sum(values_per_id.values())
+	var result := {}
+	for share_id in values_per_id:
+		result[share_id] = float(values_per_id[share_id]) / float(total)
+	return result

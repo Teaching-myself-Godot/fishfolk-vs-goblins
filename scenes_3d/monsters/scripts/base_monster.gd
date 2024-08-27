@@ -1,9 +1,9 @@
 class_name BaseMonster
 extends Area3D
 
-signal killed(player_cid : int, type : Constants.MonsterType)
-signal damaged(player_cid : int, type : Constants.MonsterType, dmg : int)
-signal overkilled(player_cid : int, type : Constants.MonsterType)
+signal killed(damage_per_player : Dictionary, type : Constants.MonsterType)
+signal damaged(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int)
+signal overkilled(damage_per_player : Dictionary, type : Constants.MonsterType)
 
 @export var thumbnail : Resource
 
@@ -82,7 +82,7 @@ func get_hp():
 	return $HPBar.hp
 
 
-func take_damage(damage : int, dealt_by_player : int, from_direction : Vector3, force : float = 1.0):
+func take_damage(damage : int, damage_per_player : Dictionary, from_direction : Vector3, force : float = 1.0):
 	if attacking:
 		# Monster is immune now
 		return
@@ -92,11 +92,11 @@ func take_damage(damage : int, dealt_by_player : int, from_direction : Vector3, 
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	_apply_damage_motion(from_direction, force)
-	damaged.emit(dealt_by_player, type, actual_damage)
+	damaged.emit(damage_per_player, type, actual_damage)
 	if $HPBar.hp == 0:
-		killed.emit(dealt_by_player,type)
+		killed.emit(damage_per_player,type)
 	if actual_damage < damage:
-		overkilled.emit(dealt_by_player, type)
+		overkilled.emit(damage_per_player, type)
 
 
 func _spawn_dust():

@@ -90,7 +90,7 @@ func _on_goblin_request_pause_menu():
 
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
@@ -100,7 +100,7 @@ func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 
 func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	var new_tower : CannonTower = CannonTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
@@ -110,7 +110,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
@@ -191,7 +191,7 @@ func _on_drop_builder_gem(pos : Vector3):
 	new_gem.velocity.y = 20
 	new_gem.velocity.x = -3 + randf() * 6
 	new_gem.velocity.z = -3 + randf() * 6
-	new_gem.collect_builder_gem.connect(gem_pouch.collect_builder_gem)
+	new_gem.collect_builder_gem.connect(_on_collect_builder_gem)
 	add_child.call_deferred(new_gem)
 
 
@@ -201,18 +201,30 @@ func _on_drop_magical_crystal(pos : Vector3) -> MagicalCrystal:
 	new_crystal.velocity.y = 20
 	new_crystal.velocity.x = -3 + randf() * 3
 	new_crystal.velocity.z = -3 + randf() * 3
-	new_crystal.collect_magical_crystal.connect(gem_pouch.collect_magical_crystal)
+	new_crystal.collect_magical_crystal.connect(_on_collect_magical_crystal)
 	add_child.call_deferred(new_crystal)
 	return new_crystal
+
+
+func _on_collect_builder_gem(cid : InputUtil.ControllerID):
+	gem_pouch.collect_builder_gem()
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_builder_gem_collect(cid)
+
+
+func _on_collect_magical_crystal(cid : InputUtil.ControllerID):
+	gem_pouch.collect_magical_crystal()
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_magical_crystal_collect(cid)
 
 
 func _count_monsters():
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
 
 
-func _on_monster_damaged(cid : int, type : Constants.MonsterType, dmg : int):
-		for score_card : Scores in find_children("*", "Scores"):
-			score_card.count_damage(cid, type, dmg)
+func _on_monster_damaged(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_damage(damage_per_player, type, dmg)
 
 func _spawn_monster(path : Path3D, monster : BaseMonster):
 	if _count_monsters() > MAX_MONSTERS:

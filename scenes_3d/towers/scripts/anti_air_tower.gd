@@ -14,7 +14,7 @@ func _shoot():
 		var new_missile : AntiAirMissile = AntiAirMissileScene.instantiate()
 		_point_at(current_target.position, current_target.chest_height, false)
 		new_missile.target = current_target
-		new_missile.owned_by_player = built_by_player
+		new_missile.damage_per_player = damage_per_player
 		new_missile.position = missile_clamps[current_missile_index].global_position
 		new_missile.damage = current_damage
 		current_missile_index = current_missile_index + 1 if current_missile_index < 3 else 0
@@ -88,6 +88,7 @@ func _ready():
 	]
 	$ShootTimer.wait_time = current_reload_time
 	ready_to_fire = true
+	damage_per_player[_builder_cid] = current_damage
 
 
 func _on_shoot_timer_timeout():

@@ -60,12 +60,6 @@ border_color = Color(0.823529, 1, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_cwlcd"]
 font = ExtResource("18_4lgaa")
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_vrvhd"]
-color = Color(0.823529, 1, 0, 1)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_5sq5l"]
-color = Color(0.823529, 1, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_iwvnt"]
 font = ExtResource("18_4lgaa")
 font_size = 20
@@ -95,6 +89,12 @@ font = ExtResource("18_4lgaa")
 font_size = 20
 font_color = Color(0.501961, 0.501961, 0.184314, 1)
 outline_size = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vrvhd"]
+color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5sq5l"]
+color = Color(0.823529, 1, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7mjc"]
 
@@ -387,6 +387,207 @@ vertical_scroll_mode = 0
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 9
+columns = 4
+
+[node name="PlayerHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Player
+"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="DamageHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Damage"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="GemsHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Gems"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="CrystalsHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Crystals"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="Player1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1p"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerDamage1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerGems1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerCrystals1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="Player2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "2p"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerDamage2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerGems2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerCrystals2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="Player3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "3p"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerDamage3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerGems3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerCrystals3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="Player4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "4p"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerDamage4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerGems4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerCrystals4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="Player5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5p"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerDamage5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerGems5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerCrystals5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.00%
+"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="TypeTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
+text = "Total:"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="DamageTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="GemsTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="CrystalsTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+
 [node name="DamageAndKillsPerType" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -550,205 +751,6 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
-layout_mode = 2
-
-[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 9
-columns = 4
-
-[node name="PlayerHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
-text = "Player
-"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-
-[node name="DamageHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
-text = "Damage"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-
-[node name="KilledHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(54, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
-text = "Killed"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-
-[node name="OverkillHdr" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
-text = "Overkill"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-
-[node name="Player1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "1p"
-label_settings = SubResource("LabelSettings_iwvnt")
-
-[node name="PlayerDamage1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_iwvnt")
-
-[node name="PlayerKilled1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_iwvnt")
-
-[node name="PlayerOverkill1" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_iwvnt")
-
-[node name="Player2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "2p"
-label_settings = SubResource("LabelSettings_jjb30")
-
-[node name="PlayerDamage2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_jjb30")
-
-[node name="PlayerKilled2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_jjb30")
-
-[node name="PlayerOverkill2" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_jjb30")
-
-[node name="Player3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "3p"
-label_settings = SubResource("LabelSettings_ox4oa")
-
-[node name="PlayerDamage3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_ox4oa")
-
-[node name="PlayerKilled3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_ox4oa")
-
-[node name="PlayerOverkill3" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_ox4oa")
-
-[node name="Player4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "4p"
-label_settings = SubResource("LabelSettings_62jki")
-
-[node name="PlayerDamage4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_62jki")
-
-[node name="PlayerKilled4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_62jki")
-
-[node name="PlayerOverkill4" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_62jki")
-
-[node name="Player5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "5p"
-label_settings = SubResource("LabelSettings_hev6y")
-
-[node name="PlayerDamage5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_hev6y")
-
-[node name="PlayerKilled5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_hev6y")
-
-[node name="PlayerOverkill5" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_hev6y")
-
-[node name="TypeTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
-text = "Total:"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="DamageTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
-text = "0"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="KilledTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
-text = "0"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="OverkillTotal" type="Label" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
-text = "0"
-label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Scores/VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
 layout_mode = 2
 
 [node name="TimeElapsedTimer" type="Timer" parent="Scores"]

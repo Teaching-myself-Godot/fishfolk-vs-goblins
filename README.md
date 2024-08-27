@@ -45,12 +45,13 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
 - [x] Add ScrollContainer with score cards to endless mode
 - [x] Make ScrollContainer slide between score cards
+- [x] _team scores_: damage dealt, gems earned, crystals earned per player
 - [ ] Reorder players based on most damage / collected
-- [ ] Only show players that joined the game
+- [ ] Only show players that joined the game on the score card
 - [ ] _team scores_: damage dealt and kills per enemy type
-- [ ] _team scores_: damage dealt and kills per player
-- [ ] _team scores_: gems earned, crystals earned, gems spent, crystals spent per player
 - [ ] _team scores_: towers built (add thumbnails?) and upgrades bought per tower type
+- [ ] Show HP bars only when HP is not full
+- [ ] Add sprinting to the tutorial
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
 - [ ] Add short explainers to each mode to the title screen
 - [ ] Add leave game option to pause menu and using "select / -"

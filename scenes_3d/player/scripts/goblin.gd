@@ -134,7 +134,7 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 			elif choice == "Range":
 				my_tower.upgrade_range()
 			elif choice == "Damage":
-				my_tower.upgrade_damage()
+				my_tower.upgrade_damage(player_num)
 			elif choice == "Reload Time":
 				my_tower.upgrade_reload_time()
 
