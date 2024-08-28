@@ -25,14 +25,12 @@ var _damage_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _gems_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _crystals_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 
-
 var _total_damage = 0
 var _scroll_target : int = 0
 
 @onready var scroll_container := $VBoxContainer/ScrollContainer
 @onready var score_card_container := $VBoxContainer/ScrollContainer/HBoxContainer
 @onready var survival_time_label = $VBoxContainer/PanelContainer/SurvivalTime
-
 @onready var damage_per_player_labels := {
 	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage1,
 	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage2,
@@ -75,8 +73,21 @@ var _scroll_target : int = 0
 	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillFlyingFish,
 	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillGiantTurtle
 }
-
 var _elapsed_time = 0.0
+
+@onready var player_rows = {
+	1: find_children("Player*1"),
+	2: find_children("Player*2"),
+	3: find_children("Player*3"),
+	4: find_children("Player*4"),
+	5: find_children("Player*5")
+}
+
+
+func _ready():
+	for player_num in player_rows:
+		for label in player_rows[player_num]:
+			label.hide()
 
 func _process(delta: float) -> void:
 	_elapsed_time += delta
@@ -85,6 +96,7 @@ func _process(delta: float) -> void:
 		if abs(next - _scroll_target) < 2:
 			next = _scroll_target
 		scroll_container.scroll_horizontal = next
+
 
 func _on_time_elapsed_timer_timeout() -> void:
 	var seconds = _elapsed_time - (floori(_elapsed_time / 60) * 60)
@@ -98,6 +110,40 @@ func _on_time_elapsed_timer_timeout() -> void:
 		"%0*.*f " % [4, 1, seconds]
 	)
 
+
+func show_player(cid : InputUtil.ControllerID):
+	if cid in InputUtil.player_map:
+		for label in player_rows[InputUtil.player_map[cid]]:
+			label.show()
+
+
+func rank_players():
+	var dmg_shares = Constants.shares(_damage_per_player)
+	var gem_shares = Constants.shares(_gems_per_player)
+	var cry_shares = Constants.shares(_crystals_per_player)
+	var tot_shares = {}
+	for player_num in _damage_per_player:
+		tot_shares[player_num] = (
+			dmg_shares[player_num]  * 3 +
+				gem_shares[player_num] +
+				cry_shares[player_num]
+		)
+	var srted = tot_shares.keys()
+	srted.sort_custom(func (a, b): return tot_shares[a] > tot_shares[b])
+	for j in range(srted.size()):
+		var player_num = srted[j]
+		var child_pos = (j + 1) * player_rows[player_num].size()
+		for i in range(player_rows[player_num].size()):
+			$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer.move_child(
+				player_rows[player_num][i], child_pos + i
+			)
+			if i == player_rows[player_num].size() - 1:
+				if tot_shares[player_num] != NAN:
+					player_rows[player_num][i].text = "%.1f" % (tot_shares[player_num] * 2.0)
+				else:
+					player_rows[player_num][i].text = "0.0"
+
+
 func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int) -> void:
 	var shares = Constants.shares(damage_per_player)
 
@@ -108,22 +154,13 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 
 	var total_shares = Constants.shares(_damage_per_player)
 	for player_num in _damage_per_player:
-		damage_per_player_labels[player_num].text = "%.2f" % (total_shares[player_num] * 100) + '%'
+		damage_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
 
 	_damage_per_monster_type[type] += dmg
 	damage_per_monster_type_labels[type].text = str(_damage_per_monster_type[type])
 	_total_damage += dmg
-	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/DamageTotal.text = str(_total_damage)
 	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal.text = str(_total_damage)
-
-
-func count_overkill(type : Constants.MonsterType):
-	_monsters_overkilled[type] += 1
-	overkills_per_monster_type_labels[type].text = str(_monsters_overkilled[type])
-
-func count_kill(type : Constants.MonsterType):
-	_monsters_killed[type] += 1
-	kills_per_monster_type_labels[type].text = str(_monsters_killed[type])
+	rank_players()
 
 
 func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):
@@ -132,10 +169,9 @@ func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):
 		_crystals_per_player[player_num] += 1
 	var total_shares = Constants.shares(_crystals_per_player)
 	for player_num in _crystals_per_player:
-		crystals_per_player_labels[player_num].text = "%.2f" % (total_shares[player_num] * 100) + '%'
-	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/CrystalsTotal.text = (
-			str(Constants.sum(_crystals_per_player.values()))
-	)
+		crystals_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
+
+	rank_players()
 
 
 func count_builder_gem_collect(player_cid : InputUtil.ControllerID):
@@ -144,12 +180,23 @@ func count_builder_gem_collect(player_cid : InputUtil.ControllerID):
 		_gems_per_player[player_num] += 10
 	var total_shares = Constants.shares(_gems_per_player)
 	for player_num in _gems_per_player:
-		gems_per_player_labels[player_num].text = "%.2f" % (total_shares[player_num] * 100) + '%'
-	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/GemsTotal.text = (
-			str(Constants.sum(_gems_per_player.values()))
-	)
+		gems_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
+
+	rank_players()
+
+
+func count_overkill(type : Constants.MonsterType):
+	_monsters_overkilled[type] += 1
+	overkills_per_monster_type_labels[type].text = str(_monsters_overkilled[type])
+
+
+func count_kill(type : Constants.MonsterType):
+	_monsters_killed[type] += 1
+	kills_per_monster_type_labels[type].text = str(_monsters_killed[type])
+
 
 func _on_sliding_panel_timer_timeout() -> void:
 	_scroll_target += scroll_container.size.x
 	if _scroll_target >= score_card_container.size.x:
 		_scroll_target = 0
+

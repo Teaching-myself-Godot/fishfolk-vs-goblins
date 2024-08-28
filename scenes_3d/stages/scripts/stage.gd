@@ -83,6 +83,9 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
 	new_goblin.find_child("TowerContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.show_player(num)
+
 
 func _on_goblin_request_pause_menu():
 	open_pause_menu.emit()
