@@ -8,7 +8,7 @@ My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
 [Download Goblins vs. Fishfolk on Itch](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
-[![cover](cover.gif)](https://renevanderark.itch.io/goblins-vs-fishfolk)
+[![cover](./cover.png)](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
 
 ## A Word of Gratitude
@@ -20,7 +20,9 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
 - Add a settings menu to control audio for sfx and music
-- Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
+- Redesign the missile tower to be more in-theme: homing attack-gulls from a bird-house would be radical.
+- _sounds_: gull sounds
+-
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 
 
