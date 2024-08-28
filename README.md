@@ -46,15 +46,15 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Add ScrollContainer with score cards to endless mode
 - [x] Make ScrollContainer slide between score cards
 - [x] _team scores_: damage dealt, gems earned, crystals earned per player
+- [x] _team scores_: damage dealt and kills per enemy type
 - [ ] Reorder players based on most damage / collected
 - [ ] Only show players that joined the game on the score card
-- [ ] _team scores_: damage dealt and kills per enemy type
-- [ ] _team scores_: towers built (add thumbnails?) and upgrades bought per tower type
+per tower type
 - [ ] Show HP bars only when HP is not full
 - [ ] Add sprinting to the tutorial
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
 - [ ] Add short explainers to each mode to the title screen
-- [ ] Add leave game option to pause menu and using "select / -"
+- [ ] Add leave game option by using "select / -", show in informative message when joining
 - [ ] Add a confirmation message 'Player N' has joined / left the game
 - [ ] give endless mode the center stage
 

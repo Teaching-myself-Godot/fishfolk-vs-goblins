@@ -7,6 +7,20 @@ var _damage_per_monster_type := {
 	Constants.MonsterType.FLYING_FISH: 0,
 	Constants.MonsterType.GIANT_TURTLE: 0
 }
+
+var _monsters_overkilled := {
+	Constants.MonsterType.FISH_CHIBI: 0,
+	Constants.MonsterType.FLYING_FISH: 0,
+	Constants.MonsterType.GIANT_TURTLE: 0
+}
+
+var _monsters_killed := {
+	Constants.MonsterType.FISH_CHIBI: 0,
+	Constants.MonsterType.FLYING_FISH: 0,
+	Constants.MonsterType.GIANT_TURTLE: 0
+}
+
+
 var _damage_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _gems_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _crystals_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
@@ -50,6 +64,18 @@ var _scroll_target : int = 0
 	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageGiantTurtle
 }
 
+@onready var kills_per_monster_type_labels := {
+	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledChibiFish,
+	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledFlyingFish,
+	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledGiantTurtle
+}
+
+@onready var overkills_per_monster_type_labels := {
+	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillChibiFish,
+	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillFlyingFish,
+	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillGiantTurtle
+}
+
 var _elapsed_time = 0.0
 
 func _process(delta: float) -> void:
@@ -89,6 +115,15 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 	_total_damage += dmg
 	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/DamageTotal.text = str(_total_damage)
 	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal.text = str(_total_damage)
+
+
+func count_overkill(type : Constants.MonsterType):
+	_monsters_overkilled[type] += 1
+	overkills_per_monster_type_labels[type].text = str(_monsters_overkilled[type])
+
+func count_kill(type : Constants.MonsterType):
+	_monsters_killed[type] += 1
+	kills_per_monster_type_labels[type].text = str(_monsters_killed[type])
 
 
 func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):

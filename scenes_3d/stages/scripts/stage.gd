@@ -226,6 +226,17 @@ func _on_monster_damaged(damage_per_player : Dictionary, type : Constants.Monste
 	for score_card : Scores in find_children("*", "Scores"):
 		score_card.count_damage(damage_per_player, type, dmg)
 
+
+func _on_monster_killed(type : Constants.MonsterType):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_kill(type)
+
+
+func _on_monster_overkilled(type : Constants.MonsterType):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_overkill(type)
+
+
 func _spawn_monster(path : Path3D, monster : BaseMonster):
 	if _count_monsters() > MAX_MONSTERS:
 		return
@@ -241,6 +252,8 @@ func _spawn_monster(path : Path3D, monster : BaseMonster):
 	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
 	monster.kill_your_darling.connect(_on_monster_reached_crib)
 	monster.damaged.connect(_on_monster_damaged)
+	monster.killed.connect(_on_monster_killed)
+	monster.overkilled.connect(_on_monster_overkilled)
 	monster.my_frame_cycle = assigned_frame
 	assigned_frame = assigned_frame + 1 if assigned_frame < FRAME_CNT_MAX else 0
 	add_child.call_deferred(monster)
