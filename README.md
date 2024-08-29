@@ -19,6 +19,8 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
+- Add leave game option by using "select / -", show in informative message when joining
+- Add a confirmation message 'Player N' has joined / left the game
 - Add a settings menu to control audio for sfx and music
 - Redesign the missile tower to be more in-theme: homing attack-gulls from a bird-house would be radical.
 - _sounds_: gull sounds
@@ -27,6 +29,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Future ideas...
+- Add interactions like hanging on a flying fish to reach high places
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Control a single tower via extra 3D viewport
@@ -53,12 +56,10 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Only show players that joined the game on the score card
 - [x] Fixed width for HP bars
 - [x] Show HP bars only when HP is not full
-- [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
-- [ ] Show the score card prominently on the game over splash as well
+- [x] Print survival time prominently on the game over splash
+- [x] Show the score card prominently on the game over splash as well
 - [ ] Add sprinting to the tutorial
 - [ ] Add short explainers to each mode to the title screen
-- [ ] Add leave game option by using "select / -", show in informative message when joining
-- [ ] Add a confirmation message 'Player N' has joined / left the game
 - [ ] give endless mode the center stage
 
 

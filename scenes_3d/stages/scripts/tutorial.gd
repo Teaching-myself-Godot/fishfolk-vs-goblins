@@ -12,7 +12,7 @@ var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
 var first_wave : MonsterWave
 
-
+var _already_entered = false
 var _awaiting_goblin = true
 var _next_hint_timer_running = false
 
@@ -333,6 +333,9 @@ func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
 
 
 func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
+	if _already_entered:
+		return
+	_already_entered = true
 	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
 	if InputUtil.player_map.size() == 1:
 		main_player_cid = num as InputUtil.ControllerID

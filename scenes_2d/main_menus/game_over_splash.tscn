@@ -1,32 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://iiyr6brupo2b"]
+[gd_scene load_steps=4 format=3 uid="uid://iiyr6brupo2b"]
 
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/game_over_splash.gd" id="1_c5osj"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_0monw"]
-
-[sub_resource type="Gradient" id="Gradient_n5eq8"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.501961)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdc3l"]
-gradient = SubResource("Gradient_n5eq8")
-width = 1152
-height = 648
 
 [sub_resource type="LabelSettings" id="LabelSettings_ahbcu"]
 font = ExtResource("3_0monw")
 font_size = 40
 
-[node name="GameOverSplash" type="Sprite2D"]
+[node name="GameOverSplash" type="PanelContainer"]
 process_mode = 2
-texture = SubResource("GradientTexture2D_gdc3l")
-centered = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_c5osj")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Game over
-- press any button to continue -"
+
+"
 label_settings = SubResource("LabelSettings_ahbcu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0monw")
+theme_override_font_sizes/font_size = 36
+text = " - Press any key to Continue - "
+
+[connection signal="gui_input" from="." to="." method="_unhandled_input"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

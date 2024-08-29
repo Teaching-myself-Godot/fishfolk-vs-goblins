@@ -13,7 +13,8 @@ func _draw():
 	draw_rect(Rect2(1, 0, width, 1), Color(255, 255, 255, 0.6))
 	draw_rect(Rect2(1, 1, floori(float(hp) / float(max_hp) * width), 10),
 			Color(255, 0, 0, 0.6))
-	draw_rect(Rect2(1 + hp * 3, 1, floori(float(dmg_sum) / float(max_hp) * width), 10),
+	draw_rect(Rect2(1 + floori(float(hp) / float(max_hp) * width), 1, 
+			floori(float(dmg_sum) / float(max_hp) * width), 10),
 			Color(al, al, 0.0, 0.6))
 	draw_rect(Rect2(1 + floori(float(hp + dmg_sum) / float(max_hp) * width), 1, 
 			floori(float(max_hp - dmg_sum - hp) / float(max_hp) * width), 10),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vmvsjailhjjs"]
+[gd_scene load_steps=12 format=3 uid="uid://vmvsjailhjjs"]
 
 [ext_resource type="Script" path="res://scripts/goblins_vs_fishfolk.gd" id="1_yg1jx"]
 [ext_resource type="PackedScene" uid="uid://iiyr6brupo2b" path="res://scenes_2d/main_menus/game_over_splash.tscn" id="2_y6vnr"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dhw0txm3hlokt" path="res://scenes_2d/main_menus/title_screen.tscn" id="6_1aefp"]
 [ext_resource type="AudioStream" uid="uid://cjir8clf8m3u6" path="res://music/tune_no_1.wav" id="6_sllsd"]
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="7_t3x2p"]
+[ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/game_over_splash.gd" id="8_gnns7"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="8_lulg1"]
+[ext_resource type="PackedScene" uid="uid://cyt082n387o10" path="res://scenes_2d/hud/scores.tscn" id="9_me0o4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahbcu"]
+font = ExtResource("8_lulg1")
+font_size = 40
 
 [node name="GoblinsVsFishfolk" type="Node"]
 script = ExtResource("1_yg1jx")
@@ -32,13 +39,48 @@ volume_db = -20.0
 [node name="StageWonSplash" parent="." instance=ExtResource("2_y6vnr")]
 visible = false
 
-[node name="Label" parent="StageWonSplash" index="0"]
-text = "Stage Won!
+[node name="Label" parent="StageWonSplash/CenterContainer/VBoxContainer" index="0"]
+text = "Stage won!
 
-- press any button to continue -"
+"
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_t3x2p")
+
+[node name="GameOverWithScoreCardSplash" type="PanelContainer" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_gnns7")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverWithScoreCardSplash"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverWithScoreCardSplash/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverWithScoreCardSplash/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Over
+"
+label_settings = SubResource("LabelSettings_ahbcu")
+horizontal_alignment = 1
+
+[node name="Scores" parent="GameOverWithScoreCardSplash/CenterContainer/VBoxContainer" instance=ExtResource("9_me0o4")]
+process_mode = 2
+custom_minimum_size = Vector2(600, 290)
+layout_mode = 2
+is_end_score = true
+
+[node name="Button" type="Button" parent="GameOverWithScoreCardSplash/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_lulg1")
+theme_override_font_sizes/font_size = 40
+text = " - Press any key to Continue - "
 
 [connection signal="close_gameover_splash" from="GameOverSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
 [connection signal="close_pause_menu" from="PauseMenu" to="." method="_on_continue_pressed"]
@@ -51,6 +93,8 @@ stream = ExtResource("7_t3x2p")
 [connection signal="confirm_stage" from="TitleScreen" to="." method="_on_title_screen_confirm_stage"]
 [connection signal="select_stage" from="TitleScreen" to="." method="_select_stage"]
 [connection signal="close_gameover_splash" from="StageWonSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
+[connection signal="close_gameover_splash" from="GameOverWithScoreCardSplash" to="." method="_on_game_over_splash_close_gameover_splash"]
+[connection signal="pressed" from="GameOverWithScoreCardSplash/CenterContainer/VBoxContainer/Button" to="GameOverWithScoreCardSplash" method="_on_button_pressed"]
 
 [editable path="PauseMenu"]
 [editable path="StageWonSplash"]

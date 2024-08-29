@@ -2,6 +2,8 @@ class_name Scores
 
 extends PanelContainer
 
+@export var is_end_score := false
+
 var _damage_per_monster_type := {
 	Constants.MonsterType.FISH_CHIBI: 0,
 	Constants.MonsterType.FLYING_FISH: 0,
@@ -25,7 +27,6 @@ var _damage_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _gems_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 var _crystals_per_player := { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 
-var _total_damage = 0
 var _scroll_target : int = 0
 
 @onready var scroll_container := $VBoxContainer/ScrollContainer
@@ -83,6 +84,10 @@ var _elapsed_time = 0.0
 	5: find_children("Player*5")
 }
 
+@onready var total_damage_label = $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal
+@onready var total_kills_label = $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledTotal
+@onready var total_overkills_label =  $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillTotal
+
 
 func _ready():
 	for player_num in player_rows:
@@ -90,7 +95,9 @@ func _ready():
 			label.hide()
 
 func _process(delta: float) -> void:
-	_elapsed_time += delta
+	if not is_end_score:
+		_elapsed_time += delta
+
 	if scroll_container.scroll_horizontal != _scroll_target:
 		var next = lerp(scroll_container.scroll_horizontal, _scroll_target + _scroll_target / 10, 0.05)
 		if abs(next - _scroll_target) < 2:
@@ -124,7 +131,7 @@ func rank_players():
 	var tot_shares = {}
 	for player_num in _damage_per_player:
 		tot_shares[player_num] = (
-			dmg_shares[player_num]  * 3 +
+			dmg_shares[player_num] * 3 +
 				gem_shares[player_num] +
 				cry_shares[player_num]
 		)
@@ -138,10 +145,16 @@ func rank_players():
 				player_rows[player_num][i], child_pos + i
 			)
 			if i == player_rows[player_num].size() - 1:
-				if tot_shares[player_num] != NAN:
+				if tot_shares[player_num]:
 					player_rows[player_num][i].text = "%.1f" % (tot_shares[player_num] * 2.0)
 				else:
 					player_rows[player_num][i].text = "0.0"
+
+
+func _update_player_labels(stat : Dictionary, label_dict : Dictionary):
+	var total_shares = Constants.shares(stat)
+	for player_num in stat:
+		label_dict[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
 
 
 func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int) -> void:
@@ -152,14 +165,11 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 			var player_num = InputUtil.player_map[player_cid]
 			_damage_per_player[player_num] += dmg * shares[player_cid]
 
-	var total_shares = Constants.shares(_damage_per_player)
-	for player_num in _damage_per_player:
-		damage_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
+	_update_player_labels(_damage_per_player, damage_per_player_labels)
 
 	_damage_per_monster_type[type] += dmg
 	damage_per_monster_type_labels[type].text = str(_damage_per_monster_type[type])
-	_total_damage += dmg
-	$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal.text = str(_total_damage)
+	total_damage_label.text = str(Constants.sum(_damage_per_monster_type.values()))
 	rank_players()
 
 
@@ -167,10 +177,7 @@ func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):
 	if player_cid in InputUtil.player_map:
 		var player_num = InputUtil.player_map[player_cid]
 		_crystals_per_player[player_num] += 1
-	var total_shares = Constants.shares(_crystals_per_player)
-	for player_num in _crystals_per_player:
-		crystals_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
-
+	_update_player_labels(_crystals_per_player, crystals_per_player_labels)
 	rank_players()
 
 
@@ -178,21 +185,20 @@ func count_builder_gem_collect(player_cid : InputUtil.ControllerID):
 	if player_cid in InputUtil.player_map:
 		var player_num = InputUtil.player_map[player_cid]
 		_gems_per_player[player_num] += 10
-	var total_shares = Constants.shares(_gems_per_player)
-	for player_num in _gems_per_player:
-		gems_per_player_labels[player_num].text = "%d" % (total_shares[player_num] * 100) + '%'
-
+	_update_player_labels(_gems_per_player, gems_per_player_labels)
 	rank_players()
 
 
 func count_overkill(type : Constants.MonsterType):
 	_monsters_overkilled[type] += 1
 	overkills_per_monster_type_labels[type].text = str(_monsters_overkilled[type])
+	total_overkills_label.text = str(Constants.sum(_monsters_overkilled.values()))
 
 
 func count_kill(type : Constants.MonsterType):
 	_monsters_killed[type] += 1
 	kills_per_monster_type_labels[type].text = str(_monsters_killed[type])
+	total_kills_label.text = str(Constants.sum(_monsters_killed.values()))
 
 
 func _on_sliding_panel_timer_timeout() -> void:
@@ -200,3 +206,25 @@ func _on_sliding_panel_timer_timeout() -> void:
 	if _scroll_target >= score_card_container.size.x:
 		_scroll_target = 0
 
+
+func copy_from(other : Scores):
+	_elapsed_time = other._elapsed_time
+	_crystals_per_player = other._crystals_per_player.duplicate(true)
+	_gems_per_player = other._gems_per_player.duplicate(true)
+	_damage_per_monster_type = other._damage_per_monster_type.duplicate(true)
+	_monsters_killed = other._monsters_killed.duplicate(true)	
+	_monsters_overkilled = other._monsters_overkilled.duplicate(true)
+	_damage_per_player = other._damage_per_player.duplicate(true)
+	for type in _monsters_killed.keys():
+		kills_per_monster_type_labels[type].text = str(_monsters_killed[type])
+		overkills_per_monster_type_labels[type].text = str(_monsters_overkilled[type])
+		damage_per_monster_type_labels[type].text = str(_damage_per_monster_type[type])
+	total_damage_label.text = str(Constants.sum(_damage_per_monster_type.values()))
+	total_overkills_label.text = str(Constants.sum(_monsters_overkilled.values()))
+	total_kills_label.text = str(Constants.sum(_monsters_killed.values()))
+
+	_update_player_labels(_crystals_per_player, crystals_per_player_labels)
+	_update_player_labels(_gems_per_player, gems_per_player_labels)
+	_update_player_labels(_damage_per_player, damage_per_player_labels)
+	_on_time_elapsed_timer_timeout()
+	rank_players()

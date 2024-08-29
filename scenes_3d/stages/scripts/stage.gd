@@ -4,6 +4,7 @@ extends Node
 signal open_pause_menu()
 signal gameover()
 signal stage_won()
+signal gameover_with_scores(score_card : Scores)
 
 const MAX_MONSTERS = 80
 const FRAME_CNT_MAX = 3
@@ -268,7 +269,13 @@ func _physics_process(delta):
 		monster.handle_update(delta, frame_cnt)
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
-		gameover.emit()
+		var score_cards = find_children("*", "Scores")
+		print("hello?")
+		print(score_cards)
+		if score_cards.size() > 0:
+			gameover_with_scores.emit(score_cards[0])
+		else:
+			gameover.emit()
 
 	var wave_emitters_present = find_children("*", "MonsterWaveEmitter")
 	for wave_emitter : MonsterWaveEmitter in wave_emitters_present:

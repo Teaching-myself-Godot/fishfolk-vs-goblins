@@ -46,5 +46,5 @@ func shares(values_per_id : Dictionary) -> Dictionary:
 	var total = sum(values_per_id.values())
 	var result := {}
 	for share_id in values_per_id:
-		result[share_id] = float(values_per_id[share_id]) / float(total)
+		result[share_id] = 0.0 if total == 0.0 else float(values_per_id[share_id]) / float(total)
 	return result
