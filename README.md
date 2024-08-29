@@ -22,7 +22,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - Add a settings menu to control audio for sfx and music
 - Redesign the missile tower to be more in-theme: homing attack-gulls from a bird-house would be radical.
 - _sounds_: gull sounds
--
+- _sounds_: baby-poof sound
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 
 
@@ -51,10 +51,11 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] _team scores_: damage dealt and kills per enemy type
 - [x] Reorder players based on most damage / collected
 - [x] Only show players that joined the game on the score card
-- [ ] Show HP bars only when HP is not full
-- [ ] Add sprinting to the tutorial
+- [x] Fixed width for HP bars
+- [x] Show HP bars only when HP is not full
 - [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
 - [ ] Show the score card prominently on the game over splash as well
+- [ ] Add sprinting to the tutorial
 - [ ] Add short explainers to each mode to the title screen
 - [ ] Add leave game option by using "select / -", show in informative message when joining
 - [ ] Add a confirmation message 'Player N' has joined / left the game

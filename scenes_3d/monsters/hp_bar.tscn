@@ -12,6 +12,7 @@ shadow_size = 6
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="HPBar" type="Node2D" groups=["hud_items"]]
+visible = false
 script = ExtResource("1_7ru5n")
 
 [node name="Control" type="Node2D" parent="."]
