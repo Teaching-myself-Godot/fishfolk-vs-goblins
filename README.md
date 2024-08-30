@@ -58,9 +58,10 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Show HP bars only when HP is not full
 - [x] Print survival time prominently on the game over splash
 - [x] Show the score card prominently on the game over splash as well
+- [x] give endless mode the center stage
+- [ ] more turtles, more room for turtles
 - [ ] Add sprinting to the tutorial
 - [ ] Add short explainers to each mode to the title screen
-- [ ] give endless mode the center stage
 
 
 ### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 24th 2024)

@@ -37,29 +37,33 @@ size_flags_horizontal = 4
 
 [node name="Tutorial" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
-focus_neighbor_right = NodePath("../Stage 1-1")
-focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
-focus_next = NodePath("../Stage 1-1")
-text = "Tutorial  "
-my_stage = ExtResource("6_pa17n")
-
-[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
-layout_mode = 2
-focus_neighbor_left = NodePath("../Tutorial")
+focus_neighbor_left = NodePath("../Stage 1-1")
 focus_neighbor_right = NodePath("../Stage 1-2")
 focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
 focus_next = NodePath("../Stage 1-2")
-focus_previous = NodePath("../Tutorial")
-text = "Story  "
-my_stage = ExtResource("5_scabv")
+focus_previous = NodePath("../Stage 1-1")
+text = "Tutorial  "
+my_stage = ExtResource("6_pa17n")
 
 [node name="Stage 1-2" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Stage 1-1")
+focus_neighbor_left = NodePath("../Tutorial")
+focus_neighbor_right = NodePath("../Stage 1-1")
 focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
-focus_previous = NodePath("../Stage 1-1")
+focus_next = NodePath("../Stage 1-1")
+focus_previous = NodePath("../Tutorial")
 text = "Endless!  "
 my_stage = ExtResource("6_flai6")
+
+[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stage 1-2")
+focus_neighbor_right = NodePath("../Tutorial")
+focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
+focus_next = NodePath("../Tutorial")
+focus_previous = NodePath("../Stage 1-2")
+text = "Story  "
+my_stage = ExtResource("5_scabv")
 
 [node name="CenterContainer" type="CenterContainer" parent="StageSelectMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -87,10 +91,10 @@ stream = ExtResource("11_ufrbn")
 
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="close_credits" from="StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
 [connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]

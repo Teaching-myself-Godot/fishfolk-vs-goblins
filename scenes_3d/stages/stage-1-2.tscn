@@ -256,9 +256,9 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.4141,
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.4141, 1.12941, 7.59987)
 
 [node name="MonsterWave" parent="MonsterSpawner5" instance=ExtResource("10_npwai")]
-wait_time = 40.0
+wait_time = 20.0
 Monster = ExtResource("10_2elaq")
-monster_speed = 2.0
+monster_speed = 2.1
 monster_hp = 20
 gems_per_monster = 2
 infinite_wave = true

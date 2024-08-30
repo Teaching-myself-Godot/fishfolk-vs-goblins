@@ -27,7 +27,7 @@ func open_title_screen():
 	show()
 	_muted = true
 	$UnmuteTimer.start()
-	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1".grab_focus()
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2".grab_focus()
 
 
 func _on_select_stage(my_stage: PackedScene) -> void:
@@ -60,4 +60,4 @@ func _on_close_credits_button_pressed() -> void:
 	for stage_select_option : StageSelectOption in stage_select_options:
 		stage_select_option.focus_mode = FocusMode.FOCUS_ALL
 	$StageSelectMenu/Credits.hide()
-	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1".grab_focus()
+	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2".grab_focus()
