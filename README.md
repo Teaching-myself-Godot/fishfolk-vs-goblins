@@ -59,8 +59,8 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Print survival time prominently on the game over splash
 - [x] Show the score card prominently on the game over splash as well
 - [x] give endless mode the center stage
-- [ ] more turtles, more room for turtles
-- [ ] Add sprinting to the tutorial
+- [x] more turtles, more room for turtles
+- [x] Add sprinting to the tutorial
 - [ ] Add short explainers to each mode to the title screen
 
 

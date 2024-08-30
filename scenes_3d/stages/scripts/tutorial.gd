@@ -25,6 +25,8 @@ var _keyboard_run_hints = [
 ]
 var _awaiting_jump_hint = true
 var _awaiting_jump = false
+var _awaiting_sprint = false
+
 
 var _mouse_hints = [
 	MouseHints.MouseHint.WHEEL_CLICK,
@@ -64,12 +66,11 @@ var _gamepad_run_hints = [
 ]
 
 var _gamepad_jump_hints = [
-	GamepadHints.GamepadIcons.NONE,
-	GamepadHints.GamepadIcons.A_PRESSED,
 	GamepadHints.GamepadIcons.A_PRESSED,
 	GamepadHints.GamepadIcons.NONE,
-	GamepadHints.GamepadIcons.A_PRESSED,
-	GamepadHints.GamepadIcons.A_PRESSED
+	GamepadHints.GamepadIcons.X_PRESSED,
+	GamepadHints.GamepadIcons.X_PRESSED,
+	GamepadHints.GamepadIcons.X_PRESSED
 ]
 
 var _gamepad_zoom_hints = [
@@ -175,7 +176,11 @@ func _handle_keyboard_running_hints():
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
 	if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
 		_awaiting_jump = false
+		_awaiting_sprint = true
 		_goblin.floor_max_angle = deg_to_rad(60)
+		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SHIFT
+	if _awaiting_sprint and Input.is_key_pressed(KEY_SHIFT) and _goblin.velocity:
+		_awaiting_sprint = false
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 		$TutorialPlaybook/KeyboardHints.fading = true
 
