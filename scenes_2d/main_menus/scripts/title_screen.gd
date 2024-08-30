@@ -30,7 +30,8 @@ func open_title_screen():
 	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2".grab_focus()
 
 
-func _on_select_stage(my_stage: PackedScene) -> void:
+func _on_select_stage(my_stage: PackedScene, description : String) -> void:
+	$StageSelectMenu/VBoxContainer/PanelContainer/StageDescription.text = description
 	select_stage.emit(my_stage)
 	if not _muted:
 		$OnSelectAudioStreamPlayer.play()

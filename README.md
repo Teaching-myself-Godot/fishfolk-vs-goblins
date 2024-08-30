@@ -61,7 +61,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] give endless mode the center stage
 - [x] more turtles, more room for turtles
 - [x] Add sprinting to the tutorial
-- [ ] Add short explainers to each mode to the title screen
+- [x] Add short explainers to each mode to the title screen
 
 
 ### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 24th 2024)
