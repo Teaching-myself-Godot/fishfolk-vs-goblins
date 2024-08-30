@@ -30,6 +30,10 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Future ideas...
 - Add interactions like hanging on a flying fish to reach high places
+- Make fish able to harm goblin
+- Allow goblin to pick up a spear and use it
+- Add magical crystal wells goblins can dance next to to earn more crystals
+- Add gem ore deposits goblins can mine with a pickaxe
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Control a single tower via extra 3D viewport
@@ -42,26 +46,26 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Milestone 24 - Vamping up the endless mode, quality of life
-- [x] Add ocean to endless mode
-- [x] Add turtle wave to endless mode
-- [x] Add survival time to endless mode
-- [x] Make gem and crystal drops deterministic
-- [x] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
-- [x] Add ScrollContainer with score cards to endless mode
-- [x] Make ScrollContainer slide between score cards
-- [x] _team scores_: damage dealt, gems earned, crystals earned per player
-- [x] _team scores_: damage dealt and kills per enemy type
-- [x] Reorder players based on most damage / collected
-- [x] Only show players that joined the game on the score card
-- [x] Fixed width for HP bars
-- [x] Show HP bars only when HP is not full
-- [x] Print survival time prominently on the game over splash
-- [x] Show the score card prominently on the game over splash as well
-- [x] give endless mode the center stage
-- [x] more turtles, more room for turtles
-- [x] Add sprinting to the tutorial
-- [x] Add short explainers to each mode to the title screen
+### [Milestone 24](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-24) - Vamping up the endless mode, quality of life (August 30th 2024)
+- Add ocean to endless mode
+- Add turtle wave to endless mode
+- Add survival time to endless mode
+- Make gem and crystal drops deterministic
+- Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
+- Add ScrollContainer with score cards to endless mode
+- Make ScrollContainer slide between score cards
+- _team scores_: damage dealt, gems earned, crystals earned per player
+- _team scores_: damage dealt and kills per enemy type
+- Reorder players based on most damage / collected
+- Only show players that joined the game on the score card
+- Fixed width for HP bars
+- Show HP bars only when HP is not full
+- Print survival time prominently on the game over splash
+- Show the score card prominently on the game over splash as well
+- give endless mode the center stage
+- more turtles, more room for turtles
+- Add sprinting to the tutorial
+- Add short explainers to each mode to the title screen
 
 
 ### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 24th 2024)
