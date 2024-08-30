@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://doy7owgxttfij"]
 
-[ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_6mnvp"]
+[ext_resource type="Script" path="res://scenes_3d/stages/scripts/endless_stage.gd" id="1_lavd7"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
 [ext_resource type="PackedScene" uid="uid://doyct1xu46gwj" path="res://scenes_2d/hud/gem_pouch.tscn" id="4_6egpi"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="5_p0xbc"]
@@ -24,10 +24,10 @@ resource_local_to_scene = true
 [sub_resource type="Curve3D" id="Curve3D_khxbu"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve3D" id="Curve3D_u725d"]
+[sub_resource type="Curve3D" id="Curve3D_16p1v"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve3D" id="Curve3D_16p1v"]
+[sub_resource type="Curve3D" id="Curve3D_u725d"]
 resource_local_to_scene = true
 
 [sub_resource type="Curve3D" id="Curve3D_di7hl"]
@@ -44,7 +44,7 @@ emission = Color(0.676103, 0.785109, 1, 1)
 density_texture = SubResource("NoiseTexture3D_rpnb7")
 
 [node name="Stage-1-2" type="Node3D"]
-script = ExtResource("1_6mnvp")
+script = ExtResource("1_lavd7")
 
 [node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
 builder_gems = 600
@@ -142,48 +142,6 @@ offset_top = -144.0
 offset_right = -22.0
 offset_bottom = -88.0
 
-[node name="MonsterSpawner4" parent="." instance=ExtResource("7_gfa2d")]
-
-[node name="MonsterPath" parent="MonsterSpawner4" instance=ExtResource("8_agk78")]
-curve = SubResource("Curve3D_u725d")
-
-[node name="Anchor" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.22637, -7.8744, 100.456)
-
-[node name="Anchor2" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.52232, 8.94144, 3.35128)
-
-[node name="Anchor3" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.2312, 4.75813, -7.15457)
-
-[node name="Anchor4" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.32008, 8.93774, -9.22615)
-
-[node name="Anchor5" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.68278, 4.73548, -4.34315)
-
-[node name="Anchor6" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.6374, 8.97884, 2.46346)
-
-[node name="Anchor7" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.6374, -0.0112818, 7.46346)
-
-[node name="MonsterWave2" parent="MonsterSpawner4" instance=ExtResource("10_npwai")]
-wait_time = 10.0
-Monster = ExtResource("11_vkp3i")
-monster_speed = 2.4
-monster_hp = 5
-gems_per_monster = 2
-infinite_wave = true
-crystal_drop_percentage = 20
-gem_drop_percentage = 100
-
-[node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
-visible = true
-offset_top = -272.0
-offset_right = -22.0
-offset_bottom = -216.0
-
 [node name="MonsterSpawner3" parent="." instance=ExtResource("7_gfa2d")]
 
 [node name="MonsterPath" parent="MonsterSpawner3" instance=ExtResource("8_agk78")]
@@ -226,13 +184,55 @@ offset_top = -208.0
 offset_right = -22.0
 offset_bottom = -152.0
 
+[node name="MonsterSpawner4" parent="." instance=ExtResource("7_gfa2d")]
+
+[node name="MonsterPath" parent="MonsterSpawner4" instance=ExtResource("8_agk78")]
+curve = SubResource("Curve3D_u725d")
+
+[node name="Anchor" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.22637, -7.8744, 100.456)
+
+[node name="Anchor2" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.52232, 8.94144, 3.35128)
+
+[node name="Anchor3" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -2.2312, 4.75813, -7.15457)
+
+[node name="Anchor4" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 1.32008, 8.93774, -9.22615)
+
+[node name="Anchor5" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 7.68278, 4.73548, -4.34315)
+
+[node name="Anchor6" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 14.6374, 8.97884, 2.46346)
+
+[node name="Anchor7" parent="MonsterSpawner4/MonsterPath" instance=ExtResource("9_4xu15")]
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.6374, -0.0112818, 7.46346)
+
+[node name="MonsterWave2" parent="MonsterSpawner4" instance=ExtResource("10_npwai")]
+wait_time = 10.0
+Monster = ExtResource("11_vkp3i")
+monster_speed = 2.4
+monster_hp = 5
+gems_per_monster = 2
+infinite_wave = true
+crystal_drop_percentage = 20
+gem_drop_percentage = 100
+
+[node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
+visible = true
+offset_top = -272.0
+offset_right = -22.0
+offset_bottom = -216.0
+
 [node name="MonsterSpawner5" parent="." instance=ExtResource("7_gfa2d")]
 
 [node name="MonsterPath" parent="MonsterSpawner5" instance=ExtResource("8_agk78")]
 curve = SubResource("Curve3D_di7hl")
 
 [node name="Anchor" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
-transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.44963, -2.20196, 46.5923)
+transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -7.44963, -1.46469, 54.5738)
 
 [node name="Anchor8" parent="MonsterSpawner5/MonsterPath" instance=ExtResource("9_4xu15")]
 transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, -6.74558, 0.948435, 21.4877)
@@ -455,11 +455,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825116, 4.72569, 32.0036)
 size = Vector3(58.1898, 14.188, 22.9069)
 material = SubResource("FogMaterial_kyfdo")
 
+[connection signal="timeout" from="MonsterSpawner5/MonsterWave" to="." method="_pause_chibi_waves"]
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/MonsterWave"]
 [editable path="MonsterSpawner2/MonsterWave"]
-[editable path="MonsterSpawner4/MonsterWave2"]
 [editable path="MonsterSpawner3/MonsterWave"]
+[editable path="MonsterSpawner4/MonsterWave2"]
 [editable path="MonsterSpawner5/MonsterWave"]
