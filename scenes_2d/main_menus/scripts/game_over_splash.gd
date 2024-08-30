@@ -1,13 +1,7 @@
 class_name GameOverSplash
-extends Sprite2D
-
+extends PanelContainer
 
 signal close_gameover_splash();
-
-
-func _ready():
-	get_tree().get_root().size_changed.connect(_on_resize)
-	_on_resize()
 
 
 func _unhandled_input(_event):
@@ -22,7 +16,5 @@ func _unhandled_input(_event):
 		close_gameover_splash.emit()
 
 
-func _on_resize():
-	texture.width = get_viewport().size.x
-	texture.height = get_viewport().size.y
-	$Label.size = get_viewport().size
+func _on_button_pressed() -> void:
+	close_gameover_splash.emit()

@@ -11,19 +11,34 @@ signal spawn_monster(monster : BaseMonster)
 @export var gems_per_monster : int = 1
 @export var crystals_per_wave : int = 1
 @export var infinite_wave : bool = false
+@export var crystal_drop_percentage := 10
+@export var gem_drop_percentage := 25
+
+@onready var label := $Control/HBoxContainer/Label
+@onready var thumbnail_texture := $Control/HBoxContainer/TextureRect
 
 var monsters_spawned = 0
 var my_monsters : Array = []
 
 func _calculate_crystal_drop() -> bool:
 	if infinite_wave:
-		return randf() < 0.1
+		return monsters_spawned % roundi(100 / crystal_drop_percentage) == 0
 
 	var remaining = monster_count - monsters_spawned
 	if crystals_per_wave == remaining:
 		crystals_per_wave -= 1
 		return true
 	return false
+
+
+func _calculate_gem_drop():
+	if infinite_wave:
+		if monsters_spawned % roundi(100 / gem_drop_percentage) == 0:
+			return gems_per_monster
+		else:
+			return 0
+	
+	return gems_per_monster
 
 
 func _on_poll_wave_cleared_timer_timeout():
@@ -44,7 +59,7 @@ func _on_timeout():
 	(monster as BaseMonster).speed = monster_speed
 	(monster as BaseMonster).hp = monster_hp
 	(monster as BaseMonster).drop_crystal = _calculate_crystal_drop()
-	(monster as BaseMonster).gems = gems_per_monster
+	(monster as BaseMonster).gems = _calculate_gem_drop()
 	spawn_monster.emit(monster)
 	if not infinite_wave:
 		my_monsters.append(monster)
@@ -52,16 +67,16 @@ func _on_timeout():
 	_update_label()
 
 
-func _update_label():
+func _update_label(text : String = ""):
 	if infinite_wave:
-		$Control/Label.text = "Endless"
+		label.text = str(monster_hp) + " HP "
 	else:
-		$Control/Label.text = str(monsters_spawned) + " / " + str(monster_count)
+		label.text = str(monsters_spawned) + " / " + str(monster_count)
 
 
 func _ready():
 	var monster : BaseMonster = Monster.instantiate()
-	$Control/Sprite2D.texture = monster.thumbnail
+	thumbnail_texture.texture = monster.thumbnail
 	_update_label()
 	monster.queue_free()
 

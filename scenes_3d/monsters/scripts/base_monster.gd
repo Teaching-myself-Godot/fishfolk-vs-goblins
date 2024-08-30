@@ -1,8 +1,13 @@
 class_name BaseMonster
 extends Area3D
 
+signal killed(type : Constants.MonsterType)
+signal damaged(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int)
+signal overkilled(type : Constants.MonsterType)
+
 @export var thumbnail : Resource
 
+var type := Constants.MonsterType.UNKNOWN
 var chest_height = 0.75
 var target : PathFollow3D = null
 var velocity = Vector3.ZERO
@@ -77,12 +82,21 @@ func get_hp():
 	return $HPBar.hp
 
 
-func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
+func take_damage(damage : int, damage_per_player : Dictionary, from_direction : Vector3, force : float = 1.0):
+	if attacking:
+		# Monster is immune now
+		return
+
 	var actual_damage = damage if $HPBar.hp >= damage else $HPBar.hp
 	$HPBar.hp -= actual_damage
 	$HPBar.draw_damage(actual_damage)
 	$HPBar.queue_redraw()
 	_apply_damage_motion(from_direction, force)
+	damaged.emit(damage_per_player, type, actual_damage)
+	if $HPBar.hp == 0:
+		killed.emit(type)
+	if actual_damage < damage:
+		overkilled.emit(type)
 
 
 func _spawn_dust():

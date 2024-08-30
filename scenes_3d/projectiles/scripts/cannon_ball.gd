@@ -1,7 +1,13 @@
 class_name CannonBall
 extends Area3D
 
-var owned_by_player : int = -1
+var damage_per_player := {
+	InputUtil.ControllerID.KEYBOARD: 0,
+	InputUtil.ControllerID.GAMEPAD_1: 0,
+	InputUtil.ControllerID.GAMEPAD_2: 0,
+	InputUtil.ControllerID.GAMEPAD_3: 0,
+	InputUtil.ControllerID.GAMEPAD_4: 0
+}
 var impulse_dir : Vector3 = Vector3.ZERO
 var velocity : Vector3 = Vector3.ZERO
 var damage = 3
@@ -37,7 +43,7 @@ func _deal_damage():
 			is_instance_valid(monster) and
 			position.distance_to(monster.position) < explosion_range
 		):
-			monster.take_damage(damage, position.direction_to(monster.position))
+			monster.take_damage(damage, damage_per_player, position.direction_to(monster.position))
 
 func _on_body_entered(body):
 	if body.is_in_group(Constants.GROUP_NAME_TERRAIN) or body.is_in_group(Constants.GROUP_NAME_MONSTER_COLLISION):

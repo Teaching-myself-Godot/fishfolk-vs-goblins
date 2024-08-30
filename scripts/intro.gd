@@ -22,6 +22,9 @@ func _show_next_sentence():
 
 
 func _on_resize():
+	var viewport = get_viewport()
+	if viewport == null:
+		return
 	texture.width = get_viewport().size.x
 	texture.height = get_viewport().size.y
 	$SubViewportContainer.size = Vector2i(

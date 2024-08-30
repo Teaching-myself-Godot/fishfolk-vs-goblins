@@ -3,7 +3,13 @@ extends Area3D
 
 const SPEED = 80.0
 
-var owned_by_player : int = -1
+var damage_per_player := {
+	InputUtil.ControllerID.KEYBOARD: 0,
+	InputUtil.ControllerID.GAMEPAD_1: 0,
+	InputUtil.ControllerID.GAMEPAD_2: 0,
+	InputUtil.ControllerID.GAMEPAD_3: 0,
+	InputUtil.ControllerID.GAMEPAD_4: 0
+}
 var fired   : bool = false
 var damage  : int = 5
 var target : BaseMonster = null
@@ -35,7 +41,7 @@ func _do_damage():
 
 	if fired and target and is_instance_valid(target):
 		doing_damage = true
-		target.take_damage(damage, global_transform.basis.x.normalized())
+		target.take_damage(damage, damage_per_player, global_transform.basis.x.normalized())
 		$Cylinder.hide()
 		fired = false
 		$ImpactStreamPlayer.pitch_scale = 1.0 + -(0.25 + randf() * 0.5)

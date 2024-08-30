@@ -5,7 +5,13 @@ signal spawn_explosion(pos : Vector3)
 
 const MAX_SPEED = 20.0
 var cur_speed = 7.0
-var owned_by_player : int = -1
+var damage_per_player := {
+	InputUtil.ControllerID.KEYBOARD: 0,
+	InputUtil.ControllerID.GAMEPAD_1: 0,
+	InputUtil.ControllerID.GAMEPAD_2: 0,
+	InputUtil.ControllerID.GAMEPAD_3: 0,
+	InputUtil.ControllerID.GAMEPAD_4: 0
+}
 var damage  : int = 2
 var target : BaseMonster = null
 
@@ -41,6 +47,6 @@ func _on_body_entered(body : Node3D):
 
 func _on_area_entered(area):
 	if area.is_in_group(Constants.GROUP_NAME_MONSTERS):
-		area.take_damage(damage, global_transform.basis.x.normalized(), 0.5)
+		area.take_damage(damage, damage_per_player, global_transform.basis.x.normalized(), 0.5)
 		spawn_explosion.emit(position)
 		queue_free()

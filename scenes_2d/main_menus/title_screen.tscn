@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=13 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
@@ -10,6 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="8_3mpk5"]
 [ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="10_tny07"]
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75323"]
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 10.0
+expand_margin_right = 20.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_krt8n"]
+line_spacing = 6.0
+font = ExtResource("3_ibf3y")
 
 [node name="TitleScreen" type="PanelContainer"]
 process_mode = 2
@@ -27,9 +43,21 @@ size_flags_horizontal = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="StageSelectMenu"]
 layout_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="StageSelectMenu/VBoxContainer"]
+custom_minimum_size = Vector2(695, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_75323")
+
+[node name="StageDescription" type="Label" parent="StageSelectMenu/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "[ enter a stage description in the StageSelectMenuOption]"
+label_settings = SubResource("LabelSettings_krt8n")
+
 [node name="Splash" type="TextureRect" parent="StageSelectMenu/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_053dn")
+stretch_mode = 3
 
 [node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu/VBoxContainer"]
 layout_mode = 2
@@ -37,29 +65,43 @@ size_flags_horizontal = 4
 
 [node name="Tutorial" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
-focus_neighbor_right = NodePath("../Stage 1-1")
-focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
-focus_next = NodePath("../Stage 1-1")
-text = "Tutorial  "
-my_stage = ExtResource("6_pa17n")
-
-[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
-layout_mode = 2
-focus_neighbor_left = NodePath("../Tutorial")
+focus_neighbor_left = NodePath("../Stage 1-1")
 focus_neighbor_right = NodePath("../Stage 1-2")
 focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
 focus_next = NodePath("../Stage 1-2")
-focus_previous = NodePath("../Tutorial")
-text = "Story  "
-my_stage = ExtResource("5_scabv")
+focus_previous = NodePath("../Stage 1-1")
+text = "Tutorial  "
+my_stage = ExtResource("6_pa17n")
+description = "Play the tutorial to learn:
+- The controls (press start / + or B to learn gamepad controls)
+- The basics and goals of this tower defense game"
 
 [node name="Stage 1-2" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Stage 1-1")
+focus_neighbor_left = NodePath("../Tutorial")
+focus_neighbor_right = NodePath("../Stage 1-1")
 focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
-focus_previous = NodePath("../Stage 1-1")
+focus_next = NodePath("../Stage 1-1")
+focus_previous = NodePath("../Tutorial")
 text = "Endless!  "
 my_stage = ExtResource("6_flai6")
+description = "Try and survive as long as you can!
+The fishfolk will just keep attacking unrelentlessly and keep getting tougher every minute.
+Earn local multiplayer M.V.P. by causing the most damage and collecting the most items.
+"
+
+[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stage 1-2")
+focus_neighbor_right = NodePath("../Tutorial")
+focus_neighbor_bottom = NodePath("../../CenterContainer/CreditsButton")
+focus_next = NodePath("../Tutorial")
+focus_previous = NodePath("../Stage 1-2")
+text = "Story  "
+my_stage = ExtResource("5_scabv")
+description = "This is story mode.
+There isn't a lot of story here yet, but it is a legitimate stage you can play. 
+Have suggestions? Leave a comment on https://renevanderark.itch.io/goblins-vs-fishfolk"
 
 [node name="CenterContainer" type="CenterContainer" parent="StageSelectMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -87,10 +129,10 @@ stream = ExtResource("11_ufrbn")
 
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
 [connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
+[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
 [connection signal="pressed" from="StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="close_credits" from="StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
 [connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]

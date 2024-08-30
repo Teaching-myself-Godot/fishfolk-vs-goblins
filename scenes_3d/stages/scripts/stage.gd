@@ -4,6 +4,7 @@ extends Node
 signal open_pause_menu()
 signal gameover()
 signal stage_won()
+signal gameover_with_scores(score_card : Scores)
 
 const MAX_MONSTERS = 80
 const FRAME_CNT_MAX = 3
@@ -83,6 +84,9 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
 	new_goblin.find_child("TowerContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.show_player(num)
+
 
 func _on_goblin_request_pause_menu():
 	open_pause_menu.emit()
@@ -90,7 +94,7 @@ func _on_goblin_request_pause_menu():
 
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
@@ -100,7 +104,7 @@ func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
 
 func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	var new_tower : CannonTower = CannonTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
@@ -110,7 +114,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
 	var new_tower : ArrowTower = ArrowTowerScene.instantiate()
-	new_tower.built_by_player = player_num
+	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
 	new_tower.load_arrow.connect(_on_arrow_tower_load_arrow)
@@ -191,7 +195,7 @@ func _on_drop_builder_gem(pos : Vector3):
 	new_gem.velocity.y = 20
 	new_gem.velocity.x = -3 + randf() * 6
 	new_gem.velocity.z = -3 + randf() * 6
-	new_gem.collect_builder_gem.connect(gem_pouch.collect_builder_gem)
+	new_gem.collect_builder_gem.connect(_on_collect_builder_gem)
 	add_child.call_deferred(new_gem)
 
 
@@ -201,13 +205,40 @@ func _on_drop_magical_crystal(pos : Vector3) -> MagicalCrystal:
 	new_crystal.velocity.y = 20
 	new_crystal.velocity.x = -3 + randf() * 3
 	new_crystal.velocity.z = -3 + randf() * 3
-	new_crystal.collect_magical_crystal.connect(gem_pouch.collect_magical_crystal)
+	new_crystal.collect_magical_crystal.connect(_on_collect_magical_crystal)
 	add_child.call_deferred(new_crystal)
 	return new_crystal
 
 
+func _on_collect_builder_gem(cid : InputUtil.ControllerID):
+	gem_pouch.collect_builder_gem()
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_builder_gem_collect(cid)
+
+
+func _on_collect_magical_crystal(cid : InputUtil.ControllerID):
+	gem_pouch.collect_magical_crystal()
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_magical_crystal_collect(cid)
+
+
 func _count_monsters():
 	return get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()
+
+
+func _on_monster_damaged(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_damage(damage_per_player, type, dmg)
+
+
+func _on_monster_killed(type : Constants.MonsterType):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_kill(type)
+
+
+func _on_monster_overkilled(type : Constants.MonsterType):
+	for score_card : Scores in find_children("*", "Scores"):
+		score_card.count_overkill(type)
 
 
 func _spawn_monster(path : Path3D, monster : BaseMonster):
@@ -224,6 +255,9 @@ func _spawn_monster(path : Path3D, monster : BaseMonster):
 	monster.drop_builder_gem.connect(_on_drop_builder_gem)
 	monster.spawn_dust_particles.connect(_on_spawn_dust_particle)
 	monster.kill_your_darling.connect(_on_monster_reached_crib)
+	monster.damaged.connect(_on_monster_damaged)
+	monster.killed.connect(_on_monster_killed)
+	monster.overkilled.connect(_on_monster_overkilled)
 	monster.my_frame_cycle = assigned_frame
 	assigned_frame = assigned_frame + 1 if assigned_frame < FRAME_CNT_MAX else 0
 	add_child.call_deferred(monster)
@@ -235,7 +269,13 @@ func _physics_process(delta):
 		monster.handle_update(delta, frame_cnt)
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
-		gameover.emit()
+		var score_cards = find_children("*", "Scores")
+		print("hello?")
+		print(score_cards)
+		if score_cards.size() > 0:
+			gameover_with_scores.emit(score_cards[0])
+		else:
+			gameover.emit()
 
 	var wave_emitters_present = find_children("*", "MonsterWaveEmitter")
 	for wave_emitter : MonsterWaveEmitter in wave_emitters_present:

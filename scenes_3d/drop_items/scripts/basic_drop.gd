@@ -34,7 +34,7 @@ func _physics_process(delta):
 	position += velocity * delta
 
 
-func _collect():
+func _collect(_player_cid : InputUtil.ControllerID):
 	printerr("BasicDrop._collect() must be overridden")
 
 
@@ -45,7 +45,7 @@ func _on_body_entered(body):
 		$CollisionShape3D.set_disabled.call_deferred(true)
 
 	if not touched_by_goblin and is_instance_valid(body) and body.is_in_group(Constants.GROUP_NAME_GOBLINS):
-		_collect()
+		_collect((body as Goblin).player_num)
 		touched_by_goblin = body
 		$GemMesh.get_surface_override_material(0).transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		$AudioStreamPlayer3D.play()

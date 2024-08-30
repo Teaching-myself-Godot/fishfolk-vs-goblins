@@ -18,7 +18,7 @@ func _shoot():
 				.rotated(Vector3.UP, $Wheel.rotation.y)
 				.rotated(Vector3.FORWARD, $Wheel.rotation.z)
 		) + position + $Wheel/Axle.position
-		my_cannon_ball.owned_by_player = built_by_player
+		my_cannon_ball.damage_per_player = damage_per_player
 		my_cannon_ball.rotation.y = $Wheel.rotation.y
 		my_cannon_ball.rotation.z = $Wheel/Axle.rotation.z
 		my_cannon_ball.impulse_dir = (Vector3.RIGHT
@@ -85,6 +85,7 @@ func _ready():
 	drop_gem_amount = 8
 	$ReloadTimer.wait_time = current_reload_time - 1
 	$ShootTimer.start()
+	damage_per_player[_builder_cid] = current_damage
 
 
 func _on_reload_timer_timeout():

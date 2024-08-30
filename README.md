@@ -8,7 +8,7 @@ My (our) first 3D game, powered by [godot 4](https://godotengine.org/download).
 
 [Download Goblins vs. Fishfolk on Itch](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
-[![cover](cover.gif)](https://renevanderark.itch.io/goblins-vs-fishfolk)
+[![cover](./cover.png)](https://renevanderark.itch.io/goblins-vs-fishfolk)
 
 
 ## A Word of Gratitude
@@ -19,12 +19,17 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
+- Add leave game option by using "select / -", show in informative message when joining
+- Add a confirmation message 'Player N' has joined / left the game
 - Add a settings menu to control audio for sfx and music
-- Redesign the missile tower to be more in-theme: homing attack-pigeons from a bird-house would be radical.
+- Redesign the missile tower to be more in-theme: homing attack-gulls from a bird-house would be radical.
+- _sounds_: gull sounds
+- _sounds_: baby-poof sound
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 
 
 ## Future ideas...
+- Add interactions like hanging on a flying fish to reach high places
 - Short tutorial on making your own stage
 - Short tutorial on contributing by forking
 - Control a single tower via extra 3D viewport
@@ -37,20 +42,26 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Milestone 24 - Vamping up the endless mode, playability
-- [ ] Add ocean to endless mode
-- [ ] Add survival time to endless mode
-- [ ] Print survival time prominently on the game over splash (Well Done! You survived for N minutes and N seconds!)
-- [ ] Add (surprise) turtle wave to endless mode (using a different path)
-- [ ] Add short explainers to each mode to the title screen
-- [ ] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
-- [ ] Add leave game option to pause menu and using "select / -"
-- [ ] Add a confirmation message 'Player N' has joined / left the game
-- [ ] Add horizontally scrolling score cards to endless mode
-- [ ] _team scores_: towers built (add thumbnails), upgrades bought per type per tower x crystal cost
-- [ ] _team scores_: gems earned, crystals earned, gems spent, crystals spent
-- [ ] _team scores_: damage dealt and kills per enemy type
-- [ ] give endless mode the center stage
+### Milestone 24 - Vamping up the endless mode, quality of life
+- [x] Add ocean to endless mode
+- [x] Add turtle wave to endless mode
+- [x] Add survival time to endless mode
+- [x] Make gem and crystal drops deterministic
+- [x] Add sprinting with the Y-button / Shift button (speeds up AnimationTree of goblin)
+- [x] Add ScrollContainer with score cards to endless mode
+- [x] Make ScrollContainer slide between score cards
+- [x] _team scores_: damage dealt, gems earned, crystals earned per player
+- [x] _team scores_: damage dealt and kills per enemy type
+- [x] Reorder players based on most damage / collected
+- [x] Only show players that joined the game on the score card
+- [x] Fixed width for HP bars
+- [x] Show HP bars only when HP is not full
+- [x] Print survival time prominently on the game over splash
+- [x] Show the score card prominently on the game over splash as well
+- [x] give endless mode the center stage
+- [x] more turtles, more room for turtles
+- [x] Add sprinting to the tutorial
+- [x] Add short explainers to each mode to the title screen
 
 
 ### [Milestone 23](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-23) - UI Audio, Main Menu fix [Improve my Game Jam feedback](https://itch.io/jam/imgj34/rate/2810521) (August 24th 2024)

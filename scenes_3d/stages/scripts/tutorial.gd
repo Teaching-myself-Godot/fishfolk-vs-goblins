@@ -12,7 +12,7 @@ var mode : TutorialMode
 var main_player_cid : InputUtil.ControllerID
 var first_wave : MonsterWave
 
-
+var _already_entered = false
 var _awaiting_goblin = true
 var _next_hint_timer_running = false
 
@@ -25,6 +25,8 @@ var _keyboard_run_hints = [
 ]
 var _awaiting_jump_hint = true
 var _awaiting_jump = false
+var _awaiting_sprint = false
+
 
 var _mouse_hints = [
 	MouseHints.MouseHint.WHEEL_CLICK,
@@ -64,12 +66,11 @@ var _gamepad_run_hints = [
 ]
 
 var _gamepad_jump_hints = [
-	GamepadHints.GamepadIcons.NONE,
-	GamepadHints.GamepadIcons.A_PRESSED,
 	GamepadHints.GamepadIcons.A_PRESSED,
 	GamepadHints.GamepadIcons.NONE,
-	GamepadHints.GamepadIcons.A_PRESSED,
-	GamepadHints.GamepadIcons.A_PRESSED
+	GamepadHints.GamepadIcons.X_PRESSED,
+	GamepadHints.GamepadIcons.X_PRESSED,
+	GamepadHints.GamepadIcons.X_PRESSED
 ]
 
 var _gamepad_zoom_hints = [
@@ -130,6 +131,7 @@ func _on_drop_magical_crystal(pos : Vector3):
 func _handle_goblin_arrival():
 	if _awaiting_goblin:
 		_goblin = goblin_map[main_player_cid]
+		_goblin.floor_max_angle = deg_to_rad(45)
 		_tree_menu = _goblin.find_child("TreeContextMenu")
 		_awaiting_goblin = false
 		$TutorialPlaybook/GoblinIndicator.target = _goblin
@@ -154,6 +156,8 @@ func _handle_gamepad_running_hints():
 		$TutorialPlaybook/ShowInitialGamepadTimer.start()
 		$TutorialPlaybook/GamepadHints.current_icon = GamepadHints.GamepadIcons.A_PRESSED
 		$TutorialPlaybook/GamepadHints.fading = false
+		await get_tree().create_timer(1).timeout
+		_goblin.floor_max_angle = deg_to_rad(60)
 
 
 func _handle_keyboard_running_hints():
@@ -172,6 +176,11 @@ func _handle_keyboard_running_hints():
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SPACE
 	if _awaiting_jump and Input.is_key_pressed(KEY_SPACE):
 		_awaiting_jump = false
+		_awaiting_sprint = true
+		_goblin.floor_max_angle = deg_to_rad(60)
+		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.SHIFT
+	if _awaiting_sprint and Input.is_key_pressed(KEY_SHIFT) and _goblin.velocity:
+		_awaiting_sprint = false
 		$TutorialPlaybook/KeyboardHints.current_hint = KeyboardHints.KeyboardHint.NONE
 		$TutorialPlaybook/KeyboardHints.fading = true
 
@@ -329,6 +338,9 @@ func _is_current_keyboard_hint(k : KeyboardHints.KeyboardHint) -> bool:
 
 
 func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
+	if _already_entered:
+		return
+	_already_entered = true
 	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
 	if InputUtil.player_map.size() == 1:
 		main_player_cid = num as InputUtil.ControllerID

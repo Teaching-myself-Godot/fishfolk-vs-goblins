@@ -73,7 +73,7 @@ func _load_new_arrow():
 	my_arrow.position = Vector3(position.x, position.y + arrow_y, position.z)
 	my_arrow.rotation.y = $Wheel.rotation.y
 	my_arrow.rotation.z = $"Wheel/Wheel_001/Axle".rotation.z
-	my_arrow.owned_by_player = built_by_player
+	my_arrow.damage_per_player = damage_per_player
 	load_arrow.emit(my_arrow)
 	$ShootTimer.start()
 
@@ -88,6 +88,7 @@ func _ready():
 	$ReloadTimer.wait_time = current_reload_time - 1
 	drop_gem_amount = 7
 	_load_new_arrow()
+	damage_per_player[_builder_cid] = current_damage
 
 
 func _on_reload_timer_timeout():
@@ -107,3 +108,9 @@ func dismantle():
 func upgrade_reload_time():
 	super.upgrade_reload_time()
 	$ReloadTimer.wait_time = current_reload_time
+
+
+func upgrade_damage(upgraded_by : InputUtil.ControllerID):
+	super.upgrade_damage(upgraded_by)
+	current_damage += 1
+	damage_per_player[upgraded_by] += 1

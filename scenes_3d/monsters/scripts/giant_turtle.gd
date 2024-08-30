@@ -35,6 +35,7 @@ func _apply_damage_motion(_from_direction : Vector3, force : float = 1.0):
 
 func _ready():
 	super._ready()
+	type = Constants.MonsterType.GIANT_TURTLE
 	speed = 2.0 if speed == 0.0 else speed
 	right_flipper_dust = true
 	chest_height = 1.0
@@ -42,8 +43,8 @@ func _ready():
 	add_to_group(Constants.GROUP_NAME_MONSTERS_GROUNDED)
 
 
-func take_damage(damage : int, from_direction : Vector3, force : float = 1.0):
-	super.take_damage(damage, from_direction, force)
+func take_damage(damage : int, damage_per_player : Dictionary, from_direction : Vector3, force : float = 1.0):
+	super.take_damage(damage, damage_per_player, from_direction, force)
 	if $HPBar.hp <= 0:
 		_drop_gem()
 		$DespawnTimer.start()

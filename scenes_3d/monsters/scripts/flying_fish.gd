@@ -67,6 +67,7 @@ func _apply_damage_motion(from_direction : Vector3, force : float = 1.0):
 
 func _ready():
 	super._ready()
+	type = Constants.MonsterType.FLYING_FISH
 	speed = 2.0 if speed == 0.0 else speed
 	chest_height = 0.0
 	add_to_group(Constants.GROUP_NAME_MONSTERS_AIRBORNE)

@@ -9,7 +9,16 @@ signal drop_builder_gem(pos : Vector3)
 var my_general_area = 2.5
 var my_range_ring : RangeRing = null
 var rise_target_position : Vector3 = Vector3.ZERO
-var built_by_player : int = -1
+var _builder_cid := InputUtil.ControllerID.NONE
+
+var damage_per_player := {
+	InputUtil.ControllerID.KEYBOARD: 0,
+	InputUtil.ControllerID.GAMEPAD_1: 0,
+	InputUtil.ControllerID.GAMEPAD_2: 0,
+	InputUtil.ControllerID.GAMEPAD_3: 0,
+	InputUtil.ControllerID.GAMEPAD_4: 0
+}
+
 
 var outlines = []
 var ready_to_fire = false
@@ -86,8 +95,8 @@ func _point_at_first_monster_within_range():
 
 func _is_valid_target(potential_target) -> bool:
 	return  (
-			potential_target and
 			is_instance_valid(potential_target) and
+			not potential_target.attacking and
 			potential_target.get_hp() > 0 and
 			_is_within_range(potential_target.position)
 	)
@@ -124,6 +133,10 @@ func _process(delta):
 		_shoot()
 
 
+func built_by_player(cid : InputUtil.ControllerID):
+	_builder_cid = cid
+
+
 func toggle_highlight(flag : bool):
 	for outline in outlines:
 		outline.visible = flag
@@ -156,9 +169,10 @@ func upgrade_reload_time():
 		)
 
 
-func upgrade_damage():
+func upgrade_damage(upgraded_by : InputUtil.ControllerID):
 	current_damage += 1
 	damage_upgrade_price += 1
+	damage_per_player[upgraded_by] += 1
 
 
 func upgrade_range():

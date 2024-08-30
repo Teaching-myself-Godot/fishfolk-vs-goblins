@@ -4,6 +4,7 @@ extends Node
 var current_stage_scene : PackedScene
 var current_stage : Stage
 
+@onready var final_score_card = $GameOverWithScoreCardSplash/CenterContainer/VBoxContainer/Scores
 
 func _ready():
 	get_tree().paused = true
@@ -26,6 +27,7 @@ func _select_stage(stage_scene : PackedScene):
 	current_stage = current_stage_scene.instantiate()
 	current_stage.open_pause_menu.connect(_pause_game)
 	current_stage.gameover.connect(_on_gameover)
+	current_stage.gameover_with_scores.connect(_on_gameover_with_scores)
 	current_stage.stage_won.connect(_on_stage_won)
 	$StageHolder.add_child(current_stage)
 
@@ -39,12 +41,27 @@ func _pause_game():
 
 func _on_gameover():
 	get_tree().paused = true
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
 	$TuneNo1Player.stop()
 	$GameOverSplash.show()
 
+func _on_gameover_with_scores(scores : Scores):
+	get_tree().paused = true
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
+		
+	$TuneNo1Player.stop()
+	$GameOverWithScoreCardSplash.show()
+	final_score_card.copy_from(scores)
+	for cid in InputUtil.player_map.keys():
+		final_score_card.show_player(cid)
+	final_score_card.show()
 
 func _on_stage_won():
 	get_tree().paused = true
+	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+		hud_item.hide()
 	$TuneNo1Player.stop()
 	$StageWonSplash.show()
 
@@ -94,6 +111,7 @@ func _on_pause_menu_open_stage_select():
 
 func _on_game_over_splash_close_gameover_splash():
 	$GameOverSplash.hide()
+	$GameOverWithScoreCardSplash.hide()
 	$StageWonSplash.hide()
 	for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
 		hud_item.hide()

@@ -1,0 +1,495 @@
+[gd_scene load_steps=18 format=3 uid="uid://cyt082n387o10"]
+
+[ext_resource type="Script" path="res://scenes_2d/hud/scripts/scores.gd" id="1_gpd0u"]
+[ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="2_m4at3"]
+[ext_resource type="Texture2D" uid="uid://c8lo08ayeeu1i" path="res://scenes_3d/monsters/thumbnails/fish_chibi.png" id="3_4crwe"]
+[ext_resource type="Texture2D" uid="uid://ckudj1tr3olfy" path="res://scenes_3d/monsters/thumbnails/flying_fish.png" id="4_g34w3"]
+[ext_resource type="Texture2D" uid="uid://cf3sqc60f5ibq" path="res://scenes_3d/monsters/thumbnails/giant_turtle.png" id="5_suai8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwdkt"]
+bg_color = Color(0, 0, 0, 0.376471)
+border_width_top = 3
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4q3bf"]
+bg_color = Color(0, 0, 0, 0.376471)
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xcty0"]
+font = ExtResource("2_m4at3")
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecj4y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 1
+border_color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwlcd"]
+font = ExtResource("2_m4at3")
+font_size = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vrvhd"]
+color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5sq5l"]
+color = Color(0.823529, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwvnt"]
+font = ExtResource("2_m4at3")
+font_size = 20
+font_color = Color(0, 0.65098, 0.184314, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjb30"]
+font = ExtResource("2_m4at3")
+font_size = 20
+font_color = Color(1, 0.184314, 0, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ox4oa"]
+font = ExtResource("2_m4at3")
+font_size = 20
+font_color = Color(0, 0.184314, 1, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_62jki"]
+font = ExtResource("2_m4at3")
+font_size = 20
+font_color = Color(0.184314, 0.501961, 0.501961, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_hev6y"]
+font = ExtResource("2_m4at3")
+font_size = 20
+font_color = Color(0.501961, 0.501961, 0.184314, 1)
+outline_size = 2
+
+[node name="Scores" type="PanelContainer" groups=["hud_items"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -332.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 290.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwdkt")
+script = ExtResource("1_gpd0u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4q3bf")
+
+[node name="SurvivalTime" type="Label" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = " Survival time: 00:00:00.0 "
+label_settings = SubResource("LabelSettings_xcty0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DamageAndKillsPerType" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 6
+columns = 4
+
+[node name="TypeHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Type"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Damage"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="KilledHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Killed"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="OverkillHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Overkill"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="TypeChibiFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("3_4crwe")
+
+[node name="DamageChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeFlyingFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_g34w3")
+
+[node name="DamageFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeGiantTurtle" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("5_suai8")
+
+[node name="DamageGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(86, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KilledGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OverkillGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TypeTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
+text = "Total:"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="DamageTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="KilledTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="OverkillTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
+text = "0"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+layout_mode = 2
+
+[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 13
+columns = 5
+
+[node name="PlayerHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Player
+"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Dmg."
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="GemsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Gems"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="CrystalsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "Cry."
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="TotalHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
+text = "MVP#"
+label_settings = SubResource("LabelSettings_cwlcd")
+horizontal_alignment = 2
+
+[node name="Player1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1p"
+label_settings = SubResource("LabelSettings_iwvnt")
+horizontal_alignment = 1
+
+[node name="PlayerDamage1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerGems1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerCrystals1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="PlayerTotal1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.0"
+label_settings = SubResource("LabelSettings_iwvnt")
+
+[node name="Player2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "2p"
+label_settings = SubResource("LabelSettings_jjb30")
+horizontal_alignment = 1
+
+[node name="PlayerDamage2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerGems2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerCrystals2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="PlayerTotal2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.0"
+label_settings = SubResource("LabelSettings_jjb30")
+
+[node name="Player3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "3p"
+label_settings = SubResource("LabelSettings_ox4oa")
+horizontal_alignment = 1
+
+[node name="PlayerDamage3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerGems3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerCrystals3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="PlayerTotal3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.0"
+label_settings = SubResource("LabelSettings_ox4oa")
+
+[node name="Player4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "4p"
+label_settings = SubResource("LabelSettings_62jki")
+horizontal_alignment = 1
+
+[node name="PlayerDamage4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerGems4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerCrystals4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="PlayerTotal4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.0"
+label_settings = SubResource("LabelSettings_62jki")
+
+[node name="Player5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5p"
+label_settings = SubResource("LabelSettings_hev6y")
+horizontal_alignment = 1
+
+[node name="PlayerDamage5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerGems5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerCrystals5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0%
+"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PlayerTotal5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.0"
+label_settings = SubResource("LabelSettings_hev6y")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+layout_mode = 2
+
+[node name="TimeElapsedTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="SlidingPanelTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="TimeElapsedTimer" to="." method="_on_time_elapsed_timer_timeout"]
+[connection signal="timeout" from="SlidingPanelTimer" to="." method="_on_sliding_panel_timer_timeout"]

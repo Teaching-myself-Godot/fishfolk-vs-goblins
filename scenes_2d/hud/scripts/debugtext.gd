@@ -10,7 +10,8 @@ func _process(_delta):
 		"monsters = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_MONSTERS).size()) + " " +
 		"trees = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES).size()) + " " +
 		"towers = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOWERS).size()) + " " +
-		"fps = " + str(Engine.get_frames_per_second())
+		"fps = " + str(Engine.get_frames_per_second()) + " " +
+		"viewport = " + str(get_viewport().size)
 	)
 
 

@@ -7,12 +7,13 @@ signal build_anti_air_tower(player_num : int, position : Vector3)
 signal request_pause_menu()
 
 
+const SPRINT_FORCE = 1.5
 const CONTROL_BUTTON_COOLDOWN_FRAMES = 10
 const HUG_RANGE = 3.0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
-const LABEL_COLORS = [
+@export var LABEL_COLORS = [
 	Color(0, 0.65, 0.184),
 	Color(1, 0.184, 0),
 	Color(0, 0.184, 1),
@@ -41,7 +42,7 @@ func _initialize_label():
 	$Label.label_settings.font = font_resource
 	$Label.label_settings.font_size = 24
 	$Label.label_settings.outline_size = 4
-	$Label.label_settings.font_color = LABEL_COLORS[player_num]
+	$Label.label_settings.font_color = LABEL_COLORS[InputUtil.player_map[player_num] - 1]
 
 
 func _reposition_label():
@@ -66,6 +67,15 @@ func _my_button_just_pressed(button_key : String) -> bool:
 	if player_num == 0 and Input.is_action_just_pressed(button_key + "-k"):
 		return true
 	elif player_num > 0 and Input.is_action_just_pressed(button_key + "-" + str(player_num - 1)):
+		return true
+
+	return false
+
+
+func _my_button_pressed(button_key : String) -> bool:
+	if player_num == 0 and Input.is_action_pressed(button_key + "-k"):
+		return true
+	elif  player_num > 0 and Input.is_action_pressed(button_key + "-" + str(player_num - 1)):
 		return true
 
 	return false
@@ -124,7 +134,7 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 			elif choice == "Range":
 				my_tower.upgrade_range()
 			elif choice == "Damage":
-				my_tower.upgrade_damage()
+				my_tower.upgrade_damage(player_num)
 			elif choice == "Reload Time":
 				my_tower.upgrade_reload_time()
 
@@ -321,7 +331,10 @@ func _process(_delta):
 
 func _physics_process(delta):
 	var input_dir = _get_input_vector()
-	var force = Vector2.ZERO.distance_to(input_dir)
+	var force = (
+		SPRINT_FORCE if _my_button_pressed("sprint") and input_dir.length() > 0 else 
+		Vector2.ZERO.distance_to(input_dir)
+	)
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 
 	_handle_falling(delta)
