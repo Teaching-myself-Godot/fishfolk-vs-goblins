@@ -1,19 +1,19 @@
 class_name TitleScreen
-extends PanelContainer
+extends CenterContainer
 
 signal select_stage(stage : PackedScene)
 signal confirm_stage()
 @onready var stage_select_options = (
-	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions"
+	$MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions
 			.find_children("*", "StageSelectOption", false)
 )
 
-@onready var tutorial_button = $"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial"
-@onready var endless_stage_button = $"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2"
-@onready var stage_description = $StageSelectMenu/VBoxContainer/StageDescriptionContainer/StageDescription
-@onready var stage_description_container = $StageSelectMenu/VBoxContainer/StageDescriptionContainer
-@onready var credits_container = $StageSelectMenu/Credits
-@onready var close_credits_button = $StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton
+@onready var tutorial_button = $"MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial"
+@onready var endless_stage_button = $"MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2"
+@onready var stage_description = $MainContainer/StageSelectMenu/VBoxContainer/StageDescriptionContainer/StageDescription
+@onready var stage_description_container = $MainContainer/StageSelectMenu/VBoxContainer/StageDescriptionContainer
+@onready var credits_container = $MainContainer/StageSelectMenu/Credits
+@onready var close_credits_button = $MainContainer/StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton
 
 var _muted := false
 
