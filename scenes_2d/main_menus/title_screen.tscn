@@ -12,12 +12,13 @@
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75323"]
-bg_color = Color(0, 0, 0, 0.501961)
+bg_color = Color(0.165656, 0.165656, 0.165656, 0.501961)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0, 1, 0, 1)
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
+border_blend = true
 expand_margin_left = 20.0
 expand_margin_top = 10.0
 expand_margin_right = 20.0
@@ -26,6 +27,7 @@ expand_margin_bottom = 10.0
 [sub_resource type="LabelSettings" id="LabelSettings_krt8n"]
 line_spacing = 6.0
 font = ExtResource("3_ibf3y")
+font_color = Color(0.947199, 0.947199, 0.947199, 1)
 
 [node name="TitleScreen" type="PanelContainer"]
 process_mode = 2
@@ -43,18 +45,19 @@ size_flags_horizontal = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="StageSelectMenu"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="StageSelectMenu/VBoxContainer"]
+[node name="StageDescriptionContainer" type="PanelContainer" parent="StageSelectMenu/VBoxContainer"]
 custom_minimum_size = Vector2(695, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_75323")
 
-[node name="StageDescription" type="Label" parent="StageSelectMenu/VBoxContainer/PanelContainer"]
+[node name="StageDescription" type="Label" parent="StageSelectMenu/VBoxContainer/StageDescriptionContainer"]
 layout_mode = 2
 text = "[ enter a stage description in the StageSelectMenuOption]"
 label_settings = SubResource("LabelSettings_krt8n")
 
 [node name="Splash" type="TextureRect" parent="StageSelectMenu/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 2
 texture = ExtResource("1_053dn")
 stretch_mode = 3
@@ -116,6 +119,7 @@ text = "Credits and attributions"
 
 [node name="Credits" parent="StageSelectMenu" instance=ExtResource("8_3mpk5")]
 visible = false
+custom_minimum_size = Vector2(750, 648)
 layout_mode = 2
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -31,7 +31,7 @@ func open_title_screen():
 
 
 func _on_select_stage(my_stage: PackedScene, description : String) -> void:
-	$StageSelectMenu/VBoxContainer/PanelContainer/StageDescription.text = description
+	$StageSelectMenu/VBoxContainer/StageDescriptionContainer/StageDescription.text = description
 	select_stage.emit(my_stage)
 	if not _muted:
 		$OnSelectAudioStreamPlayer.play()
@@ -55,10 +55,11 @@ func _on_credits_button_pressed() -> void:
 		stage_select_option.focus_mode = FocusMode.FOCUS_NONE
 	$StageSelectMenu/Credits.show()
 	$StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton.grab_focus()
-
+	$StageSelectMenu/VBoxContainer/StageDescriptionContainer.hide()
 
 func _on_close_credits_button_pressed() -> void:
 	for stage_select_option : StageSelectOption in stage_select_options:
 		stage_select_option.focus_mode = FocusMode.FOCUS_ALL
 	$StageSelectMenu/Credits.hide()
 	$"StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2".grab_focus()
+	$StageSelectMenu/VBoxContainer/StageDescriptionContainer.show()

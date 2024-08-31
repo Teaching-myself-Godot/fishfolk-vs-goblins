@@ -47,6 +47,7 @@ density_texture = SubResource("NoiseTexture3D_rpnb7")
 script = ExtResource("1_lavd7")
 
 [node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
+visible = false
 builder_gems = 600
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
@@ -95,7 +96,6 @@ crystal_drop_percentage = 1
 gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner/MonsterWave" index="0"]
-visible = true
 offset_top = -80.0
 offset_right = -22.0
 offset_bottom = -24.0
@@ -137,7 +137,6 @@ crystal_drop_percentage = 1
 gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner2/MonsterWave" index="0"]
-visible = true
 offset_top = -144.0
 offset_right = -22.0
 offset_bottom = -88.0
@@ -179,7 +178,6 @@ crystal_drop_percentage = 1
 gem_drop_percentage = 4
 
 [node name="Control" parent="MonsterSpawner3/MonsterWave" index="0"]
-visible = true
 offset_top = -208.0
 offset_right = -22.0
 offset_bottom = -152.0
@@ -221,7 +219,6 @@ crystal_drop_percentage = 20
 gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
-visible = true
 offset_top = -272.0
 offset_right = -22.0
 offset_bottom = -216.0
@@ -266,7 +263,6 @@ crystal_drop_percentage = 100
 gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner5/MonsterWave" index="0"]
-visible = true
 offset_top = -336.0
 offset_right = -22.0
 offset_bottom = -280.0
@@ -288,6 +284,7 @@ increase_by = [1, 1, 2, 1, 5]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46945, 2.37749, 16.9882)
 
 [node name="Scores" parent="." instance=ExtResource("15_icgp6")]
+visible = false
 
 [node name="TreesNCribs" type="Node" parent="."]
 

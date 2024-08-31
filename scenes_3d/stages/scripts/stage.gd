@@ -317,5 +317,3 @@ func _ready():
 	gem_pouch._update_labels()
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
-
-	_start_wave(1)
