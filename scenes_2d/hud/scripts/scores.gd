@@ -119,8 +119,8 @@ func _on_time_elapsed_timer_timeout() -> void:
 
 
 func show_player(cid : InputUtil.ControllerID):
-	if cid in InputUtil.player_map:
-		for label in player_rows[InputUtil.player_map[cid]]:
+	if cid in InputUtil.player_map():
+		for label in player_rows[InputUtil.player_map()[cid]]:
 			label.show()
 
 
@@ -161,8 +161,8 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 	var shares = Constants.shares(damage_per_player)
 
 	for player_cid in damage_per_player:
-		if player_cid in InputUtil.player_map:
-			var player_num = InputUtil.player_map[player_cid]
+		if player_cid in InputUtil.player_map():
+			var player_num = InputUtil.player_map()[player_cid]
 			_damage_per_player[player_num] += dmg * shares[player_cid]
 
 	_update_player_labels(_damage_per_player, damage_per_player_labels)
@@ -174,16 +174,16 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 
 
 func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):
-	if player_cid in InputUtil.player_map:
-		var player_num = InputUtil.player_map[player_cid]
+	if player_cid in InputUtil.player_map():
+		var player_num = InputUtil.player_map()[player_cid]
 		_crystals_per_player[player_num] += 1
 	_update_player_labels(_crystals_per_player, crystals_per_player_labels)
 	rank_players()
 
 
 func count_builder_gem_collect(player_cid : InputUtil.ControllerID):
-	if player_cid in InputUtil.player_map:
-		var player_num = InputUtil.player_map[player_cid]
+	if player_cid in InputUtil.player_map():
+		var player_num = InputUtil.player_map()[player_cid]
 		_gems_per_player[player_num] += 10
 	_update_player_labels(_gems_per_player, gems_per_player_labels)
 	rank_players()

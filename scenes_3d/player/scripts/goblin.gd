@@ -42,7 +42,7 @@ func _initialize_label():
 	$Label.label_settings.font = font_resource
 	$Label.label_settings.font_size = 24
 	$Label.label_settings.outline_size = 4
-	$Label.label_settings.font_color = LABEL_COLORS[InputUtil.player_map[player_num] - 1]
+	$Label.label_settings.font_color = LABEL_COLORS[InputUtil.player_map()[player_num] - 1]
 
 
 func _reposition_label():

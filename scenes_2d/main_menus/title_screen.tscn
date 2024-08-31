@@ -1,15 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=17 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
 [ext_resource type="FontFile" uid="uid://b8pvc0etwwo81" path="res://fonts/DeltaBlock-2Oee3.ttf" id="3_ibf3y"]
 [ext_resource type="PackedScene" uid="uid://cf2ha5qruwm47" path="res://scenes_2d/main_menus/stage_select_option.tscn" id="4_kqyji"]
 [ext_resource type="PackedScene" uid="uid://d1ltd4sm1gwbt" path="res://scenes_3d/stages/stage-1-1.tscn" id="5_scabv"]
+[ext_resource type="Texture2D" uid="uid://cchwl8h14q8bp" path="res://icons/gamepad/gamepad-indicator.svg" id="5_xod48"]
 [ext_resource type="PackedScene" uid="uid://doy7owgxttfij" path="res://scenes_3d/stages/stage-1-2.tscn" id="6_flai6"]
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="6_pa17n"]
 [ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="8_3mpk5"]
 [ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="10_tny07"]
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35trx"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.501961)
+border_width_left = 1
+border_width_top = 4
+border_width_right = 1
+border_width_bottom = 4
+border_color = Color(0.129412, 1, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgpj7"]
+font = ExtResource("3_ibf3y")
+font_size = 32
+font_color = Color(0, 0.65098, 0.184314, 1)
+outline_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5eyu"]
+font = ExtResource("3_ibf3y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75323"]
 bg_color = Color(0.165656, 0.165656, 0.165656, 0.501961)
@@ -53,6 +78,46 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="JoinedPlayer" type="PanelContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_35trx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/JoinedPlayer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/JoinedPlayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerLabel" type="Label" parent="MainContainer/VBoxContainer/JoinedPlayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Player 1"
+label_settings = SubResource("LabelSettings_tgpj7")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainContainer/VBoxContainer/JoinedPlayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_xod48")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainContainer/VBoxContainer/JoinedPlayer/VBoxContainer"]
+layout_mode = 2
+text = "- Press select to leave -"
+label_settings = SubResource("LabelSettings_p5eyu")
+horizontal_alignment = 1
+
+[node name="JoinHint" type="PanelContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_35trx")
+
+[node name="Label" type="Label" parent="MainContainer/VBoxContainer/JoinHint"]
+layout_mode = 2
+text = "- Press start to join -"
+label_settings = SubResource("LabelSettings_p5eyu")
+horizontal_alignment = 1
 
 [node name="StageSelectMenu" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
@@ -61,7 +126,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StageDescriptionContainer" type="PanelContainer" parent="MainContainer/StageSelectMenu/VBoxContainer"]
-custom_minimum_size = Vector2(695, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_75323")
@@ -105,8 +170,8 @@ focus_previous = NodePath("../Tutorial")
 text = "Endless!  "
 my_stage = ExtResource("6_flai6")
 description = "Try and survive as long as you can!
-The fishfolk will just keep attacking unrelentlessly and keep getting tougher every minute.
-Earn local multiplayer M.V.P. by causing the most damage and collecting the most items.
+The fishfolk will just keep attacking and getting tougher every minute.
+Compete for M.V.P in local multiplayer!
 "
 
 [node name="Stage 1-1" parent="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
@@ -119,8 +184,8 @@ focus_previous = NodePath("../Stage 1-2")
 text = "Story  "
 my_stage = ExtResource("5_scabv")
 description = "This is story mode.
-There isn't a lot of story here yet, but it is a legitimate stage you can play. 
-Have suggestions? Leave a comment on https://renevanderark.itch.io/goblins-vs-fishfolk"
+It's a work in progress,  but it is a legitimate stage you can play. 
+Suggestions? Comment on https://renevanderark.itch.io/goblins-vs-fishfolk"
 
 [node name="CenterContainer" type="CenterContainer" parent="MainContainer/StageSelectMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)

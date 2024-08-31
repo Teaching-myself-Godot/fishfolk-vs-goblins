@@ -10,13 +10,18 @@ enum ControllerID {
 }
 
 
-var player_map = {}
 var cids_registered = []
 
 
+func player_map():
+	var mp = {}
+	for i in range(cids_registered.size()):
+		mp[cids_registered[i]] = i + 1
+	return mp
+
 func get_player_name(cid : ControllerID):
-	if cid in player_map:
-		return str(player_map[cid]) + "p"
+	if cid in player_map():
+		return str(player_map()[cid]) + "p"
 	return str(cid) + "p"
 
 

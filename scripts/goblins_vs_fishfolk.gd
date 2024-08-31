@@ -55,7 +55,7 @@ func _on_gameover_with_scores(scores : Scores):
 	$TuneNo1Player.stop()
 	$GameOverWithScoreCardSplash.show()
 	final_score_card.copy_from(scores)
-	for cid in InputUtil.player_map.keys():
+	for cid in InputUtil.player_map().keys():
 		final_score_card.show_player(cid)
 	final_score_card.show()
 

@@ -13,7 +13,7 @@ signal confirm_stage()
 @onready var stage_description = $MainContainer/StageSelectMenu/VBoxContainer/StageDescriptionContainer/StageDescription
 @onready var stage_description_container = $MainContainer/StageSelectMenu/VBoxContainer/StageDescriptionContainer
 @onready var credits_container = $MainContainer/StageSelectMenu/Credits
-@onready var close_credits_button = $MainContainer/StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton
+@onready var close_credits_button = $MainContainer/StageSelectMenus/Credits/CenterContainer/VBoxContainer/CloseCreditsButton
 
 var _muted := false
 
@@ -30,7 +30,6 @@ func _unhandled_input(_event):
 
 
 func open_title_screen():
-	InputUtil.player_map = {}
 	show()
 	_muted = true
 	$UnmuteTimer.start()
