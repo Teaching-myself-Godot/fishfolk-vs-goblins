@@ -44,14 +44,11 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 ## Milestones in the creative process
 
 ### Milestone 25 - Settings and joining
-- [ ] Show which players have joined in the title screen
-- [ ] Show that leaving game can be done with the 'select / -' button
-- [ ] Keyboard player can only leave in the title screen using 'Esc'
-- [ ] When last player leaves from title screen game ends
+- [x] Show which players have joined in the title screen
+- [x] Show that leaving game can be done with the 'select / -' button
+- [x] Keyboard player can only leave in the title screen using 'Esc'
+- [x] When last player leaves from title screen game ends
 - [ ] Player names can be edited in title screen?
-- [ ] Leave game from a stage option by using "select / -", the last player remaining cannot leave the stage
-- [ ] Add a confirmation message 'Player N' has joined the game
-- [ ] Add a confirmation message 'Player N' has left the game
 - [ ] Separate music from sfx in the audio mixer
 - [ ] Add a settings menu to control audio for sfx, music and master volume
 

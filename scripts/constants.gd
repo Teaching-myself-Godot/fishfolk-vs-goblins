@@ -34,6 +34,13 @@ enum MonsterType {
 	UNKNOWN, FISH_CHIBI, FLYING_FISH, GIANT_TURTLE
 }
 
+const LABEL_COLORS := [
+	Color(0, 0.65, 0.184),
+	Color(1, 0.184, 0),
+	Color(0, 0.184, 1),
+	Color(0.184, 0.5, 0.5),
+	Color(0.5, 0.5, 0.184)
+]
 
 func sum(values : Array) -> Variant:
 	var tot = 0
