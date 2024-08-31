@@ -8,7 +8,8 @@ var current_stage : Stage
 
 func _ready():
 	get_tree().paused = true
-
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(0)
 
 func _toggle_fullscreen():
 	_play_confirm_sound()

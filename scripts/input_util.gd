@@ -9,10 +9,6 @@ enum ControllerID {
 	NONE
 }
 
-const ACTION_NAMES = [
-	"confirm",
-	"start"
-]
 
 var player_map = {}
 var cids_registered = []
@@ -54,8 +50,7 @@ func get_pressed_ids(basename : String) -> Array:
 
 
 func _unhandled_input(_event):
-	for action_name in ACTION_NAMES:
-		var pressed_ids = get_pressed_ids(action_name)
-		for cid in pressed_ids:
-			if cid not in cids_registered:
-				cids_registered.append(cid)
+	var pressed_ids = get_pressed_ids("start")
+	for cid in pressed_ids:
+		if cid not in cids_registered:
+			cids_registered.append(cid)
