@@ -211,7 +211,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.6374,
 [node name="MonsterWave2" parent="MonsterSpawner4" instance=ExtResource("10_npwai")]
 wait_time = 10.0
 Monster = ExtResource("11_vkp3i")
-monster_speed = 2.4
+monster_speed = 3.5
 monster_hp = 5
 gems_per_monster = 2
 infinite_wave = true
@@ -274,7 +274,7 @@ text = "120 HP"
 wait_time = 60.0
 autostart = true
 script = ExtResource("13_4xsoo")
-increase_by = [1, 1, 2, 1, 5]
+increase_by = [1, 1, 1, 2, 6]
 
 [node name="SunAndSky" parent="." instance=ExtResource("14_ym3b6")]
 

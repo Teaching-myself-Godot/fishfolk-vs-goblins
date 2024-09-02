@@ -32,6 +32,16 @@ var _scroll_target : int = 0
 @onready var scroll_container := $VBoxContainer/ScrollContainer
 @onready var score_card_container := $VBoxContainer/ScrollContainer/HBoxContainer
 @onready var survival_time_label = $VBoxContainer/PanelContainer/SurvivalTime
+
+@onready var player_names := {
+	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/Player1,
+	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/Player2,
+	3: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/Player3,
+	4: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/Player4,
+	5: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/Player5
+}
+
+
 @onready var damage_per_player_labels := {
 	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage1,
 	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage2,
@@ -94,6 +104,7 @@ func _ready():
 		for label in player_rows[player_num]:
 			label.hide()
 
+
 func _process(delta: float) -> void:
 	if not is_end_score:
 		_elapsed_time += delta
@@ -122,6 +133,8 @@ func show_player(cid : InputUtil.ControllerID):
 	if cid in InputUtil.player_map():
 		for label in player_rows[InputUtil.player_map()[cid]]:
 			label.show()
+		
+		player_names[InputUtil.player_map()[cid]].text = InputUtil.get_player_name(cid)
 
 
 func rank_players():

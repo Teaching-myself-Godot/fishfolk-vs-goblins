@@ -48,7 +48,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] Show that leaving game can be done with the 'select / -' button
 - [x] Keyboard player can only leave in the title screen using 'Esc'
 - [x] When last player leaves from title screen game ends
-- [ ] Player names can be edited in title screen?
+- [x] Player names can be edited in title screen
 - [ ] Separate music from sfx in the audio mixer
 - [ ] Add a settings menu to control audio for sfx, music and master volume
 

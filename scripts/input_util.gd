@@ -9,6 +9,7 @@ enum ControllerID {
 	NONE
 }
 
+var _player_names := {}
 
 var cids_registered = []
 
@@ -19,10 +20,18 @@ func player_map():
 		mp[cids_registered[i]] = i + 1
 	return mp
 
+
 func get_player_name(cid : ControllerID):
 	if cid in player_map():
+		if player_map()[cid] in _player_names and not _player_names[player_map()[cid]].is_empty():
+			return _player_names[player_map()[cid]]
 		return str(player_map()[cid]) + "p"
 	return str(cid) + "p"
+
+
+func set_player_name(cid : ControllerID, new_name : String):
+	if cid in player_map():
+		_player_names[player_map()[cid]] = new_name
 
 
 func is_just_released(basename : String) -> bool:

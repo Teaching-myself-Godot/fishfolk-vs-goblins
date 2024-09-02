@@ -18,6 +18,7 @@ var JoinedPlayerScene = preload("res://scenes_2d/main_menus/joined_player.tscn")
 @onready var credits_container = $MainContainer/StageSelectMenu/Credits
 @onready var close_credits_button = $MainContainer/StageSelectMenu/Credits/CenterContainer/VBoxContainer/CloseCreditsButton
 @onready var player_list = $MainContainer/VBoxContainer/VBoxContainer
+@onready var join_hint = $MainContainer/VBoxContainer/JoinHint/Label
 
 var _muted := false
 
@@ -43,6 +44,11 @@ func _rerender_joined_players():
 		var joined_player : JoinedPlayer = JoinedPlayerScene.instantiate()
 		joined_player.cid = cid
 		player_list.add_child(joined_player)
+		joined_player.new_player_name_submitted.connect(func(): tutorial_button.grab_focus())
+	if InputUtil.ControllerID.KEYBOARD in InputUtil.cids_registered:
+		join_hint.text = "- Join: press start -"
+	else:
+		join_hint.text = "- Join: start / space -"
 
 
 func _unhandled_input(_event):
@@ -61,6 +67,7 @@ func _unhandled_input(_event):
 	if InputUtil.cids_registered.is_empty():
 		$MainContainer.hide()
 		get_tree().quit()
+
 
 func open_title_screen():
 	show()
@@ -95,6 +102,7 @@ func _on_credits_button_pressed() -> void:
 	credits_container.show()
 	close_credits_button.grab_focus()
 	stage_description_container.hide()
+	$MainContainer/VBoxContainer.hide()
 
 
 func _on_close_credits_button_pressed() -> void:
@@ -103,3 +111,5 @@ func _on_close_credits_button_pressed() -> void:
 	credits_container.hide()
 	endless_stage_button.grab_focus()
 	stage_description_container.show()
+	$MainContainer/VBoxContainer.show()
+	
