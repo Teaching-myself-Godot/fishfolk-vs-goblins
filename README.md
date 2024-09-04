@@ -50,7 +50,7 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] When last player leaves from title screen game ends
 - [x] Player names can be edited in title screen
 - [x] Separate music from sfx in the audio mixer
-- [ ] Add a settings menu to control audio for sfx, music and master volume
+- [x] Add a settings menu to control audio for sfx, music and master volume
 
 ### [Milestone 24](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-24) - Vamping up the endless mode, quality of life (August 30th 2024)
 - Add ocean to endless mode
