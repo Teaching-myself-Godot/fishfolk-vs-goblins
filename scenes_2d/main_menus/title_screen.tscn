@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=19 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
@@ -9,20 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="6_pa17n"]
 [ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="8_3mpk5"]
 [ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="10_tny07"]
+[ext_resource type="PackedScene" uid="uid://rogqq1d74ohb" path="res://scenes_2d/main_menus/volume_slider.tscn" id="11_olutm"]
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
+[ext_resource type="PackedScene" uid="uid://n7kdq8mfpr2w" path="res://scenes_2d/main_menus/menu_option.tscn" id="12_x4gtj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35trx"]
 bg_color = Color(0.164706, 0.164706, 0.164706, 0.501961)
 border_width_left = 1
-border_width_top = 4
+border_width_top = 1
 border_width_right = 1
-border_width_bottom = 4
-border_color = Color(0.129412, 1, 0, 1)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_width_bottom = 1
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
 
@@ -37,15 +34,30 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.728822, 0.728822, 0.728822, 1)
 border_blend = true
-expand_margin_left = 20.0
+expand_margin_left = 16.0
 expand_margin_top = 10.0
-expand_margin_right = 20.0
+expand_margin_right = 16.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_krt8n"]
 line_spacing = 6.0
 font = ExtResource("3_ibf3y")
 font_color = Color(0.947199, 0.947199, 0.947199, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfkj2"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.501961)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
+expand_margin_left = 4.0
+expand_margin_top = 10.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bw2o0"]
+font = ExtResource("3_ibf3y")
 
 [node name="TitleScreen" type="CenterContainer"]
 process_mode = 2
@@ -69,13 +81,10 @@ bus = &"SFX"
 
 [node name="MainContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(230, 0)
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
@@ -88,6 +97,10 @@ layout_mode = 2
 text = "- Join: start / space  -"
 label_settings = SubResource("LabelSettings_p5eyu")
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
 
 [node name="StageSelectMenu" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
@@ -173,9 +186,71 @@ visible = false
 custom_minimum_size = Vector2(750, 648)
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer"]
+[node name="SettingsMenu" type="VBoxContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MasterLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = " Master volume"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider" parent="MainContainer/SettingsMenu/PanelContainer/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MusicLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = " Music"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider2" parent="MainContainer/SettingsMenu/PanelContainer2/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+audio_bus = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="SFXLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer"]
+layout_mode = 2
+text = " Sound Effects"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider3" parent="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+audio_bus = 2
+
+[node name="FullscreenToggleButton" parent="MainContainer/SettingsMenu" instance=ExtResource("12_x4gtj")]
+custom_minimum_size = Vector2(0, 59)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = " Toggle Fullscreen        "
+
+[node name="BButton" parent="MainContainer/SettingsMenu/FullscreenToggleButton" index="0"]
+visible = true
+position = Vector2(172, 28)
+scale = Vector2(0.527073, 0.527073)
 
 [connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]
 [connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
@@ -186,3 +261,7 @@ layout_mode = 2
 [connection signal="select_stage" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
 [connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="close_credits" from="MainContainer/StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
+[connection signal="value_changed" from="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer/VolumeSlider3" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="MainContainer/SettingsMenu/FullscreenToggleButton" to="." method="_on_fullscreen_toggle_button_pressed"]
+
+[editable path="MainContainer/SettingsMenu/FullscreenToggleButton"]

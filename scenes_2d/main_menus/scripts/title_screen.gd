@@ -103,6 +103,7 @@ func _on_credits_button_pressed() -> void:
 	close_credits_button.grab_focus()
 	stage_description_container.hide()
 	$MainContainer/VBoxContainer.hide()
+	$MainContainer/SettingsMenu.hide()
 
 
 func _on_close_credits_button_pressed() -> void:
@@ -112,4 +113,16 @@ func _on_close_credits_button_pressed() -> void:
 	endless_stage_button.grab_focus()
 	stage_description_container.show()
 	$MainContainer/VBoxContainer.show()
-	
+	$MainContainer/SettingsMenu.show()
+
+
+func _on_sfx_value_changed(_value : float):
+	$OnSelectAudioStreamPlayer.play()
+
+
+func _on_fullscreen_toggle_button_pressed() -> void:
+	$OnSelectAudioStreamPlayer.play()
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

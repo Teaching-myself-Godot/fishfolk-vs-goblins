@@ -11,6 +11,7 @@ func _ready():
 	if InputUtil.cids_registered.is_empty():
 		InputUtil.cids_registered.append(0)
 
+
 func _toggle_fullscreen():
 	_play_confirm_sound()
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
