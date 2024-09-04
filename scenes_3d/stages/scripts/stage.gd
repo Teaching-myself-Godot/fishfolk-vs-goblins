@@ -119,6 +119,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
 	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
+	return new_tower
 
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
@@ -279,8 +280,6 @@ func _physics_process(delta):
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		var score_cards = find_children("*", "Scores")
-		print("hello?")
-		print(score_cards)
 		if score_cards.size() > 0:
 			gameover_with_scores.emit(score_cards[0])
 		else:

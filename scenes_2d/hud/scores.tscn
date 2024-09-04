@@ -81,7 +81,7 @@ script = ExtResource("1_gpd0u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 clip_contents = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
@@ -97,6 +97,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 3
@@ -106,58 +107,60 @@ vertical_scroll_mode = 0
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="DamageAndKillsPerType" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+[node name="TableHolder1" type="CenterContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="DamageAndKillsPerType" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 10
+theme_override_constants/h_separation = 18
 theme_override_constants/v_separation = 6
 columns = 4
 
-[node name="TypeHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="TypeHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Type"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Damage"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="KilledHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="KilledHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(54, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Killed"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="OverkillHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="OverkillHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Overkill"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="TypeChibiFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="TypeChibiFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("3_4crwe")
 
-[node name="DamageChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
-custom_minimum_size = Vector2(86, 48)
+[node name="DamageChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="KilledChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="KilledChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -165,7 +168,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OverkillChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="OverkillChibiFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -173,20 +176,19 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TypeFlyingFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="TypeFlyingFish" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("4_g34w3")
 
-[node name="DamageFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
-custom_minimum_size = Vector2(86, 48)
+[node name="DamageFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="KilledFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="KilledFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -194,7 +196,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OverkillFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="OverkillFlyingFish" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -202,12 +204,12 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TypeGiantTurtle" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="TypeGiantTurtle" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("5_suai8")
 
-[node name="DamageGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="DamageGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(86, 48)
 layout_mode = 2
 text = "0"
@@ -215,7 +217,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="KilledGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="KilledGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -223,7 +225,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OverkillGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="OverkillGiantTurtle" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "0"
@@ -231,7 +233,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TypeTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="TypeTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxLine_vrvhd")
@@ -240,7 +242,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="DamageTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="DamageTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
@@ -249,7 +251,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="KilledTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="KilledTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
@@ -258,7 +260,7 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="OverkillTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="OverkillTotal" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxLine_5sq5l")
@@ -267,220 +269,245 @@ label_settings = SubResource("LabelSettings_cwlcd")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType"]
 layout_mode = 2
 
-[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+[node name="TableHolder2" type="CenterContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="DamageAndKillsPerPlayer" type="GridContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2"]
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
+theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 13
 columns = 5
 
-[node name="PlayerHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
+[node name="PlayerHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
-text = "Player
+text = "Player 
 "
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="DamageHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Dmg."
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="GemsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="GemsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Gems"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="CrystalsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="CrystalsHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "Cry."
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="TotalHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="TotalHdr" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ecj4y")
 text = "MVP#"
 label_settings = SubResource("LabelSettings_cwlcd")
-horizontal_alignment = 2
-
-[node name="Player1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-text = "1p"
-label_settings = SubResource("LabelSettings_iwvnt")
 horizontal_alignment = 1
 
-[node name="PlayerDamage1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="Player1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1p
+"
+label_settings = SubResource("LabelSettings_iwvnt")
+horizontal_alignment = 2
+
+[node name="PlayerDamage1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_iwvnt")
 
-[node name="PlayerGems1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerGems1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_iwvnt")
 
-[node name="PlayerCrystals1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerCrystals1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_iwvnt")
 
-[node name="PlayerTotal1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerTotal1" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 label_settings = SubResource("LabelSettings_iwvnt")
 
-[node name="Player2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
+[node name="Player2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "2p"
 label_settings = SubResource("LabelSettings_jjb30")
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="PlayerDamage2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerDamage2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_jjb30")
 
-[node name="PlayerGems2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerGems2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_jjb30")
 
-[node name="PlayerCrystals2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerCrystals2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_jjb30")
 
-[node name="PlayerTotal2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerTotal2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 label_settings = SubResource("LabelSettings_jjb30")
 
-[node name="Player3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
+[node name="Player3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "3p"
 label_settings = SubResource("LabelSettings_ox4oa")
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="PlayerDamage3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerDamage3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_ox4oa")
 
-[node name="PlayerGems3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerGems3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_ox4oa")
 
-[node name="PlayerCrystals3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerCrystals3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_ox4oa")
 
-[node name="PlayerTotal3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerTotal3" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 label_settings = SubResource("LabelSettings_ox4oa")
 
-[node name="Player4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
+[node name="Player4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "4p"
 label_settings = SubResource("LabelSettings_62jki")
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="PlayerDamage4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerDamage4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_62jki")
 
-[node name="PlayerGems4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerGems4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_62jki")
 
-[node name="PlayerCrystals4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerCrystals4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_62jki")
 
-[node name="PlayerTotal4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerTotal4" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 label_settings = SubResource("LabelSettings_62jki")
 
-[node name="Player5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
-custom_minimum_size = Vector2(60, 0)
+[node name="Player5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "5p"
 label_settings = SubResource("LabelSettings_hev6y")
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="PlayerDamage5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerDamage5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_hev6y")
 
-[node name="PlayerGems5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerGems5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%"
 label_settings = SubResource("LabelSettings_hev6y")
 
-[node name="PlayerCrystals5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerCrystals5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0%
 "
 label_settings = SubResource("LabelSettings_hev6y")
 
-[node name="PlayerTotal5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PlayerTotal5" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 label_settings = SubResource("LabelSettings_hev6y")
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer"]
 layout_mode = 2
 
 [node name="TimeElapsedTimer" type="Timer" parent="."]

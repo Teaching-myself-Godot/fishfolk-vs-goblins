@@ -75,9 +75,9 @@ func _is_charged() -> bool:
 
 func _ready():
 	super._ready()
-	current_range = Constants.ANTI_AIR_TOWER_BASE_RANGE
-	current_damage = Constants.ANTI_AIR_TOWER_BASE_DAMAGE
-	current_reload_time = Constants.ANTI_AIR_TOWER_BASE_RELOAD_TIME
+	current_range = Constants.ANTI_AIR_TOWER_BASE_RANGE if current_range == -1 else current_range
+	current_damage = Constants.ANTI_AIR_TOWER_BASE_DAMAGE if current_damage == -1 else current_damage
+	current_reload_time = Constants.ANTI_AIR_TOWER_BASE_RELOAD_TIME if current_reload_time == -1 else current_reload_time
 	drop_gem_amount = 9
 	launcher_y = $Launcher.position.y
 	missile_clamps = [

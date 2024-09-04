@@ -82,9 +82,9 @@ func _ready():
 	super._ready()
 	axle_y = $Wheel.position.y + $"Wheel/Wheel_001".position.y + $"Wheel/Wheel_001/Axle".position.y
 	arrow_y = axle_y + 0.2
-	current_range = Constants.ARROW_TOWER_BASE_RANGE
-	current_damage = Constants.ARROW_TOWER_BASE_DAMAGE
-	current_reload_time = Constants.ARROW_TOWER_BASE_RELOAD_TIME
+	current_range = Constants.ARROW_TOWER_BASE_RANGE if current_range == -1 else current_range
+	current_damage = Constants.ARROW_TOWER_BASE_DAMAGE if current_damage == -1 else current_damage
+	current_reload_time = Constants.ARROW_TOWER_BASE_RELOAD_TIME if current_reload_time == -1 else current_reload_time
 	$ReloadTimer.wait_time = current_reload_time - 1
 	drop_gem_amount = 7
 	_load_new_arrow()

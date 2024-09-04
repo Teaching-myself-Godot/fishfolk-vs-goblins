@@ -79,9 +79,9 @@ func  _is_valid_target(potential_target) -> bool:
 
 func _ready():
 	super._ready()
-	current_range = Constants.CANNON_TOWER_BASE_RANGE
-	current_damage = Constants.CANNON_TOWER_BASE_DAMAGE
-	current_reload_time = Constants.CANNON_TOWER_BASE_RELOAD_TIME
+	current_range = Constants.CANNON_TOWER_BASE_RANGE if current_range == -1 else current_range
+	current_damage = Constants.CANNON_TOWER_BASE_DAMAGE if current_damage == -1 else current_damage
+	current_reload_time = Constants.CANNON_TOWER_BASE_RELOAD_TIME if current_reload_time == -1 else current_reload_time
 	drop_gem_amount = 8
 	$ReloadTimer.wait_time = current_reload_time - 1
 	$ShootTimer.start()
