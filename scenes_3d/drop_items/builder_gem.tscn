@@ -65,6 +65,7 @@ shape = SubResource("CapsuleShape3D_jju7g")
 stream = ExtResource("3_2tp0u")
 volume_db = 40.0
 pitch_scale = 1.25
+bus = &"SFX"
 
 [node name="CollectCollisionSphere" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_qy04o")

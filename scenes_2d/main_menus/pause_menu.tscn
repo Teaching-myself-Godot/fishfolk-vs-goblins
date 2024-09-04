@@ -95,5 +95,6 @@ position = Vector2(5, 245)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3qyyo")
 volume_db = -10.0
+bus = &"Music"
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

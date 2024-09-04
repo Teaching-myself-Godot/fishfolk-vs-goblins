@@ -33,6 +33,7 @@ visible = false
 [node name="TuneNo1Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_sllsd")
 volume_db = -20.0
+bus = &"Music"
 
 [node name="TitleScreen" parent="." instance=ExtResource("6_1aefp")]
 
@@ -46,6 +47,7 @@ text = "Stage won!
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_t3x2p")
+bus = &"SFX"
 
 [node name="GameOverWithScoreCardSplash" type="PanelContainer" parent="."]
 process_mode = 2

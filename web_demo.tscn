@@ -73,6 +73,7 @@ light_color = Color(1, 0.756863, 0.752941, 1)
 [node name="TuneNo1Player" type="AudioStreamPlayer" parent="Tutorial"]
 stream = ExtResource("11_b532c")
 volume_db = -20.0
+bus = &"Music"
 
 [node name="CenterContainer" type="CenterContainer" parent="." groups=["web_splash_screen"]]
 anchors_preset = 15

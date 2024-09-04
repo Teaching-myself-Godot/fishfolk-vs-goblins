@@ -5,6 +5,7 @@
 
 [node name="TowerRumble" type="AudioStreamPlayer3D"]
 stream = ExtResource("1_7fin6")
+bus = &"SFX"
 script = ExtResource("2_6yfsr")
 
 [node name="Timer" type="Timer" parent="."]

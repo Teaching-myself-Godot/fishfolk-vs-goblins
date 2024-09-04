@@ -28,6 +28,7 @@ position = Vector2(320, 24)
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_v8uf4")
+bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

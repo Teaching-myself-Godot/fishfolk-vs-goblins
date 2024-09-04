@@ -257,12 +257,15 @@ horizontal_alignment = 1
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_blgqc")
+bus = &"SFX"
 
 [node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_btram")
+bus = &"SFX"
 
 [node name="OnCantAfford" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_q54v3")
+bus = &"SFX"
 
 [editable path="All-RangeMenu/Arrow-option/PriceTag"]
 [editable path="GroundMenu/Cannon-option/PriceTag"]
