@@ -15,5 +15,6 @@ autostart = true
 stream = ExtResource("2_tnm5c")
 volume_db = 10.0
 max_db = 6.0
+bus = &"SFX"
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

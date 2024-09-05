@@ -270,6 +270,7 @@ transform = Transform3D(1, 0, 0, 0, -8.9407e-08, 1, 0, -1, -8.9407e-08, 1, 0, 0)
 [node name="terrain2" parent="." instance=ExtResource("1_l2pjn")]
 
 [node name="GemPouch" parent="." instance=ExtResource("2_rdac5")]
+visible = false
 builder_gems = 250
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 

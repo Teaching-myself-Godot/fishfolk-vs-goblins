@@ -8,6 +8,8 @@ var current_stage : Stage
 
 func _ready():
 	get_tree().paused = true
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(0)
 
 
 func _toggle_fullscreen():
@@ -54,7 +56,7 @@ func _on_gameover_with_scores(scores : Scores):
 	$TuneNo1Player.stop()
 	$GameOverWithScoreCardSplash.show()
 	final_score_card.copy_from(scores)
-	for cid in InputUtil.player_map.keys():
+	for cid in InputUtil.player_map().keys():
 		final_score_card.show_player(cid)
 	final_score_card.show()
 
@@ -71,7 +73,10 @@ func _get_goblin_spawn_point() -> Vector3:
 	var spawn = get_tree().get_first_node_in_group(
 		Constants.GROUP_NAME_GOBLIN_SPAWN_POINT
 	)
-	return spawn.position if is_instance_valid(spawn) else pos
+	if is_instance_valid(spawn):
+		pos = spawn.position
+		spawn.queue_free()
+	return pos
 
 
 func _start_stage():
@@ -86,6 +91,7 @@ func _start_stage():
 		current_stage._add_goblin_to_scene(cid, start_pos)
 		start_pos.x += 2
 	$TuneNo1Player.play()
+	current_stage._start_wave(1)
 
 
 func _on_title_screen_confirm_stage():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhw0txm3hlokt"]
+[gd_scene load_steps=19 format=3 uid="uid://dhw0txm3hlokt"]
 
 [ext_resource type="Texture2D" uid="uid://btj2ns3xkg8ru" path="res://title-screen.png" id="1_053dn"]
 [ext_resource type="Script" path="res://scenes_2d/main_menus/scripts/title_screen.gd" id="1_o1xv6"]
@@ -9,25 +9,57 @@
 [ext_resource type="PackedScene" uid="uid://rbn2l232oav1" path="res://scenes_3d/stages/tutorial.tscn" id="6_pa17n"]
 [ext_resource type="PackedScene" uid="uid://c36xdno8384jq" path="res://credits.tscn" id="8_3mpk5"]
 [ext_resource type="AudioStream" uid="uid://citk7ef1oc11u" path="res://sounds/ui/on_menu_option_focus.wav" id="10_tny07"]
+[ext_resource type="PackedScene" uid="uid://rogqq1d74ohb" path="res://scenes_2d/main_menus/volume_slider.tscn" id="11_olutm"]
 [ext_resource type="AudioStream" uid="uid://bxvcdvd207sba" path="res://sounds/ui/on_menu_option_select.wav" id="11_ufrbn"]
+[ext_resource type="PackedScene" uid="uid://n7kdq8mfpr2w" path="res://scenes_2d/main_menus/menu_option.tscn" id="12_x4gtj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35trx"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.501961)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5eyu"]
+font = ExtResource("3_ibf3y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75323"]
-bg_color = Color(0, 0, 0, 0.501961)
+bg_color = Color(0.165656, 0.165656, 0.165656, 0.501961)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0, 1, 0, 1)
-expand_margin_left = 20.0
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
+border_blend = true
+expand_margin_left = 16.0
 expand_margin_top = 10.0
-expand_margin_right = 20.0
+expand_margin_right = 16.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_krt8n"]
 line_spacing = 6.0
 font = ExtResource("3_ibf3y")
+font_color = Color(0.947199, 0.947199, 0.947199, 1)
 
-[node name="TitleScreen" type="PanelContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfkj2"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.501961)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.728822, 0.728822, 0.728822, 1)
+expand_margin_left = 4.0
+expand_margin_top = 10.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bw2o0"]
+font = ExtResource("3_ibf3y")
+
+[node name="TitleScreen" type="CenterContainer"]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,34 +68,69 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1xv6")
 
-[node name="StageSelectMenu" type="CenterContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_tny07")
+bus = &"SFX"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StageSelectMenu"]
+[node name="UnmuteTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ufrbn")
+bus = &"SFX"
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="JoinHint" type="PanelContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_35trx")
+
+[node name="Label" type="Label" parent="MainContainer/VBoxContainer/JoinHint"]
+layout_mode = 2
+text = "- Join: start / space  -"
+label_settings = SubResource("LabelSettings_p5eyu")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="StageSelectMenu" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="StageSelectMenu/VBoxContainer"]
-custom_minimum_size = Vector2(695, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/StageSelectMenu"]
+layout_mode = 2
+
+[node name="StageDescriptionContainer" type="PanelContainer" parent="MainContainer/StageSelectMenu/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_75323")
 
-[node name="StageDescription" type="Label" parent="StageSelectMenu/VBoxContainer/PanelContainer"]
+[node name="StageDescription" type="Label" parent="MainContainer/StageSelectMenu/VBoxContainer/StageDescriptionContainer"]
 layout_mode = 2
 text = "[ enter a stage description in the StageSelectMenuOption]"
 label_settings = SubResource("LabelSettings_krt8n")
 
-[node name="Splash" type="TextureRect" parent="StageSelectMenu/VBoxContainer"]
+[node name="Splash" type="TextureRect" parent="MainContainer/StageSelectMenu/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+custom_minimum_size = Vector2(0, 345)
 layout_mode = 2
 texture = ExtResource("1_053dn")
 stretch_mode = 3
 
-[node name="StageSelectMenuOptions" type="HBoxContainer" parent="StageSelectMenu/VBoxContainer"]
+[node name="StageSelectMenuOptions" type="HBoxContainer" parent="MainContainer/StageSelectMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Tutorial" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Tutorial" parent="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Stage 1-1")
 focus_neighbor_right = NodePath("../Stage 1-2")
@@ -76,7 +143,7 @@ description = "Play the tutorial to learn:
 - The controls (press start / + or B to learn gamepad controls)
 - The basics and goals of this tower defense game"
 
-[node name="Stage 1-2" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Stage 1-2" parent="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Tutorial")
 focus_neighbor_right = NodePath("../Stage 1-1")
@@ -86,11 +153,11 @@ focus_previous = NodePath("../Tutorial")
 text = "Endless!  "
 my_stage = ExtResource("6_flai6")
 description = "Try and survive as long as you can!
-The fishfolk will just keep attacking unrelentlessly and keep getting tougher every minute.
-Earn local multiplayer M.V.P. by causing the most damage and collecting the most items.
+The fishfolk will just keep attacking and getting tougher every minute.
+Compete for M.V.P in local multiplayer!
 "
 
-[node name="Stage 1-1" parent="StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
+[node name="Stage 1-1" parent="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions" instance=ExtResource("4_kqyji")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Stage 1-2")
 focus_neighbor_right = NodePath("../Tutorial")
@@ -100,39 +167,101 @@ focus_previous = NodePath("../Stage 1-2")
 text = "Story  "
 my_stage = ExtResource("5_scabv")
 description = "This is story mode.
-There isn't a lot of story here yet, but it is a legitimate stage you can play. 
-Have suggestions? Leave a comment on https://renevanderark.itch.io/goblins-vs-fishfolk"
+It's a work in progress,  but it is a legitimate stage you can play. 
+Suggestions? Comment on https://renevanderark.itch.io/goblins-vs-fishfolk"
 
-[node name="CenterContainer" type="CenterContainer" parent="StageSelectMenu/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MainContainer/StageSelectMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="CreditsButton" type="Button" parent="StageSelectMenu/VBoxContainer/CenterContainer"]
+[node name="CreditsButton" type="Button" parent="MainContainer/StageSelectMenu/VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(240, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../StageSelectMenuOptions/Stage 1-1")
 theme_override_fonts/font = ExtResource("3_ibf3y")
 text = "Credits and attributions"
 
-[node name="Credits" parent="StageSelectMenu" instance=ExtResource("8_3mpk5")]
+[node name="Credits" parent="MainContainer/StageSelectMenu" instance=ExtResource("8_3mpk5")]
 visible = false
+custom_minimum_size = Vector2(750, 648)
 layout_mode = 2
 
-[node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_tny07")
+[node name="SettingsMenu" type="VBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
 
-[node name="UnmuteTimer" type="Timer" parent="."]
-wait_time = 0.25
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
 
-[node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_ufrbn")
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
 
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
-[connection signal="select_stage" from="StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
-[connection signal="pressed" from="StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="close_credits" from="StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
+[node name="MasterLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = " Master volume"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider" parent="MainContainer/SettingsMenu/PanelContainer/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MusicLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = " Music"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider2" parent="MainContainer/SettingsMenu/PanelContainer2/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+audio_bus = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MainContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/SettingsMenu/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="SFXLabel" type="Label" parent="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer"]
+layout_mode = 2
+text = " Sound Effects"
+label_settings = SubResource("LabelSettings_bw2o0")
+
+[node name="VolumeSlider3" parent="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer" instance=ExtResource("11_olutm")]
+layout_mode = 2
+audio_bus = 2
+
+[node name="FullscreenToggleButton" parent="MainContainer/SettingsMenu" instance=ExtResource("12_x4gtj")]
+custom_minimum_size = Vector2(0, 59)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = " Toggle Fullscreen        "
+
+[node name="BButton" parent="MainContainer/SettingsMenu/FullscreenToggleButton" index="0"]
+visible = true
+position = Vector2(172, 28)
+scale = Vector2(0.527073, 0.527073)
+
 [connection signal="timeout" from="UnmuteTimer" to="." method="_on_unmute_timer_timeout"]
+[connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Tutorial" to="." method="_on_select_stage"]
+[connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-2" to="." method="_on_select_stage"]
+[connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_stage_confirmed"]
+[connection signal="select_stage" from="MainContainer/StageSelectMenu/VBoxContainer/StageSelectMenuOptions/Stage 1-1" to="." method="_on_select_stage"]
+[connection signal="pressed" from="MainContainer/StageSelectMenu/VBoxContainer/CenterContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="close_credits" from="MainContainer/StageSelectMenu/Credits" to="." method="_on_close_credits_button_pressed"]
+[connection signal="value_changed" from="MainContainer/SettingsMenu/PanelContainer3/VBoxContainer/VolumeSlider3" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="MainContainer/SettingsMenu/FullscreenToggleButton" to="." method="_on_fullscreen_toggle_button_pressed"]
+
+[editable path="MainContainer/SettingsMenu/FullscreenToggleButton"]

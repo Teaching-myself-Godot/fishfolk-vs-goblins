@@ -11,7 +11,9 @@ func _process(_delta):
 		"trees = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TREES).size()) + " " +
 		"towers = " + str(get_tree().get_nodes_in_group(Constants.GROUP_NAME_TOWERS).size()) + " " +
 		"fps = " + str(Engine.get_frames_per_second()) + " " +
-		"viewport = " + str(get_viewport().size)
+		"viewport = " + str(get_viewport().size) + " " +
+		"player_map() = " + str(InputUtil.player_map()) + " " + 
+		"cids_registered = " + str(InputUtil.cids_registered)
 	)
 
 

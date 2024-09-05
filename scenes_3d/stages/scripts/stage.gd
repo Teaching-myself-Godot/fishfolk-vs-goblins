@@ -28,6 +28,15 @@ var ToastScene = preload("res://scenes_2d/hud/toast.tscn")
 
 var gem_pouch : GemPouch
 var goblin_map = {}
+var _stage_started = false
+var _started_in_debug_mode = false
+
+func _debug_start():
+	if OS.is_debug_build() and not _stage_started:
+		_started_in_debug_mode = true
+		for hud_item in get_tree().get_nodes_in_group(Constants.GROUP_NAME_HUD_ITEM):
+			hud_item.show()
+		_start_wave(1)
 
 
 func _unhandled_input(_event):
@@ -41,22 +50,22 @@ func _unhandled_input(_event):
 		_add_goblin_to_scene(3)
 	if Input.is_action_just_released("start-3") and not _is_in_game(4):
 		_add_goblin_to_scene(4)
-
+	if Input.is_key_pressed(KEY_F5):
+		_debug_start()
+	if Input.is_key_pressed(KEY_ESCAPE) and _started_in_debug_mode:
+		get_tree().quit()
 
 func _is_in_game(num : int):
 	if num in goblin_map:
 		if goblin_map[num] and is_instance_valid(goblin_map[num]):
 			return true
 		else:
-			InputUtil.player_map.erase(num)
 			goblin_map.erase(num)
 	return false
 
 
 func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
 	CameraUtil.get_cam().current = true
-	if num not in InputUtil.player_map:
-		InputUtil.player_map[num] = InputUtil.player_map.size() + 1
 
 	var new_goblin : Goblin = GoblinScene.instantiate()
 	goblin_map[num] = new_goblin
@@ -110,6 +119,7 @@ func _on_goblin_build_cannon_tower(player_num : int, pos : Vector3):
 	new_tower.fire_cannon_ball.connect(_on_cannon_tower_fire_cannon_ball)
 	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
+	return new_tower
 
 
 func _on_goblin_build_arrow_tower(player_num : int, pos : Vector3):
@@ -270,8 +280,6 @@ func _physics_process(delta):
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
 		var score_cards = find_children("*", "Scores")
-		print("hello?")
-		print(score_cards)
 		if score_cards.size() > 0:
 			gameover_with_scores.emit(score_cards[0])
 		else:
@@ -302,6 +310,7 @@ func _mk_toast(message : String = "toast message", duration : float = 3.0, big :
 
 
 func _start_wave(wave_num):
+	_stage_started = true
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.start_wave(wave_num)
 
@@ -317,5 +326,3 @@ func _ready():
 	gem_pouch._update_labels()
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.spawn_monster.connect(_spawn_monster)
-
-	_start_wave(1)

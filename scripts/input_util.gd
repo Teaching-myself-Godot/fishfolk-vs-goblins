@@ -9,19 +9,29 @@ enum ControllerID {
 	NONE
 }
 
-const ACTION_NAMES = [
-	"confirm",
-	"start"
-]
+var _player_names := {}
 
-var player_map = {}
 var cids_registered = []
 
 
+func player_map():
+	var mp = {}
+	for i in range(cids_registered.size()):
+		mp[cids_registered[i]] = i + 1
+	return mp
+
+
 func get_player_name(cid : ControllerID):
-	if cid in player_map:
-		return str(player_map[cid]) + "p"
+	if cid in player_map():
+		if player_map()[cid] in _player_names and not _player_names[player_map()[cid]].is_empty():
+			return _player_names[player_map()[cid]]
+		return str(player_map()[cid]) + "p"
 	return str(cid) + "p"
+
+
+func set_player_name(cid : ControllerID, new_name : String):
+	if cid in player_map():
+		_player_names[player_map()[cid]] = new_name
 
 
 func is_just_released(basename : String) -> bool:
@@ -54,8 +64,7 @@ func get_pressed_ids(basename : String) -> Array:
 
 
 func _unhandled_input(_event):
-	for action_name in ACTION_NAMES:
-		var pressed_ids = get_pressed_ids(action_name)
-		for cid in pressed_ids:
-			if cid not in cids_registered:
-				cids_registered.append(cid)
+	var pressed_ids = get_pressed_ids("start")
+	for cid in pressed_ids:
+		if cid not in cids_registered:
+			cids_registered.append(cid)

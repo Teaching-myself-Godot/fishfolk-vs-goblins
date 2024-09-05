@@ -29,9 +29,9 @@ var original_y_position = 0.0
 var drop_gem_amount = 1
 
 # upgradables
-var current_range : float = 10.0
-var current_damage : int = 5
-var current_reload_time : float = 3.0
+var current_range : float = -1
+var current_damage : int = -1
+var current_reload_time : float = -1
 var range_upgrade_price : int = 1
 var damage_upgrade_price : int = 1
 var reload_time_upgrade_price : int = 1

@@ -47,6 +47,7 @@ density_texture = SubResource("NoiseTexture3D_rpnb7")
 script = ExtResource("1_lavd7")
 
 [node name="GemPouch" parent="." instance=ExtResource("4_6egpi")]
+visible = false
 builder_gems = 600
 metadata/_edit_horizontal_guides_ = [64.0, 128.0, 196.0]
 
@@ -89,13 +90,12 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.3085,
 
 [node name="MonsterWave" parent="MonsterSpawner" instance=ExtResource("10_npwai")]
 monster_speed = 2.0
-monster_hp = 3
+monster_hp = 1
 infinite_wave = true
 crystal_drop_percentage = 1
 gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner/MonsterWave" index="0"]
-visible = true
 offset_top = -80.0
 offset_right = -22.0
 offset_bottom = -24.0
@@ -131,13 +131,12 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 28.3058,
 
 [node name="MonsterWave" parent="MonsterSpawner2" instance=ExtResource("10_npwai")]
 monster_speed = 2.0
-monster_hp = 3
+monster_hp = 1
 infinite_wave = true
 crystal_drop_percentage = 1
 gem_drop_percentage = 3
 
 [node name="Control" parent="MonsterSpawner2/MonsterWave" index="0"]
-visible = true
 offset_top = -144.0
 offset_right = -22.0
 offset_bottom = -88.0
@@ -173,13 +172,12 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 30.4141,
 
 [node name="MonsterWave" parent="MonsterSpawner3" instance=ExtResource("10_npwai")]
 monster_speed = 2.0
-monster_hp = 3
+monster_hp = 1
 infinite_wave = true
 crystal_drop_percentage = 1
 gem_drop_percentage = 4
 
 [node name="Control" parent="MonsterSpawner3/MonsterWave" index="0"]
-visible = true
 offset_top = -208.0
 offset_right = -22.0
 offset_bottom = -152.0
@@ -213,7 +211,7 @@ transform = Transform3D(0.418519, 0, 0, 0, 0.418519, 0, 0, 0, 0.476559, 29.6374,
 [node name="MonsterWave2" parent="MonsterSpawner4" instance=ExtResource("10_npwai")]
 wait_time = 10.0
 Monster = ExtResource("11_vkp3i")
-monster_speed = 2.4
+monster_speed = 3.5
 monster_hp = 5
 gems_per_monster = 2
 infinite_wave = true
@@ -221,7 +219,6 @@ crystal_drop_percentage = 20
 gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner4/MonsterWave2" index="0"]
-visible = true
 offset_top = -272.0
 offset_right = -22.0
 offset_bottom = -216.0
@@ -266,7 +263,6 @@ crystal_drop_percentage = 100
 gem_drop_percentage = 100
 
 [node name="Control" parent="MonsterSpawner5/MonsterWave" index="0"]
-visible = true
 offset_top = -336.0
 offset_right = -22.0
 offset_bottom = -280.0
@@ -278,7 +274,6 @@ text = "120 HP"
 wait_time = 60.0
 autostart = true
 script = ExtResource("13_4xsoo")
-increase_by = [1, 1, 2, 1, 5]
 
 [node name="SunAndSky" parent="." instance=ExtResource("14_ym3b6")]
 
@@ -288,6 +283,7 @@ increase_by = [1, 1, 2, 1, 5]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46945, 2.37749, 16.9882)
 
 [node name="Scores" parent="." instance=ExtResource("15_icgp6")]
+visible = false
 
 [node name="TreesNCribs" type="Node" parent="."]
 
@@ -455,8 +451,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825116, 4.72569, 32.0036)
 size = Vector3(58.1898, 14.188, 22.9069)
 material = SubResource("FogMaterial_kyfdo")
 
+[node name="SpeedIncreaseTimer" type="Timer" parent="."]
+wait_time = 90.0
+autostart = true
+
+[node name="DropsIncreaseTimer" type="Timer" parent="."]
+wait_time = 455.0
+autostart = true
+
 [connection signal="timeout" from="MonsterSpawner5/MonsterWave" to="." method="_pause_chibi_waves"]
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]
+[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
+[connection signal="timeout" from="DropsIncreaseTimer" to="." method="_on_drops_increase_timer_timeout"]
 
 [editable path="CameraPivot"]
 [editable path="MonsterSpawner/MonsterWave"]

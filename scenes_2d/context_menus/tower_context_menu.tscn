@@ -477,12 +477,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="OnSelectAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_ft2pi")
+bus = &"SFX"
 
 [node name="OnConfirmAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_3q6fe")
+bus = &"SFX"
 
 [node name="OnCantAfford" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_hbc3t")
+bus = &"SFX"
 
 [editable path="MainMenu/Dismantle-option/PriceTag"]
 [editable path="UpgradeMenu/Range-option/PriceTag"]

@@ -4,8 +4,9 @@ extends Timer
 @export var increase_by := [
 	1,
 	1,
-	2,
-	1
+	1,
+	3,
+	8
 ]
 var ToastScene = preload("res://scenes_2d/hud/toast.tscn")
 

@@ -73,6 +73,7 @@ light_color = Color(1, 0.756863, 0.752941, 1)
 [node name="TuneNo1Player" type="AudioStreamPlayer" parent="Tutorial"]
 stream = ExtResource("11_b532c")
 volume_db = -20.0
+bus = &"Music"
 
 [node name="CenterContainer" type="CenterContainer" parent="." groups=["web_splash_screen"]]
 anchors_preset = 15
@@ -152,21 +153,8 @@ script = ExtResource("10_igogl")
 [node name="GameOverSplash" parent="." instance=ExtResource("11_7nw5b")]
 visible = false
 
-[node name="Label" parent="GameOverSplash" index="0"]
-text = " Thank you for playing the webdemo! "
-
 [node name="LinkButton" type="LinkButton" parent="GameOverSplash"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -272.0
-offset_top = -40.0
-offset_right = 283.0
-offset_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("16_uu3m5")
 theme_override_font_sizes/font_size = 24
 text = "Download Goblins vs. Fishfolks right here on Itch"

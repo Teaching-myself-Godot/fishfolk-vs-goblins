@@ -13,13 +13,7 @@ const HUG_RANGE = 3.0
 const MAX_SPEED = 8
 const JUMP_VELOCITY = 9
 const MAX_AIRBORNE_TIME = 150
-@export var LABEL_COLORS = [
-	Color(0, 0.65, 0.184),
-	Color(1, 0.184, 0),
-	Color(0, 0.184, 1),
-	Color(0.184, 0.5, 0.5),
-	Color(0.5, 0.5, 0.184)
-]
+var LABEL_COLORS = Constants.LABEL_COLORS.duplicate()
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -42,7 +36,7 @@ func _initialize_label():
 	$Label.label_settings.font = font_resource
 	$Label.label_settings.font_size = 24
 	$Label.label_settings.outline_size = 4
-	$Label.label_settings.font_color = LABEL_COLORS[InputUtil.player_map[player_num] - 1]
+	$Label.label_settings.font_color = LABEL_COLORS[InputUtil.player_map()[player_num] - 1]
 
 
 func _reposition_label():

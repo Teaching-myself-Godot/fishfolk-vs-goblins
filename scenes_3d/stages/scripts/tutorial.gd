@@ -342,7 +342,7 @@ func _add_goblin_to_scene(num : int, _start_pos : Vector3 = Vector3.ZERO):
 		return
 	_already_entered = true
 	super._add_goblin_to_scene(num, $GoblinSpawnPoint.position)
-	if InputUtil.player_map.size() == 1:
+	if InputUtil.player_map().size() == 1:
 		main_player_cid = num as InputUtil.ControllerID
 		if num == InputUtil.ControllerID.KEYBOARD:
 			mode = TutorialMode.KEYBOARD

@@ -32,47 +32,57 @@ var _scroll_target : int = 0
 @onready var scroll_container := $VBoxContainer/ScrollContainer
 @onready var score_card_container := $VBoxContainer/ScrollContainer/HBoxContainer
 @onready var survival_time_label = $VBoxContainer/PanelContainer/SurvivalTime
+
+@onready var player_names := {
+	1: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/Player1,
+	2: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/Player2,
+	3: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/Player3,
+	4: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/Player4,
+	5: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/Player5
+}
+
+
 @onready var damage_per_player_labels := {
-	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage1,
-	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage2,
-	3: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage3,
-	4: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage4,
-	5: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerDamage5
+	1: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerDamage1,
+	2: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerDamage2,
+	3: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerDamage3,
+	4: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerDamage4,
+	5: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerDamage5
 }
 
 @onready var gems_per_player_labels := {
-	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerGems1,
-	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerGems2,
-	3: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerGems3,
-	4: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerGems4,
-	5: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerGems5
+	1: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerGems1,
+	2: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerGems2,
+	3: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerGems3,
+	4: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerGems4,
+	5: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerGems5
 }
 
 @onready var crystals_per_player_labels := {
-	1: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerCrystals1,
-	2: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerCrystals2,
-	3: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerCrystals3,
-	4: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerCrystals4,
-	5: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer/PlayerCrystals5
+	1: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerCrystals1,
+	2: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerCrystals2,
+	3: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerCrystals3,
+	4: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerCrystals4,
+	5: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer/PlayerCrystals5
 }
 
 
 @onready var damage_per_monster_type_labels := {
-	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageChibiFish,
-	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageFlyingFish,
-	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageGiantTurtle
+	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/DamageChibiFish,
+	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/DamageFlyingFish,
+	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/DamageGiantTurtle
 }
 
 @onready var kills_per_monster_type_labels := {
-	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledChibiFish,
-	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledFlyingFish,
-	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledGiantTurtle
+	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/KilledChibiFish,
+	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/KilledFlyingFish,
+	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/KilledGiantTurtle
 }
 
 @onready var overkills_per_monster_type_labels := {
-	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillChibiFish,
-	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillFlyingFish,
-	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillGiantTurtle
+	Constants.MonsterType.FISH_CHIBI: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/OverkillChibiFish,
+	Constants.MonsterType.FLYING_FISH: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/OverkillFlyingFish,
+	Constants.MonsterType.GIANT_TURTLE: $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/OverkillGiantTurtle
 }
 var _elapsed_time = 0.0
 
@@ -84,15 +94,16 @@ var _elapsed_time = 0.0
 	5: find_children("Player*5")
 }
 
-@onready var total_damage_label = $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/DamageTotal
-@onready var total_kills_label = $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/KilledTotal
-@onready var total_overkills_label =  $VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerType/OverkillTotal
+@onready var total_damage_label = $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/DamageTotal
+@onready var total_kills_label = $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/KilledTotal
+@onready var total_overkills_label =  $VBoxContainer/ScrollContainer/HBoxContainer/TableHolder1/DamageAndKillsPerType/OverkillTotal
 
 
 func _ready():
 	for player_num in player_rows:
 		for label in player_rows[player_num]:
 			label.hide()
+
 
 func _process(delta: float) -> void:
 	if not is_end_score:
@@ -119,9 +130,11 @@ func _on_time_elapsed_timer_timeout() -> void:
 
 
 func show_player(cid : InputUtil.ControllerID):
-	if cid in InputUtil.player_map:
-		for label in player_rows[InputUtil.player_map[cid]]:
+	if cid in InputUtil.player_map():
+		for label in player_rows[InputUtil.player_map()[cid]]:
 			label.show()
+		
+		player_names[InputUtil.player_map()[cid]].text = InputUtil.get_player_name(cid)
 
 
 func rank_players():
@@ -141,7 +154,7 @@ func rank_players():
 		var player_num = srted[j]
 		var child_pos = (j + 1) * player_rows[player_num].size()
 		for i in range(player_rows[player_num].size()):
-			$VBoxContainer/ScrollContainer/HBoxContainer/DamageAndKillsPerPlayer.move_child(
+			$VBoxContainer/ScrollContainer/HBoxContainer/TableHolder2/DamageAndKillsPerPlayer.move_child(
 				player_rows[player_num][i], child_pos + i
 			)
 			if i == player_rows[player_num].size() - 1:
@@ -161,8 +174,8 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 	var shares = Constants.shares(damage_per_player)
 
 	for player_cid in damage_per_player:
-		if player_cid in InputUtil.player_map:
-			var player_num = InputUtil.player_map[player_cid]
+		if player_cid in InputUtil.player_map():
+			var player_num = InputUtil.player_map()[player_cid]
 			_damage_per_player[player_num] += dmg * shares[player_cid]
 
 	_update_player_labels(_damage_per_player, damage_per_player_labels)
@@ -174,16 +187,16 @@ func count_damage(damage_per_player : Dictionary, type : Constants.MonsterType, 
 
 
 func count_magical_crystal_collect(player_cid : InputUtil.ControllerID):
-	if player_cid in InputUtil.player_map:
-		var player_num = InputUtil.player_map[player_cid]
+	if player_cid in InputUtil.player_map():
+		var player_num = InputUtil.player_map()[player_cid]
 		_crystals_per_player[player_num] += 1
 	_update_player_labels(_crystals_per_player, crystals_per_player_labels)
 	rank_players()
 
 
 func count_builder_gem_collect(player_cid : InputUtil.ControllerID):
-	if player_cid in InputUtil.player_map:
-		var player_num = InputUtil.player_map[player_cid]
+	if player_cid in InputUtil.player_map():
+		var player_num = InputUtil.player_map()[player_cid]
 		_gems_per_player[player_num] += 10
 	_update_player_labels(_gems_per_player, gems_per_player_labels)
 	rank_players()

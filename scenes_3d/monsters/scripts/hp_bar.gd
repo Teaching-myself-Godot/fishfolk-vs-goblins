@@ -45,7 +45,7 @@ func _ready():
 
 func _process(_delta):
 	if $Control/DamageLabel.modulate.a > 0.0:
-		$Control/DamageLabel.modulate.a -= .01 if $Control/DamageLabel.modulate.a > 0.0 else 0.0
+		$Control/DamageLabel.modulate.a -= .03 if $Control/DamageLabel.modulate.a > 0.0 else 0.0
 		$Control/DamageLabel.scale *= 1.01
 		$Control/DamageLabel.position += Vector2(-8 +  randf() * 4, -randf() * 8)
 	else:
