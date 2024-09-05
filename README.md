@@ -43,14 +43,14 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Milestone 25 - Settings and joining
-- [x] Show which players have joined in the title screen
-- [x] Show that leaving game can be done with the 'select / -' button
-- [x] Keyboard player can only leave in the title screen using 'Esc'
-- [x] When last player leaves from title screen game ends
-- [x] Player names can be edited in title screen
-- [x] Separate music from sfx in the audio mixer
-- [x] Add a settings menu to control audio for sfx, music and master volume
+### [Milestone 25](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-25) - Settings and joining (September 5th 2024)
+- Show which players have joined in the title screen
+- Show that leaving game can be done with the 'select / -' button
+- Keyboard player can only leave in the title screen using 'Esc'
+- When last player leaves from title screen game ends
+- Player names can be edited in title screen
+- Separate music from sfx in the audio mixer
+- Add a settings menu to control audio for sfx, music and master volume
 
 ### [Milestone 24](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-24) - Vamping up the endless mode, quality of life (August 30th 2024)
 - Add ocean to endless mode
