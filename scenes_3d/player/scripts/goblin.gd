@@ -309,6 +309,8 @@ func _ready():
 	airborne_time = 0
 	pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 	confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(InputUtil.ControllerID.KEYBOARD)
 	_initialize_label()
 
 

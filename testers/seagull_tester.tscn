@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://boiv0ayswxl6d"]
+
+[ext_resource type="Material" uid="uid://cddy1otapyrq5" path="res://materials/green-terrain.material" id="1_63hdy"]
+[ext_resource type="PackedScene" uid="uid://dscg4jyc42w76" path="res://scenes_3d/projectiles/gull.tscn" id="2_qx6m2"]
+[ext_resource type="PackedScene" uid="uid://dgmcmjccj6dmy" path="res://scenes_3d/player/goblin.scn" id="3_f7w5l"]
+[ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="4_evjpp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lvjjw"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ejl6a"]
+sky_material = SubResource("ProceduralSkyMaterial_lvjjw")
+
+[sub_resource type="Environment" id="Environment_bf2j2"]
+background_mode = 2
+sky = SubResource("Sky_ejl6a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_g1dcw"]
+size = Vector3(50, 0.01, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8xhq0"]
+points = PackedVector3Array(-25, -0.005, -25, -25, 0.005, -25, 25, -0.005, -25, -25, -0.005, 25, -25, 0.005, 25, 25, 0.005, -25, 25, -0.005, 25, 25, 0.005, 25)
+
+[node name="SeagullTester" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bf2j2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = ExtResource("1_63hdy")
+mesh = SubResource("BoxMesh_g1dcw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8xhq0")
+
+[node name="gull" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_qx6m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36481, 2.43064, 5.96027)
+target = NodePath("../goblin")
+
+[node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
+
+[node name="Roost" type="Node3D" parent="."]
+
+[node name="goblin" parent="." instance=ExtResource("3_f7w5l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68198, -0.00500012, 4.55507)
