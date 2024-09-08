@@ -51,9 +51,14 @@ shape = SubResource("ConvexPolygonShape3D_pvss3")
 shape = SubResource("ConvexPolygonShape3D_dw0ih")
 
 [node name="ChildLookat" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.274237, -0.206802)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.241855, 0)
 shape = SubResource("CapsuleShape3D_qef2e")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [editable path="gull"]

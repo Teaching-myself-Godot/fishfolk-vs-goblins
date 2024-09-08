@@ -44,7 +44,7 @@ mesh = SubResource("BoxMesh_g1dcw")
 shape = SubResource("ConvexPolygonShape3D_8xhq0")
 
 [node name="gull" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_qx6m2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36481, 2.43064, 5.96027)
+transform = Transform3D(0.976912, 0.19292, -0.0917911, -0.213644, 0.882149, -0.419725, 0, 0.429644, 0.902998, -4.33499, 1.54532, 5.80499)
 target = NodePath("../goblin")
 
 [node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
