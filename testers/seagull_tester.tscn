@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://boiv0ayswxl6d"]
+[gd_scene load_steps=13 format=3 uid="uid://boiv0ayswxl6d"]
 
 [ext_resource type="Material" uid="uid://cddy1otapyrq5" path="res://materials/green-terrain.material" id="1_63hdy"]
+[ext_resource type="Script" path="res://testers/scripts/seagull_tester.gd" id="1_cents"]
 [ext_resource type="PackedScene" uid="uid://dscg4jyc42w76" path="res://scenes_3d/projectiles/gull.tscn" id="2_qx6m2"]
 [ext_resource type="PackedScene" uid="uid://dgmcmjccj6dmy" path="res://scenes_3d/player/goblin.scn" id="3_f7w5l"]
 [ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="4_evjpp"]
+[ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="6_60lfq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lvjjw"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,7 +26,11 @@ size = Vector3(50, 0.01, 50)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8xhq0"]
 points = PackedVector3Array(-25, -0.005, -25, -25, 0.005, -25, 25, -0.005, -25, -25, -0.005, 25, -25, 0.005, 25, 25, 0.005, -25, 25, -0.005, 25, 25, 0.005, 25)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ilhgg"]
+size = Vector3(1, 0.1, 1)
+
 [node name="SeagullTester" type="Node3D"]
+script = ExtResource("1_cents")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bf2j2")
@@ -43,13 +49,18 @@ mesh = SubResource("BoxMesh_g1dcw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_8xhq0")
 
-[node name="gull" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_qx6m2")]
-transform = Transform3D(0.976912, 0.19292, -0.0917911, -0.213644, 0.882149, -0.419725, 0, 0.429644, 0.902998, -4.33499, 1.54532, 5.80499)
-target = NodePath("../goblin")
+[node name="gull" parent="." node_paths=PackedStringArray("roost") instance=ExtResource("2_qx6m2")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -6.54727, -0.0048473, 21.5042)
+roost = NodePath("../Roost")
 
 [node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
 
-[node name="Roost" type="Node3D" parent="."]
+[node name="Roost" type="MeshInstance3D" parent="." groups=["roost"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.54829, 2.09244, -16.7819)
+mesh = SubResource("BoxMesh_ilhgg")
 
 [node name="goblin" parent="." instance=ExtResource("3_f7w5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68198, -0.00500012, 4.55507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66146, -0.00500012, 21.5763)
+
+[node name="flying-fish" parent="." instance=ExtResource("6_60lfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35523, 6.51172, 10.5983)
