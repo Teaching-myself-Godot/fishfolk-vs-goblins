@@ -4,8 +4,7 @@ extends Area3D
 
 @export var target : Node3D
 @export var flying := false
-
-
+@export var speed := 4.0
 @onready var _child_look_at := $ChildLookat
 @onready var _skeleton := $gull/Body/Skeleton3D
 
@@ -23,7 +22,7 @@ func _process(delta: float) -> void:
 			global_transform.basis = Basis(next_rotation)
 			#look_at(target_pos)
 			var dir = global_position.direction_to(target_pos)
-			position += dir * 0.01
+			position += dir * delta * speed
 
 		_skeleton.set_bone_pose_rotation(_skeleton.find_bone("Neck.001"), _get_neck_bone_rotation())
 
