@@ -51,13 +51,18 @@ shape = SubResource("ConvexPolygonShape3D_8xhq0")
 
 [node name="gull" parent="." node_paths=PackedStringArray("roost") instance=ExtResource("2_qx6m2")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -6.54727, -0.0048473, 21.5042)
-roost = NodePath("../Roost")
+roost = NodePath("../Roost/Anchor")
+max_speed = 25.0
+acceleration = 1.0
 
 [node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
 
 [node name="Roost" type="MeshInstance3D" parent="." groups=["roost"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.54829, 2.09244, -16.7819)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -16)
 mesh = SubResource("BoxMesh_ilhgg")
+
+[node name="Anchor" type="Node3D" parent="Roost"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0599, 0)
 
 [node name="goblin" parent="." instance=ExtResource("3_f7w5l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66146, -0.00500012, 21.5763)
