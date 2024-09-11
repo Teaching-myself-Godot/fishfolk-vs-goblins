@@ -51,15 +51,15 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] make seagull peck target
 - [x] give seagull a roosting place to return to
 - [x] despawn seagull when roosting place has disappeared
-- [ ] add damage properties to gull, just like other projectiles
-- [ ] model a gull tower with a roosting platform
-- [ ] add 4 roosts to the gull tower roosting platform
+- [x] add damage properties to gull, just like other projectiles
+- [x] model a gull tower with a roosting platform
+- [x] add 4 roosts to the gull tower roosting platform
+- [x] let roosted gulls follow target with body and neck
+- [x] reuse fire rate of anti air tower for gull tower
+- [x] make gull tower assign target to gulls
+- [x] replace anti-air tower with gull tower
 - [ ] when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
-- [ ] let each gull have a base rotation looking outward from the tower roosting platform
-- [ ] reuse fire rate of anti air tower for gull tower
-- [ ] make gull tower assign target to gulls
-- [ ] replace anti-air tower with gull tower
-
+- [ ] design a new icon for the gull tower in the tower context menu
 
 ### [Milestone 25](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-25) - Settings and joining (September 5th 2024)
 - Show which players have joined in the title screen

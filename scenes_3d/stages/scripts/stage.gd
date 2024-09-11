@@ -15,6 +15,7 @@ var GoblinScene = preload("res://scenes_3d/player/goblin.scn")
 var ArrowTowerScene = preload("res://scenes_3d/towers/arrow_tower.scn")
 var CannonTowerScene = preload("res://scenes_3d/towers/cannon_tower.scn")
 var AntiAirTowerScene = preload("res://scenes_3d/towers/anti_air_tower.scn")
+var GullTowerScene = preload("res://scenes_3d/towers/gull_tower.tscn")
 var FishChibiScene = preload("res://scenes_3d/monsters/fish_chibi.scn")
 var FlyingFishScene = preload("res://scenes_3d/monsters/flying_fish.scn")
 var GiantTurtleScene = preload("res://scenes_3d/monsters/giant_turtle.scn")
@@ -30,6 +31,9 @@ var gem_pouch : GemPouch
 var goblin_map = {}
 var _stage_started = false
 var _started_in_debug_mode = false
+var _score_card : Scores = null
+var wave_emitters_present = []
+var monster_waves = []
 
 func _debug_start():
 	if OS.is_debug_build() and not _stage_started:
@@ -93,8 +97,8 @@ func _add_goblin_to_scene(num : int, start_pos : Vector3 = Vector3.ZERO):
 	new_goblin.find_child("TowerContextMenu").spend_gems.connect(gem_pouch.spend_gems)
 	add_child.call_deferred(new_goblin)
 
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.show_player(num)
+	if is_instance_valid(_score_card):
+		_score_card.show_player(num)
 
 
 func _on_goblin_request_pause_menu():
@@ -102,11 +106,11 @@ func _on_goblin_request_pause_menu():
 
 
 func _on_goblin_build_anti_air_tower(player_num : int, pos : Vector3):
-	var new_tower : AntiAirTower = AntiAirTowerScene.instantiate()
+	var new_tower : GullTower = GullTowerScene.instantiate()
 	new_tower.built_by_player(player_num)
 	new_tower.position = Vector3(pos.x, pos.y - 4, pos.z)
 	new_tower.rise_target_position = Vector3(pos.x, pos.y - 0.5, pos.z)
-	new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
+	#new_tower.fire_anti_air_missile.connect(_on_missile_tower_fire_missile)
 	new_tower.drop_builder_gem.connect(_on_drop_builder_gem)
 	add_child.call_deferred(new_tower)
 
@@ -222,14 +226,14 @@ func _on_drop_magical_crystal(pos : Vector3) -> MagicalCrystal:
 
 func _on_collect_builder_gem(cid : InputUtil.ControllerID):
 	gem_pouch.collect_builder_gem()
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.count_builder_gem_collect(cid)
+	if is_instance_valid(_score_card):
+		_score_card.count_builder_gem_collect(cid)
 
 
 func _on_collect_magical_crystal(cid : InputUtil.ControllerID):
 	gem_pouch.collect_magical_crystal()
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.count_magical_crystal_collect(cid)
+	if is_instance_valid(_score_card):
+		_score_card.count_magical_crystal_collect(cid)
 
 
 func _count_monsters():
@@ -237,18 +241,18 @@ func _count_monsters():
 
 
 func _on_monster_damaged(damage_per_player : Dictionary, type : Constants.MonsterType, dmg : int):
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.count_damage(damage_per_player, type, dmg)
+	if is_instance_valid(_score_card):
+		_score_card.count_damage(damage_per_player, type, dmg)
 
 
 func _on_monster_killed(type : Constants.MonsterType):
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.count_kill(type)
+	if is_instance_valid(_score_card):
+		_score_card.count_kill(type)
 
 
 func _on_monster_overkilled(type : Constants.MonsterType):
-	for score_card : Scores in find_children("*", "Scores"):
-		score_card.count_overkill(type)
+	if is_instance_valid(_score_card):
+		_score_card.count_overkill(type)
 
 
 func _spawn_monster(path : Path3D, monster : BaseMonster):
@@ -279,18 +283,16 @@ func _physics_process(delta):
 		monster.handle_update(delta, frame_cnt)
 
 	if get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).is_empty():
-		var score_cards = find_children("*", "Scores")
-		if score_cards.size() > 0:
-			gameover_with_scores.emit(score_cards[0])
+		if is_instance_valid(_score_card):
+			gameover_with_scores.emit(_score_card)
 		else:
 			gameover.emit()
 
-	var wave_emitters_present = find_children("*", "MonsterWaveEmitter")
 	for wave_emitter : MonsterWaveEmitter in wave_emitters_present:
 		if wave_emitter.last_wave_cleared():
 			stage_won.emit()
 
-	if wave_emitters_present.is_empty() and find_children("*", "MonsterWave").is_empty():
+	if wave_emitters_present.is_empty() and monster_waves.filter(func(w): return is_instance_valid(w)).is_empty():
 		stage_won.emit()
 
 
@@ -314,13 +316,17 @@ func _start_wave(wave_num):
 	for spawner : MonsterSpawner in find_children("*", "MonsterSpawner"):
 		spawner.start_wave(wave_num)
 
-	for wave_emitter : MonsterWaveEmitter in find_children("*", "MonsterWaveEmitter"):
+	for wave_emitter in wave_emitters_present:
 		wave_emitter.current_wave = wave_num
 		_mk_toast("Wave " + str(wave_num) + " / " + str(wave_emitter.number_of_waves))
 
 
 func _ready():
 	TerrainShaderParams.clear()
+	wave_emitters_present = find_children("*", "MonsterWaveEmitter")
+	monster_waves = find_children("*", "MonsterWave")
+	var scores = find_children("*", "Scores")
+	_score_card = scores[0] if not scores.is_empty() else null
 	gem_pouch = $GemPouch
 	gem_pouch.cribs = get_tree().get_nodes_in_group(Constants.GROUP_NAME_CRIBS).size()
 	gem_pouch._update_labels()

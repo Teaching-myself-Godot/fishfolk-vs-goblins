@@ -23,6 +23,14 @@ extends Area3D
 var _was_flying := false
 var _taking_off := false
 
+var damage_per_player := {
+	InputUtil.ControllerID.KEYBOARD: 0,
+	InputUtil.ControllerID.GAMEPAD_1: 0,
+	InputUtil.ControllerID.GAMEPAD_2: 0,
+	InputUtil.ControllerID.GAMEPAD_3: 0,
+	InputUtil.ControllerID.GAMEPAD_4: 0
+}
+var damage  : int = 2
 
 func _handle_flying(delta: float, target_pos: Vector3) -> void:
 	if not _was_flying:
@@ -45,6 +53,15 @@ func _handle_flying(delta: float, target_pos: Vector3) -> void:
 		_speed += acceleration
 
 
+func _handle_standing(delta: float) -> void:
+	var target_rotation = Quaternion(_child_look_at.global_transform.basis)
+	var current_rotation = Quaternion(global_transform.basis)
+	var next_rotation = current_rotation.slerp(target_rotation, delta)
+	global_transform.basis = Basis(next_rotation)
+	rotation.x = 0
+	rotation.z = 0
+
+
 func _handle_landing():
 	flying = false
 	_was_flying = false
@@ -57,7 +74,8 @@ func _handle_landing():
 
 
 func _handle_pecking():
-	# attack here
+	if target.is_in_group(Constants.GROUP_NAME_MONSTERS):
+		target.take_damage(damage, damage_per_player, global_transform.basis.x.normalized(), 0.5)
 	$GullAttackAudioStreamPlayer.play()
 	target = roost
 
@@ -82,7 +100,11 @@ func _process(delta: float) -> void:
 					_handle_landing()
 				else:
 					_handle_pecking()
-
+		else:
+			_handle_standing(delta)
+	else:
+		if flying:
+			target = roost
 	if not flying and global_position.distance_to(roost.global_position) < 0.5:
 		global_position = roost.global_position
 
@@ -90,7 +112,6 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	$gull/AnimationPlayer.play("idle")
 	$gull/AnimationPlayer.stop()
-	print("gull ready")
 
 
 func _get_neck_bone_rotation() -> Quaternion:
@@ -131,7 +152,7 @@ func cry():
 
 
 func _on_cry_timer_timeout() -> void:
-	if randf() < 0.25:
+	if randf() < 0.005:
 		cry()
 
 

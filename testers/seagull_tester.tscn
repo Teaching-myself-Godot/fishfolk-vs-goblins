@@ -69,10 +69,11 @@ shape = SubResource("ConvexPolygonShape3D_8xhq0")
 [node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
 
 [node name="goblin" parent="." instance=ExtResource("3_f7w5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66146, -0.00500012, 21.5763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98807, 0.640774, -3.05242)
 
 [node name="flying-fish" parent="." instance=ExtResource("6_60lfq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35523, 6.51172, 10.5983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92923, 5.66243, 0.481732)
 
 [node name="GullTower" parent="." instance=ExtResource("7_m2ntr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.953264, 0.1909, 21.0604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20837, -3.16028, 1.53337)
+rise_target_position = Vector3(0, 1, 0)
