@@ -4,7 +4,7 @@ extends Area3D
 
 @export var target : Node3D
 @export var roost : Node3D
-@export var flying := false
+@export var flying := true
 @export var base_speed := 7.0
 @export var max_speed := 20.0
 @export var acceleration := 0.25
@@ -87,12 +87,10 @@ func _process(delta: float) -> void:
 		global_position = roost.global_position
 
 
-
-
-
 func _ready() -> void:
 	$gull/AnimationPlayer.play("idle")
 	$gull/AnimationPlayer.stop()
+	print("gull ready")
 
 
 func _get_neck_bone_rotation() -> Quaternion:

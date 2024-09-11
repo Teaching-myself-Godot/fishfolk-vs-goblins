@@ -464,7 +464,6 @@ autostart = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2667, 8.4488, 12.4993)
 target = NodePath("../Roost")
 roost = NodePath("../Roost")
-flying = true
 
 [node name="Roost" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.914803, 4.19887, 8.00057)

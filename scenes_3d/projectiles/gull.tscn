@@ -14,7 +14,7 @@ height = 1.09782
 [sub_resource type="BoxShape3D" id="BoxShape3D_dr8kg"]
 size = Vector3(1, 0.0227356, 0.10791)
 
-[node name="gull" type="Area3D"]
+[node name="Gull" type="Area3D" groups=["gulls"]]
 script = ExtResource("1_tiv1g")
 
 [node name="GullCryAudioStreamPlayer1" type="AudioStreamPlayer3D" parent="."]
