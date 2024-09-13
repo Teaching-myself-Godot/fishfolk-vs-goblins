@@ -22,7 +22,8 @@ func _init_gulls():
 		gull.position = (rise_target_position + 
 			Vector3(randf_range(-20, 20), 20, randf_range(-20, 20))
 		) if gull.position == Vector3.ZERO else gull.position
-		add_child.call_deferred(gull)
+		if not is_instance_valid(wild_gull):
+			add_child.call_deferred(gull)
 		gulls.append(gull)
 
 
