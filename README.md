@@ -19,9 +19,8 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 
 ## Short to Middle term Wishlist (Thanks to all the feedback)
-- Redesign the missile tower to be more in-theme: homing attack-gulls from a bird-house would be radical.
-- _sounds_: gull sounds
 - _sounds_: baby-poof sound
+- Do a round of performance tweaks: frame limiting fish chibi during damaged stage, replace some of the gpu particles with simple 2d billboards
 - Make a great immersive [story mode](https://www.reddit.com/r/godot/comments/1e8ugca/comment/leasis1/)
 
 
@@ -42,6 +41,25 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - 3D cutscenes with more back story?
 
 ## Milestones in the creative process
+
+### [Milestone 26](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-26) - Gull Tower (September 13th 2024)
+- model a seagull
+- animate the seagull
+- record and add some gull sounds
+- make seagull follow target around with head
+- make seagull peck target
+- give seagull a roosting place to return to
+- despawn seagull when roosting place has disappeared
+- add damage properties to gull, just like other projectiles
+- model a gull tower with a roosting platform
+- add 4 roosts to the gull tower roosting platform
+- let roosted gulls follow target with body and neck
+- reuse fire rate of anti air tower for gull tower
+- make gull tower assign target to gulls
+- replace anti-air tower with gull tower
+- when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
+- add some gulls to each stage
+- design a new icon for the gull tower in the tower context menu
 
 ### [Milestone 25](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-25) - Settings and joining (September 5th 2024)
 - Show which players have joined in the title screen

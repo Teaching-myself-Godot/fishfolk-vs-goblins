@@ -8,7 +8,7 @@ signal drop_builder_gem(pos : Vector3)
 
 var my_general_area = 2.5
 var my_range_ring : RangeRing = null
-var rise_target_position : Vector3 = Vector3.ZERO
+@export var rise_target_position : Vector3 = Vector3.ZERO
 var _builder_cid := InputUtil.ControllerID.NONE
 
 var damage_per_player := {

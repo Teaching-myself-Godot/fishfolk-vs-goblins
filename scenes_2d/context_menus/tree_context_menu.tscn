@@ -225,12 +225,12 @@ visible = false
 [node name="AirMenu" type="Node2D" parent="."]
 visible = false
 
-[node name="Anti-Air-option" type="Sprite2D" parent="AirMenu"]
+[node name="Gull-Tower-option" type="Sprite2D" parent="AirMenu"]
 material = SubResource("ShaderMaterial_1vng7")
 position = Vector2(120, 0)
 texture = ExtResource("10_c84p5")
 
-[node name="PriceTag" parent="AirMenu/Anti-Air-option" instance=ExtResource("7_g42o3")]
+[node name="PriceTag" parent="AirMenu/Gull-Tower-option" instance=ExtResource("7_g42o3")]
 offset_top = -24.0
 offset_bottom = 64.0
 builder_gem_price = 150

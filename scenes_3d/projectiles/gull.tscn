@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://dscg4jyc42w76"]
+
+[ext_resource type="Script" path="res://scenes_3d/projectiles/scripts/gull.gd" id="1_tiv1g"]
+[ext_resource type="PackedScene" uid="uid://j84gpyg20ibn" path="res://models/gull.blend" id="1_u6htu"]
+[ext_resource type="AudioStream" uid="uid://c6yabr158t0bq" path="res://sounds/gull_cries/1.wav" id="2_b7nok"]
+[ext_resource type="AudioStream" uid="uid://3wf55ya8fnio" path="res://sounds/gull_cries/2.wav" id="3_w03vv"]
+[ext_resource type="AudioStream" uid="uid://51alolj612qo" path="res://sounds/gull_cries/3.wav" id="4_i8nwp"]
+[ext_resource type="AudioStream" uid="uid://bi0aw2mjkkl5q" path="res://sounds/gull_cries/attack.wav" id="6_8isad"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qef2e"]
+radius = 0.0785861
+height = 1.09782
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dr8kg"]
+size = Vector3(1, 0.0227356, 0.10791)
+
+[node name="Gull" type="Area3D" groups=["gulls", "wild_gulls"]]
+collision_mask = 2
+script = ExtResource("1_tiv1g")
+
+[node name="GullCryAudioStreamPlayer1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_b7nok")
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="GullCryAudioStreamPlayer2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_w03vv")
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="GullCryAudioStreamPlayer3" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_i8nwp")
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="GullAttackAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_8isad")
+bus = &"SFX"
+
+[node name="gull" parent="." instance=ExtResource("1_u6htu")]
+
+[node name="Skeleton3D" parent="gull/Body" index="0"]
+bones/2/rotation = Quaternion(-0.741755, -7.99502e-08, 8.84241e-08, 0.670671)
+bones/3/position = Vector3(1.24582e-09, 0.204439, 0.00522537)
+bones/3/rotation = Quaternion(0.067445, 1.18938e-07, -8.04007e-09, 0.997723)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.00191006, -5.84685e-20, -3.39686e-18, 0.999998)
+bones/5/rotation = Quaternion(0.256349, 1.15226e-07, 3.05592e-08, 0.966584)
+bones/6/rotation = Quaternion(-0.303279, -1.13595e-07, -3.61537e-08, 0.952902)
+bones/7/rotation = Quaternion(-0.380803, -1.61025e-23, 8.45552e-17, 0.924656)
+bones/8/rotation = Quaternion(0.360941, -8.63862e-24, -8.01451e-17, 0.932589)
+bones/9/position = Vector3(0.113697, 0.120141, 0.0313771)
+bones/9/rotation = Quaternion(0.556819, 0.473877, -0.386388, 0.562225)
+bones/10/position = Vector3(0.0533285, 0.248559, 0.0201381)
+bones/10/rotation = Quaternion(0.125235, -0.0847218, -0.239864, 0.95896)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(-0.113697, 0.120141, 0.0313771)
+bones/11/rotation = Quaternion(0.55682, -0.473877, 0.386387, 0.562225)
+bones/12/position = Vector3(-0.0533286, 0.248559, 0.0201381)
+bones/12/rotation = Quaternion(0.125235, 0.0847218, 0.239864, 0.95896)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.712759, 1.67229e-07, 1.69935e-07, 0.701409)
+bones/14/rotation = Quaternion(0.0117914, -0.0197758, 0.00771221, 0.999705)
+bones/15/rotation = Quaternion(-0.00462661, -0.00089295, -0.00278705, 0.999985)
+bones/16/rotation = Quaternion(-0.190793, -0.0702549, 0.255682, 0.94514)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.154466, -0.0235103, -0.0693221, 0.985283)
+bones/18/rotation = Quaternion(-0.178204, 0.00267926, -0.010179, 0.983937)
+bones/19/rotation = Quaternion(0.153282, 0.00584836, -0.0143188, 0.988061)
+bones/20/rotation = Quaternion(-0.155064, 0.0656217, -0.270211, 0.947964)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.119103, 0.0288464, 0.0571287, 0.990817)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.815674, -2.73189e-07, 1.9758e-07, 0.578512)
+bones/23/rotation = Quaternion(-0.290492, -1.81444e-09, 7.50555e-08, 0.956877)
+bones/24/rotation = Quaternion(0.127878, -0.304084, -0.0359736, 0.943338)
+bones/25/rotation = Quaternion(-5.81e-10, 4.26793e-10, 0.00145772, 0.999999)
+bones/26/rotation = Quaternion(-6.09132e-10, 4.62712e-10, 0.00157254, 0.999999)
+bones/27/rotation = Quaternion(-0.137233, 0.278002, -0.448678, 0.838194)
+bones/28/rotation = Quaternion(-6.48713e-08, 4.27564e-08, 0.387319, 0.921946)
+bones/29/rotation = Quaternion(-0.0537014, -0.0983836, 0.453715, 0.88407)
+bones/29/scale = Vector3(1, 1, 1)
+bones/31/rotation = Quaternion(0.815674, 8.83375e-10, 1.93845e-07, 0.578512)
+bones/32/rotation = Quaternion(-0.290492, -3.14623e-10, -6.82225e-08, 0.956877)
+bones/33/rotation = Quaternion(0.127878, 0.304084, 0.0359739, 0.943338)
+bones/34/rotation = Quaternion(-1.05728e-09, 7.70843e-09, 0.00145772, 0.999999)
+bones/35/rotation = Quaternion(-5.85493e-10, -1.45694e-08, 0.00157254, 0.999999)
+bones/36/rotation = Quaternion(-0.0523486, 0.0991099, -0.465781, 0.877773)
+bones/38/rotation = Quaternion(-0.141028, -0.276096, 0.437156, 0.844261)
+bones/39/rotation = Quaternion(1.13388e-07, -4.09532e-08, -0.366388, 0.930462)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="gull/Body/Skeleton3D/BodyMesh" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gull/Body/Skeleton3D/BodyMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.241855, 0)
+shape = SubResource("CapsuleShape3D_qef2e")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="gull/Body/Skeleton3D/BodyMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0112152, -0.0339355)
+shape = SubResource("BoxShape3D_dr8kg")
+
+[node name="ChildLookat" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.274237, -0.206802)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.241855, 0)
+shape = SubResource("CapsuleShape3D_qef2e")
+
+[node name="CryTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="finished" from="GullCryAudioStreamPlayer1" to="." method="_on_gull_cry_audio_stream_player_finished"]
+[connection signal="animation_finished" from="gull/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="CryTimer" to="." method="_on_cry_timer_timeout"]
+
+[editable path="gull"]

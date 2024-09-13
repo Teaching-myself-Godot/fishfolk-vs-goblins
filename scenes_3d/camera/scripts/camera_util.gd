@@ -1,12 +1,25 @@
 extends Node
 
 
+var _my_cam : MyCamera 
+var _pivot : CameraPivot
+
+
+
 func get_cam_pivot() -> CameraPivot:
-	return get_tree().get_first_node_in_group(Constants.GROUP_NAME_CAMERA)
+	if is_instance_valid(_pivot):
+		return _pivot
+	else:
+		_pivot = get_tree().get_first_node_in_group(Constants.GROUP_NAME_CAMERA)
+	return _pivot
 
 
 func get_cam() -> MyCamera:
-	return get_cam_pivot().get_child(0)
+	if is_instance_valid(_my_cam):
+		return _my_cam
+	else:
+		_my_cam = get_cam_pivot().get_child(0)
+	return _my_cam
 
 
 func is_behind_camera(pos : Vector3) -> bool:
@@ -15,7 +28,7 @@ func is_behind_camera(pos : Vector3) -> bool:
 
 func get_label_position(pos_in : Vector3, trans : Vector3 = Vector3.ZERO):
 	var pos = (
-		pos_in + trans.rotated(Vector3.UP, CameraUtil.get_cam_pivot().rotation.y) if trans else
+		pos_in + trans.rotated(Vector3.UP, get_cam_pivot().rotation.y) if trans else
 		pos_in
 	)
 

@@ -112,7 +112,7 @@ func _handle_context_menu_confirm(context_menu : ContextMenuBase):
 				build_arrow_tower.emit(player_num, my_tree.position)
 			elif choice == "Cannon":
 				build_cannon_tower.emit(player_num, my_tree.position)
-			elif choice == "Anti-Air":
+			elif choice == "Gull-Tower":
 				build_anti_air_tower.emit(player_num, my_tree.position)
 			my_tree.toggle_highlight(false)
 			my_tree = null
@@ -154,7 +154,7 @@ func _handle_context_menu_arrow_input(context_menu : ContextMenuBase):
 		var opt = context_menu.targeted_option
 		if  opt == "Arrow":
 			my_tree.set_range_ring(Constants.ARROW_TOWER_BASE_RANGE)
-		elif opt == "Anti-Air":
+		elif opt == "Gull-Tower":
 			my_tree.set_range_ring(Constants.ANTI_AIR_TOWER_BASE_RANGE)
 		elif opt == "Cannon":
 			my_tree.set_range_ring(Constants.CANNON_TOWER_BASE_RANGE)
@@ -309,6 +309,8 @@ func _ready():
 	airborne_time = 0
 	pause_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
 	confirm_cooldown = CONTROL_BUTTON_COOLDOWN_FRAMES
+	if InputUtil.cids_registered.is_empty():
+		InputUtil.cids_registered.append(InputUtil.ControllerID.KEYBOARD)
 	_initialize_label()
 
 

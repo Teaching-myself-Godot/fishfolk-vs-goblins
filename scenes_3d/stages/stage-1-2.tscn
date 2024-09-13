@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://doy7owgxttfij"]
+[gd_scene load_steps=27 format=3 uid="uid://doy7owgxttfij"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/endless_stage.gd" id="1_lavd7"]
 [ext_resource type="PackedScene" uid="uid://c2ei4y2mis8hk" path="res://scenes_3d/trees/palm_tree.scn" id="3_ra3wo"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="14_ym3b6"]
 [ext_resource type="PackedScene" uid="uid://cyt082n387o10" path="res://scenes_2d/hud/scores.tscn" id="15_icgp6"]
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="15_rurm0"]
+[ext_resource type="PackedScene" uid="uid://dscg4jyc42w76" path="res://scenes_3d/projectiles/gull.tscn" id="18_p2qeq"]
 
 [sub_resource type="Curve3D" id="Curve3D_hdhbw"]
 resource_local_to_scene = true
@@ -458,6 +459,14 @@ autostart = true
 [node name="DropsIncreaseTimer" type="Timer" parent="."]
 wait_time = 455.0
 autostart = true
+
+[node name="gull" parent="." node_paths=PackedStringArray("target", "roost") instance=ExtResource("18_p2qeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2667, 8.4488, 12.4993)
+target = NodePath("../Roost")
+roost = NodePath("../Roost")
+
+[node name="Roost" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.914803, 4.19887, 8.00057)
 
 [connection signal="timeout" from="MonsterSpawner5/MonsterWave" to="." method="_pause_chibi_waves"]
 [connection signal="timeout" from="HPIncreaseTimer" to="HPIncreaseTimer" method="_on_timeout"]

@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://boiv0ayswxl6d"]
+
+[ext_resource type="Material" uid="uid://cddy1otapyrq5" path="res://materials/green-terrain.material" id="1_63hdy"]
+[ext_resource type="Script" path="res://testers/scripts/seagull_tester.gd" id="1_cents"]
+[ext_resource type="PackedScene" uid="uid://dgmcmjccj6dmy" path="res://scenes_3d/player/goblin.scn" id="3_f7w5l"]
+[ext_resource type="PackedScene" uid="uid://pg510dfugg1q" path="res://scenes_3d/camera/camera_pivot.tscn" id="4_evjpp"]
+[ext_resource type="PackedScene" uid="uid://dgsr17vfvtr8x" path="res://scenes_3d/monsters/flying_fish.scn" id="6_60lfq"]
+[ext_resource type="PackedScene" uid="uid://b6svixkjvh8qs" path="res://scenes_3d/towers/gull_tower.tscn" id="7_m2ntr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lvjjw"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ejl6a"]
+sky_material = SubResource("ProceduralSkyMaterial_lvjjw")
+
+[sub_resource type="Environment" id="Environment_bf2j2"]
+background_mode = 2
+sky = SubResource("Sky_ejl6a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_g1dcw"]
+size = Vector3(50, 0.01, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8xhq0"]
+points = PackedVector3Array(-25, -0.005, -25, -25, 0.005, -25, 25, -0.005, -25, -25, -0.005, 25, -25, 0.005, 25, 25, 0.005, -25, 25, -0.005, 25, 25, 0.005, 25)
+
+[node name="SeagullTester" type="Node3D"]
+script = ExtResource("1_cents")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bf2j2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = ExtResource("1_63hdy")
+mesh = SubResource("BoxMesh_g1dcw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8xhq0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.12078, 0.0486239, 0, -0.213415, 0.255355, 0, 1.2162, 0)
+material_override = ExtResource("1_63hdy")
+mesh = SubResource("BoxMesh_g1dcw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8xhq0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.04712, -0.103215, 0, 0.453022, 0.238573, 0, -0.157948, 12.2564)
+material_override = ExtResource("1_63hdy")
+mesh = SubResource("BoxMesh_g1dcw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8xhq0")
+
+[node name="CameraPivot" parent="." instance=ExtResource("4_evjpp")]
+
+[node name="goblin" parent="." instance=ExtResource("3_f7w5l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98807, 0.640774, -3.05242)
+
+[node name="flying-fish" parent="." instance=ExtResource("6_60lfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92923, 5.66243, 0.481732)
+
+[node name="GullTower" parent="." instance=ExtResource("7_m2ntr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20837, -3.16028, 1.53337)
+rise_target_position = Vector3(0, 1, 0)
