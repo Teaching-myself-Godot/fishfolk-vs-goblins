@@ -44,24 +44,24 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 
 ## Milestones in the creative process
 
-### Milestone 26 - Gull Tower
-- [x] model a seagull
-- [x] animate the seagull
-- [x] record and add some gull sounds
-- [x] make seagull follow target around with head
-- [x] make seagull peck target
-- [x] give seagull a roosting place to return to
-- [x] despawn seagull when roosting place has disappeared
-- [x] add damage properties to gull, just like other projectiles
-- [x] model a gull tower with a roosting platform
-- [x] add 4 roosts to the gull tower roosting platform
-- [x] let roosted gulls follow target with body and neck
-- [x] reuse fire rate of anti air tower for gull tower
-- [x] make gull tower assign target to gulls
-- [x] replace anti-air tower with gull tower
-- [x] when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
-- [x] add some gulls to each stage
-- [x] design a new icon for the gull tower in the tower context menu
+### [Milestone 26](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-26) - Gull Tower
+- model a seagull
+- animate the seagull
+- record and add some gull sounds
+- make seagull follow target around with head
+- make seagull peck target
+- give seagull a roosting place to return to
+- despawn seagull when roosting place has disappeared
+- add damage properties to gull, just like other projectiles
+- model a gull tower with a roosting platform
+- add 4 roosts to the gull tower roosting platform
+- let roosted gulls follow target with body and neck
+- reuse fire rate of anti air tower for gull tower
+- make gull tower assign target to gulls
+- replace anti-air tower with gull tower
+- when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
+- add some gulls to each stage
+- design a new icon for the gull tower in the tower context menu
 
 ### [Milestone 25](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-25) - Settings and joining (September 5th 2024)
 - Show which players have joined in the title screen
