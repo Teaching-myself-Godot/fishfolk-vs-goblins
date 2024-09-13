@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1ltd4sm1gwbt"]
+[gd_scene load_steps=23 format=3 uid="uid://d1ltd4sm1gwbt"]
 
 [ext_resource type="Script" path="res://scenes_3d/stages/scripts/stage.gd" id="1_edj0y"]
 [ext_resource type="PackedScene" uid="uid://clojhwy2lw5t1" path="res://scenes_3d/terrains/terrain_2.scn" id="1_l2pjn"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bjgelvwfnsttn" path="res://scenes_3d/player/goblin_spawn_point.scn" id="15_hib4k"]
 [ext_resource type="PackedScene" uid="uid://b7p0q017021lq" path="res://scenes_3d/village/crib.scn" id="15_k2g0q"]
 [ext_resource type="PackedScene" uid="uid://clku04v7abvrc" path="res://scenes_3d/stages/sun_and_sky.tscn" id="16_07pq5"]
+[ext_resource type="PackedScene" uid="uid://dscg4jyc42w76" path="res://scenes_3d/projectiles/gull.tscn" id="17_8hinw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kb4ff"]
 size = Vector3(238.098, 36.044, 1)
@@ -261,6 +262,54 @@ transform = Transform3D(0.0706966, 0, -0.997498, 0, 1, 0, 0.997498, 0, 0.0706966
 
 [node name="crib6" parent="TreesAndCribsAndSuch" instance=ExtResource("15_k2g0q")]
 transform = Transform3D(0.979516, 0, 0.201369, 0, 1, 0, -0.201369, 0, 0.979516, 16.3804, 1.06678, -13.6214)
+
+[node name="Roost1" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.295, -0.75835, 17.9198)
+
+[node name="Roost2" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4015, -0.736611, 19.5038)
+
+[node name="Roost3" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8664, -0.873585, 22.802)
+
+[node name="Gull" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6836, -0.787584, 15.7206)
+target = NodePath("../Roost1")
+roost = NodePath("../Roost1")
+
+[node name="Gull2" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.13, -0.87503, 19.9135)
+target = NodePath("../Roost2")
+roost = NodePath("../Roost2")
+
+[node name="Gull3" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.737, -0.622505, 22.6229)
+target = NodePath("../Roost3")
+roost = NodePath("../Roost3")
+
+[node name="Roost4" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -19.6355, -0.75835, 16.1626)
+
+[node name="Roost5" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -17.1738, -0.736611, 15.9776)
+
+[node name="Roost6" type="Node3D" parent="TreesAndCribsAndSuch"]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -20.2243, -0.873585, 23.547)
+
+[node name="Gull4" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -20.7309, -0.787584, 14.16)
+target = NodePath("../Roost4")
+roost = NodePath("../Roost4")
+
+[node name="Gull5" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -20.994, -0.87503, 20.2658)
+target = NodePath("../Roost5")
+roost = NodePath("../Roost5")
+
+[node name="Gull6" parent="TreesAndCribsAndSuch" node_paths=PackedStringArray("target", "roost") instance=ExtResource("17_8hinw")]
+transform = Transform3D(0.716752, 0, 0.697328, 0, 1, 0, -0.697328, 0, 0.716752, -15.956, -0.622505, 19.1444)
+target = NodePath("../Roost6")
+roost = NodePath("../Roost6")
 
 [node name="CameraPivot" parent="." instance=ExtResource("4_hekoh")]
 

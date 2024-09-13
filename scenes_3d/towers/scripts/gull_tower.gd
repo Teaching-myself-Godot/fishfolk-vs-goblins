@@ -8,13 +8,20 @@ var gulls : Array[Gull] = []
 var current_gull_index = 0
 
 func _init_gulls():
+	var wild_gulls = get_tree().get_nodes_in_group(Constants.GROUP_NAME_WILD_GULLS)
 	for roost in roosts:
-		var gull : Gull = GullScene.instantiate()
+		var wild_gull = wild_gulls.pop_back()
+		var gull : Gull = (
+			wild_gull if is_instance_valid(wild_gull) else
+			GullScene.instantiate()
+		)
+		gull.remove_from_group(Constants.GROUP_NAME_WILD_GULLS)
+		gull.flying = true
 		gull.roost = roost
 		gull.target = roost
 		gull.position = (rise_target_position + 
 			Vector3(randf_range(-20, 20), 20, randf_range(-20, 20))
-		)
+		) if gull.position == Vector3.ZERO else gull.position
 		add_child.call_deferred(gull)
 		gulls.append(gull)
 

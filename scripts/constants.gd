@@ -15,6 +15,7 @@ const GROUP_NAME_CRIBS = "cribs"
 const GROUP_NAME_GOBLIN_SPAWN_POINT = "goblin_spawn_point"
 const GROUP_NAME_MONSTER_WAVES = "monster_waves"
 const GROUP_NAME_TOASTS = "toasts"
+const GROUP_NAME_WILD_GULLS = "wild_gulls"
 
 const MONSTER_COLLISION_LAYER = 2
 

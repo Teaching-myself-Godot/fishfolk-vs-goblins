@@ -59,8 +59,8 @@ Also my wife and colleagues who were so kind to playtest this game on different 
 - [x] reuse fire rate of anti air tower for gull tower
 - [x] make gull tower assign target to gulls
 - [x] replace anti-air tower with gull tower
-- [ ] when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
-- [ ] add some gulls to each stage
+- [x] when a gull tower is first built, first assign any existing gulls to the roosts, else spawn and fly in new ones to assign to the roosts
+- [x] add some gulls to each stage
 - [x] design a new icon for the gull tower in the tower context menu
 
 ### [Milestone 25](https://github.com/Teaching-myself-Godot/fishfolk-vs-goblins/tree/milestone-25) - Settings and joining (September 5th 2024)
