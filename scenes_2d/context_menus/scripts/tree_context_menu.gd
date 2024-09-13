@@ -28,4 +28,4 @@ func close():
 func _on_gem_pouch_contents_changed(gems : int, crystals : int):
 	$"All-RangeMenu/Arrow-option/PriceTag".update_affordable_status(gems, crystals)
 	$"GroundMenu/Cannon-option/PriceTag".update_affordable_status(gems, crystals)
-	$"AirMenu/Anti-Air-option/PriceTag".update_affordable_status(gems, crystals)
+	$"AirMenu/Gull-Tower-option/PriceTag".update_affordable_status(gems, crystals)
